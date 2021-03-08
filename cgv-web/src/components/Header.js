@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logoCGV from "../images/cgv_logo.png";
 import iconCGV from "../images/cgv_icon.png";
 import iconFB from "../images/facebook_icon.png";
 import iconIG from "../images/instagram_icon.png";
@@ -10,27 +11,21 @@ const HeaderContainer = styled.div`
   width: auto;
   height: 180px;
   background-color: #fdfcf0;
-  display: flex;
-  justify-content: center;
 `;
 
 const HeaderBox = styled.div`
   width: 100%;
   height: auto;
-  align-content: center;
+  display: flex;
+  justify-content: center;
 `;
 
 const HeaderTopDiv = styled.div`
   width: 980px;
   height: 30px;
+  float: inherit;
   display: flex;
   justify-content: space-between;
-`;
-
-const HeaderBottomDiv = styled.div`
-  width: 980px;
-  height: 120px;
-  background-image: url(${bgHeader});
 `;
 
 const HeaderTopLeftDiv = styled.div`
@@ -89,6 +84,75 @@ const HeaderTopRightSep = styled.span`
   margin-right: 5px;
 `;
 
+const HeaderBottomBox = styled.div`
+  width: auto;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  background-image: url(${bgHeader});
+`;
+
+const HeaderBottomDiv = styled.div`
+  width: 980px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const HeaderBottomLeftLink = styled(Link)`
+  width: 120px;
+  height: auto;
+`;
+
+const HeaderBottomLeftImg = styled.img`
+  width: 120px;
+  height: auto;
+`;
+
+const HeaderBottomCenterBox = styled.div`
+  width: 430px;
+  height: auto;
+`;
+
+const HeaderBottomCenterTopItemBox = styled.div`
+  width: 430px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+`;
+
+const HeaderBottomCenterTopItem = styled.h2`
+  height: 100%;
+  margin: 0px;
+  padding-top: 15px;
+  font-weight: 600;
+  font-size: 40px;
+  font-family: "Fascinate";
+`;
+
+const HeaderBottomRightBox = styled.div`
+  width: 150px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 65px;
+`;
+
+const HeaderBottomRightInput = styled.input`
+  width: 100px;
+  height: 19px;
+`;
+
+const HeaderBottomRightButton = styled.button`
+  width: 40px;
+  height: 25px;
+  font-size: 12px;
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  border: 0px;
+`;
+
 const Header = () => {
   return (
     <HeaderContainer>
@@ -120,8 +184,23 @@ const Header = () => {
             <HeaderTopRightLink>고객센터</HeaderTopRightLink>
           </HeaderTopRightDiv>
         </HeaderTopDiv>
-        <HeaderBottomDiv></HeaderBottomDiv>
       </HeaderBox>
+      <HeaderBottomBox>
+        <HeaderBottomDiv>
+          <HeaderBottomLeftLink to="/">
+            <HeaderBottomLeftImg src={logoCGV} />
+          </HeaderBottomLeftLink>
+          <HeaderBottomCenterBox>
+            <HeaderBottomCenterTopItemBox>
+              <HeaderBottomCenterTopItem>CULTUREPLEX</HeaderBottomCenterTopItem>
+            </HeaderBottomCenterTopItemBox>
+          </HeaderBottomCenterBox>
+          <HeaderBottomRightBox>
+            <HeaderBottomRightInput />
+            <HeaderBottomRightButton>검색</HeaderBottomRightButton>
+          </HeaderBottomRightBox>
+        </HeaderBottomDiv>
+      </HeaderBottomBox>
     </HeaderContainer>
   );
 };
