@@ -1,11 +1,12 @@
 import "./App.css";
 import Header from "./components/Header";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <Header />
-      <div>안녕</div>
+      <Home />
     </>
   );
 }

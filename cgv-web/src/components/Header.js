@@ -6,10 +6,11 @@ import iconCGV from "../images/cgv_icon.png";
 import iconFB from "../images/facebook_icon.png";
 import iconIG from "../images/instagram_icon.png";
 import bgHeader from "../images/header_bg.jpg";
+import { Dropdown, Menu } from 'semantic-ui-react';
 
 const HeaderContainer = styled.div`
   width: auto;
-  height: 180px;
+  height: auto;
   background-color: #fdfcf0;
 `;
 
@@ -112,6 +113,9 @@ const HeaderBottomLeftImg = styled.img`
 const HeaderBottomCenterBox = styled.div`
   width: 430px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const HeaderBottomCenterTopItemBox = styled.div`
@@ -140,17 +144,62 @@ const HeaderBottomRightBox = styled.div`
 
 const HeaderBottomRightInput = styled.input`
   width: 100px;
-  height: 19px;
+  height: 25px;
 `;
 
 const HeaderBottomRightButton = styled.button`
-  width: 40px;
+  width: 28px;
   height: 25px;
-  font-size: 12px;
+  font-size: 11px;
   background-color: red;
   color: white;
   font-weight: 600;
   border: 0px;
+  padding: 0px;
+`;
+
+const HeaderBottomCenterBottomItemBox = styled.div`
+  width: auto;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const headerBottomCenterBottomItem = styled(Menu)`
+  width: auto;
+`;
+
+const myDropdownItem = styled(Dropdown.Item)`
+`;
+
+const DropdownBox = styled.div`
+  width: 130px;
+  height: 140px;
+  background-color: #393939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const DropdownBoxDiv = styled.div`
+  width: 125px;
+  height: 135px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid #828282;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+`;
+
+const DropdownDivLink = styled(Link)`
+  font-size: 14px;
+  color: white;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 const Header = () => {
@@ -194,6 +243,50 @@ const Header = () => {
             <HeaderBottomCenterTopItemBox>
               <HeaderBottomCenterTopItem>CULTUREPLEX</HeaderBottomCenterTopItem>
             </HeaderBottomCenterTopItemBox>
+            <HeaderBottomCenterBottomItemBox>
+              <headerBottomCenterBottomItem>
+                <Dropdown text='영화' simple item>
+                  <Dropdown.Menu>
+                    <myDropdownItem>
+                      <DropdownBox>
+                        <DropdownBoxDiv>
+                          <DropdownDivLink to="/">무비차트</DropdownDivLink>
+                          <DropdownDivLink to="/">HD 트레일러</DropdownDivLink>
+                          <DropdownDivLink to="/">무비파인더</DropdownDivLink>
+                        </DropdownBoxDiv>
+                      </DropdownBox>
+                    </myDropdownItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </headerBottomCenterBottomItem>
+              <headerBottomCenterBottomItem>
+                <Dropdown text='예매' simple item>
+                  <Dropdown.Menu>
+                    <myDropdownItem>
+                      <DropdownBox>
+                        <DropdownBoxDiv>
+                          <DropdownDivLink to="/">빠른예매</DropdownDivLink>
+                          <DropdownDivLink to="/">상영시간표</DropdownDivLink>
+                        </DropdownBoxDiv>
+                      </DropdownBox>
+                    </myDropdownItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </headerBottomCenterBottomItem>
+              <headerBottomCenterBottomItem>
+                <Dropdown text='극장' simple item>
+                  <Dropdown.Menu>
+                    <myDropdownItem>
+                      <DropdownBox>
+                        <DropdownBoxDiv>
+                          <DropdownDivLink to="/">CGV 극장</DropdownDivLink>
+                        </DropdownBoxDiv>
+                      </DropdownBox>
+                    </myDropdownItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </headerBottomCenterBottomItem>
+            </HeaderBottomCenterBottomItemBox>
           </HeaderBottomCenterBox>
           <HeaderBottomRightBox>
             <HeaderBottomRightInput />
