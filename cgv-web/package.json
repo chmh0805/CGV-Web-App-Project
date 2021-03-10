@@ -18,6 +18,7 @@
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-sticky-box": "^0.9.3",
     "react-youtube": "^7.13.1",
     "semantic-ui-carousel-react": "^1.1.3",
     "semantic-ui-css": "^2.4.1",

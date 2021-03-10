@@ -6,7 +6,7 @@ import iconCGV from "../images/cgv_icon.png";
 import iconFB from "../images/facebook_icon.png";
 import iconIG from "../images/instagram_icon.png";
 import bgHeader from "../images/header_bg.jpg";
-import { Dropdown, Menu } from 'semantic-ui-react';
+import { Dropdown, Menu } from "semantic-ui-react";
 
 const HeaderContainer = styled.div`
   width: auto;
@@ -46,7 +46,7 @@ const HeaderTopLeftDivItem = styled.div`
   padding-right: 8px;
 `;
 
-const HeaderTopLeftLink = styled(Link)`
+const HeaderTopLeftLink = styled.a`
   text-decoration: none;
   color: black;
   font-size: 13px;
@@ -66,7 +66,7 @@ const HeaderTopRightDiv = styled.div`
   align-items: center;
   width: fit-content;
   height: auto;
-  padding-top: 2px;
+  padding-top: 4px;
   padding-bottom: 2px;
 `;
 
@@ -169,8 +169,7 @@ const headerBottomCenterBottomItem = styled(Menu)`
   width: auto;
 `;
 
-const myDropdownItem = styled(Dropdown.Item)`
-`;
+const myDropdownItem = styled(Dropdown.Item)``;
 
 const DropdownBox = styled.div`
   width: 130px;
@@ -214,15 +213,19 @@ const Header = () => {
             </HeaderTopLeftDivItem>
             <HeaderTopLeftDivItem>
               <HeaderTopLeftImg src={iconFB} />
-              <HeaderTopLeftLink>Like</HeaderTopLeftLink>
+              <HeaderTopLeftLink href="https://www.facebook.com/CJCGV">
+                Like
+              </HeaderTopLeftLink>
             </HeaderTopLeftDivItem>
             <HeaderTopLeftDivItem>
               <HeaderTopLeftImg src={iconIG} />
-              <HeaderTopLeftLink>Follow</HeaderTopLeftLink>
+              <HeaderTopLeftLink href="https://www.instagram.com/cgv_korea/">
+                Follow
+              </HeaderTopLeftLink>
             </HeaderTopLeftDivItem>
           </HeaderTopLeftDiv>
           <HeaderTopRightDiv>
-            <HeaderTopRightLink to="/">로그인</HeaderTopRightLink>
+            <HeaderTopRightLink to="/login">로그인</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
             <HeaderTopRightLink>회원가입</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
@@ -245,7 +248,7 @@ const Header = () => {
             </HeaderBottomCenterTopItemBox>
             <HeaderBottomCenterBottomItemBox>
               <headerBottomCenterBottomItem>
-                <Dropdown text='영화' simple item>
+                <Dropdown text="영화" simple item>
                   <Dropdown.Menu>
                     <myDropdownItem>
                       <DropdownBox>
@@ -260,7 +263,7 @@ const Header = () => {
                 </Dropdown>
               </headerBottomCenterBottomItem>
               <headerBottomCenterBottomItem>
-                <Dropdown text='예매' simple item>
+                <Dropdown text="예매" simple item>
                   <Dropdown.Menu>
                     <myDropdownItem>
                       <DropdownBox>
@@ -274,7 +277,7 @@ const Header = () => {
                 </Dropdown>
               </headerBottomCenterBottomItem>
               <headerBottomCenterBottomItem>
-                <Dropdown text='극장' simple item>
+                <Dropdown text="극장" simple item>
                   <Dropdown.Menu>
                     <myDropdownItem>
                       <DropdownBox>
