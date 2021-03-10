@@ -18,14 +18,17 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
 
     private final List<GiftCard> mGiftCards;
 
-    public GiftCardListAdapter(List<GiftCard> giftCards) {
+    private final int mLayoutRes;
+
+    public GiftCardListAdapter(List<GiftCard> giftCards, int mLayoutRes) {
         this.mGiftCards = giftCards;
+        this.mLayoutRes = mLayoutRes;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.gfitshop_giftcard_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(mLayoutRes, parent, false);
         return new MyViewHolder(view);
     }
 

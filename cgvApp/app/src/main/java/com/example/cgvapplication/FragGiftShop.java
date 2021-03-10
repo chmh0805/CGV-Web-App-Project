@@ -1,9 +1,11 @@
 package com.example.cgvapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,10 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragGiftShop extends Fragment {
+
+    private static final String TAG = "FragGiftShop";
+    
     private RecyclerView mRvGiftCardItem, mRvComboItem;
     private GiftCardListAdapter mGiftCardListAdapter;
     private ComboListAdapter mComboListAdapter;
-
+    private LinearLayout mLinearPackageBtn, mLinearComboBtn, mLinearGiftcardBtn, mLinearTicketBtn;
+    
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,7 +41,7 @@ public class FragGiftShop extends Fragment {
         }
         LinearLayoutManager giftCardManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         mRvGiftCardItem.setLayoutManager(giftCardManager);
-        mGiftCardListAdapter = new GiftCardListAdapter(giftCards);
+        mGiftCardListAdapter = new GiftCardListAdapter(giftCards, R.layout.gfitshop_giftcard_item);
         mRvGiftCardItem.setAdapter(mGiftCardListAdapter);
 
         mRvComboItem = view.findViewById(R.id.rv_combo_item);
@@ -48,6 +54,25 @@ public class FragGiftShop extends Fragment {
         mComboListAdapter = new ComboListAdapter(combos);
         mRvComboItem.setAdapter(mComboListAdapter);
 
+        mLinearPackageBtn = view.findViewById(R.id.linear_package_btn);
+        mLinearComboBtn = view.findViewById(R.id.linear_combo_btn);
+        mLinearTicketBtn = view.findViewById(R.id.linear_ticket_btn);
+        mLinearGiftcardBtn = view.findViewById(R.id.linear_giftcard_btn);
+        
+        mLinearTicketBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(v.getContext(), GiftshopActivity.class);
+            startActivity(intent);
+        });
+
+        mLinearGiftcardBtn.setOnClickListener(v -> {
+            int page = 1;
+            Intent intent = new Intent(v.getContext(), GiftshopActivity.class);
+            intent.putExtra("Giftcard", page);
+            startActivity(intent);
+        });
+
+        
         return view;
     }
+    
 }
