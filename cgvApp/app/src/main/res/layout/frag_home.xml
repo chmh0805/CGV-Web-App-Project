@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#EEEEEE">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_top_blurb_container"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/home_movie_list_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="40dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/home_movie_list_container"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_marginBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:background="@android:color/white"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:text="추천 영화"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        android:gravity="center_vertical"
+        android:background="@android:color/white"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:paddingBottom="20dp"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/white"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CJCGV (주)"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_keyboard_arrow_down"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/terms_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이용약관"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginLeft="7dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/privacy_policy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="개인정보 처리방침"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginLeft="7dp"
+            android:background="@android:color/darker_gray"/>
+
+        <TextView
+            android:id="@+id/logal_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="법적고지"
+            android:textColor="@android:color/black"
+            android:textSize="13sp"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>
