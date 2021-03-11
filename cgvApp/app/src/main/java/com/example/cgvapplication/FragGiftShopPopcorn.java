@@ -1,4 +1,4 @@
-package com.example.cgvapplication.giftshop;
+package com.example.cgvapplication;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,11 @@ import androidx.fragment.app.Fragment;
 
 import com.example.cgvapplication.R;
 
-public class FragGiftShopDrink extends Fragment {
+public class FragGiftShopPopcorn extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.frag_giftshop_drink, container, false);
+        View view = inflater.inflate(R.layout.frag_giftshop_popcorn, container, false);
         return view;
     }
 }

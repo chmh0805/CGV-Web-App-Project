@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.adapter.ComboListAdapter;
 import com.example.cgvapplication.adapter.GiftCardListAdapter;
+import com.example.cgvapplication.adapter.MovieTicketListAdapter;
 import com.example.cgvapplication.model.giftshop.Combo;
 import com.example.cgvapplication.model.giftshop.GiftCard;
+import com.example.cgvapplication.model.giftshop.MovieTicket;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,40 +27,70 @@ public class FragGiftShop extends Fragment {
 
     private static final String TAG = "FragGiftShop";
     
-    private RecyclerView mRvGiftCardItem, mRvComboItem;
+    private RecyclerView mRvGiftCardItem, mRvComboItem, mRvMovieTicketItem;
     private GiftCardListAdapter mGiftCardListAdapter;
+    private MovieTicketListAdapter mMovieTicketListAdapter;
     private ComboListAdapter mComboListAdapter;
     private LinearLayout mLinearPackageBtn, mLinearComboBtn, mLinearGiftcardBtn, mLinearTicketBtn;
-    
+    private List<GiftCard> giftCards;
+    private List<Combo> combos;
+    private List<MovieTicket> movieTickets;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_giftshop, container, false);
+        init(view);
+        initData();
+        listener();
+
+        return view;
+    }
+
+    private void init(View view) {
+        giftCards = new ArrayList<>();
+        combos = new ArrayList<>();
+        movieTickets = new ArrayList<>();
+
         mRvGiftCardItem = view.findViewById(R.id.rv_giftcard_item);
-        List<GiftCard> giftCards = new ArrayList<>();
-        for (int i=0; i<5; i++) {
-            giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie));
-        }
+        mRvComboItem = view.findViewById(R.id.rv_combo_item);
+        mRvMovieTicketItem = view.findViewById(R.id.rv_movie_ticket_item);
+        mLinearPackageBtn = view.findViewById(R.id.linear_package_btn);
+        mLinearComboBtn = view.findViewById(R.id.linear_combo_btn);
+        mLinearTicketBtn = view.findViewById(R.id.linear_ticket_btn);
+        mLinearGiftcardBtn = view.findViewById(R.id.linear_giftcard_btn);
+
         LinearLayoutManager giftCardManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         mRvGiftCardItem.setLayoutManager(giftCardManager);
         mGiftCardListAdapter = new GiftCardListAdapter(giftCards, R.layout.gfitshop_giftcard_item);
         mRvGiftCardItem.setAdapter(mGiftCardListAdapter);
 
-        mRvComboItem = view.findViewById(R.id.rv_combo_item);
-        List<Combo> combos = new ArrayList<>();
-        for (int i=0; i<3; i++) {
-            combos.add(new Combo(i, "CGV콤보", "CGV의 영원한 베스트셀러!", "9,000원", R.drawable.cgv_combo));
-        }
         LinearLayoutManager ComboManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         mRvComboItem.setLayoutManager(ComboManager);
         mComboListAdapter = new ComboListAdapter(combos);
         mRvComboItem.setAdapter(mComboListAdapter);
 
-        mLinearPackageBtn = view.findViewById(R.id.linear_package_btn);
-        mLinearComboBtn = view.findViewById(R.id.linear_combo_btn);
-        mLinearTicketBtn = view.findViewById(R.id.linear_ticket_btn);
-        mLinearGiftcardBtn = view.findViewById(R.id.linear_giftcard_btn);
-        
+        LinearLayoutManager movieTicketManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
+        mRvMovieTicketItem.setLayoutManager(movieTicketManager);
+        mMovieTicketListAdapter = new MovieTicketListAdapter(movieTickets, R.layout.giftshop_ticket_item);
+        mRvMovieTicketItem.setAdapter(mMovieTicketListAdapter);
+
+    }
+
+    private void initData() {
+        for (int i=0; i<5; i++) {
+            giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie));
+        }
+        for (int i=0; i<3; i++) {
+            combos.add(new Combo(i, "CGV콤보", "CGV의 영원한 베스트셀러!", "9,000원", R.drawable.cgv_combo));
+        }
+        for (int i=0; i<2; i++) {
+            movieTickets.add(new MovieTicket(i, "CGV 영화관람권", "11,000원",R.drawable.cgv_movie_ticket));
+        }
+
+    }
+
+    private void listener() {
         mLinearTicketBtn.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), GiftshopActivity.class);
             startActivity(intent);
@@ -70,9 +102,6 @@ public class FragGiftShop extends Fragment {
             intent.putExtra("Giftcard", page);
             startActivity(intent);
         });
-
-        
-        return view;
     }
     
 }

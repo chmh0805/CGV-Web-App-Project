@@ -10,12 +10,6 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.cgvapplication.adapter.GiftshopFragmentPagerAdapter;
-import com.example.cgvapplication.giftshop.FragGiftShopCombo;
-import com.example.cgvapplication.giftshop.FragGiftShopDrink;
-import com.example.cgvapplication.giftshop.FragGiftShopGiftcard;
-import com.example.cgvapplication.giftshop.FragGiftShopPopcorn;
-import com.example.cgvapplication.giftshop.FragGiftShopSnack;
-import com.example.cgvapplication.giftshop.FragGiftShopTicket;
 import com.google.android.material.tabs.TabLayout;
 
 public class GiftshopActivity extends AppCompatActivity {

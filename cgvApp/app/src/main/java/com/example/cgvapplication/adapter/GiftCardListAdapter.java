@@ -20,9 +20,9 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
 
     private final int mLayoutRes;
 
-    public GiftCardListAdapter(List<GiftCard> giftCards, int mLayoutRes) {
+    public GiftCardListAdapter(List<GiftCard> giftCards, int layoutRes) {
         this.mGiftCards = giftCards;
-        this.mLayoutRes = mLayoutRes;
+        this.mLayoutRes = layoutRes;
     }
 
     @NonNull

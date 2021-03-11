@@ -1,4 +1,4 @@
-package com.example.cgvapplication.giftshop;
+package com.example.cgvapplication;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

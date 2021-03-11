@@ -192,7 +192,11 @@
                 android:text="영화관람권"
                 android:textSize="15dp"
                 android:textStyle="bold"/>
-            <include layout="@layout/giftshop_ticket_item" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_movie_ticket_item"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:nestedScrollingEnabled="false"/>
 
         </LinearLayout>
         <LinearLayout
