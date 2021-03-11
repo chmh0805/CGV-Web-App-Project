@@ -75,6 +75,11 @@ const HeaderTopRightLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 const HeaderTopRightSep = styled.span`
@@ -227,9 +232,9 @@ const Header = () => {
           <HeaderTopRightDiv>
             <HeaderTopRightLink to="/login">로그인</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>회원가입</HeaderTopRightLink>
+            <HeaderTopRightLink to="/join">회원가입</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>MyCGV</HeaderTopRightLink>
+            <HeaderTopRightLink to="/user/mycgv">MyCGV</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
             <HeaderTopRightLink>VIP LOUNGE</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
