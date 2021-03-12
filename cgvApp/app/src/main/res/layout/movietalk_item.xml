@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
     android:background="@android:color/white"
     android:orientation="vertical"
@@ -15,7 +15,7 @@
         android:layout_height="50dp">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/iv_movietalk_movieImg"
+            android:id="@+id/iv_movietalk_moviePoster"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:scaleType="centerCrop"
@@ -41,7 +41,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_movietalk_movieImg"
+            app:layout_constraintStart_toEndOf="@+id/iv_movietalk_moviePoster"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -56,7 +56,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_movietalk_purchase"
+            android:id="@+id/btn_movietalk_actionBtn"
             android:layout_width="60dp"
             android:layout_height="25dp"
             android:background="@drawable/ic_movietalk_item_btn"
@@ -81,7 +81,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="<영화 소개 글 적는란> \n \n 3줄 이상은 ...더보기로 표시\n 더보기 클릭시 모든 글 보여주기로 구성"
+        android:text="영화 소개 글 적는란 \n \n 3줄 이상은 ...더보기로 표시\n 더보기 클릭시 모든 글 보여주기로 구성"
         app:readMoreColor="@android:color/darker_gray"
         app:readMoreMaxLine="3"
         app:readMoreText="…더보기" />
@@ -94,19 +94,19 @@
     
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp">
+        android:layout_height="50dp">
 
         <info.androidhive.fontawesome.FontTextView
             android:id="@+id/iv_movietalk_heartIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fa_heart_broken_solid"
-            android:textColor="@android:color/black"
+            android:text="@string/fa_heart_solid"
+            android:textColor="@android:color/darker_gray"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:solid_icon="true" />
+            app:solid_icon="false" />
 
         <TextView
             android:id="@+id/tv_movietalk_heartRating"
@@ -115,7 +115,7 @@
             android:layout_marginStart="5dp"
             android:text="1"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_movietalk_heartIcon"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_movietalk_heartIcon"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -123,15 +123,14 @@
             android:id="@+id/iv_movietalk_commentIcon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginStart="12dp"
             android:text="@string/fa_comment_dots_solid"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/darker_gray"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tv_movietalk_heartRating"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:solid_icon="true" />
+            app:solid_icon="false" />
 
         <TextView
             android:id="@+id/tv_movietalk_commentRating"
@@ -149,12 +148,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/fa_share_square_solid"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/darker_gray"
             android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:solid_icon="true" />
+            app:solid_icon="false" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

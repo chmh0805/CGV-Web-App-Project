@@ -10,7 +10,7 @@
 
     <com.makeramen.roundedimageview.RoundedImageView
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/iv_home_movie_img"
+        android:id="@+id/iv_home_movielist_Poster"
         android:layout_height="200dp"
         android:layout_width="150dp"
         android:src="@drawable/lalaland"
@@ -22,7 +22,7 @@
         app:riv_oval="false" />
 
     <TextView
-        android:id="@+id/tv_home_movie_title"
+        android:id="@+id/tv_home_movielist_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -48,14 +48,14 @@
             android:layout_height="20dp"
             android:scaleType="centerCrop"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_home_movie_eggrate"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_movielist_eggrate"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:src="@drawable/lalaland" />
 
         <TextView
-            android:id="@+id/tv_home_movie_eggrate"
+            android:id="@+id/tv_home_movielist_eggrate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="93%"
@@ -74,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/textView2"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/tv_home_movie_eggrate"
+            app:layout_constraintStart_toEndOf="@+id/tv_home_movielist_eggrate"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
@@ -84,13 +84,13 @@
             android:text="예매율"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tv_home_movie_purchaserate"
+            app:layout_constraintEnd_toStartOf="@+id/tv_home_movielist_purchaserate"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_home_movie_purchaserate"
+            android:id="@+id/tv_home_movielist_purchaserate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="28.9%"
@@ -104,7 +104,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_home_movie_purchase"
+        android:id="@+id/btn_home_movielist_purchase"
         android:layout_width="120dp"
         android:layout_height="30dp"
         android:layout_marginTop="15dp"
