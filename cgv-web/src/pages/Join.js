@@ -89,6 +89,14 @@ const PhoneInput = styled.input`
   line-height: 1.8;
   height: 27px;
   margin-right: 3px;
+  border: 0px;
+  border-bottom: 1px solid #333;
+  background-color: #fdfcf0;
+
+  &:active {
+    border: none;
+    outline: none;
+  }
 `;
 
 const PhoneDivider = styled.p`
