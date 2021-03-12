@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.R;
 import com.example.cgvapplication.adapter.GiftCardListAdapter;
 import com.example.cgvapplication.model.giftshop.GiftCard;
 
@@ -19,8 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FragGiftShopGiftcard extends Fragment {
+    private final FragGiftShopGiftcard mFragGiftShopGiftcard = this;
     private RecyclerView mRvGiftCardItem;
     private GiftCardListAdapter mGiftCardListAdapter;
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,10 +35,8 @@ public class FragGiftShopGiftcard extends Fragment {
         }
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2);
         mRvGiftCardItem.setLayoutManager(gridLayoutManager);
-//        LinearLayoutManager giftCardManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
-//        mRvGiftCardItem.setLayoutManager(giftCardManager);
 
-        mGiftCardListAdapter = new GiftCardListAdapter(giftCards, R.layout.giftshop_giftcard_grid_item);
+        mGiftCardListAdapter = new GiftCardListAdapter(giftCards, mFragGiftShopGiftcard.getContext(), R.layout.giftshop_giftcard_grid_item);
         mRvGiftCardItem.setAdapter(mGiftCardListAdapter);
         return view;
     }

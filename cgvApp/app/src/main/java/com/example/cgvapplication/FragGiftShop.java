@@ -26,7 +26,7 @@ import java.util.List;
 public class FragGiftShop extends Fragment {
 
     private static final String TAG = "FragGiftShop";
-    
+    private final FragGiftShop mFragGiftShop = this;
     private RecyclerView mRvGiftCardItem, mRvComboItem, mRvMovieTicketItem;
     private GiftCardListAdapter mGiftCardListAdapter;
     private MovieTicketListAdapter mMovieTicketListAdapter;
@@ -35,6 +35,8 @@ public class FragGiftShop extends Fragment {
     private List<GiftCard> giftCards;
     private List<Combo> combos;
     private List<MovieTicket> movieTickets;
+
+
 
     @Nullable
     @Override
@@ -62,7 +64,7 @@ public class FragGiftShop extends Fragment {
 
         LinearLayoutManager giftCardManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         mRvGiftCardItem.setLayoutManager(giftCardManager);
-        mGiftCardListAdapter = new GiftCardListAdapter(giftCards, R.layout.gfitshop_giftcard_item);
+        mGiftCardListAdapter = new GiftCardListAdapter(giftCards, mFragGiftShop.getContext(), R.layout.gfitshop_giftcard_item);
         mRvGiftCardItem.setAdapter(mGiftCardListAdapter);
 
         LinearLayoutManager ComboManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
