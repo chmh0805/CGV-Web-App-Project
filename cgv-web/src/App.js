@@ -6,7 +6,6 @@ function App() {
   return (
     <>
       <Header />
-      <div>안녕</div>
       <Footer />
     </>
   );

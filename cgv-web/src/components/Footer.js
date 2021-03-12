@@ -12,6 +12,7 @@ const FooterContainer = styled.div`
   height: 270px;
   background-color: #fdfcf0;
   background-image: url(${bgFooter});
+  border-top: 1px solid #cacac0;
 `;
 
 const FooterInfoDiv = styled.div`
@@ -38,10 +39,10 @@ const FooterImpLink = styled(Link)`
 
 const FooterSep = styled.span`
   font-size: 11px;
-  color: #dddddd;
+  color: #444444;
   font-weight: 600;
-  margin-left: 2px;
-  margin-right: 2px;
+  margin-left: 3px;
+  margin-right: 3px;
 `;
 
 const FooterAdressDiv = styled.div`
