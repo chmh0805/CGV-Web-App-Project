@@ -59,8 +59,5 @@ public class MainActivity extends AppCompatActivity {
         mTabs.getTabAt(1).setText("무비톡");
         mTabs.getTabAt(2).setText("기프트샵");
 
-
-
     }
-
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="280dp"
+    android:layout_height="130dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/iv_home_top_featuredMovie_poster"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/lalaland"
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="15dp"
+        app:riv_tile_mode="clamp"
+        app:riv_oval="false" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_home_top_featuredMovie_btn"
+        android:layout_width="35dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="상세보기"
+        android:textStyle="bold"
+        android:textSize="7sp"
+        android:background="@drawable/ic_home_top_featuredmovie_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
