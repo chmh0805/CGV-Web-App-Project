@@ -52,14 +52,14 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mIvGiftCard;
-        private TextView mTvGiftCard, mTvGiftCardPrcie;
+        private TextView mTvGiftCard, mTvGiftCardPrice;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mTvGiftCard = itemView.findViewById(R.id.tv_gift_card);
             mIvGiftCard = itemView.findViewById(R.id.iv_gift_card);
-            mTvGiftCardPrcie = itemView.findViewById(R.id.tv_gift_card_price);
+            mTvGiftCardPrice = itemView.findViewById(R.id.tv_gift_card_price);
 
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(mContext, GiftShopDetailActivity.class);
@@ -85,7 +85,7 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
         public void setItem(GiftCard giftCard) {
             mTvGiftCard.setText(giftCard.getName());
             mIvGiftCard.setImageResource(giftCard.getImgSrc());
-            mTvGiftCardPrcie.setText(giftCard.getPrice());
+            mTvGiftCardPrice.setText(giftCard.getPrice());
         }
     }
 }
