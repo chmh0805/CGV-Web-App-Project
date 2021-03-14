@@ -74,20 +74,26 @@ public class FragGiftShop extends Fragment {
 
         LinearLayoutManager movieTicketManager = new LinearLayoutManager(view.getContext(), RecyclerView.VERTICAL, false);
         mRvMovieTicketItem.setLayoutManager(movieTicketManager);
-        mMovieTicketListAdapter = new MovieTicketListAdapter(movieTickets, R.layout.giftshop_ticket_item);
+        mMovieTicketListAdapter = new MovieTicketListAdapter(movieTickets, mFragGiftShop.getContext(), R.layout.giftshop_ticket_item);
         mRvMovieTicketItem.setAdapter(mMovieTicketListAdapter);
 
     }
 
+
+//    private int id;
+//    private String name;
+//    private int imgSrc;
+//    private String content;
+//    private String price;
     private void initData() {
         for (int i=0; i<5; i++) {
-            giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie));
+            giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie, "귀여운 루돌프 파코니카드로 감사의 마음을 선물하세요.", "금액충전형", "충전형 선불 카드", "구매 또는 최종 충전일로부터 5년"));
         }
         for (int i=0; i<3; i++) {
             combos.add(new Combo(i, "CGV콤보", "CGV의 영원한 베스트셀러!", "9,000원", R.drawable.cgv_combo));
         }
         for (int i=0; i<2; i++) {
-            movieTickets.add(new MovieTicket(i, "CGV 영화관람권", "11,000원",R.drawable.cgv_movie_ticket));
+            movieTickets.add(new MovieTicket(i, "CGV 영화관람권", R.drawable.cgv_movie_ticket, "CGV 영화관람권으로 즐거운 영화관람하세요!", "11,000원" , "일반 영화관람권", "구매일로부터 24개월 이내"));
         }
 
     }

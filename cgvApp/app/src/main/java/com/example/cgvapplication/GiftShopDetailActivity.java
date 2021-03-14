@@ -15,8 +15,8 @@ public class GiftShopDetailActivity extends AppCompatActivity {
     private ImageView mIvBack, mIvMenu, mIvClose;
     private Toolbar mToolbarGiftShop;
     private DrawerLayout mDrawer;
-    private TextView mTvGiftCard;
-    private ImageView mIvGiftCard;
+    private TextView mTvGiftShopProName, mTvGiftShopProPrice, mTvGiftShopProExp, mTvGiftShopProContent;
+    private ImageView mIvGiftShopPro;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +28,15 @@ public class GiftShopDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         int imgSrc = intent.getExtras().getInt("imageSrc");
         String name = intent.getExtras().getString("name");
-        mTvGiftCard.setText(name);
-        mIvGiftCard.setImageResource(imgSrc);
+        String price = intent.getExtras().getString("price");
+        String exp = intent.getExtras().getString("exp");
+        String content = intent.getExtras().getString("content");
+
+        mTvGiftShopProName.setText(name);
+        mIvGiftShopPro.setImageResource(imgSrc);
+        mTvGiftShopProPrice.setText(price);
+        mTvGiftShopProExp.setText(exp);
+        mTvGiftShopProContent.setText(content);
     }
 
     private void init() {
@@ -38,8 +45,11 @@ public class GiftShopDetailActivity extends AppCompatActivity {
         mIvMenu = findViewById(R.id.iv_menu);
         mIvClose = findViewById(R.id.iv_close);
         mDrawer = findViewById(R.id.drawer);
-        mTvGiftCard = findViewById(R.id.tv_gift_card);
-        mIvGiftCard = findViewById(R.id.iv_gift_card);
+        mTvGiftShopProName = findViewById(R.id.tv_gift_shop_pro_name);
+        mIvGiftShopPro = findViewById(R.id.iv_gift_shop_pro);
+        mTvGiftShopProPrice = findViewById(R.id.tv_gift_shop_pro_price);
+        mTvGiftShopProExp = findViewById(R.id.tv_gift_shop_pro_exp);
+        mTvGiftShopProContent = findViewById(R.id.tv_gift_shop_pro_content);
     }
 
     private void listener() {

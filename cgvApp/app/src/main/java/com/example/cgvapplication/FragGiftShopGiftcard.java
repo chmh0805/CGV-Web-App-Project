@@ -31,7 +31,7 @@ public class FragGiftShopGiftcard extends Fragment {
         mRvGiftCardItem = view.findViewById(R.id.rv_giftcard_item);
         List<GiftCard> giftCards = new ArrayList<>();
         for (int i=0; i<5; i++) {
-            giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie));
+            giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie, "귀여운 루돌프 파코니카드로 감사의 마음을 선물하세요.", "금액충전형", "충전형 선불 카드", "구매 또는 최종 충전일로부터 5년"));
         }
         GridLayoutManager gridLayoutManager = new GridLayoutManager(view.getContext(), 2);
         mRvGiftCardItem.setLayoutManager(gridLayoutManager);

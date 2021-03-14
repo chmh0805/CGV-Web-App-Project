@@ -11,6 +11,9 @@ public class MovieTicket {
     // 테스트
     private int id;
     private String name;
-    private String price;
     private int imgSrc;
+    private String content;
+    private String price;
+    private String type;
+    private String exp; // 유효기간
 }

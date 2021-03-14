@@ -52,22 +52,32 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView mIvGiftCard;
-        private TextView mTvGiftCard;
+        private TextView mTvGiftCard, mTvGiftCardPrcie;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             mTvGiftCard = itemView.findViewById(R.id.tv_gift_card);
             mIvGiftCard = itemView.findViewById(R.id.iv_gift_card);
+            mTvGiftCardPrcie = itemView.findViewById(R.id.tv_gift_card_price);
 
             itemView.setOnClickListener(v -> {
                 Intent intent = new Intent(mContext, GiftShopDetailActivity.class);
 
                 String name = mGiftCards.get(getAdapterPosition()).getName();
+                String price = mGiftCards.get(getAdapterPosition()).getPrice();
+                String content = mGiftCards.get(getAdapterPosition()).getContent();
+                String type = mGiftCards.get(getAdapterPosition()).getType();
+                String exp = mGiftCards.get(getAdapterPosition()).getExp();
                 int imgSrc = mGiftCards.get(getAdapterPosition()).getImgSrc();
 
                 intent.putExtra("name", name);
                 intent.putExtra("imageSrc", imgSrc);
+                intent.putExtra("price", price);
+                intent.putExtra("content", content);
+                intent.putExtra("type", type);
+                intent.putExtra("exp", exp);
+
                 mContext.startActivity(intent);
             });
         }
@@ -75,6 +85,7 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
         public void setItem(GiftCard giftCard) {
             mTvGiftCard.setText(giftCard.getName());
             mIvGiftCard.setImageResource(giftCard.getImgSrc());
+            mTvGiftCardPrcie.setText(giftCard.getPrice());
         }
     }
 }
