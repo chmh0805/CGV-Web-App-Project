@@ -80,11 +80,6 @@ public class FragGiftShop extends Fragment {
     }
 
 
-//    private int id;
-//    private String name;
-//    private int imgSrc;
-//    private String content;
-//    private String price;
     private void initData() {
         for (int i=0; i<5; i++) {
             giftCards.add(new GiftCard(i, "루돌프 파코니", R.drawable.giftshop_rudolf_paconnie, "귀여운 루돌프 파코니카드로 감사의 마음을 선물하세요.", "금액충전형", "충전형 선불 카드", "구매 또는 최종 충전일로부터 5년"));

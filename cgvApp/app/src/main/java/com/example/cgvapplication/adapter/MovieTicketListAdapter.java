@@ -23,9 +23,9 @@ public class MovieTicketListAdapter extends RecyclerView.Adapter<MovieTicketList
     private final Context mContext;
     private final int mLayoutRes;
 
-    public MovieTicketListAdapter(List<MovieTicket> movieTickets, Context mContext, int LayoutRes) {
+    public MovieTicketListAdapter(List<MovieTicket> movieTickets, Context context, int LayoutRes) {
         this.mMovieTickets = movieTickets;
-        this.mContext = mContext;
+        this.mContext = context;
         this.mLayoutRes = LayoutRes;
     }
 

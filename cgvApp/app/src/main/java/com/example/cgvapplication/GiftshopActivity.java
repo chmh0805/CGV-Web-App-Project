@@ -8,8 +8,10 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.example.cgvapplication.adapter.GiftshopFragmentPagerAdapter;
+import com.example.cgvapplication.helper.MyNavigationHelper;
 import com.google.android.material.tabs.TabLayout;
 
 public class GiftshopActivity extends AppCompatActivity {
@@ -18,10 +20,11 @@ public class GiftshopActivity extends AppCompatActivity {
 
     private GiftshopFragmentPagerAdapter mGiftshopFragmentPagerAdapter;
     private ViewPager mVpGiftshopContainer;
-    private DrawerLayout mDrawer;
+    private LinearLayout mLinearNavigation;
     private Toolbar mToolbarGiftshop;
-    private ImageView mIvMenu, mIvClose, mIvBack;
     private TabLayout mTabsGiftshop;
+    private MyNavigationHelper myNavigationHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,27 +32,16 @@ public class GiftshopActivity extends AppCompatActivity {
         setSupportActionBar(mToolbarGiftshop);
         init();
 
-        mIvMenu.setOnClickListener(view -> {
-            mDrawer.openDrawer(GravityCompat.END);
-        });
-        mIvClose.setOnClickListener(view -> {
-            mDrawer.closeDrawer(GravityCompat.END);
-        });
+        myNavigationHelper.enable(mLinearNavigation);
 
-        mIvBack.setOnClickListener(view -> {
-            finish();
-        });
     }
 
     private void init() {
         mGiftshopFragmentPagerAdapter = new GiftshopFragmentPagerAdapter(getSupportFragmentManager(), 1);
         mVpGiftshopContainer = findViewById(R.id.vp_giftshop_container);
-        mDrawer = findViewById(R.id.drawer);
         mToolbarGiftshop = findViewById(R.id.toolbar_giftshop);
-        mIvMenu = findViewById(R.id.iv_menu);
-        mIvClose = findViewById(R.id.iv_close);
         mTabsGiftshop = findViewById(R.id.tabs_giftshop);
-        mIvBack = findViewById(R.id.iv_back);
+        mLinearNavigation = findViewById(R.id.linear_navigation);
 
         mGiftshopFragmentPagerAdapter.addFragment(new FragGiftShopTicket());
         mGiftshopFragmentPagerAdapter.addFragment(new FragGiftShopGiftcard());
@@ -71,6 +63,7 @@ public class GiftshopActivity extends AppCompatActivity {
         int defaultValue = 0;
         int page = getIntent().getIntExtra("Giftcard",defaultValue);
         mVpGiftshopContainer.setCurrentItem(page);
+        myNavigationHelper = new MyNavigationHelper(GiftshopActivity.this);
 
 
     }

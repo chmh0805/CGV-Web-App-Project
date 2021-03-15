@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:id="@+id/nv"
+        android:id="@+id/linear_navigation"
         android:layout_width="320dp"
         android:layout_height="match_parent"
         android:layout_gravity="end"
@@ -115,16 +115,17 @@
                                 app:civ_circle_background_color="@android:color/darker_gray" />
                         </LinearLayout>
                         <TextView
+                            android:id="@+id/tv_go_login"
                             android:layout_weight="4"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:text="로그인을 해주세요"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="15dp"
+                            android:paddingLeft="15dp"
+                            android:paddingTop="20dp"
                             android:paddingRight="10dp"
-                            android:paddingBottom="15dp"
+                            android:paddingBottom="20dp"
                             android:textStyle="bold"
-                            android:visibility="gone"/>
+                            android:visibility="visible"/>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_weight="9"
@@ -134,7 +135,7 @@
                             android:paddingTop="15dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="15dp"
-                            android:visibility="visible">
+                            android:visibility="gone">
 
 
                             <TextView

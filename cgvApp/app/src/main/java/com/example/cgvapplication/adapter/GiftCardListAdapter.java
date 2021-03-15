@@ -26,9 +26,9 @@ public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapte
     private final Context mContext;
     private final int mLayoutRes;
 
-    public GiftCardListAdapter(List<GiftCard> giftCards, Context mContext, int layoutRes) {
+    public GiftCardListAdapter(List<GiftCard> giftCards, Context context, int layoutRes) {
         this.mGiftCards = giftCards;
-        this.mContext = mContext;
+        this.mContext = context;
         this.mLayoutRes = layoutRes;
     }
 
