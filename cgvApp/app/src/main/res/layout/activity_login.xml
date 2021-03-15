@@ -31,11 +31,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="CGV 아이디"
-                    android:layout_marginBottom="10dp"/>
+                    android:layout_marginBottom="10dp" />
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/et_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:inputType="textPassword"
                     android:hint="CGV 패스워드"/>
                 <CheckBox
                     android:id="@+id/cb_auto_login"
@@ -45,7 +46,6 @@
                     android:checked="true"
                     android:drawableStart="@drawable/checkbox_bg"
                     android:drawablePadding="10dp"
-
                     android:text="자동로그인"/>
 
 
