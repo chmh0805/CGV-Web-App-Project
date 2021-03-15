@@ -3,12 +3,14 @@ import FloatingBanner from "./components/FloatingBanner";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import MovieChart from "./pages/MovieChart";
+import MovieDetail from "./pages/MovieDetail";
+import MovieFinder from "./pages/MovieFinder";
 
 function App() {
   return (
     <>
       <Header />
-      <MovieChart />
+      <MovieFinder />
       <FloatingBanner />
       <Footer />
     </>
