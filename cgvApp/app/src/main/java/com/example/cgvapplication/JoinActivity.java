@@ -3,31 +3,24 @@ package com.example.cgvapplication;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cgvapplication.helper.MyNavigationHelper;
 
-public class LoginActivity extends AppCompatActivity {
-
-    private static final String TAG = "LoginActivity";
+public class JoinActivity extends AppCompatActivity {
 
     private Toolbar mToolbarDefault;
     private MyNavigationHelper mMyNavigationHelper;
+    private TextView mTvToolbarTitle;
     private LinearLayout mLinearNavigation;
-    private TextView mTvToolbarTitle, mTvGoJoin;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_join);
         init();
-        listener();
-
-        mTvToolbarTitle.setText("로그인");
+        mTvToolbarTitle.setText("회원가입");
         setSupportActionBar(mToolbarDefault);
 
         mMyNavigationHelper.enable(mLinearNavigation);
@@ -36,16 +29,9 @@ public class LoginActivity extends AppCompatActivity {
 
     private void init() {
         mToolbarDefault = findViewById(R.id.toolbar_default);
-        mLinearNavigation = findViewById(R.id.linear_navigation);
         mTvToolbarTitle = findViewById(R.id.tv_toolbar_title);
-        mTvGoJoin = findViewById(R.id.tv_go_join);
-        mMyNavigationHelper = new MyNavigationHelper(LoginActivity.this);
-    }
+        mLinearNavigation = findViewById(R.id.linear_navigation);
 
-    private void listener() {
-        mTvGoJoin.setOnClickListener(view -> {
-            Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
-            startActivity(intent);
-        });
+        mMyNavigationHelper = new MyNavigationHelper(JoinActivity.this);
     }
 }

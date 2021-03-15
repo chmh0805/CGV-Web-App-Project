@@ -47,6 +47,7 @@ public class MyNavigationHelper {
         mTvGoLogin.setOnClickListener(v -> {
             if(!(mContext.getClass().equals(LoginActivity.class))) {
                 Intent intent = new Intent(mContext, LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(intent);
             } else {
                 mDrawer.closeDrawer(GravityCompat.END);
