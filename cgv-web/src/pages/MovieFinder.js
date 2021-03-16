@@ -25,6 +25,12 @@ const MFHeaderH3 = styled.h3`
   border-bottom: 1px solid #333e46;
 `;
 
+const MFTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+`;
+
 const MovieFinder = () => {
   return (
     <>
@@ -33,6 +39,11 @@ const MovieFinder = () => {
           <MFHeaderH3>
             좋아하는 영화, 찾고싶은 영화를 CGV에서 찾아드립니다!
           </MFHeaderH3>
+          <form id="">
+            <MFTable>
+              <tr></tr>
+            </MFTable>
+          </form>
         </MovieFinderBox>
       </MFContainer>
       <MovieChart />

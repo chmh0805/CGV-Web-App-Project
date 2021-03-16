@@ -17,6 +17,7 @@ const FBCon = styled.div`
 
 const FBBox = styled.div`
   border: 3.5px solid #e71b0e;
+  background-color: #fdfcf0;
   border-radius: 10px;
   padding-left: 5px;
 `;
@@ -29,10 +30,6 @@ const FBBtnBox = styled(Link)`
 const FBBtn = styled.img``;
 
 const FBScrollTop = styled.img``;
-
-const handleClick = () => {
-  window[`scrollTo`]({ top: 0, behavior: `smooth` });
-};
 
 const FloatingBanner = () => {
   return (
@@ -47,7 +44,12 @@ const FloatingBanner = () => {
           </FBBtnBox>
         </FBBox>
         <FBBtnBox>
-          <FBScrollTop src={btnTop} onclick={handleClick} />
+          <FBScrollTop
+            src={btnTop}
+            onClick={() => {
+              window[`scrollTo`]({ top: 0, behavior: `smooth` });
+            }}
+          />
         </FBBtnBox>
       </FBCon>
     </>
