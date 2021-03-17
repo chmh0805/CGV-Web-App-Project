@@ -11,6 +11,7 @@ import iconWatched from "../images/icon_watched.png";
 import spriteBtn from "../images/sprite_btn.png";
 import iconGiftcon from "../images/icon_giftcon.png";
 import iconPlus from "../images/icon_plus.png";
+import iconNewWindow from "../images/icon_newwindow.gif";
 
 const MyCgvHomeContainer = styled.div`
   background-color: #fdfcf0;
@@ -37,6 +38,10 @@ const NavSectionItemBox = styled.div`
 
 const NavSectionHome = styled(Link)`
   color: black;
+
+  &:hover {
+    color: black;
+  }
 `;
 
 const NavSectionArrow = styled.span`
@@ -77,7 +82,7 @@ const InfoTopImg = styled.img`
   width: 135px;
   height: 135px;
   border-radius: 50%;
-  border: 4px solid #7B6746;
+  border: 4px solid #7b6746;
 `;
 
 const InfoTopItemBox = styled.div`
@@ -90,7 +95,7 @@ const InfoTopItem1 = styled.div`
   width: auto;
   height: auto;
   padding-bottom: 20px;
-  border-bottom: 1px solid #8C7651;
+  border-bottom: 1px solid #8c7651;
   margin-bottom: 15px;
 `;
 
@@ -99,7 +104,7 @@ const InfoTopStrong = styled.strong`
   line-height: 32px;
   margin-right: 8px;
   color: #342929;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 600;
 `;
 
@@ -130,7 +135,7 @@ const InfoBottomItem1 = styled.div`
   width: 250px;
   height: 155px;
   padding-right: 30px;
-  border-right: 1px solid #8C7651;
+  border-right: 1px solid #8c7651;
   display: grid;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr;
@@ -139,18 +144,18 @@ const InfoBottomItem1 = styled.div`
 `;
 
 const InfoBottomItem1ItemBox = styled.div`
-  border: 2px solid #7B6746;
+  border: 2px solid #7b6746;
   padding: 2px;
 `;
 
 const InfoBottomItem1Item = styled.div`
   width: 100%;
   height: 100%;
-  border: 1px solid #7B6746;
+  border: 1px solid #7b6746;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   cursor: pointer;
   word-break: break-all;
   color: #342929;
@@ -167,7 +172,7 @@ const InfoBottomItemButton = styled.button`
   border: 2px solid #7b6746;
   outline: 0px;
   line-height: 1.2;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
   color: #dac190;
   font-size: 11px;
@@ -176,7 +181,7 @@ const InfoBottomItemButton = styled.button`
 
 const MyCGVMainContainer = styled.div`
   width: 980px;
-  height: 1300px;
+  height: 1000px;
   margin: 0 auto;
   margin-top: 25px;
   display: flex;
@@ -185,6 +190,81 @@ const MyCGVMainContainer = styled.div`
 
 const MainAsidesBox = styled.div`
   width: 160px;
+  line-height: 1.2;
+  color: #666;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
+  font-weight: 300;
+`;
+
+const AsidesBoxLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
+
+const AsidesHeadSpecialItem = styled.div`
+  width: auto;
+  height: 34px;
+  padding-left: 5px;
+  color: #fdfcf0;
+  background-color: #e71a0f;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 34px;
+`;
+
+const AsidesHeadItem = styled.div`
+  width: auto;
+  height: 34px;
+  padding-left: 5px;
+  color: #222;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 34px;
+  border-top: 1px solid #bbb9b1;
+
+  &:hover {
+    color: #fdfcf0;
+    background-color: #e71a0f;
+  }
+`;
+
+const AsidesBodyItem = styled.div`
+  width: auto;
+  padding: 15px 0px 15px 30px;
+  font-size: 100%;
+  vertical-align: baseline;
+  word-break: break-all;
+  line-height: 1.2;
+  color: #666;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+
+  &:hover {
+    color: #e71a0f;
+  }
+`;
+
+const AsidesWatchedMovieBox = styled.div`
+  width: auto;
+  padding-left: 14px;
+  color: #fff;
+  background: black url(${iconNewWindow}) no-repeat 145px 6px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 34px;
+`;
+
+const AsidesBannerImg = styled.img`
+  width: 160px;
+  aspect-ratio: auto 160 / 300;
+  height: 300px;
+  margin-top: 20px;
 `;
 
 const MainContentsBox = styled.div`
@@ -203,23 +283,23 @@ const MainContentsItemBox1 = styled.div`
 `;
 
 const PreeggItem = styled.div`
-  background: #F2F0E5 url(${iconPreegg}) no-repeat 50% 16px;
+  background: #f2f0e5 url(${iconPreegg}) no-repeat 50% 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #666;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
   border-right: 1px dashed #cdc9c0;
 `;
 
 const WatchedItem = styled.div`
-  background: #F2F0E5 url(${iconWatched}) no-repeat 50% 16px;
+  background: #f2f0e5 url(${iconWatched}) no-repeat 50% 16px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #666;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
   border-right: 1px dashed #cdc9c0;
 `;
@@ -249,13 +329,13 @@ const MainContentsItem1H3 = styled.h3`
   height: auto;
   text-align: center;
   font-weight: 600;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
 `;
 
 const MainContentsItemSpan = styled.span`
   width: auto;
   height: auto;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
   text-align: center;
   line-height: 16px;
@@ -271,7 +351,7 @@ const MainContentsItemBoxTitle = styled.div`
   align-items: center;
   line-height: 35px;
   color: #666;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
 `;
 
@@ -303,7 +383,7 @@ const MainContentsItemBoxTitleItem2 = styled.span`
 const MainContentsItemBoxTitleP = styled.div`
   margin-left: 5px;
   color: #666;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
   display: flex;
   align-items: center;
@@ -332,7 +412,7 @@ const MainContentsCommonItemBox = styled.div`
   margin-bottom: 30px;
   line-height: 1.2;
   color: #666;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
 `;
 
@@ -347,7 +427,7 @@ const MainContentsCommonItemBoxListItem = styled.div`
   line-height: 1.2;
   color: #666;
   font-size: 12px;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
   font-weight: 300;
 `;
 
@@ -357,7 +437,7 @@ const MyPurchasesBox = styled.div`
   padding: 15px 30px 15px 30px;
   display: grid;
   grid-template-rows: 35px 85px;
-  background-color: #F2F1E4;
+  background-color: #f2f1e4;
 `;
 
 const MyPurchaseGiftCon = styled.div`
@@ -365,7 +445,7 @@ const MyPurchaseGiftCon = styled.div`
   padding: 13px;
   position: relative;
   border: 1px solid #c9c6b7;
-  background : #f4f3ea url(${iconGiftcon});
+  background: #f4f3ea url(${iconGiftcon});
   background-repeat: no-repeat;
   background-position: 15px 42px;
 `;
@@ -388,7 +468,7 @@ const MyPurchaseGiftConSpan = styled.span`
   font-size: 14px;
   line-height: 1.2;
   color: #666;
-  font-family: 'CJONLYONENEW', '맑은 고딕', '돋움', Dotum, sans-serif;
+  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
 `;
 
 const MyPurchaseGiftConEm = styled.em`
@@ -401,9 +481,9 @@ const MyPurchaseGiftConEm = styled.em`
 `;
 
 const MyCgvHome = () => {
-    return (
+  return (
     <MyCgvHomeContainer>
-    <NavSection>
+      <NavSection>
         <NavSectionItemBox>
           <NavSectionHome to="/">
             <HomeIcon />
@@ -426,44 +506,36 @@ const MyCgvHome = () => {
               <InfoTopItem1>
                 <InfoTopStrong>접속용님</InfoTopStrong>
                 <InfoTopItemEm>username</InfoTopItemEm>
-                <InfoTopItemEm style={{marginRight: "0px"}}>닉네임 : </InfoTopItemEm>
+                <InfoTopItemEm style={{ marginRight: "0px" }}>
+                  닉네임 :{" "}
+                </InfoTopItemEm>
                 <InfoTopItemEm>닉네임1</InfoTopItemEm>
               </InfoTopItem1>
-              <InfoTopItem2>
-
-              </InfoTopItem2>
+              <InfoTopItem2></InfoTopItem2>
             </InfoTopItemBox>
           </InfoSectionTopItemBox>
           <InfoSectionBottomItemBox>
             <InfoBottomItem1>
               <InfoBottomItem1ItemBox>
-                <InfoBottomItem1Item>
-                  CGV서면삼정타워
-                </InfoBottomItem1Item>
+                <InfoBottomItem1Item>CGV서면삼정타워</InfoBottomItem1Item>
               </InfoBottomItem1ItemBox>
               <InfoBottomItem1ItemBox>
-                <InfoBottomItem1Item>
-
-                </InfoBottomItem1Item>
+                <InfoBottomItem1Item></InfoBottomItem1Item>
               </InfoBottomItem1ItemBox>
               <InfoBottomItem1ItemBox>
-                <InfoBottomItem1Item>
-
-                </InfoBottomItem1Item>
+                <InfoBottomItem1Item></InfoBottomItem1Item>
               </InfoBottomItem1ItemBox>
               <InfoBottomItem1ItemBox>
-                <InfoBottomItem1Item>
-
-                </InfoBottomItem1Item>
+                <InfoBottomItem1Item></InfoBottomItem1Item>
               </InfoBottomItem1ItemBox>
               <InfoBottomItem1ItemBox>
-                <InfoBottomItem1Item>
-
-                </InfoBottomItem1Item>
+                <InfoBottomItem1Item></InfoBottomItem1Item>
               </InfoBottomItem1ItemBox>
-              <InfoBottomItem1ItemBox style={{border: "0px", padding: "0px"}}>
+              <InfoBottomItem1ItemBox style={{ border: "0px", padding: "0px" }}>
                 <InfoBottomItemButton>
-                  자주가는 CGV<br/>설정하기
+                  자주가는 CGV
+                  <br />
+                  설정하기
                 </InfoBottomItemButton>
               </InfoBottomItem1ItemBox>
             </InfoBottomItem1>
@@ -472,30 +544,87 @@ const MyCgvHome = () => {
       </InfoSection>
       <MyCGVMainContainer>
         <MainAsidesBox>
-
+          <AsidesHeadSpecialItem>
+            <AsidesBoxLink>MY CGV HOME</AsidesBoxLink>
+          </AsidesHeadSpecialItem>
+          <AsidesBoxLink>
+            <AsidesHeadItem>나의 예매내역</AsidesHeadItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesHeadItem>관람권/할인쿠폰 관리</AsidesHeadItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesHeadItem>기프트샵</AsidesHeadItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>내 기프트콘</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>결제내역</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesHeadItem>회원정보</AsidesHeadItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>개인정보 변경</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>회원탈퇴</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesHeadItem>프로필 관리</AsidesHeadItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesHeadItem>나의 문의내역</AsidesHeadItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesBodyItem>1:1 문의</AsidesBodyItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink>
+            <AsidesWatchedMovieBox>내가 본 영화</AsidesWatchedMovieBox>
+          </AsidesBoxLink>
+          <Link>
+            <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202103/FIRE/0309_160x300.jpg" />
+          </Link>
         </MainAsidesBox>
         <MainContentsBox>
           <MainContentsItemBox1>
             <PreeggItem>
               <MainContentsItem1A>
                 <MainContentsItem1H3>기대되는 영화</MainContentsItem1H3>
-                <MainContentsItemSpan>보고 싶은 영화들을 미리<br/>담아두고 싶다면?</MainContentsItemSpan>
+                <MainContentsItemSpan>
+                  보고 싶은 영화들을 미리
+                  <br />
+                  담아두고 싶다면?
+                </MainContentsItemSpan>
               </MainContentsItem1A>
             </PreeggItem>
             <WatchedItem>
               <MainContentsItem1A>
                 <MainContentsItem1H3>내가 본 영화</MainContentsItem1H3>
-                <MainContentsItemSpan>관람한 영화들을 한번에<br/>모아보고 싶다면?</MainContentsItemSpan>
+                <MainContentsItemSpan>
+                  관람한 영화들을 한번에
+                  <br />
+                  모아보고 싶다면?
+                </MainContentsItemSpan>
               </MainContentsItem1A>
             </WatchedItem>
           </MainContentsItemBox1>
           <MainContentsItemBoxTitle>
             <MainContentsItemBoxTitleItem1>
-              <MainContentsItemBoxTitleH3>MY 예매내역</MainContentsItemBoxTitleH3>
+              <MainContentsItemBoxTitleH3>
+                MY 예매내역
+              </MainContentsItemBoxTitleH3>
               <MainContentsItemBoxTitleP>
                 <MainContentsItemBoxTitleEm>0</MainContentsItemBoxTitleEm>
                 <MainContentsItemBoxTitleEm>건</MainContentsItemBoxTitleEm>
-                <MainContentsItemBoxTitleLink />
+                <MainContentsItemBoxTitleLink to="/" />
               </MainContentsItemBoxTitleP>
             </MainContentsItemBoxTitleItem1>
             <MainContentsItemBoxTitleItem2>
@@ -511,7 +640,9 @@ const MyCgvHome = () => {
           </MainContentsCommonItemBox>
           <MainContentsItemBoxTitle>
             <MainContentsItemBoxTitleItem1>
-              <MainContentsItemBoxTitleH3>MY Q&amp;A</MainContentsItemBoxTitleH3>
+              <MainContentsItemBoxTitleH3>
+                MY Q&amp;A
+              </MainContentsItemBoxTitleH3>
               <MainContentsItemBoxTitleP>
                 <MainContentsItemBoxTitleEm>0</MainContentsItemBoxTitleEm>
                 <MainContentsItemBoxTitleEm>건</MainContentsItemBoxTitleEm>
@@ -526,25 +657,28 @@ const MyCgvHome = () => {
               </MainContentsCommonItemBoxListItem>
             </MainContentsCommonItemBoxInner>
           </MainContentsCommonItemBox>
-        <MyPurchasesBox>
-          <MainContentsItemBoxTitle>
-            <MainContentsItemBoxTitleH3 style={{width: "auto"}}>MY 구매정보</MainContentsItemBoxTitleH3>
-            <MainContentsItemBoxTitleItem2 style={{fontSize: "12px"}}>
-              현재 사용하실 수 있는 쿠폰정보입니다. 상품명을 클릭하시면 내역조회페이지로 이동합니다.
-            </MainContentsItemBoxTitleItem2>
-          </MainContentsItemBoxTitle>
-          <MyPurchaseGiftCon>
-            <MyPurchaseGiftConLink>내 기프트콘</MyPurchaseGiftConLink>
-            <MyPurchaseGiftConSpan>
-              <MyPurchaseGiftConEm>0</MyPurchaseGiftConEm>
-              &nbsp;개
-            </MyPurchaseGiftConSpan>
-          </MyPurchaseGiftCon>
-        </MyPurchasesBox>
+          <MyPurchasesBox>
+            <MainContentsItemBoxTitle>
+              <MainContentsItemBoxTitleH3 style={{ width: "auto" }}>
+                MY 구매정보
+              </MainContentsItemBoxTitleH3>
+              <MainContentsItemBoxTitleItem2 style={{ fontSize: "12px" }}>
+                현재 사용하실 수 있는 쿠폰정보입니다. 상품명을 클릭하시면
+                내역조회페이지로 이동합니다.
+              </MainContentsItemBoxTitleItem2>
+            </MainContentsItemBoxTitle>
+            <MyPurchaseGiftCon>
+              <MyPurchaseGiftConLink>내 기프트콘</MyPurchaseGiftConLink>
+              <MyPurchaseGiftConSpan>
+                <MyPurchaseGiftConEm>0</MyPurchaseGiftConEm>
+                &nbsp;개
+              </MyPurchaseGiftConSpan>
+            </MyPurchaseGiftCon>
+          </MyPurchasesBox>
         </MainContentsBox>
       </MyCGVMainContainer>
     </MyCgvHomeContainer>
-    )
-}
+  );
+};
 
 export default MyCgvHome;

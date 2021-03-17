@@ -28,6 +28,10 @@ const NavSectionItemBox = styled.div`
 
 const NavSectionHome = styled(Link)`
   color: black;
+
+  &:hover {
+    color: black;
+  }
 `;
 
 const NavSectionArrow = styled.span`
@@ -78,7 +82,7 @@ const PhoneInputBox = styled.div`
   border: 2px solid #b5b5b5;
   margin-top: 5px;
   background-color: #fdfcf0;
-  color: #f666666;
+  color: #666666;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -149,29 +153,29 @@ const Join = () => {
           <JoinSectionInput type="password" placeholder="비밀번호" />
           <JoinSectionInput type="email" placeholder="이메일" />
           <PhoneInputBox>
-          <select
-                  name="phone-header"
-                  style={{
-                    width: "60px",
-                    height: "27px",
-                    border: "1px solid #b5b5b5",
-                    marginRight: "3px",
-                  }}
-                >
-                  <option value="010" selected>
-                    010
-                  </option>
-                  <option value="011">011</option>
-                  <option value="016">016</option>
-                  <option value="017">017</option>
-                  <option value="018">018</option>
-                  <option value="019">019</option>
-                </select>
-                <PhoneDivider>-</PhoneDivider>
-                <PhoneInput />
-                <PhoneDivider>-</PhoneDivider>
-                <PhoneInput />
-                </PhoneInputBox>
+            <select
+              name="phone-header"
+              style={{
+                width: "60px",
+                height: "27px",
+                border: "1px solid #b5b5b5",
+                marginRight: "3px",
+              }}
+            >
+              <option value="010" selected>
+                010
+              </option>
+              <option value="011">011</option>
+              <option value="016">016</option>
+              <option value="017">017</option>
+              <option value="018">018</option>
+              <option value="019">019</option>
+            </select>
+            <PhoneDivider>-</PhoneDivider>
+            <PhoneInput />
+            <PhoneDivider>-</PhoneDivider>
+            <PhoneInput />
+          </PhoneInputBox>
 
           <JoinButton>회원가입</JoinButton>
         </JoinSectionItemBox>

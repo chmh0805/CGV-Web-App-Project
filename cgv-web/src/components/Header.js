@@ -6,7 +6,7 @@ import iconCGV from "../images/cgv_icon.png";
 import iconFB from "../images/facebook_icon.png";
 import iconIG from "../images/instagram_icon.png";
 import bgHeader from "../images/header_bg.jpg";
-import { Dropdown, Menu } from "semantic-ui-react";
+import { Dropdown } from "semantic-ui-react";
 
 const HeaderContainer = styled.div`
   width: auto;
@@ -170,11 +170,14 @@ const HeaderBottomCenterBottomItemBox = styled.div`
   justify-content: space-around;
 `;
 
-const headerBottomCenterBottomItem = styled(Menu)`
+const HeaderBottomCenterBottomItem = styled.div`
   width: auto;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 1000;
 `;
 
-const myDropdownItem = styled(Dropdown.Item)``;
+const MyDropdownItem = styled.div``;
 
 const DropdownBox = styled.div`
   width: 130px;
@@ -195,6 +198,7 @@ const DropdownBoxDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  font-weight: normal;
 `;
 
 const DropdownDivLink = styled(Link)`
@@ -236,9 +240,11 @@ const Header = () => {
             <HeaderTopRightSep>|</HeaderTopRightSep>
             <HeaderTopRightLink to="/user/mycgv">MyCGV</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>VIP LOUNGE</HeaderTopRightLink>
+            <HeaderTopRightLink to="/">VIP LOUNGE</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>고객센터</HeaderTopRightLink>
+            <HeaderTopRightLink to="/support/default">
+              고객센터
+            </HeaderTopRightLink>
           </HeaderTopRightDiv>
         </HeaderTopDiv>
       </HeaderBox>
@@ -252,48 +258,50 @@ const Header = () => {
               <HeaderBottomCenterTopItem>CULTUREPLEX</HeaderBottomCenterTopItem>
             </HeaderBottomCenterTopItemBox>
             <HeaderBottomCenterBottomItemBox>
-              <headerBottomCenterBottomItem>
+              <HeaderBottomCenterBottomItem>
                 <Dropdown text="영화" simple item>
                   <Dropdown.Menu>
-                    <myDropdownItem>
+                    <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
                           <DropdownDivLink to="/">무비차트</DropdownDivLink>
-                          <DropdownDivLink to="/">HD 트레일러</DropdownDivLink>
+                          <DropdownDivLink to="/movies/trailler">
+                            HD 트레일러
+                          </DropdownDivLink>
                           <DropdownDivLink to="/">무비파인더</DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
-                    </myDropdownItem>
+                    </MyDropdownItem>
                   </Dropdown.Menu>
                 </Dropdown>
-              </headerBottomCenterBottomItem>
-              <headerBottomCenterBottomItem>
+              </HeaderBottomCenterBottomItem>
+              <HeaderBottomCenterBottomItem>
                 <Dropdown text="예매" simple item>
                   <Dropdown.Menu>
-                    <myDropdownItem>
+                    <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
                           <DropdownDivLink to="/">빠른예매</DropdownDivLink>
                           <DropdownDivLink to="/">상영시간표</DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
-                    </myDropdownItem>
+                    </MyDropdownItem>
                   </Dropdown.Menu>
                 </Dropdown>
-              </headerBottomCenterBottomItem>
-              <headerBottomCenterBottomItem>
+              </HeaderBottomCenterBottomItem>
+              <HeaderBottomCenterBottomItem>
                 <Dropdown text="극장" simple item>
                   <Dropdown.Menu>
-                    <myDropdownItem>
+                    <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
                           <DropdownDivLink to="/">CGV 극장</DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
-                    </myDropdownItem>
+                    </MyDropdownItem>
                   </Dropdown.Menu>
                 </Dropdown>
-              </headerBottomCenterBottomItem>
+              </HeaderBottomCenterBottomItem>
             </HeaderBottomCenterBottomItemBox>
           </HeaderBottomCenterBox>
           <HeaderBottomRightBox>
