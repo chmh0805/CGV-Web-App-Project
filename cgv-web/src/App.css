@@ -1,0 +1,26 @@
+.MCselect {
+  padding: 3px 5px;
+  height: 29px;
+  border: 1px solid #b4b3aa;
+}
+
+.MFInput {
+  padding-left: 10px;
+  margin-left: 10px;
+  width: 410px;
+  height: 25px;
+}
+
+.MFCheckBox {
+  vertical-align: middle;
+  align-items: center;
+}
+
+.MFYearCheck {
+  width: 118px;
+  height: 25px;
+  padding-left: 10px;
+  margin-right: 5px;
+  margin-left: 5px;
+  border: 1px solid #b5b5b5;
+}

@@ -1,36 +1,32 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import logoCGV from "../images/cgv_logo.png";
 import iconCGV from "../images/cgv_icon.png";
 import iconFB from "../images/facebook_icon.png";
 import iconIG from "../images/instagram_icon.png";
 import bgHeader from "../images/header_bg.jpg";
+import { Dropdown } from "semantic-ui-react";
 
 const HeaderContainer = styled.div`
   width: auto;
-  height: 180px;
+  height: auto;
   background-color: #fdfcf0;
-  display: flex;
-  justify-content: center;
 `;
 
 const HeaderBox = styled.div`
   width: 100%;
   height: auto;
-  align-content: center;
+  display: flex;
+  justify-content: center;
 `;
 
 const HeaderTopDiv = styled.div`
   width: 980px;
   height: 30px;
+  float: inherit;
   display: flex;
   justify-content: space-between;
-`;
-
-const HeaderBottomDiv = styled.div`
-  width: 980px;
-  height: 120px;
-  background-image: url(${bgHeader});
 `;
 
 const HeaderTopLeftDiv = styled.div`
@@ -50,7 +46,7 @@ const HeaderTopLeftDivItem = styled.div`
   padding-right: 8px;
 `;
 
-const HeaderTopLeftLink = styled(Link)`
+const HeaderTopLeftLink = styled.a`
   text-decoration: none;
   color: black;
   font-size: 13px;
@@ -70,7 +66,7 @@ const HeaderTopRightDiv = styled.div`
   align-items: center;
   width: fit-content;
   height: auto;
-  padding-top: 2px;
+  padding-top: 4px;
   padding-bottom: 2px;
 `;
 
@@ -79,6 +75,11 @@ const HeaderTopRightLink = styled(Link)`
   text-decoration: none;
   color: black;
   font-weight: 600;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
 `;
 
 const HeaderTopRightSep = styled.span`
@@ -87,6 +88,126 @@ const HeaderTopRightSep = styled.span`
   font-weight: 600;
   margin-left: 5px;
   margin-right: 5px;
+`;
+
+const HeaderBottomBox = styled.div`
+  width: auto;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  background-image: url(${bgHeader});
+`;
+
+const HeaderBottomDiv = styled.div`
+  width: 980px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+`;
+
+const HeaderBottomLeftLink = styled(Link)`
+  width: 120px;
+  height: auto;
+`;
+
+const HeaderBottomLeftImg = styled.img`
+  width: 120px;
+  height: auto;
+`;
+
+const HeaderBottomCenterBox = styled.div`
+  width: 430px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+const HeaderBottomCenterTopItemBox = styled.div`
+  width: 430px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+`;
+
+const HeaderBottomCenterTopItem = styled.h2`
+  height: 100%;
+  margin: 0px;
+  padding-top: 15px;
+  font-weight: 600;
+  font-size: 40px;
+  font-family: "Fascinate";
+`;
+
+const HeaderBottomRightBox = styled.div`
+  width: 150px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 65px;
+`;
+
+const HeaderBottomRightInput = styled.input`
+  width: 100px;
+  height: 25px;
+`;
+
+const HeaderBottomRightButton = styled.button`
+  width: 28px;
+  height: 25px;
+  font-size: 11px;
+  background-color: red;
+  color: white;
+  font-weight: 600;
+  border: 0px;
+  padding: 0px;
+`;
+
+const HeaderBottomCenterBottomItemBox = styled.div`
+  width: auto;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const HeaderBottomCenterBottomItem = styled.div`
+  width: auto;
+  text-decoration: none;
+  font-size: 17px;
+  font-weight: 1000;
+`;
+
+const MyDropdownItem = styled.div``;
+
+const DropdownBox = styled.div`
+  width: 130px;
+  height: 140px;
+  background-color: #393939;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const DropdownBoxDiv = styled.div`
+  width: 125px;
+  height: 135px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border: 2px solid #828282;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-weight: normal;
+`;
+
+const DropdownDivLink = styled(Link)`
+  font-size: 14px;
+  color: white;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 const Header = () => {
@@ -101,27 +222,94 @@ const Header = () => {
             </HeaderTopLeftDivItem>
             <HeaderTopLeftDivItem>
               <HeaderTopLeftImg src={iconFB} />
-              <HeaderTopLeftLink>Like</HeaderTopLeftLink>
+              <HeaderTopLeftLink href="https://www.facebook.com/CJCGV">
+                Like
+              </HeaderTopLeftLink>
             </HeaderTopLeftDivItem>
             <HeaderTopLeftDivItem>
               <HeaderTopLeftImg src={iconIG} />
-              <HeaderTopLeftLink>Follow</HeaderTopLeftLink>
+              <HeaderTopLeftLink href="https://www.instagram.com/cgv_korea/">
+                Follow
+              </HeaderTopLeftLink>
             </HeaderTopLeftDivItem>
           </HeaderTopLeftDiv>
           <HeaderTopRightDiv>
-            <HeaderTopRightLink to="/">로그인</HeaderTopRightLink>
+            <HeaderTopRightLink to="/login">로그인</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>회원가입</HeaderTopRightLink>
+            <HeaderTopRightLink to="/join">회원가입</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>MyCGV</HeaderTopRightLink>
+            <HeaderTopRightLink to="/user/mycgv">MyCGV</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>VIP LOUNGE</HeaderTopRightLink>
+            <HeaderTopRightLink to="/">VIP LOUNGE</HeaderTopRightLink>
             <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink>고객센터</HeaderTopRightLink>
+            <HeaderTopRightLink to="/support/default">
+              고객센터
+            </HeaderTopRightLink>
           </HeaderTopRightDiv>
         </HeaderTopDiv>
-        <HeaderBottomDiv></HeaderBottomDiv>
       </HeaderBox>
+      <HeaderBottomBox>
+        <HeaderBottomDiv>
+          <HeaderBottomLeftLink to="/">
+            <HeaderBottomLeftImg src={logoCGV} />
+          </HeaderBottomLeftLink>
+          <HeaderBottomCenterBox>
+            <HeaderBottomCenterTopItemBox>
+              <HeaderBottomCenterTopItem>CULTUREPLEX</HeaderBottomCenterTopItem>
+            </HeaderBottomCenterTopItemBox>
+            <HeaderBottomCenterBottomItemBox>
+              <HeaderBottomCenterBottomItem>
+                <Dropdown text="영화" simple item>
+                  <Dropdown.Menu>
+                    <MyDropdownItem>
+                      <DropdownBox>
+                        <DropdownBoxDiv>
+                          <DropdownDivLink to="/">무비차트</DropdownDivLink>
+                          <DropdownDivLink to="/movies/trailler">
+                            HD 트레일러
+                          </DropdownDivLink>
+                          <DropdownDivLink to="/">무비파인더</DropdownDivLink>
+                        </DropdownBoxDiv>
+                      </DropdownBox>
+                    </MyDropdownItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </HeaderBottomCenterBottomItem>
+              <HeaderBottomCenterBottomItem>
+                <Dropdown text="예매" simple item>
+                  <Dropdown.Menu>
+                    <MyDropdownItem>
+                      <DropdownBox>
+                        <DropdownBoxDiv>
+                          <DropdownDivLink to="/">빠른예매</DropdownDivLink>
+                          <DropdownDivLink to="/">상영시간표</DropdownDivLink>
+                        </DropdownBoxDiv>
+                      </DropdownBox>
+                    </MyDropdownItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </HeaderBottomCenterBottomItem>
+              <HeaderBottomCenterBottomItem>
+                <Dropdown text="극장" simple item>
+                  <Dropdown.Menu>
+                    <MyDropdownItem>
+                      <DropdownBox>
+                        <DropdownBoxDiv>
+                          <DropdownDivLink to="/">CGV 극장</DropdownDivLink>
+                        </DropdownBoxDiv>
+                      </DropdownBox>
+                    </MyDropdownItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </HeaderBottomCenterBottomItem>
+            </HeaderBottomCenterBottomItemBox>
+          </HeaderBottomCenterBox>
+          <HeaderBottomRightBox>
+            <HeaderBottomRightInput />
+            <HeaderBottomRightButton>검색</HeaderBottomRightButton>
+          </HeaderBottomRightBox>
+        </HeaderBottomDiv>
+      </HeaderBottomBox>
     </HeaderContainer>
   );
 };
