@@ -9,6 +9,7 @@ const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
   width: auto;
   height: auto;
+  min-height: 899px;
   padding-bottom: 100px;
 `;
 
@@ -237,6 +238,7 @@ const ServiceBoxItem = styled.div`
   font-size: 14px;
   font-weight: 500;
   background: url(${bgServiceBoxItem}) no-repeat 0 -287px;
+  cursor: pointer;
 `;
 
 const NoticeBox = styled.div`
@@ -328,10 +330,10 @@ const SupportMain = () => {
           <AsidesBoxLink to="/support/faq/default">
             <AsidesHeadItem>자주찾는 질문</AsidesHeadItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/support/news/default">
             <AsidesHeadItem>공지/뉴스</AsidesHeadItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/support/qna/default">
             <AsidesHeadItem>이메일 문의</AsidesHeadItem>
           </AsidesBoxLink>
         </MainAsidesBox>
@@ -343,7 +345,7 @@ const SupportMain = () => {
                 <SearchBoxSpan>도움이 필요하신가요?</SearchBoxSpan>
               </BigSquareItemSearchBox>
             </Link>
-            <Link to="/">
+            <Link to="/support/qna/default">
               <BigSquareItemEmailBox>
                 <EmailBoxStrong>이메일 문의</EmailBoxStrong>
                 <EmailBoxSpan>24시간 365일 언제든지 문의해주세요.</EmailBoxSpan>
@@ -380,7 +382,7 @@ const SupportMain = () => {
               </ServiceBoxItemBox>
             </ServiceBox>
             <NoticeBox>
-              <Link>
+              <Link to="/support/news/default">
                 <NoticeBoxTitleBox>
                   <TitleSpan>공지/뉴스</TitleSpan>
                   <MoreButtonDiv />

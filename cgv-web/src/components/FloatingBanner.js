@@ -10,6 +10,7 @@ const FBCon = styled.div`
   padding: 0px;
   margin: 0px;
   position: fixed;
+
   left: 1272px;
   top: 200px;
 `;

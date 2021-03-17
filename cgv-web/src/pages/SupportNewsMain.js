@@ -322,7 +322,7 @@ const NextPageButton = styled.button`
   overflow: visible;
 `;
 
-const SupportFaqMain = () => {
+const SupportNewsMain = () => {
   return (
     <SupportMainContainer>
       <NavSection>
@@ -336,7 +336,7 @@ const SupportFaqMain = () => {
           <NavSectionSpan
             style={{ textDecoration: "underline", fontWeight: "700" }}
           >
-            자주 찾는 질문
+            공지/뉴스
           </NavSectionSpan>
         </NavSectionItemBox>
       </NavSection>
@@ -346,10 +346,10 @@ const SupportFaqMain = () => {
             <AsidesHeadItem>고객센터 메인</AsidesHeadItem>
           </AsidesBoxLink>
           <AsidesBoxLink to="/support/faq/default">
-            <AsidesHeadSpecialItem>자주찾는 질문</AsidesHeadSpecialItem>
+            <AsidesHeadItem>자주찾는 질문</AsidesHeadItem>
           </AsidesBoxLink>
           <AsidesBoxLink to="/support/news/default">
-            <AsidesHeadItem>공지/뉴스</AsidesHeadItem>
+            <AsidesHeadSpecialItem>공지/뉴스</AsidesHeadSpecialItem>
           </AsidesBoxLink>
           <AsidesBoxLink to="/support/qna/default">
             <AsidesHeadItem>이메일 문의</AsidesHeadItem>
@@ -357,11 +357,9 @@ const SupportFaqMain = () => {
         </MainAsidesBox>
         <MainContentsBox>
           <MainCustomerTop>
-            <MainCustomerTopH2>자주 찾는 질문</MainCustomerTopH2>
+            <MainCustomerTopH2>공지/뉴스</MainCustomerTopH2>
             <MainCustomerTopP>
-              회원님들께서 가장 자주하시는 질문을 모았습니다.
-              <br />
-              궁금하신 내용에 대해 검색해보세요.
+              CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.
             </MainCustomerTopP>
             <MainCustomerInputBox>
               <MainCustomerInput placeholder="검색어를 입력해 주세요" />
@@ -490,4 +488,4 @@ const SupportFaqMain = () => {
   );
 };
 
-export default SupportFaqMain;
+export default SupportNewsMain;

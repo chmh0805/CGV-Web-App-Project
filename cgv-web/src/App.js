@@ -14,10 +14,12 @@ import SupportMain from "./pages/SupportMain";
 import MovieFinder from "./pages/MovieFinder";
 import MovieChart from "./pages/MovieChart";
 import SupportFaqMain from "./pages/SupportFaqMain";
+import SupportNewsMain from "./pages/SupportNewsMain";
+import SupportQnaMain from "./pages/SupportQnaMain";
 
 function App() {
   return (
-    <>
+    <div style={{ position: "relative" }}>
       <Header />
       <Route path="/" exact={true} component={Home} />
       <Route path="/login" exact={true} component={Login} />
@@ -34,9 +36,19 @@ function App() {
         exact={true}
         component={SupportFaqMain}
       />
+      <Route
+        path="/support/news/default"
+        exact={true}
+        component={SupportNewsMain}
+      />
+      <Route
+        path="/support/qna/default"
+        exact={true}
+        component={SupportQnaMain}
+      />
       <FloatingBanner />
       <Footer />
-    </>
+    </div>
   );
 }
 
