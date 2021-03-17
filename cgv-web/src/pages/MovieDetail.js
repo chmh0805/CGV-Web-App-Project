@@ -3,7 +3,9 @@ import styled from "styled-components";
 import posterEx from "../images/movieChart/MoviePosterEx.jpg";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
+import addBtn from "../images/movieDetail/add_btn.png";
 import { Link } from "react-router-dom";
+import MovieDetailReply from "../components/MovieDetailReply";
 
 const MDCon = styled.div`
   width: 100%;
@@ -150,6 +152,106 @@ const MDMovieBtnImg = styled.img`
 
 const MDMovieContentDiv = styled.div`
   width: 800px;
+  margin: 0 auto;
+`;
+
+const MDTrailerBox = styled.div`
+  margin-top: 40px;
+`;
+
+const MDContentTitleDiv = styled.div`
+  margin-bottom: 20px;
+  width: 100%;
+  height: 39px;
+  background: #e2e0d2;
+`;
+
+const MDContentTitleH4 = styled.h4`
+  float: left;
+  margin-left: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: #333333;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 39px;
+`;
+
+const MDContentCountSpan = styled.span`
+  display: inline-block;
+  margin-left: 5px;
+  font-weight: 300;
+  line-height: 39px;
+  font-size: 12px;
+`;
+
+const MDContentAddBtn = styled.img`
+  margin-left: 9px;
+  vertical-align: middle;
+`;
+
+const MDStillCutBox = styled.div`
+  width: 800px;
+  height: 450px;
+`;
+
+const MDReplyInfoBox = styled.div`
+  width: 100%;
+  padding: 20px 30px;
+  background: #ebede3;
+  box-sizing: border-box;
+  border-radius: 5px;
+`;
+
+const MDReplyInfoText = styled.p`
+  font-size: 16px;
+  color: #212224;
+  font-weight: 700;
+  margin: 0;
+`;
+
+const MDReplyInfoSubText = styled.p`
+  font-size: 14px;
+  color: #212224;
+  font-weight: 600;
+  margin-top: 10px;
+`;
+
+const MDReplyTitleBox = styled.div`
+  text-align: left;
+  margin: 20px 0 10px;
+`;
+
+const MDReplyNewText = styled.span`
+  padding-left: 0;
+  border-left: none;
+  padding: 0 8px 0 9px;
+  font-weight: 600;
+  color: #ef5549;
+  font-size: 13px;
+`;
+
+const MDReplyRecommendText = styled.span`
+  display: inline-block;
+  padding: 0 8px 0 9px;
+  border-left: 1px solid #d7d3c8;
+  font-weight: 600;
+  color: #666666;
+  font-size: 13px;
+`;
+
+const MDReplyBox = styled.div`
+  margin: 0;
+  padding: 0;
+  border: 0;
+`;
+
+const MDReplyUl = styled.ul`
+  list-style: none;
+  border-top: 1px solid #999999;
+  color: #333333;
+  padding: 0 25px;
+  height: 430px;
 `;
 
 const MovieDetail = () => {
@@ -196,7 +298,7 @@ const MovieDetail = () => {
               </MDMovieInfo>
 
               <MDMovieBtn>
-                <MDMovieBtnImg src={ticketBtn}></MDMovieBtnImg>
+                <MDMovieBtnImg src={ticketBtn} />
               </MDMovieBtn>
             </MDMovieInfoBox>
           </MDMovieBox>
@@ -235,6 +337,51 @@ const MovieDetail = () => {
                 그는 다시 지구로 돌아가 꿈의 무대에 설 수 있을까?
               </MDStoryP>
             </MDStoryBox>
+
+            <MDTrailerBox>
+              <MDContentTitleDiv>
+                <MDContentTitleH4>트레일러</MDContentTitleH4>
+                <MDContentCountSpan>15건</MDContentCountSpan>
+                <MDMovieBtn>
+                  <MDContentAddBtn src={addBtn} />
+                </MDMovieBtn>
+              </MDContentTitleDiv>
+            </MDTrailerBox>
+
+            <MDTrailerBox>
+              <MDContentTitleDiv>
+                <MDContentTitleH4>스틸컷</MDContentTitleH4>
+                <MDContentCountSpan>1/19건</MDContentCountSpan>
+                <MDMovieBtn>
+                  <MDContentAddBtn src={addBtn} />
+                </MDMovieBtn>
+              </MDContentTitleDiv>
+
+              <MDStillCutBox></MDStillCutBox>
+            </MDTrailerBox>
+
+            <MDReplyInfoBox>
+              <MDReplyInfoText>
+                관람일 포함 7일 이내 관람평을 남기시면 CJ ONE 20P가 적립됩니다.
+              </MDReplyInfoText>
+              <MDReplyInfoSubText>
+                28,885 명의 실관람객이 평가해주셨습니다.
+              </MDReplyInfoSubText>
+            </MDReplyInfoBox>
+
+            <MDReplyTitleBox>
+              <MDReplyNewText>최신순▼</MDReplyNewText>
+              <MDReplyRecommendText>추천순</MDReplyRecommendText>
+            </MDReplyTitleBox>
+
+            <MDReplyBox>
+              <MDReplyUl>
+                <MovieDetailReply />
+                <MovieDetailReply />
+                <MovieDetailReply />
+                <MovieDetailReply />
+              </MDReplyUl>
+            </MDReplyBox>
           </MDMovieContentDiv>
         </MDContentBox>
       </MDContentCon>
