@@ -264,11 +264,15 @@ const Header = () => {
                     <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
-                          <DropdownDivLink to="/">무비차트</DropdownDivLink>
+                          <DropdownDivLink to="/movies">
+                            무비차트
+                          </DropdownDivLink>
                           <DropdownDivLink to="/movies/trailler">
                             HD 트레일러
                           </DropdownDivLink>
-                          <DropdownDivLink to="/">무비파인더</DropdownDivLink>
+                          <DropdownDivLink to="/movies/finder">
+                            무비파인더
+                          </DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
                     </MyDropdownItem>

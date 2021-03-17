@@ -3,6 +3,45 @@ import "../App.css";
 import styled from "styled-components";
 import brickBg from "../images/movieFinder/bg_mainbanner.png";
 import MovieChart from "./MovieChart";
+import HomeIcon from "@material-ui/icons/Home";
+import { Link } from "react-router-dom";
+
+const NavSection = styled.div`
+  background-color: #f1f0e5;
+  width: auto;
+  height: 30px;
+  border-bottom: 1px solid #cacac0;
+`;
+
+const NavSectionItemBox = styled.div`
+  width: 980px;
+  padding-top: 5px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const NavSectionHome = styled(Link)`
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+const NavSectionArrow = styled.span`
+  color: #999999;
+  font-size: 16px;
+  font-weight: 1000;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+
+const NavSectionSpan = styled.span`
+  font-size: 13px;
+`;
 
 const MFContainer = styled.div`
   width: 100%;
@@ -108,6 +147,21 @@ const MovieFinder = () => {
   return (
     <>
       <MFContainer>
+        <NavSection>
+          <NavSectionItemBox>
+            <NavSectionHome to="/">
+              <HomeIcon />
+            </NavSectionHome>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan>영화</NavSectionSpan>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan
+              style={{ textDecoration: "underline", fontWeight: "700" }}
+            >
+              무비파인더
+            </NavSectionSpan>
+          </NavSectionItemBox>
+        </NavSection>
         <MovieFinderBox>
           <MFHeaderH3>
             좋아하는 영화, 찾고싶은 영화를 CGV에서 찾아드립니다!

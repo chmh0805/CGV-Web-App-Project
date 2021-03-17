@@ -8,7 +8,7 @@ import defaultProfileImg from "../images/default_profile.gif";
 import iconSetting from "../images/icon_setting.png";
 import iconPreegg from "../images/icon_preegg.png";
 import iconWatched from "../images/icon_watched.png";
-import spriteBtn from "../images/sprite_btn.png";
+import spriteBtn from "../images/button/sprite_btn.png";
 import iconGiftcon from "../images/icon_giftcon.png";
 import iconPlus from "../images/icon_plus.png";
 import iconNewWindow from "../images/icon_newwindow.gif";

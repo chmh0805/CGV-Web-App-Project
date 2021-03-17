@@ -11,21 +11,31 @@ import Join from "./pages/Join";
 import MyCgvHome from "./pages/MyCgvHome";
 import Trailler from "./pages/Trailler";
 import SupportMain from "./pages/SupportMain";
-
+import MovieFinder from "./pages/MovieFinder";
+import MovieChart from "./pages/MovieChart";
+import SupportFaqMain from "./pages/SupportFaqMain";
 
 function App() {
   return (
     <>
       <Header />
-
       <Route path="/" exact={true} component={Home} />
       <Route path="/login" exact={true} component={Login} />
       <Route path="/guest/login" exact={true} component={GuestLogin} />
       <Route path="/join" exact={true} component={Join} />
       <Route path="/user/mycgv" exact={true} component={MyCgvHome} />
+      <Route path="/movies" exact={true} component={MovieChart} />
       <Route path="/movies/trailler" exact={true} component={Trailler} />
+      <Route path="/movies/finder" exact={true} component={MovieFinder} />
+      <Route path="/movies/detail" exact={true} component={MovieDetail} />
       <Route path="/support/default" exact={true} component={SupportMain} />
-
+      <Route
+        path="/support/faq/default"
+        exact={true}
+        component={SupportFaqMain}
+      />
+      <FloatingBanner />
+      <Footer />
     </>
   );
 }
