@@ -2,23 +2,15 @@ package com.example.cgvapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.cgvapplication.adapter.MovieDetailFragMentPagerAdapter;
-import com.example.cgvapplication.adapter.MoviePersonAdapter;
 import com.example.cgvapplication.helper.MyNavigationHelper;
-import com.example.cgvapplication.model.movie.MoviePerson;
 import com.google.android.material.tabs.TabLayout;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class MovieDetailActivity extends AppCompatActivity {
 
@@ -38,12 +30,6 @@ public class MovieDetailActivity extends AppCompatActivity {
         init();
         setSupportActionBar(mToolbarDefault);
         mMyNavigationHelper.enable(mLinearNavigation);
-
-
-
-
-
-
     }
 
     private void init() {
@@ -56,7 +42,7 @@ public class MovieDetailActivity extends AppCompatActivity {
         mVpMovieDetailContainer = findViewById(R.id.vp_movie_detail_container);
         mMovieDetailFragMentPagerAdapter = new MovieDetailFragMentPagerAdapter(getSupportFragmentManager(), 1);
         mMovieDetailFragMentPagerAdapter.addFragment(new FragMovieDetailInfo());
-        mMovieDetailFragMentPagerAdapter.addFragment(new FragMovieDetailCommand());
+        mMovieDetailFragMentPagerAdapter.addFragment(new FragMovieDetailReview());
         mVpMovieDetailContainer.setAdapter(mMovieDetailFragMentPagerAdapter);
         mTabsMovieDetail.setupWithViewPager(mVpMovieDetailContainer);
 

@@ -1,57 +1,54 @@
 package com.example.cgvapplication.adapter;
 
-import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 
-import com.example.cgvapplication.FragMovieDetailInfo;
-import com.example.cgvapplication.MovieDetailActivity;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.model.movie.StillCut;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
 
-public class MovieStillCutAdapter extends BaseAdapter {
+public class MovieStillCutAdapter extends RecyclerView.Adapter<MovieStillCutAdapter.MyViewHolder> {
 
     private static final String TAG = "MovieStillCutAdapter";
     private final List<StillCut> mStillCuts;
-    private final Context mContext;
 
-    public MovieStillCutAdapter(List<StillCut> stillCuts, Context mContext) {
-        this.mStillCuts = stillCuts;
-        this.mContext = mContext;
+    public MovieStillCutAdapter(List<StillCut> mStillCuts) {
+        this.mStillCuts = mStillCuts;
+    }
+
+    @NonNull
+    @Override
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.movie_stillcut_item, parent, false);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public int getCount() {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.setItem(mStillCuts.get(position));
+    }
+
+    @Override
+    public int getItemCount() {
         return mStillCuts.size();
     }
 
-    @Override
-    public Object getItem(int i) {
-        return mStillCuts.get(i);
-    }
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+        private RoundedImageView mIvStillCut;
 
-    @Override
-    public long getItemId(int i) {
-        return 0;
-    }
+        public MyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            mIvStillCut = itemView.findViewById(R.id.iv_still_cut);
+        }
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        //FragMovieDetailInfo fragMovieDetailInfo = (FragMovieDetailInfo) parent.getContext();
-        Context movieDetailInfoContext = parent.getContext();
-        MovieDetailActivity movieDetailContext = (MovieDetailActivity) parent.getContext();
-        LayoutInflater inflater = (LayoutInflater) movieDetailContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.movie_stillcut_item, parent, false);
-        RoundedImageView IvStillCut = view.findViewById(R.id.iv_still_cut);
-        IvStillCut.setImageResource(mStillCuts.get(position).getStillCutImgSrc());
-
-        return view;
+        public void setItem(StillCut stillCut) {
+            mIvStillCut.setImageResource(stillCut.getStillCutImgSrc());
+        }
     }
 }
