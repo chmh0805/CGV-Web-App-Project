@@ -9,7 +9,6 @@
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "bootstrap": "^4.6.0",
-
     "popper.js": "^1.16.1",
     "react": "^17.0.1",
     "react-alice-carousel": "^2.4.0",
@@ -18,7 +17,7 @@
     "react-material-ui-carousel": "^2.2.1",
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
+    "react-scripts": "^4.0.3",
     "react-sticky-box": "^0.9.3",
     "react-youtube": "^7.13.1",
     "semantic-ui-carousel-react": "^1.1.3",

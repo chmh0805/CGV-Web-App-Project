@@ -15,7 +15,7 @@ const MCItemContainer = styled.div`
 
 const MCRankBox = styled.div`
   border: 6px solid #000000;
-  height: 30px;
+  height: 33px;
   margin-bottom: 3px;
   background-color: #e71b0e;
   color: #ffffff;
@@ -94,7 +94,7 @@ const MovieChartItem = () => {
         <MCItemImg src={posterEx} />
       </MCItemImgBox>
       <MCItemInfoBox>
-        <MCMovieTitle>소울</MCMovieTitle>
+        <MCMovieTitle to="/movies/detail/">소울</MCMovieTitle>
         <MCMovieInfo>
           <MCInfoText>예매율</MCInfoText>
           <MCInfoNum>1.9%</MCInfoNum>

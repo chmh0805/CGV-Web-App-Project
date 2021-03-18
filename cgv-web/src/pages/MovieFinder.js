@@ -6,20 +6,20 @@ import MovieChart from "./MovieChart";
 
 const MFContainer = styled.div`
   width: 100%;
-  height: 450px;
+  height: 455px;
   background-image: url(${brickBg});
 `;
 
 const MovieFinderBox = styled.div`
   width: 980px;
-  height: 450px;
+  height: 455px;
   background: #29353d;
   margin: 0 auto;
 `;
 
 const MFHeaderH3 = styled.h3`
   color: white;
-  font-size: 22px;
+  font-size: 20px;
   text-align: center;
   font-weight: 500;
   padding: 15px 0 10px;
@@ -55,7 +55,7 @@ const MFTableTd = styled.td`
 `;
 
 const MFSubmitBox = styled.div`
-  padding-top: 10px;
+  padding-top: 3px;
   text-align: center;
 `;
 

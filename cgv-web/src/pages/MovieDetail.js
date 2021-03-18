@@ -6,11 +6,49 @@ import ticketBtn from "../images/movieDetail/ticket_btn.png";
 import addBtn from "../images/movieDetail/add_btn.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
+import HomeIcon from "@material-ui/icons/Home";
 
 const MDCon = styled.div`
   width: 100%;
   background-color: #fdfcf0;
   padding-bottom: 50px;
+`;
+
+const NavSection = styled.div`
+  background-color: #f1f0e5;
+  width: auto;
+  height: 30px;
+  border-bottom: 1px solid #cacac0;
+`;
+
+const NavSectionItemBox = styled.div`
+  width: 980px;
+  padding-top: 5px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const NavSectionHome = styled(Link)`
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+const NavSectionArrow = styled.span`
+  color: #999999;
+  font-size: 16px;
+  font-weight: 1000;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+
+const NavSectionSpan = styled.span`
+  font-size: 13px;
 `;
 
 const MDContentCon = styled.div`
@@ -27,7 +65,6 @@ const MDContentBox = styled.div`
 const MDHeadBox = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 51px;
   padding-top: 30px;
   border-bottom: 3px solid #241d1e;
 `;
@@ -69,7 +106,7 @@ const MDStoryBox = styled.div`
   margin-top: 40px;
   color: #333333;
   line-height: 1.8;
-  font-size: 12px;
+  font-size: 13px;
 `;
 
 const MDStoryP = styled.p`
@@ -152,7 +189,6 @@ const MDMovieBtnImg = styled.img`
 
 const MDMovieContentDiv = styled.div`
   width: 800px;
-  margin: 0 auto;
 `;
 
 const MDTrailerBox = styled.div`
@@ -190,17 +226,13 @@ const MDContentAddBtn = styled.img`
   vertical-align: middle;
 `;
 
-const MDStillCutBox = styled.div`
-  width: 800px;
-  height: 450px;
-`;
-
 const MDReplyInfoBox = styled.div`
   width: 100%;
   padding: 20px 30px;
   background: #ebede3;
   box-sizing: border-box;
   border-radius: 5px;
+  position: relative;
 `;
 
 const MDReplyInfoText = styled.p`
@@ -251,12 +283,94 @@ const MDReplyUl = styled.ul`
   border-top: 1px solid #999999;
   color: #333333;
   padding: 0 25px;
-  height: 430px;
+  height: 370px;
+`;
+
+const AsidesBannerImg = styled.img`
+  width: 160px;
+  aspect-ratio: auto 160 / 300;
+  height: 300px;
+  margin-top: 20px;
+`;
+
+const MDAdBox = styled.div`
+  position: absolute;
+  left: 1080px;
+  top: 550px;
+`;
+
+const MDAdBox2 = styled.div`
+  position: absolute;
+  left: 1080px;
+  top: 860px;
+`;
+
+const MDReplyInfoBtnBox = styled.div`
+  position: absolute;
+  top: 30px;
+  right: 40px;
+`;
+
+const MDReplyBtn = styled.span`
+  background-color: #bf2c1c;
+  width: 76px;
+  padding: 10px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 3px;
+`;
+
+const MDMyReplyBtn = styled.span`
+  background-color: #666666;
+  width: 76px;
+  padding: 10px 15px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 3px;
+  margin-left: 10px;
+`;
+
+const ReplyPagingBox = styled.div`
+  text-align: center;
+  margin-top: 25px;
+  padding-right: 15px;
+`;
+
+const ReplyPreviousBtn = styled.button`
+  border-radius: 2px;
+  margin-right: 3px;
+  background-color: #faf9ed;
+  color: #787877;
+  border: 1px solid #cacac1;
+`;
+const ReplyNextBtn = styled.button`
+  border-radius: 2px;
+  margin-left: 3px;
+  background-color: #faf9ed;
+  color: #787877;
+  border: 1px solid #cacac1;
 `;
 
 const MovieDetail = () => {
   return (
     <MDCon>
+      <NavSection>
+        <NavSectionItemBox>
+          <NavSectionHome to="/">
+            <HomeIcon />
+          </NavSectionHome>
+          <NavSectionArrow>〉</NavSectionArrow>
+          <NavSectionSpan>영화</NavSectionSpan>
+          <NavSectionArrow>〉</NavSectionArrow>
+          <NavSectionSpan
+            style={{ textDecoration: "underline", fontWeight: "700" }}
+          >
+            영화상세
+          </NavSectionSpan>
+        </NavSectionItemBox>
+      </NavSection>
       <MDContentCon>
         <MDContentBox>
           <MDHeadBox>
@@ -303,6 +417,18 @@ const MovieDetail = () => {
             </MDMovieInfoBox>
           </MDMovieBox>
 
+          <MDAdBox>
+            <Link>
+              <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202103/GodzillaKong/0315_160x300_02.jpg" />
+            </Link>
+          </MDAdBox>
+
+          <MDAdBox2>
+            <Link>
+              <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202001/cgvgift/1204_160x300.jpg" />
+            </Link>
+          </MDAdBox2>
+
           <MDMovieContentDiv>
             <MDStoryBox>
               <MDStoryP>나는 어떻게 ‘나’로 태어나게 되었을까?</MDStoryP>
@@ -348,18 +474,6 @@ const MovieDetail = () => {
               </MDContentTitleDiv>
             </MDTrailerBox>
 
-            <MDTrailerBox>
-              <MDContentTitleDiv>
-                <MDContentTitleH4>스틸컷</MDContentTitleH4>
-                <MDContentCountSpan>1/19건</MDContentCountSpan>
-                <MDMovieBtn>
-                  <MDContentAddBtn src={addBtn} />
-                </MDMovieBtn>
-              </MDContentTitleDiv>
-
-              <MDStillCutBox></MDStillCutBox>
-            </MDTrailerBox>
-
             <MDReplyInfoBox>
               <MDReplyInfoText>
                 관람일 포함 7일 이내 관람평을 남기시면 CJ ONE 20P가 적립됩니다.
@@ -367,6 +481,14 @@ const MovieDetail = () => {
               <MDReplyInfoSubText>
                 28,885 명의 실관람객이 평가해주셨습니다.
               </MDReplyInfoSubText>
+              <MDReplyInfoBtnBox>
+                <Link>
+                  <MDReplyBtn>평점작성</MDReplyBtn>
+                </Link>
+                <Link>
+                  <MDMyReplyBtn>내 평점</MDMyReplyBtn>
+                </Link>
+              </MDReplyInfoBtnBox>
             </MDReplyInfoBox>
 
             <MDReplyTitleBox>
@@ -381,6 +503,10 @@ const MovieDetail = () => {
                 <MovieDetailReply />
                 <MovieDetailReply />
               </MDReplyUl>
+              <ReplyPagingBox>
+                <ReplyPreviousBtn>◀</ReplyPreviousBtn>
+                <ReplyNextBtn>▶</ReplyNextBtn>
+              </ReplyPagingBox>
             </MDReplyBox>
           </MDMovieContentDiv>
         </MDContentBox>
