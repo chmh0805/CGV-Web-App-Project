@@ -16,6 +16,7 @@ import MovieChart from "./pages/MovieChart";
 import SupportFaqMain from "./pages/SupportFaqMain";
 import SupportNewsMain from "./pages/SupportNewsMain";
 import SupportQnaMain from "./pages/SupportQnaMain";
+import TicketingPage from "./pages/TicketingPage";
 
 function App() {
   return (
@@ -45,7 +46,9 @@ function App() {
         path="/support/qna/default"
         exact={true}
         component={SupportQnaMain}
+        name="isQna"
       />
+      <Route path="/testpage" exact={true} component={TicketingPage} />
       <FloatingBanner />
       <Footer />
     </div>
