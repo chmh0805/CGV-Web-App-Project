@@ -304,7 +304,7 @@ const WatchedItem = styled.div`
   border-right: 1px dashed #cdc9c0;
 `;
 
-const MainContentsItem1A = styled.a`
+const MainContentsItem1Link = styled(Link)`
   width: auto;
   height: auto;
   text-decoration: none;
@@ -457,6 +457,10 @@ const MyPurchaseGiftConLink = styled(Link)`
   font-size: 12px;
   line-height: 1.2;
   height: 14px;
+
+  &:hover {
+    color: #333;
+  }
 `;
 
 const MyPurchaseGiftConSpan = styled.span`
@@ -481,6 +485,8 @@ const MyPurchaseGiftConEm = styled.em`
 `;
 
 const MyCgvHome = () => {
+  window.scrollTo(0, 0);
+
   return (
     <MyCgvHomeContainer>
       <NavSection>
@@ -544,10 +550,10 @@ const MyCgvHome = () => {
       </InfoSection>
       <MyCGVMainContainer>
         <MainAsidesBox>
-          <AsidesHeadSpecialItem>
-            <AsidesBoxLink>MY CGV HOME</AsidesBoxLink>
-          </AsidesHeadSpecialItem>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv">
+            <AsidesHeadSpecialItem>MY CGV HOME</AsidesHeadSpecialItem>
+          </AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/reserve">
             <AsidesHeadItem>나의 예매내역</AsidesHeadItem>
           </AsidesBoxLink>
           <AsidesBoxLink>
@@ -586,7 +592,7 @@ const MyCgvHome = () => {
           <AsidesBoxLink>
             <AsidesBodyItem>1:1 문의</AsidesBodyItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/movielog/watched">
             <AsidesWatchedMovieBox>내가 본 영화</AsidesWatchedMovieBox>
           </AsidesBoxLink>
           <Link>
@@ -596,24 +602,24 @@ const MyCgvHome = () => {
         <MainContentsBox>
           <MainContentsItemBox1>
             <PreeggItem>
-              <MainContentsItem1A>
+              <MainContentsItem1Link to="/user/movielog/expected">
                 <MainContentsItem1H3>기대되는 영화</MainContentsItem1H3>
                 <MainContentsItemSpan>
                   보고 싶은 영화들을 미리
                   <br />
                   담아두고 싶다면?
                 </MainContentsItemSpan>
-              </MainContentsItem1A>
+              </MainContentsItem1Link>
             </PreeggItem>
             <WatchedItem>
-              <MainContentsItem1A>
+              <MainContentsItem1Link to="/user/movielog/watched">
                 <MainContentsItem1H3>내가 본 영화</MainContentsItem1H3>
                 <MainContentsItemSpan>
                   관람한 영화들을 한번에
                   <br />
                   모아보고 싶다면?
                 </MainContentsItemSpan>
-              </MainContentsItem1A>
+              </MainContentsItem1Link>
             </WatchedItem>
           </MainContentsItemBox1>
           <MainContentsItemBoxTitle>

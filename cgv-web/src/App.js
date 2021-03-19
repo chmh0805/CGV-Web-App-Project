@@ -17,6 +17,9 @@ import SupportFaqMain from "./pages/SupportFaqMain";
 import SupportNewsMain from "./pages/SupportNewsMain";
 import SupportQnaMain from "./pages/SupportQnaMain";
 import TicketingPage from "./pages/TicketingPage";
+import MovieLogWatched from "./pages/MovieLogWatched";
+import MovieLogExpected from "./pages/MovieLogExpected";
+import MyCgvReserve from "./pages/MyCgvReserve";
 
 function App() {
   return (
@@ -27,6 +30,7 @@ function App() {
       <Route path="/guest/login" exact={true} component={GuestLogin} />
       <Route path="/join" exact={true} component={Join} />
       <Route path="/user/mycgv" exact={true} component={MyCgvHome} />
+      <Route path="/user/mycgv/reserve" exact={true} component={MyCgvReserve} />
       <Route path="/movies" exact={true} component={MovieChart} />
       <Route path="/movies/trailler" exact={true} component={Trailler} />
       <Route path="/movies/finder" exact={true} component={MovieFinder} />
@@ -46,9 +50,18 @@ function App() {
         path="/support/qna/default"
         exact={true}
         component={SupportQnaMain}
-        name="isQna"
       />
-      <Route path="/testpage" exact={true} component={TicketingPage} />
+      <Route path="/ticket" exact={true} component={TicketingPage} />
+      <Route
+        path="/user/movielog/watched"
+        exact={true}
+        render={() => <MovieLogWatched watched={true} />}
+      />
+      <Route
+        path="/user/movielog/expected"
+        exact={true}
+        render={() => <MovieLogExpected watched={false} />}
+      />
       <FloatingBanner />
       <Footer />
     </div>
