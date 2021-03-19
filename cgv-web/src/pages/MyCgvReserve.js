@@ -529,10 +529,10 @@ const MyCgvReserve = () => {
           <AsidesBoxLink to="/user/mycgv/reserve">
             <AsidesHeadSpecialItem>나의 예매내역</AsidesHeadSpecialItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
             <AsidesHeadItem>관람권/할인쿠폰 관리</AsidesHeadItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
             <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
           </AsidesBoxLink>
           <AsidesBoxLink>
@@ -810,7 +810,7 @@ const MyCgvReserve = () => {
                   <br />
                   홈페이지 예매 취소는 상영시간 20분전까지 가능합니다.
                   <br />
-                  (단, 씨네&포레관, 씨네&리빙룸 제외)
+                  (단, 씨네&amp;포레관, 씨네&amp;리빙룸 제외)
                   <br />
                   상영시간 이후 취소나 환불은 되지 않습니다.
                   <br />
@@ -824,7 +824,7 @@ const MyCgvReserve = () => {
                   <br />
                   모바일 앱/웹 예매 취소는 상영시간 15분전까지 가능합니다.
                   <br />
-                  (단, 씨네&포레관, 씨네&리빙룸 제외)
+                  (단, 씨네&amp;포레관, 씨네&amp;리빙룸 제외)
                   <br />
                   상영시간 이후 취소나 환불은 되지 않습니다.
                   <br />

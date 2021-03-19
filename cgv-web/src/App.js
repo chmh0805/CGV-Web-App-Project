@@ -20,6 +20,7 @@ import TicketingPage from "./pages/TicketingPage";
 import MovieLogWatched from "./pages/MovieLogWatched";
 import MovieLogExpected from "./pages/MovieLogExpected";
 import MyCgvReserve from "./pages/MyCgvReserve";
+import MyCgvMovieTicketRegister from "./pages/MyCgvMovieTicketRegister";
 
 function App() {
   return (
@@ -31,6 +32,11 @@ function App() {
       <Route path="/join" exact={true} component={Join} />
       <Route path="/user/mycgv" exact={true} component={MyCgvHome} />
       <Route path="/user/mycgv/reserve" exact={true} component={MyCgvReserve} />
+      <Route
+        path="/user/mycgv/coupon/movie-ticket/register"
+        exact={true}
+        component={MyCgvMovieTicketRegister}
+      />
       <Route path="/movies" exact={true} component={MovieChart} />
       <Route path="/movies/trailler" exact={true} component={Trailler} />
       <Route path="/movies/finder" exact={true} component={MovieFinder} />
