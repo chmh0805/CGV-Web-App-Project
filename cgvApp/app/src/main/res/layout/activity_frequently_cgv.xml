@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FrequentlyCgvActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#DFDFDF">
+
+        <include layout="@layout/toolbar_frequently_cgv" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll_payment_history"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:padding="25dp"
+            android:background="@color/white"
+            app:tabTextColor="@color/black">
+
+            <LinearLayout
+                android:id="@+id/btn_add_cgv"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageButton
+                    android:id="@+id/imageButton2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@android:color/white"
+                    android:src="@drawable/ic_add" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CGV 등록"
+                    android:textColor="#333333"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:text="자주가는 CGV를 등록하세요!"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="최대 5개까지 등록할 수 있으며,"
+                    android:textColor="#999999"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="서비스를 빠르고 편리하게 이용할 수 있습니다."
+                    android:textColor="#999999"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_payment_history_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingRight="15dp"
+            android:paddingLeft="15dp"
+            app:tabIndicatorColor="@color/black"
+            android:elevation="10dp"/>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/my_navigation_view" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

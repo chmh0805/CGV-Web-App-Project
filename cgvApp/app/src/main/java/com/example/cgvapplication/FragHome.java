@@ -25,6 +25,7 @@ import java.util.List;
 
 public class FragHome extends Fragment {
 
+    private final FragHome mFragHome = this;
     private List<Movie> movies = new ArrayList<>();
     private List<FeaturedMovie> featuredMovies = new ArrayList<>();
     private List<TopFeaturedMovie> topFeaturedMovies = new ArrayList<>();
@@ -32,6 +33,8 @@ public class FragHome extends Fragment {
     private RecyclerView rvHomeMovieListContainer, rvHomeFeaturedMoviesContainer, rvHomeTopFeaturedContainer;
     private AppCompatButton btnHomeMovieListMovieChart, btnHomeMovieListWillScreening;
     private boolean btnMovieChartPressed, btnWillScreeningPressed;
+
+
 
     @Nullable
     @Override
@@ -65,7 +68,7 @@ public class FragHome extends Fragment {
 
         rvHomeMovieListContainer = view.findViewById(R.id.rv_home_movielist_container);
         LinearLayoutManager movieListManager = new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false);
-        HomeMovieListAdapter movieListAdapter = new HomeMovieListAdapter(movies);
+        HomeMovieListAdapter movieListAdapter = new HomeMovieListAdapter(mFragHome.getContext(), movies);
         rvHomeMovieListContainer.setLayoutManager(movieListManager);
         rvHomeMovieListContainer.setAdapter(movieListAdapter);
 

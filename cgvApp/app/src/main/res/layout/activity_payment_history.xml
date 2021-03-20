@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PaymentHistoryActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#DFDFDF">
+
+        <include layout="@layout/toolbar_payment_history" />
+
+        <LinearLayout
+            android:id="@+id/ll_payment_history"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:background="@color/white"
+            app:tabTextColor="@color/black">
+            
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="영화 예매"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:background="@drawable/ic_payment_history_btn"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="기프트샾"
+                android:textStyle="bold"
+                android:textColor="@android:color/darker_gray"
+                android:background="@drawable/ic_payment_history_btn"/>
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_payment_history_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            app:tabIndicatorColor="@color/black"
+            android:elevation="10dp"/>
+
+
+    </LinearLayout>
+
+    <include layout="@layout/my_navigation_view" />
+
+</androidx.drawerlayout.widget.DrawerLayout>

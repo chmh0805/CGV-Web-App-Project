@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/iv_movie_person"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@drawable/ic_person"
+        android:layout_gravity="center"
+        app:civ_circle_background_color="@color/grey_dark"/>
+    <TextView
+        android:id="@+id/tv_movie_person"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="감독또는배우이름"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textStyle="bold"/>
+    <TextView
+        android:id="@+id/tv_director"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="13sp"
+        android:text="감독"
+        android:visibility="gone"/>
+
+</LinearLayout>
