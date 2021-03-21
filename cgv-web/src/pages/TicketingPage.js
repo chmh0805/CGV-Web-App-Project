@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import TicketingStep1 from "../components/TicketingStep1";
+import TicketingStep2 from "../components/TicketingStep2";
 import TicketingStep3 from "../components/TicketingStep3";
 
 const TicketingMainContainer = styled.div`
@@ -76,7 +77,7 @@ const TicketingPage = () => {
         </NavSectionItemBox>
       </NavSection>
       <TicketingSubContainer>
-        <TicketingStep3 />
+        <TicketingStep2 />
       </TicketingSubContainer>
     </TicketingMainContainer>
   );

@@ -290,12 +290,29 @@ const PaymentBtn = styled.button`
   margin-left: 10px;
 `;
 
+const MDAdBox = styled.div`
+  position: absolute;
+  left: 100px;
+  top: 255px;
+`;
+
+const AsidesBannerImg = styled.img`
+  width: 160px;
+  aspect-ratio: auto 160 / 300;
+  height: 300px;
+  margin-top: 20px;
+`;
+
 const TicketingStep3 = () => {
   return (
     <>
       <TicketingTopButtonBox>
         <TicketingTopButton />
       </TicketingTopButtonBox>
+
+      <MDAdBox>
+        <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202003/house/A_skin_160x300.png" />
+      </MDAdBox>
 
       <TicketingStepsSection>
         <TicketingStepBox>
