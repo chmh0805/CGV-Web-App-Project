@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
-import Form from "bootstrap";
 
 const JoinContainer = styled.div`
   background-color: #fdfcf0;
@@ -125,7 +124,7 @@ const JoinButton = styled.div`
   font-size: 17px;
 `;
 
-const Join = () => {
+const UserUpdate = () => {
   return (
     <JoinContainer>
       <NavSection>
@@ -139,14 +138,14 @@ const Join = () => {
           <NavSectionSpan
             style={{ textDecoration: "underline", fontWeight: "700" }}
           >
-            회원가입
+            회원정보 수정
           </NavSectionSpan>
         </NavSectionItemBox>
       </NavSection>
       <JoinSection>
         <JoinSectionItemBox>
           <Span666666>
-            필요한 모든 정보를 입력하신 후, 회원가입 버튼을 클릭해 주세요.
+            필요한 모든 정보를 입력하신 후, 회원정보 수정 버튼을 클릭해 주세요.
           </Span666666>
           <JoinSectionInput type="text" placeholder="아이디" />
           <JoinSectionInput type="text" placeholder="실명" />
@@ -177,11 +176,12 @@ const Join = () => {
             <PhoneDivider>-</PhoneDivider>
             <PhoneInput />
           </PhoneInputBox>
-          <JoinButton>회원가입</JoinButton>
+
+          <JoinButton>회원정보 수정</JoinButton>
         </JoinSectionItemBox>
       </JoinSection>
     </JoinContainer>
   );
 };
 
-export default Join;
+export default UserUpdate;

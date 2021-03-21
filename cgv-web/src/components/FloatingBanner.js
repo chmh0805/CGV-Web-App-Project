@@ -36,10 +36,10 @@ const FloatingBanner = () => {
     <>
       <FBCon>
         <FBBox>
-          <FBBtnBox>
+          <FBBtnBox to="/theater">
             <FBBtn src={btnCGV} />
           </FBBtnBox>
-          <FBBtnBox>
+          <FBBtnBox to="/user/mycgv/reserve">
             <FBBtn src={btnTicket} />
           </FBBtnBox>
         </FBBox>

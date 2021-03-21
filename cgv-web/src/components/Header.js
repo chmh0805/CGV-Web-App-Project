@@ -301,7 +301,9 @@ const Header = () => {
                     <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
-                          <DropdownDivLink to="/">CGV 극장</DropdownDivLink>
+                          <DropdownDivLink to="/theater">
+                            CGV 극장
+                          </DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
                     </MyDropdownItem>

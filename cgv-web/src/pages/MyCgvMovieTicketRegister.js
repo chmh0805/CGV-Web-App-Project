@@ -471,16 +471,16 @@ const MyCgvMovieTicketRegister = () => {
           <AsidesBoxLink>
             <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/giftcon">
             <AsidesHeadItem>기프트샵</AsidesHeadItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/giftcon">
             <AsidesBodyItem>내 기프트콘</AsidesBodyItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/info">
             <AsidesBodyItem>결제내역</AsidesBodyItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/info">
             <AsidesHeadItem>회원정보</AsidesHeadItem>
           </AsidesBoxLink>
           <AsidesBoxLink>
@@ -492,10 +492,10 @@ const MyCgvMovieTicketRegister = () => {
           <AsidesBoxLink>
             <AsidesHeadItem>프로필 관리</AsidesHeadItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/myqna">
             <AsidesHeadItem>나의 문의내역</AsidesHeadItem>
           </AsidesBoxLink>
-          <AsidesBoxLink>
+          <AsidesBoxLink to="/user/mycgv/myqna">
             <AsidesBodyItem>1:1 문의</AsidesBodyItem>
           </AsidesBoxLink>
           <AsidesBoxLink to="/user/movielog/watched">
