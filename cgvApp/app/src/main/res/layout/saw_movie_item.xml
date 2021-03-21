@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_saw_movie_container"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:layout_margin="10dp"
+    android:padding="10dp"
+    android:background="@drawable/ic_saw_movie_layout">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_marginTop="5dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/lalaland_poster"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="260dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="5dp"
+        android:padding="5dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        app:layout_constraintStart_toEndOf="@+id/imageView4">
+
+        <TextView
+            android:id="@+id/tv_saw_movie_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="라라랜드"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_saw_movie_lookingday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2019.09.19 14:40 - 16:53"
+            android:textColor="@android:color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/tv_saw_movie_theater"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CGV피카디리1958"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_saw_movie_hall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5관"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_saw_movie_seat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B4"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="층"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btn_saw_movie_remove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white"
+        android:src="@drawable/ic_saw_move_close"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="평가해주세요"
+        android:textColor="#666666"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
