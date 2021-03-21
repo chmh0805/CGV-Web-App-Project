@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrivacyActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#E2E2E2">
+        <include layout="@layout/toolbar_default" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:text="회원정보수정"
+            android:padding="15dp"
+            android:layout_marginTop="30dp"
+            android:textStyle="bold"
+            android:textSize="15sp"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E2E2E2"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="회원탈퇴"
+            android:background="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:text="마케팅 수신동의"
+            android:layout_marginTop="30dp"
+            android:background="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_search_password2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/main"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="50dp"
+            android:text="로그아웃"
+            android:layout_marginHorizontal="15dp"/>
+    </LinearLayout>
+
+    <include layout="@layout/my_navigation_view" />
+</androidx.drawerlayout.widget.DrawerLayout>
