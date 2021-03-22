@@ -24,6 +24,10 @@
         <activity android:name=".SeatChoiceActivity" />
         <activity android:name=".MyCgvActivity" />
         <activity android:name=".TicketingActivity" />
+        <activity android:name=".GiftCardActivity"></activity>
+        <activity android:name=".NoticeBoxActivity" />
+        <activity android:name=".ServiceCenterActivity" />
+        <activity android:name=".FindTheaterActivity" />
         <activity android:name=".MovieDetailActivity" />
         <activity android:name=".MovieLogActivity" />
         <activity android:name=".FrequentlyCgvActivity" />

@@ -47,10 +47,21 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView1" />
 
+            <TextView
+                android:id="@+id/tv_movie_log_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="na**a1565"
+                android:textColor="#777777"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_movie_log_nickname" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <LinearLayout
-            android:id="@+id/ll_payment_history"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/white"
@@ -58,20 +69,22 @@
             app:tabTextColor="@color/black">
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_movie_log_expect"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/ic_payment_history_btn"
-                android:text="영화 예매"
+                android:background="@drawable/ic_movie_log_btn"
+                android:text="기대되는 영화"
                 android:textColor="@android:color/darker_gray"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_movie_log_saw"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/ic_payment_history_btn"
-                android:text="기프트샾"
+                android:background="@drawable/ic_movie_log_btn"
+                android:text="내가 본 영화"
                 android:textColor="@android:color/darker_gray"
                 android:textStyle="bold" />
 
