@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import { Checkbox } from "semantic-ui-react";
+import { useCookies } from "react-cookie";
 
 const LoginContainer = styled.div`
   background-color: #fdfcf0;
@@ -125,6 +126,7 @@ const LoginButton = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 17px;
+  cursor: pointer;
 `;
 
 const LoginSectionFooter = styled.div`
@@ -162,6 +164,48 @@ const LoginSectionFooterRightLink = styled(Link)`
 `;
 
 const Login = () => {
+  const [loginReqDto, setLoginReqDto] = useState({
+    username: '',
+    password: ''
+  });
+
+  const [cookie, setCookie, removeCookie] = useCookies(['ourCgvUsername']);
+
+  const handleForm = (e) => {
+    setLoginReqDto({...loginReqDto, [e.target.name]: e.target.value});
+  }
+
+  const login = () => {
+    let username = loginReqDto.username.trim();
+    let password = loginReqDto.password.trim();
+    let isChecked = document.getElementById('checkbox');
+
+    if (username === "") {
+      alert('아이디를 입력해주세요.');
+      return;
+    }
+
+    if (password === "") {
+      alert('비밀번호를 입력해주세요.');
+      return;
+    }
+
+    if (isChecked) {
+      setCookie('ourCgvUsername', username, {expires: new Date(Date.now()+7)});
+    }
+
+    fetch('http://localhost:8080/login', {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(loginReqDto)
+    }).then((res) => res.json()).then((res) => {
+      console.log(res);
+    });
+
+  }
+
   return (
     <LoginContainer>
       <NavSection>
@@ -190,12 +234,12 @@ const Login = () => {
           <Span666666>
             아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.
           </Span666666>
-          <LoginSectionInput placeholder="아이디" />
-          <LoginSectionInput placeholder="비밀번호" />
-          <LoginButton>로그인</LoginButton>
+          <LoginSectionInput placeholder="아이디" type="text" onChange={handleForm} name="username" value={loginReqDto.username} />
+          <LoginSectionInput placeholder="비밀번호" type="text" onChange={handleForm} name="password" value={loginReqDto.password} />
+          <LoginButton onClick={() => login()}>로그인</LoginButton>
           <LoginSectionFooter>
             <LoginSectionFooterLeftBox>
-              <Checkbox style={{ margin: "0 3px 0 0" }} />
+              <Checkbox style={{ margin: "0 3px 0 0" }} id="checkbox" />
               <Span666666>아이디 저장</Span666666>
             </LoginSectionFooterLeftBox>
             <LoginSectionFooterRightBox>
