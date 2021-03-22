@@ -90,41 +90,9 @@ const MCSub = styled(Link)`
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  margin-left: 20px;
+  margin-left: 15px;
+  margin-right: 8px;
   color: #737373;
-
-  &:hover {
-    color: red;
-    font-weight: bold;
-  }
-`;
-
-const MCSortBox = styled.div`
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const MCCheckBox = styled.div`
-  display: flex;
-`;
-
-const MCCheckTxt = styled.label`
-  font-size: 13px;
-  color: #666;
-  margin-left: 3px;
-`;
-
-const MCSelectBox = styled.div`
-  display: flex;
-`;
-
-const MCSelectBtn = styled.button`
-  border: 2px solid #7b7b7b;
-  border-radius: 3px;
-  color: #7b7b7b;
-  background-color: #fdfcf0;
-  margin-left: 5px;
 `;
 
 const MCBox = styled.div`
@@ -147,7 +115,7 @@ const MovieChart = () => {
           <NavSectionSpan
             style={{ textDecoration: "underline", fontWeight: "700" }}
           >
-            무비차트
+            상영예정작
           </NavSectionSpan>
         </NavSectionItemBox>
       </NavSection>
@@ -156,25 +124,10 @@ const MovieChart = () => {
           <MCHeadBox>
             <MCHeadTitle>무비차트</MCHeadTitle>
             <MCSubMenu>
-              <MCSubNow>▶ 무비차트</MCSubNow>
-              <MCSub to="/movies/schedule">상영예정작</MCSub>
+              <MCSub to="/movies/">무비차트</MCSub>
+              <MCSubNow>▶상영예정작</MCSubNow>
             </MCSubMenu>
           </MCHeadBox>
-
-          <MCSortBox>
-            <MCCheckBox>
-              <input type="checkbox" id="" />
-              <MCCheckTxt>현재 상영작만 보기</MCCheckTxt>
-            </MCCheckBox>
-            <MCSelectBox>
-              <select id="" name="" className="MCselect">
-                <option value="1">예매율순</option>
-                <option value="2">평점순</option>
-                <option value="3">관람객순</option>
-              </select>
-              <MCSelectBtn>GO</MCSelectBtn>
-            </MCSelectBox>
-          </MCSortBox>
 
           <MCBox>
             <MovieChartOlItem />

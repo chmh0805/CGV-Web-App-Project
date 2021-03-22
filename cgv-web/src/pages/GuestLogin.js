@@ -234,7 +234,7 @@ const GuestLogin = () => {
           <NavSectionSpan
             style={{ textDecoration: "underline", fontWeight: "700" }}
           >
-            로그인
+            비회원예매확인
           </NavSectionSpan>
         </NavSectionItemBox>
       </NavSection>
