@@ -108,6 +108,11 @@ const PeopleNumButton = styled.button`
   background-color: #f2f0e5;
   padding: 0;
   font-weight: bold;
+
+  &:focus {
+    background-color: #333;
+    color: white;
+  }
 `;
 
 const TicketTheaterInfoBox = styled.div`
@@ -200,7 +205,8 @@ const TheaterSeatNum = styled.div`
 
 const SeatNumBtn = styled.button`
   width: 16px;
-  height: 15px;
+  height: 14px;
+  line-height: 14px;
   background-color: #74501c;
   color: white;
   align-items: 0;
@@ -214,6 +220,10 @@ const SeatNumBtn = styled.button`
   margin-top: 1px;
 
   &:hover {
+    background-color: red;
+  }
+
+  &:focus {
     background-color: red;
   }
 `;
@@ -475,6 +485,22 @@ const TicketingStep3 = () => {
                 <TheaterRowHead>K</TheaterRowHead>
               </TheaterRowHeadBox>
               <TheaterSeatBox>
+                <TheaterSeatNum>
+                  <SeatNumBtn>1</SeatNumBtn>
+                  <SeatNumBtn>2</SeatNumBtn>
+                  <SeatNumBtn>3</SeatNumBtn>
+                  <SeatNumBtn>4</SeatNumBtn>
+                  <SeatNumBtn>5</SeatNumBtn>
+                  <SeatNumBtn>6</SeatNumBtn>
+                  <SeatNumBtn>7</SeatNumBtn>
+                  <SeatNumBtn>8</SeatNumBtn>
+                  <SeatNumBtn>9</SeatNumBtn>
+                  <SeatNumBtn>10</SeatNumBtn>
+                  <SeatNumBtn>11</SeatNumBtn>
+                  <SeatNumBtn>12</SeatNumBtn>
+                  <SeatNumBtn>13</SeatNumBtn>
+                  <SeatNumBtn>14</SeatNumBtn>
+                </TheaterSeatNum>
                 <TheaterSeatNum>
                   <SeatNumBtn>1</SeatNumBtn>
                   <SeatNumBtn>2</SeatNumBtn>
