@@ -18,7 +18,7 @@ public class LoginActivity extends AppCompatActivity {
     private Toolbar mToolbarDefault;
     private MyNavigationHelper mMyNavigationHelper;
     private LinearLayout mLinearNavigation;
-    private TextView mTvToolbarTitle, mTvGoJoin;
+    private TextView mTvToolbarTitle, mTvGoJoin, mTvSearchId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,17 @@ public class LoginActivity extends AppCompatActivity {
         mLinearNavigation = findViewById(R.id.linear_navigation);
         mTvToolbarTitle = findViewById(R.id.tv_toolbar_title);
         mTvGoJoin = findViewById(R.id.tv_go_join);
+        mTvSearchId = findViewById(R.id.tv_search_id);
         mMyNavigationHelper = new MyNavigationHelper(LoginActivity.this);
     }
 
     private void listener() {
         mTvGoJoin.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this, JoinActivity.class);
+            startActivity(intent);
+        });
+        mTvSearchId.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this, FindIdAndPasswordActivity.class);
             startActivity(intent);
         });
     }

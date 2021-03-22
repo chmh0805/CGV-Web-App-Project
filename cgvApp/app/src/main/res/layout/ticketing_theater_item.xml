@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="서면"
+        android:textStyle="bold"
+        android:paddingHorizontal="15dp"
+        android:paddingVertical="15dp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_hall"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:nestedScrollingEnabled="false"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#E2E2E2"/>
+</LinearLayout>

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
+import Form from "bootstrap";
 
 const JoinContainer = styled.div`
   background-color: #fdfcf0;
@@ -176,7 +177,6 @@ const Join = () => {
             <PhoneDivider>-</PhoneDivider>
             <PhoneInput />
           </PhoneInputBox>
-
           <JoinButton>회원가입</JoinButton>
         </JoinSectionItemBox>
       </JoinSection>

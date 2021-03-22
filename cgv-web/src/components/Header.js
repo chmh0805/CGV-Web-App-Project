@@ -285,7 +285,9 @@ const Header = () => {
                     <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
-                          <DropdownDivLink to="/">빠른예매</DropdownDivLink>
+                          <DropdownDivLink to="/ticket">
+                            빠른예매
+                          </DropdownDivLink>
                           <DropdownDivLink to="/">상영시간표</DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
@@ -299,7 +301,9 @@ const Header = () => {
                     <MyDropdownItem>
                       <DropdownBox>
                         <DropdownBoxDiv>
-                          <DropdownDivLink to="/">CGV 극장</DropdownDivLink>
+                          <DropdownDivLink to="/theater">
+                            CGV 극장
+                          </DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
                     </MyDropdownItem>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frequently_cgv_add_list"
+    android:layout_width="wrap_content"
+    android:layout_height="30dp"
+    android:layout_margin="10dp"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_star_grey"
+        android:background="@color/transparent"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:text="CGV"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:id="@+id/tv_frequently_cgv_list_title"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center_vertical"
+        android:text="서면"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"/>
+
+</LinearLayout>
+

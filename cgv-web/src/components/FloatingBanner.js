@@ -11,7 +11,7 @@ const FBCon = styled.div`
   margin: 0px;
   position: fixed;
 
-  left: 1272px;
+  right: calc(50% - 650px);
   top: 200px;
 `;
 
@@ -36,10 +36,10 @@ const FloatingBanner = () => {
     <>
       <FBCon>
         <FBBox>
-          <FBBtnBox>
+          <FBBtnBox to="/theater">
             <FBBtn src={btnCGV} />
           </FBBtnBox>
-          <FBBtnBox>
+          <FBBtnBox to="/user/mycgv/reserve">
             <FBBtn src={btnTicket} />
           </FBBtnBox>
         </FBBox>
