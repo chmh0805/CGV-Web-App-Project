@@ -43,4 +43,5 @@ dependencies {
     implementation 'com.makeramen:roundedimageview:2.3.0'
     implementation 'kr.co.prnd:readmore-textview:1.0.0'
     implementation 'info.androidhive:fontawesome:0.0.5'
+    implementation 'com.sothree.slidinguppanel:library:3.4.0'
 }

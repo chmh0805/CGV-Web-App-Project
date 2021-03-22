@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.adapter.MovieTalkAdapter;
+import com.example.cgvapplication.adapter.movietalk.MovieTalkAdapter;
 import com.example.cgvapplication.model.movie.movietalk.MovieTalk;
 
 import java.util.ArrayList;

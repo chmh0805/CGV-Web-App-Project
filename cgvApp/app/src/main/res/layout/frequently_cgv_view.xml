@@ -1,69 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/frequently_cgv_add_view"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="350dp"
+    android:layout_gravity="bottom"
+    android:background="#EFEFEF"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/frequently_cgv_add_view"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="#EFEFEF">
-        
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_marginBottom="1dp"
-            android:background="@android:color/white"
-            android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="10dp"
-                android:background="@color/transparent"
-                android:src="@drawable/ic_vector_search" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_vector_search" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/ipt_frequently_cgv_search"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:background="@drawable/ic_search_movie_input"
-                android:hint="검색"
-                android:textSize="16sp" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/ipt_frequently_cgv_search"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_search_movie_input"
+            android:hint="검색"
+            android:textSize="16sp" />
 
-            <ImageButton
-                android:id="@+id/btn_frequently_cgv_close"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:background="@color/transparent"
-                android:src="@drawable/ic_close_blak"/>
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tv_frequently_cgv_button_box"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:background="@android:color/white"
-            android:layout_marginBottom="1dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tv_frequently_cgv_list_box"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:background="@android:color/white"/>
-
-
+        <ImageButton
+            android:id="@+id/btn_frequently_cgv_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:src="@drawable/ic_close_blak" />
 
     </LinearLayout>
 
-</merge>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tv_frequently_cgv_button_box"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="1dp"
+        android:background="@android:color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tv_frequently_cgv_list_box"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:padding="10dp" />
+
+</LinearLayout>
