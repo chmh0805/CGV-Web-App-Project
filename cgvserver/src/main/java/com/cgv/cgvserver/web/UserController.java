@@ -27,7 +27,7 @@ public class UserController {
 		User user = new User();
 		user.setUsername("ssar");
 		user.setPassword(encoder.encode("1234"));
-		user.setRole("ROLE_USER");
+		user.setRole("USER");
 		return userRepository.save(user);
 	}
 	

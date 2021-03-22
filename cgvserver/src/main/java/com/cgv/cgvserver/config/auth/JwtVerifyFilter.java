@@ -54,9 +54,10 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
 			User userEntity = userRepository.findById(userId)
 						.orElseThrow(NotFoundUserException::new);
 			System.out.println("userEntity : " + userEntity);
+			
 			PrincipalDetails principalDetails = new PrincipalDetails(userEntity);
 			Authentication authentication =
-						new UsernamePasswordAuthenticationToken(principalDetails.getUsername(), principalDetails.getPassword());
+						new UsernamePasswordAuthenticationToken(principalDetails.getUsername(), principalDetails.getPassword(), principalDetails.getAuthorities());
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			
 			chain.doFilter(request, response);
