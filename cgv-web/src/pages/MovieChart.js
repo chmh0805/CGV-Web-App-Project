@@ -3,11 +3,49 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
 import MovieChartOlItem from "../components/MovieChartOlItem";
+import HomeIcon from "@material-ui/icons/Home";
 
 const MCCon = styled.div`
   width: 100%;
   background-color: #fdfcf0;
   padding-bottom: 50px;
+`;
+
+const NavSection = styled.div`
+  background-color: #f1f0e5;
+  width: auto;
+  height: 30px;
+  border-bottom: 1px solid #cacac0;
+`;
+
+const NavSectionItemBox = styled.div`
+  width: 980px;
+  padding-top: 5px;
+  height: auto;
+  margin: 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
+const NavSectionHome = styled(Link)`
+  color: black;
+
+  &:hover {
+    color: black;
+  }
+`;
+
+const NavSectionArrow = styled.span`
+  color: #999999;
+  font-size: 16px;
+  font-weight: 1000;
+  margin-left: 15px;
+  margin-right: 15px;
+`;
+
+const NavSectionSpan = styled.span`
+  font-size: 13px;
 `;
 
 const MCContentCon = styled.div`
@@ -24,7 +62,7 @@ const MCContentBox = styled.div`
 const MCHeadBox = styled.div`
   display: flex;
   justify-content: space-between;
-  height: 51px;
+
   padding-top: 30px;
   border-bottom: 3px solid #241d1e;
 `;
@@ -69,6 +107,7 @@ const MCCheckBox = styled.div`
 const MCCheckTxt = styled.label`
   font-size: 13px;
   color: #666;
+  margin-left: 3px;
 `;
 
 const MCSelectBox = styled.div`
@@ -90,6 +129,21 @@ const MCBox = styled.div`
 const MovieChart = () => {
   return (
     <MCCon>
+      <NavSection>
+        <NavSectionItemBox>
+          <NavSectionHome to="/">
+            <HomeIcon />
+          </NavSectionHome>
+          <NavSectionArrow>〉</NavSectionArrow>
+          <NavSectionSpan>영화</NavSectionSpan>
+          <NavSectionArrow>〉</NavSectionArrow>
+          <NavSectionSpan
+            style={{ textDecoration: "underline", fontWeight: "700" }}
+          >
+            무비차트
+          </NavSectionSpan>
+        </NavSectionItemBox>
+      </NavSection>
       <MCContentCon>
         <MCContentBox>
           <MCHeadBox>
