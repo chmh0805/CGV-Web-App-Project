@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_poster"
+        android:layout_marginEnd="10dp"
+        android:layout_height="110dp"
+        android:layout_width="100dp"
+        android:src="@drawable/lalaland_poster"
+        android:scaleType="centerCrop"
+        app:riv_corner_radius="20dp"
+        app:riv_border_color="#333333"
+        app:riv_mutate_background="true"
+        app:riv_tile_mode="clamp"
+        app:riv_oval="false" />
+
+</LinearLayout>

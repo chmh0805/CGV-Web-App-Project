@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -24,6 +25,7 @@ public class GiftshopActivity extends AppCompatActivity {
     private Toolbar mToolbarGiftshop;
     private TabLayout mTabsGiftshop;
     private MyNavigationHelper myNavigationHelper;
+    private ImageView mIvShoppingCart;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class GiftshopActivity extends AppCompatActivity {
         init();
 
         myNavigationHelper.enable(mLinearNavigation);
-
+        listener();
     }
 
     private void init() {
@@ -42,6 +44,7 @@ public class GiftshopActivity extends AppCompatActivity {
         mToolbarGiftshop = findViewById(R.id.toolbar_giftshop);
         mTabsGiftshop = findViewById(R.id.tabs_giftshop);
         mLinearNavigation = findViewById(R.id.linear_navigation);
+        mIvShoppingCart = findViewById(R.id.iv_shopping_cart);
 
         mGiftshopFragmentPagerAdapter.addFragment(new FragGiftShopTicket());
         mGiftshopFragmentPagerAdapter.addFragment(new FragGiftShopGiftcard());
@@ -66,5 +69,12 @@ public class GiftshopActivity extends AppCompatActivity {
         myNavigationHelper = new MyNavigationHelper(GiftshopActivity.this);
 
 
+    }
+
+    private void listener() {
+        mIvShoppingCart.setOnClickListener(view -> {
+            Intent intent = new Intent(GiftshopActivity.this, ShoppingBasketActivity.class);
+            startActivity(intent);
+        });
     }
 }
