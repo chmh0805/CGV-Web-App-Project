@@ -3,7 +3,6 @@ import "./App.css";
 import FloatingBanner from "./components/FloatingBanner";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import MovieDetail from "./pages/MovieDetail";
 import GuestLogin from "./pages/GuestLogin";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -11,6 +10,7 @@ import Join from "./pages/Join";
 import MyCgvHome from "./pages/MyCgvHome";
 import Trailler from "./pages/Trailler";
 import SupportMain from "./pages/SupportMain";
+import MovieDetail from "./pages/MovieDetail";
 import MovieFinder from "./pages/MovieFinder";
 import MovieChart from "./pages/MovieChart";
 import SupportFaqMain from "./pages/SupportFaqMain";
@@ -75,6 +75,7 @@ function App() {
       <Route path="/movies/trailler" exact={true} component={Trailler} />
       {/* Movie Finder */}
       <Route path="/movies/finder" exact={true} component={MovieFinder} />
+
       {/* Movie Detail */}
       <Route path="/movies/detail" exact={true} component={MovieDetail} />
       {/* Movie 영역 끝 */}
@@ -85,6 +86,7 @@ function App() {
 
       {/* 고객센터 영역 */}
       {/* 고객센터 홈 */}
+
       <Route path="/support/default" exact={true} component={SupportMain} />
       {/* 자주 찾는 질문 */}
       <Route

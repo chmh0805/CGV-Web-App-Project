@@ -9,6 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CGVApplication">
+        <activity android:name=".SplashActivity" android:theme="@style/SplashTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".PrivacyActivity" />
+        <activity android:name=".FindIdAndPasswordActivity" />
+        <activity android:name=".MovieListActivity" />
+        <activity android:name=".ShoppingBasketActivity" />
+        <activity android:name=".TicketingPaymentActivity" />
+        <activity android:name=".SeatChoiceActivity" />
+        <activity android:name=".MyCgvActivity" />
+        <activity android:name=".TicketingActivity" />
         <activity android:name=".GiftCardActivity"></activity>
         <activity android:name=".NoticeBoxActivity" />
         <activity android:name=".ServiceCenterActivity" />
@@ -21,13 +36,7 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".GiftShopDetailActivity" />
         <activity android:name=".GiftshopActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

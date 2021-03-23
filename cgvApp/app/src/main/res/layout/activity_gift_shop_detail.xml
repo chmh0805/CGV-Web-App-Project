@@ -110,6 +110,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#131625"
+            android:textSize="17sp"
             android:textColor="@color/white"
             android:text="구매하기" />
     </LinearLayout>

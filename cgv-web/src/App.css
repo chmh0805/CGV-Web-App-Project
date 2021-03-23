@@ -2,13 +2,14 @@
   padding: 3px 5px;
   height: 29px;
   border: 1px solid #b4b3aa;
+  color: black;
 }
 
 .MFInput {
   padding-left: 10px;
   margin-left: 10px;
   width: 410px;
-  height: 25px;
+  height: 31px;
 }
 
 .MFCheckBox {
@@ -23,4 +24,15 @@
   margin-right: 5px;
   margin-left: 5px;
   border: 1px solid #b5b5b5;
+  color: black;
+}
+
+.CreditSelect {
+  border: 1px solid #acaba2;
+
+  width: 150px;
+  height: 30px;
+  letter-spacing: -1px;
+  padding: 3px;
+  background-color: #f2f0e5;
 }

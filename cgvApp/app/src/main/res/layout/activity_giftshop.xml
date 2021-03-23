@@ -27,6 +27,7 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
+
     <include layout="@layout/my_navigation_view" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

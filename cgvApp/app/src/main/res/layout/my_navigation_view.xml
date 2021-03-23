@@ -212,12 +212,14 @@
                         android:gravity="center"
                         android:orientation="horizontal">
                         <TextView
+                            android:id="@+id/tv_go_gift_card"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="기프트카드"/>
                         <TextView
+                            android:id="@+id/tv_go_my_cgv"
                             android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -553,6 +555,7 @@
                     android:textSize="15dp"
                     android:textColor="@color/white"/>
                 <TextView
+                    android:id="@+id/tv_go_service_center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="고객센터"
