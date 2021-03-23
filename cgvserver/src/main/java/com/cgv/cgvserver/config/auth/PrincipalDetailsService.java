@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.domain.user.UserRepository;
+import com.cgv.cgvserver.handler.exception.NotFoundUserException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,7 +23,7 @@ public class PrincipalDetailsService implements UserDetailsService {
 		User userEntity = userRepository.findByUsername(username);
 		
 		if (userEntity == null) {
-			return null;
+			throw new NotFoundUserException();
 		} else {
 			return new PrincipalDetails(userEntity);
 		}

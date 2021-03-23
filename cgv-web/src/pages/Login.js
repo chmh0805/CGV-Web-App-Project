@@ -4,6 +4,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import { Checkbox } from "semantic-ui-react";
 import { useCookies } from "react-cookie";
+import axios from "axios";
 
 const LoginContainer = styled.div`
   background-color: #fdfcf0;
@@ -163,7 +164,7 @@ const LoginSectionFooterRightLink = styled(Link)`
   }
 `;
 
-const Login = () => {
+const Login = (props) => {
   const [loginReqDto, setLoginReqDto] = useState({
     username: '',
     password: ''
@@ -194,14 +195,24 @@ const Login = () => {
       setCookie('ourCgvUsername', username, {expires: new Date(Date.now()+7)});
     }
 
-    fetch('http://localhost:8080/login', {
-      method: "POST",
+    axios.post('http://localhost:8080/login',
+    {
+      username: username,
+      password: password
+    },
+    {
       headers: {
         'Content-type': 'application/json'
-      },
-      body: JSON.stringify(loginReqDto)
-    }).then((res) => res.json()).then((res) => {
-      console.log(res);
+      }
+    }).then((res) => {
+      if (res.headers.authorization === null || res.headers.authorization === "") {
+        alert('알 수 없는 오류입니다.');
+      } else {
+        setCookie('cgvJWT', res.headers.authorization);
+        props.history.push('/');
+      }
+    }).catch((res) => {
+      alert('아이디 또는 비밀번호를 확인해주세요.');
     });
 
   }
