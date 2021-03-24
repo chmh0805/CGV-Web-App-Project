@@ -484,7 +484,7 @@ const MyPurchaseGiftConEm = styled.em`
   font-weight: bold;
 `;
 
-const MyCgvHome = () => {
+const MyCgvHome = (props) => {
   window.scrollTo(0, 0);
 
   return (

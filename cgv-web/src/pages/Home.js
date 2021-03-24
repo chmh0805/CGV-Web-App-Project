@@ -8,6 +8,8 @@ import carouselImg01 from "../images/home/home_carousel_img01.jpg";
 import carouselImg02 from "../images/home/home_carousel_img02.jpg";
 import carouselImg03 from "../images/home/home_carousel_img03.jpg";
 import CommentIcon from "@material-ui/icons/Comment";
+import { useCookies } from "react-cookie";
+import { isLogined } from "../utils/JWT";
 
 const CarouselSection = styled.section`
   width: auto;
@@ -141,6 +143,12 @@ const HomeNoticeSectionDateBox = styled.div`
 const HomeNoticeSectionDate = styled.span``;
 
 const Home = () => {
+  if (isLogined()) {
+    console.log("로그인됨 !!");
+  } else {
+    console.log("로그인안됨!!");
+  }
+
   return (
     <div>
       <CarouselSection>

@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
-import Form from "bootstrap";
 
 const JoinContainer = styled.div`
   background-color: #fdfcf0;
@@ -77,41 +76,6 @@ const JoinSectionInput = styled.input`
   color: #666666;
 `;
 
-const PhoneInputBox = styled.div`
-  width: 350px;
-  height: 39px;
-  border: 2px solid #b5b5b5;
-  margin-top: 5px;
-  background-color: #fdfcf0;
-  color: #666666;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const PhoneInput = styled.input`
-  width: 100px;
-  line-height: 1.8;
-  height: 27px;
-  margin-right: 3px;
-  border: 0px;
-  border-bottom: 1px solid #333;
-  background-color: #fdfcf0;
-
-  &:active {
-    border: none;
-    outline: none;
-  }
-`;
-
-const PhoneDivider = styled.p`
-  font-size: 18px;
-  display: inline-block;
-  margin: auto 0;
-  margin-right: 3px;
-  font-weight: 800;
-`;
-
 const JoinButton = styled.div`
   background-color: #e71a0f;
   color: white;
@@ -123,9 +87,92 @@ const JoinButton = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 17px;
+  cursor: pointer;
 `;
 
-const Join = () => {
+const Join = (props) => {
+  const [joinReqDto, setJoinReqDto] = useState({
+    username: '',
+    name: '',
+    nickname: '',
+    password: '',
+    email: '',
+    phone: ''
+  })
+
+  const handleForm = (e) => {
+    setJoinReqDto({...joinReqDto, [e.target.name]: e.target.value});
+  }
+
+  const isPhone = (phoneNum) => {
+    var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
+    if (regExp.test(phoneNum)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  const join = () => {
+    joinReqDto.username = joinReqDto.username.trim();
+    joinReqDto.name = joinReqDto.name.trim();
+    joinReqDto.nickname = joinReqDto.nickname.trim();
+    joinReqDto.password = joinReqDto.password.trim();
+    joinReqDto.email = joinReqDto.email.trim();
+    joinReqDto.phone = joinReqDto.phone.trim();
+
+    if (joinReqDto.username === "") {
+      alert('아이디를 입력하세요.');
+      return;
+    }
+    if (joinReqDto.name === "") {
+      alert('이름을 입력하세요.');
+      return;
+    }
+    if (joinReqDto.nickname === "") {
+      alert('닉네임을 입력하세요.');
+      return;
+    }
+    if (joinReqDto.password === "") {
+      alert('비밀번호를 입력하세요.');
+      return;
+    }
+    if (joinReqDto.email === "") {
+      alert('이메일을 입력하세요.');
+      return;
+    }
+    if (joinReqDto.phone === "") {
+      alert('전화번호를 입력하세요.');
+      return;
+    }
+
+    if (!(isPhone(joinReqDto.phone))) {
+      alert('전화번호를 ***-****-**** 양식에 맞게 입력해주세요.');
+      return;
+    }
+
+    var username = joinReqDto.username;
+    var password = joinReqDto.password;
+
+    fetch('http://localhost:8080/auth/join', {
+      method: "POST",
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify(joinReqDto)
+    }).then((res) => res.json()).then((res) => {
+      if (res.statusCode === 1) {
+        alert('회원가입에 성공하였습니다.');
+        props.history.push({
+          pathname: '/login',
+          state: {username: username, password: password}
+        });
+      } else {
+        alert('회원가입에 실패하였습니다.');
+      }
+    });
+  }
+
   return (
     <JoinContainer>
       <NavSection>
@@ -148,36 +195,13 @@ const Join = () => {
           <Span666666>
             필요한 모든 정보를 입력하신 후, 회원가입 버튼을 클릭해 주세요.
           </Span666666>
-          <JoinSectionInput type="text" placeholder="아이디" />
-          <JoinSectionInput type="text" placeholder="실명" />
-          <JoinSectionInput type="text" placeholder="닉네임" />
-          <JoinSectionInput type="password" placeholder="비밀번호" />
-          <JoinSectionInput type="email" placeholder="이메일" />
-          <PhoneInputBox>
-            <select
-              name="phone-header"
-              style={{
-                width: "60px",
-                height: "27px",
-                border: "1px solid #b5b5b5",
-                marginRight: "3px",
-              }}
-            >
-              <option value="010" selected>
-                010
-              </option>
-              <option value="011">011</option>
-              <option value="016">016</option>
-              <option value="017">017</option>
-              <option value="018">018</option>
-              <option value="019">019</option>
-            </select>
-            <PhoneDivider>-</PhoneDivider>
-            <PhoneInput />
-            <PhoneDivider>-</PhoneDivider>
-            <PhoneInput />
-          </PhoneInputBox>
-          <JoinButton>회원가입</JoinButton>
+          <JoinSectionInput type="text" placeholder="아이디" value={joinReqDto.username} onChange={handleForm} name='username'/>
+          <JoinSectionInput type="text" placeholder="실명" value={joinReqDto.name} onChange={handleForm} name='name' />
+          <JoinSectionInput type="text" placeholder="닉네임" value={joinReqDto.nickname} onChange={handleForm} name='nickname' />
+          <JoinSectionInput type="password" placeholder="비밀번호" value={joinReqDto.password} onChange={handleForm} name='password' />
+          <JoinSectionInput type="email" placeholder="이메일" value={joinReqDto.email} onChange={handleForm} name='email' />
+          <JoinSectionInput type="text" placeholder="전화번호(***-****-****)의 형태로 적어주세요." value={joinReqDto.phone} onChange={handleForm} name='phone' />
+          <JoinButton onClick={() => join()}>회원가입</JoinButton>
         </JoinSectionItemBox>
       </JoinSection>
     </JoinContainer>
