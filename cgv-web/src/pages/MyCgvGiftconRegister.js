@@ -6,7 +6,8 @@ import brickImg from "../images/brick_bg.jpg";
 import bgMyCGVInfo from "../images/bg_mycgv_info.gif";
 import defaultProfileImg from "../images/default_profile.gif";
 import iconSetting from "../images/icon_setting.png";
-import iconNewWindow from "../images/icon_newwindow.gif";
+import MyCgvAsidesBox from "../components/MyCgvAsidesBox";
+import { getCookie, setCookie } from "../utils/JWT";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -183,85 +184,6 @@ const MyCGVMainContainer = styled.div`
   justify-content: space-between;
 `;
 
-const MainAsidesBox = styled.div`
-  width: 160px;
-  line-height: 1.2;
-  color: #666;
-  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
-  font-weight: 300;
-`;
-
-const AsidesBoxLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
-const AsidesHeadSpecialItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #fdfcf0;
-  background-color: #e71a0f;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 34px;
-`;
-
-const AsidesHeadItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #222;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 34px;
-  border-top: 1px solid #bbb9b1;
-
-  &:hover {
-    color: #fdfcf0;
-    background-color: #e71a0f;
-  }
-`;
-
-const AsidesBodyItem = styled.div`
-  width: auto;
-  padding: 15px 0px 15px 30px;
-  font-size: 100%;
-  vertical-align: baseline;
-  word-break: break-all;
-  line-height: 1.2;
-  color: #666;
-  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
-  font-weight: 300;
-  font-size: 12px;
-
-  &:hover {
-    color: #e71a0f;
-  }
-`;
-
-const AsidesWatchedMovieBox = styled.div`
-  width: auto;
-  padding-left: 14px;
-  color: #fff;
-  background: black url(${iconNewWindow}) no-repeat 145px 6px;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 34px;
-`;
-
-const AsidesBannerImg = styled.img`
-  width: 160px;
-  aspect-ratio: auto 160 / 300;
-  height: 300px;
-  margin-top: 20px;
-`;
-
 const MainContentsBox = styled.div`
   width: 800px;
 `;
@@ -390,6 +312,7 @@ const ReservationP = styled.p`
 `;
 
 const MyCgvGiftconRegister = () => {
+  setCookie("now-space", "mycgv-giftcon-register");
   window.scrollTo(0, 0);
 
   return (
@@ -456,55 +379,7 @@ const MyCgvGiftconRegister = () => {
         </InfoSectionContainer>
       </InfoSection>
       <MyCGVMainContainer>
-        <MainAsidesBox>
-          <AsidesBoxLink to="/user/mycgv">
-            <AsidesHeadItem>MY CGV HOME</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/reserve">
-            <AsidesHeadItem>나의 예매내역</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
-            <AsidesHeadItem>관람권/할인쿠폰 관리</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
-            <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink>
-            <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/giftcon">
-            <AsidesHeadSpecialItem>기프트샵</AsidesHeadSpecialItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/giftcon">
-            <AsidesBodyItem style={{ color: "red" }}>
-              내 기프트콘
-            </AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink>
-            <AsidesBodyItem>결제내역</AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/info">
-            <AsidesHeadItem>회원정보</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/info">
-            <AsidesBodyItem>개인정보 변경</AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink>
-            <AsidesBodyItem>회원탈퇴</AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/myqna">
-            <AsidesHeadItem>나의 문의내역</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/mycgv/myqna">
-            <AsidesBodyItem>1:1 문의</AsidesBodyItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/user/movielog/watched">
-            <AsidesWatchedMovieBox>내가 본 영화</AsidesWatchedMovieBox>
-          </AsidesBoxLink>
-          <Link>
-            <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202103/FIRE/0309_160x300.jpg" />
-          </Link>
-        </MainAsidesBox>
+        <MyCgvAsidesBox nowSpace={getCookie("now-space")} />
         <MainContentsBox>
           <MainContentsTitleBox>
             <div>

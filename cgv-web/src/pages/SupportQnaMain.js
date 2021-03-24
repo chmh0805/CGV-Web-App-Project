@@ -4,6 +4,8 @@ import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import imgMiso from "../images/desc_miso.png";
 import { Form } from "react-bootstrap";
+import SupportAsidesBox from "../components/SupportAsidesBox";
+import { getCookie, isLogined, setCookie } from "../utils/JWT";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -57,51 +59,6 @@ const SupportSubContainer = styled.div`
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
-`;
-
-const MainAsidesBox = styled.div`
-  width: 160px;
-  line-height: 1.2;
-  color: #666;
-  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
-  font-weight: 300;
-`;
-
-const AsidesBoxLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
-const AsidesHeadSpecialItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #fdfcf0;
-  background-color: #e71a0f;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 34px;
-`;
-
-const AsidesHeadItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #222;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 34px;
-  border-top: 1px solid #bbb9b1;
-
-  &:hover {
-    color: #fdfcf0;
-    background-color: #e71a0f;
-  }
 `;
 
 const MainContentsBox = styled.div`
@@ -286,7 +243,17 @@ const SubmitButton = styled.button`
   position: relative;
 `;
 
-const SupportQnaMain = () => {
+const SupportQnaMain = (props) => {
+  const goToLogin = () => {
+    props.history.push("/login");
+  };
+
+  if (!isLogined()) {
+    goToLogin();
+  }
+
+  setCookie("now-space", "support-qna");
+
   return (
     <SupportMainContainer>
       <NavSection>
@@ -305,20 +272,7 @@ const SupportQnaMain = () => {
         </NavSectionItemBox>
       </NavSection>
       <SupportSubContainer>
-        <MainAsidesBox>
-          <AsidesBoxLink to="/support/default">
-            <AsidesHeadItem>고객센터 메인</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/faq/default">
-            <AsidesHeadItem>자주찾는 질문</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/news/default">
-            <AsidesHeadItem>공지/뉴스</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/qna/default">
-            <AsidesHeadSpecialItem>이메일 문의</AsidesHeadSpecialItem>
-          </AsidesBoxLink>
-        </MainAsidesBox>
+        <SupportAsidesBox nowSpace={getCookie("now-space")} />
         <MainContentsBox>
           <MainCustomerTop>
             <MainCustomerTopH2>이메일 문의</MainCustomerTopH2>

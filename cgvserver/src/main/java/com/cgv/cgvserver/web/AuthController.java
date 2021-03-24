@@ -1,6 +1,9 @@
 package com.cgv.cgvserver.web;
 
+import javax.validation.Valid;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,7 +26,7 @@ public class AuthController {
 	private final BCryptPasswordEncoder encoder;
 	
 	@PostMapping("/auth/join")
-	public CommonRespDto<?> join(@RequestBody JoinReqDto joinReqDto) {
+	public CommonRespDto<?> join(@Valid @RequestBody JoinReqDto joinReqDto, BindingResult bindingResult) {
 		User user = joinReqDto.toEntity();
 		String rawPassword = joinReqDto.getPassword();
 		String encPassword = encoder.encode(rawPassword);

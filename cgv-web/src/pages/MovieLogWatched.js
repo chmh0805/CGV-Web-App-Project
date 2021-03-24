@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
+import MovieLogAsidesBox from "../components/MovieLogAsidesBox";
+import { getCookie, setCookie } from "../utils/JWT";
 
 const WatchedLogMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -178,6 +180,7 @@ const WatchedMovieInfoP = styled.p`
 `;
 
 const MovieLogWatched = () => {
+  setCookie("now-space", "movielog-watched");
   window.scrollTo(0, 0);
 
   return (
@@ -198,20 +201,7 @@ const MovieLogWatched = () => {
         </NavSectionItemBox>
       </NavSection>
       <WatchedLogSubContainer>
-        <MainAsidesBox>
-          <Link to="/user/movielog/expected">
-            <AsidesItemDiv1>
-              <AsidesItemEm>1</AsidesItemEm>
-              <AsidesItemStrong>기대되는 영화</AsidesItemStrong>
-            </AsidesItemDiv1>
-          </Link>
-          <Link to="/user/movielog/watched">
-            <AsidesItemDiv2 style={{ marginTop: "10px" }}>
-              <AsidesItemEm>22</AsidesItemEm>
-              <AsidesItemStrong>내가 본 영화</AsidesItemStrong>
-            </AsidesItemDiv2>
-          </Link>
-        </MainAsidesBox>
+        <MovieLogAsidesBox nowSpace={getCookie("now-space")} />
         <MainContentsBox>
           <MainContentsTitleBox>
             <MainContentsTitleH3>내가 본 영화</MainContentsTitleH3>

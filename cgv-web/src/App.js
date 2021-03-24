@@ -26,6 +26,9 @@ import MyCgvGiftconRegister from "./pages/MyCgvGiftconRegister";
 import UserUpdate from "./pages/UserUpdate";
 import MyCgvMyQna from "./pages/MyCgvMyQna";
 import Theater from "./pages/Theater";
+import Signout from "./pages/Signout";
+import FindUsername from "./pages/FindUsername";
+import FindPassword from "./pages/FindPassword";
 
 function App() {
   return (
@@ -43,6 +46,14 @@ function App() {
       <Route path="/join" exact={true} component={Join} />
       {/* 회원정보수정 */}
       <Route path="/user/info" exact={true} component={UserUpdate} />
+      {/* 회원탈퇴 */}
+      <Route path="/user/signout" exact={true} component={Signout} />
+      {/* 아이디 찾기 */}
+      <Route path="/findId" exact={true} component={FindUsername} />
+      {/* 비밀번호 찾기 */}
+      <Route path="/findPassword" exact={true} component={FindPassword} />
+      {/* 비밀번호 변경 */}
+      {/* <Route path="/updatePw" exact={true} component={UpdatePassword} /> */}
       {/* Auth 영역 끝 */}
 
       {/* My CGV 영역 */}

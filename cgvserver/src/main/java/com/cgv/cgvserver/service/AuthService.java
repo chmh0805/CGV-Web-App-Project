@@ -1,8 +1,7 @@
 package com.cgv.cgvserver.service;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.domain.user.UserRepository;

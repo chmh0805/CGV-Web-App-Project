@@ -2,8 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
-import bgSquareItemBox from "../images/bg_c_check.png";
 import bgServiceBoxItem from "../images/bg_c_main.png";
+import SupportMainServiceBox from "../components/SupportMainServiceBox";
+import { getCookie, setCookie } from "../utils/JWT";
+import SupportAsidesBox from "../components/SupportAsidesBox";
+import SupportMainBigSquareBox from "../components/SupportMainBigSquareBox";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -59,139 +62,8 @@ const SupportSubContainer = styled.div`
   justify-content: space-between;
 `;
 
-const MainAsidesBox = styled.div`
-  width: 160px;
-  line-height: 1.2;
-  color: #666;
-  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
-  font-weight: 300;
-`;
-
-const AsidesBoxLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
-const AsidesHeadSpecialItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #fdfcf0;
-  background-color: #e71a0f;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 34px;
-`;
-
-const AsidesHeadItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #222;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 34px;
-  border-top: 1px solid #bbb9b1;
-
-  &:hover {
-    color: #fdfcf0;
-    background-color: #e71a0f;
-  }
-`;
-
 const MainContentsBox = styled.div`
   width: 800px;
-`;
-
-const BigSquareItemBox = styled.div`
-  width: 800px;
-  height: 260px;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-`;
-
-const BigSquareItemSearchBox = styled.div`
-  width: 267px;
-  height: 100%;
-  background-color: #e71a0f;
-  text-align: center;
-  color: #fdfcf0;
-`;
-
-const SearchBoxStrong = styled.strong`
-  background: url(${bgSquareItemBox}) no-repeat;
-  background-position: 105px 50px;
-  display: block;
-  font-size: 24px;
-  font-weight: 500;
-  padding-top: 122px;
-`;
-
-const SearchBoxSpan = styled.span`
-  display: inline-block;
-  margin: 30px 0px 20px 0px;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #fdfcf0;
-  font-weight: 300;
-`;
-
-const BigSquareItemEmailBox = styled.div`
-  width: 266px;
-  height: 100%;
-  background-color: #ede9dd;
-  text-align: center;
-  color: #333;
-  font-size: 24px;
-  font-weight: 500;
-`;
-
-const EmailBoxStrong = styled.strong`
-  display: block;
-  font-size: 22px;
-  padding-top: 122px;
-  background: url(${bgSquareItemBox}) no-repeat;
-  background-position: -167px 50px;
-`;
-
-const EmailBoxSpan = styled.span`
-  display: inline-block;
-  margin: 30px 0px 20px 0px;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #666;
-  font-weight: 300;
-`;
-
-const BigSquareItemMyBox = styled.div`
-  width: 267px;
-  height: 100%;
-  background-color: #edf1e9;
-  text-align: center;
-  color: #333;
-`;
-
-const MyBoxStrong = styled.strong`
-  display: block;
-  font-size: 22px;
-  padding-top: 122px;
-  background: url(${bgSquareItemBox}) no-repeat;
-  background-position: -429px 50px;
-`;
-
-const MyBoxSpan = styled.span`
-  display: inline-block;
-  margin: 30px 0px 20px 0px;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #666;
-  font-weight: 300;
 `;
 
 const CustomerNoticeBox = styled.div`
@@ -205,40 +77,11 @@ const CustomerNoticeBox = styled.div`
   border-bottom: 1px solid #cacac1;
 `;
 
-const ServiceBox = styled.div`
-  width: 267px;
-  height: 258px;
-  line-height: 1.2;
-  color: #666;
-`;
-
 const TitleSpan = styled.span`
   color: #222;
   font-size: 19px;
   font-weight: 500;
   line-height: 1.2;
-`;
-
-const ServiceBoxItemBox = styled.div`
-  width: 272px;
-  height: 258px;
-  padding-top: 15px;
-  line-height: 1.2;
-  color: #666;
-`;
-
-const ServiceBoxItem = styled.div`
-  padding: 24px 20px 25px 17px;
-  display: flex;
-  align-items: center;
-  width: 131px;
-  height: 81px;
-  color: #222;
-  line-height: 150%;
-  font-size: 14px;
-  font-weight: 500;
-  background: url(${bgServiceBoxItem}) no-repeat 0 -287px;
-  cursor: pointer;
 `;
 
 const NoticeBox = styled.div`
@@ -305,6 +148,8 @@ const NoticeBoxDate = styled.span`
 `;
 
 const SupportMain = () => {
+  setCookie("now-space", "support-main");
+
   return (
     <SupportMainContainer>
       <NavSection>
@@ -323,64 +168,11 @@ const SupportMain = () => {
         </NavSectionItemBox>
       </NavSection>
       <SupportSubContainer>
-        <MainAsidesBox>
-          <AsidesBoxLink to="/support/default">
-            <AsidesHeadSpecialItem>고객센터 메인</AsidesHeadSpecialItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/faq/default">
-            <AsidesHeadItem>자주찾는 질문</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/news/default">
-            <AsidesHeadItem>공지/뉴스</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/qna/default">
-            <AsidesHeadItem>이메일 문의</AsidesHeadItem>
-          </AsidesBoxLink>
-        </MainAsidesBox>
+        <SupportAsidesBox nowSpace={getCookie("now-space")} />
         <MainContentsBox>
-          <BigSquareItemBox>
-            <Link to="/support/faq/default">
-              <BigSquareItemSearchBox>
-                <SearchBoxStrong>자주찾는 질문</SearchBoxStrong>
-                <SearchBoxSpan>도움이 필요하신가요?</SearchBoxSpan>
-              </BigSquareItemSearchBox>
-            </Link>
-            <Link to="/support/qna/default">
-              <BigSquareItemEmailBox>
-                <EmailBoxStrong>이메일 문의</EmailBoxStrong>
-                <EmailBoxSpan>24시간 365일 언제든지 문의해주세요.</EmailBoxSpan>
-              </BigSquareItemEmailBox>
-            </Link>
-            <Link to="/">
-              <BigSquareItemMyBox>
-                <MyBoxStrong>내 상담 내역 확인</MyBoxStrong>
-                <MyBoxSpan>문의하신 내용을 확인하실 수 있습니다.</MyBoxSpan>
-              </BigSquareItemMyBox>
-            </Link>
-          </BigSquareItemBox>
+          <SupportMainBigSquareBox />
           <CustomerNoticeBox>
-            <ServiceBox>
-              <TitleSpan>자주 찾는 서비스</TitleSpan>
-              <ServiceBoxItemBox>
-                <div style={{ display: "flex", marginBottom: "5px" }}>
-                  <ServiceBoxItem>
-                    신용카드
-                    <br />
-                    영수증출력
-                  </ServiceBoxItem>
-                  <ServiceBoxItem style={{ marginLeft: "5px" }}>
-                    아이디/
-                    <br />
-                    비밀번호 찾기
-                  </ServiceBoxItem>
-                </div>
-                <ServiceBoxItem>
-                  예매/
-                  <br />
-                  취소내역 확인
-                </ServiceBoxItem>
-              </ServiceBoxItemBox>
-            </ServiceBox>
+            <SupportMainServiceBox />
             <NoticeBox>
               <Link to="/support/news/default">
                 <NoticeBoxTitleBox>

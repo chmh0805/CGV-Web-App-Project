@@ -4,6 +4,7 @@ import styled from "styled-components";
 import btnCGV from "../images/floatingBanner/btn_theater.gif";
 import btnTicket from "../images/floatingBanner/btn_ticket.gif";
 import btnTop from "../images/floatingBanner/btn_top.png";
+import { isLogined } from "../utils/JWT";
 
 const FBCon = styled.div`
   width: 119px;
@@ -32,28 +33,53 @@ const FBBtn = styled.img``;
 const FBScrollTop = styled.img``;
 
 const FloatingBanner = () => {
-  return (
-    <>
-      <FBCon>
-        <FBBox>
-          <FBBtnBox to="/theater">
-            <FBBtn src={btnCGV} />
+  if (isLogined()) {
+    return (
+      <>
+        <FBCon>
+          <FBBox>
+            <FBBtnBox to="/theater">
+              <FBBtn src={btnCGV} />
+            </FBBtnBox>
+            <FBBtnBox to="/user/mycgv/reserve">
+              <FBBtn src={btnTicket} />
+            </FBBtnBox>
+          </FBBox>
+          <FBBtnBox>
+            <FBScrollTop
+              src={btnTop}
+              onClick={() => {
+                window[`scrollTo`]({ top: 0, behavior: `smooth` });
+              }}
+            />
           </FBBtnBox>
-          <FBBtnBox to="/user/mycgv/reserve">
-            <FBBtn src={btnTicket} />
+        </FBCon>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <FBCon>
+          <FBBox>
+            <FBBtnBox to="/theater">
+              <FBBtn src={btnCGV} />
+            </FBBtnBox>
+            <FBBtnBox to="/login">
+              <FBBtn src={btnTicket} />
+            </FBBtnBox>
+          </FBBox>
+          <FBBtnBox>
+            <FBScrollTop
+              src={btnTop}
+              onClick={() => {
+                window[`scrollTo`]({ top: 0, behavior: `smooth` });
+              }}
+            />
           </FBBtnBox>
-        </FBBox>
-        <FBBtnBox>
-          <FBScrollTop
-            src={btnTop}
-            onClick={() => {
-              window[`scrollTo`]({ top: 0, behavior: `smooth` });
-            }}
-          />
-        </FBBtnBox>
-      </FBCon>
-    </>
-  );
+        </FBCon>
+      </>
+    );
+  }
 };
 
 export default FloatingBanner;

@@ -6,9 +6,9 @@ import brickImg from "../images/brick_bg.jpg";
 import bgMyCGVInfo from "../images/bg_mycgv_info.gif";
 import defaultProfileImg from "../images/default_profile.gif";
 import iconSetting from "../images/icon_setting.png";
-import imgTicket from "../images/ticketregister/bg_ticket_info.gif";
 import MyCgvAsidesBox from "../components/MyCgvAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
+import logoCGV from "../images/cgv_logo.png";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -189,22 +189,6 @@ const MainContentsBox = styled.div`
   width: 800px;
 `;
 
-const MainContentsTitleBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 2px solid #222222;
-`;
-
-const MainContentsTitleH3 = styled.h3`
-  height: 30px;
-  margin: 0;
-  color: #222;
-  font-weight: 600;
-  font-size: 17px;
-  line-height: 30px;
-`;
-
 const RegisterBox = styled.div`
   width: 100%;
   margin-top: 50px;
@@ -243,21 +227,14 @@ const ReservationNoticeItem = styled.div`
   padding-bottom: 20px;
 `;
 
-const ReservationNoticeItemTitle = styled.div`
-  width: 116px;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 1.5;
-`;
-
 const ReservationNoticeItemContent = styled.div`
-  width: 626px;
+  width: 100%;
   height: auto;
-  padding-left: 25px;
-  padding-right: 2px;
-  border-left: 1px solid #d7d6ce;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   line-height: 1.2;
-  font-size: 12px;
+  font-size: 20px;
   color: #666;
 `;
 
@@ -274,6 +251,7 @@ const PasswordDIv = styled.div`
   background-color: white;
   display: flex;
   justify-content: center;
+  margin-bottom: 100px;
 `;
 
 const PasswordInput = styled.input`
@@ -300,16 +278,13 @@ const PasswordButton = styled.button`
   border-radius: 5px;
 `;
 
-const TicketImg = styled.div`
-  width: 100%;
-  height: 310px;
-  margin-top: 70px;
-  margin-bottom: 50px;
-  background: url(${imgTicket}) no-repeat 163px 0;
+const cgvImgBox = styled.div`
+  width: 34px;
+  height: 34px;
 `;
 
-const MyCgvMovieTicketRegister = () => {
-  setCookie("now-space", "mycgv-movieticket-register");
+const Signout = () => {
+  setCookie("now-space", "signout");
   window.scrollTo(0, 0);
 
   return (
@@ -376,41 +351,30 @@ const MyCgvMovieTicketRegister = () => {
       <MyCGVMainContainer>
         <MyCgvAsidesBox nowSpace={getCookie("now-space")} />
         <MainContentsBox>
-          <MainContentsTitleBox>
-            <MainContentsTitleH3>관람권/할인쿠폰 관리</MainContentsTitleH3>
-          </MainContentsTitleBox>
           <RegisterBox>
-            <RegisterBoxStrong>
-              소지하신 CGV 영화관람권 등록하기
-            </RegisterBoxStrong>
+            <RegisterBoxStrong>회원 탈퇴</RegisterBoxStrong>
             <RegisterBoxSpan>
-              CGV 영화관람권 비밀번호를 입력해 주세요.
+              고객님의 개인정보 보호를 위한 절차이오니, CGV 로그인 시 사용하는
+              비밀번호를 입력해 주세요.
             </RegisterBoxSpan>
           </RegisterBox>
           <PasswordDIv>
             <span>비밀번호&nbsp;</span>
             <PasswordInput type="password" />
-            <PasswordButton>등록하기</PasswordButton>
+            <PasswordButton>회원탈퇴</PasswordButton>
           </PasswordDIv>
-          <TicketImg />
           <ReservationNoticeBox>
             <ReservationNoticeItem>
-              <ReservationNoticeItemTitle>이용안내</ReservationNoticeItemTitle>
               <ReservationNoticeItemContent>
+                <cgvImgBox>
+                  <img
+                    src={logoCGV}
+                    alt="로고"
+                    style={{ width: "50px", height: "50px" }}
+                  />
+                </cgvImgBox>
                 <ReservationP>
-                  CGV 영화관람권 비밀번호를 입력해주세요.
-                </ReservationP>
-                <ReservationP>
-                  CGV GOLD CLASS 이용권 비밀번호를 등록해주세요.
-                </ReservationP>
-                <ReservationP>
-                  CGV온라인(홈페이지/모바일)에서 등록하신 관람권은
-                  홈페이지/모바일예매에 한하여 사용할 수 있으며, CGV 현장
-                  매표소에서는 사용할 수 없습니다.
-                </ReservationP>
-                <ReservationP>
-                  CGV 영화 관람권은 일반 인터넷 사이트를 포함한 시중에서 임의로
-                  매매될 수 없으며 반드시 CGV를 통해서만 구입하실 수 있습니다.
+                  그동안 CGV 서비스를 이용해주셔서 감사합니다.
                 </ReservationP>
               </ReservationNoticeItemContent>
             </ReservationNoticeItem>
@@ -421,4 +385,4 @@ const MyCgvMovieTicketRegister = () => {
   );
 };
 
-export default MyCgvMovieTicketRegister;
+export default Signout;

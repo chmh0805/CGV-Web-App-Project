@@ -4,7 +4,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import { Checkbox } from "semantic-ui-react";
 import axios from "axios";
-import { getCookie, setCookie } from "../utils/JWT";
+import { getCookie, parseJwt, setCookie } from "../utils/JWT";
 
 const LoginContainer = styled.div`
   background-color: #fdfcf0;
@@ -209,7 +209,8 @@ const Login = (props) => {
           alert("알 수 없는 오류입니다.");
         } else {
           setCookie("cgvJWT", res.headers.authorization, { "max-age": 10800 });
-          props.history.push("/");
+          setCookie("userId", parseJwt(getCookie("cgvJWT")).userId);
+          window.location.replace("/");
         }
       })
       .catch((res) => {
@@ -266,10 +267,13 @@ const Login = (props) => {
               <Span666666>아이디 저장</Span666666>
             </LoginSectionFooterLeftBox>
             <LoginSectionFooterRightBox>
-              <LoginSectionFooterRightLink style={{ marginRight: "10px" }}>
+              <LoginSectionFooterRightLink
+                to="/findId"
+                style={{ marginRight: "10px" }}
+              >
                 아이디 찾기
               </LoginSectionFooterRightLink>
-              <LoginSectionFooterRightLink>
+              <LoginSectionFooterRightLink to="/findPassword">
                 비밀번호 찾기
               </LoginSectionFooterRightLink>
             </LoginSectionFooterRightBox>

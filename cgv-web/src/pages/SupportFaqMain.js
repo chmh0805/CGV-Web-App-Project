@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import btnPaging from "../images/button/btn_paging.gif";
+import SupportAsidesBox from "../components/SupportAsidesBox";
+import { getCookie, setCookie } from "../utils/JWT";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -56,51 +58,6 @@ const SupportSubContainer = styled.div`
   margin-top: 25px;
   display: flex;
   justify-content: space-between;
-`;
-
-const MainAsidesBox = styled.div`
-  width: 160px;
-  line-height: 1.2;
-  color: #666;
-  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
-  font-weight: 300;
-`;
-
-const AsidesBoxLink = styled(Link)`
-  text-decoration: none;
-  color: inherit;
-
-  &:hover {
-    text-decoration: none;
-    color: inherit;
-  }
-`;
-
-const AsidesHeadSpecialItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #fdfcf0;
-  background-color: #e71a0f;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 34px;
-`;
-
-const AsidesHeadItem = styled.div`
-  width: auto;
-  height: 34px;
-  padding-left: 5px;
-  color: #222;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 34px;
-  border-top: 1px solid #bbb9b1;
-
-  &:hover {
-    color: #fdfcf0;
-    background-color: #e71a0f;
-  }
 `;
 
 const MainContentsBox = styled.div`
@@ -323,6 +280,8 @@ const NextPageButton = styled.button`
 `;
 
 const SupportFaqMain = () => {
+  setCookie("now-space", "support-faq");
+
   return (
     <SupportMainContainer>
       <NavSection>
@@ -341,20 +300,7 @@ const SupportFaqMain = () => {
         </NavSectionItemBox>
       </NavSection>
       <SupportSubContainer>
-        <MainAsidesBox>
-          <AsidesBoxLink to="/support/default">
-            <AsidesHeadItem>고객센터 메인</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/faq/default">
-            <AsidesHeadSpecialItem>자주찾는 질문</AsidesHeadSpecialItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/news/default">
-            <AsidesHeadItem>공지/뉴스</AsidesHeadItem>
-          </AsidesBoxLink>
-          <AsidesBoxLink to="/support/qna/default">
-            <AsidesHeadItem>이메일 문의</AsidesHeadItem>
-          </AsidesBoxLink>
-        </MainAsidesBox>
+        <SupportAsidesBox nowSpace={getCookie("now-space")} />
         <MainContentsBox>
           <MainCustomerTop>
             <MainCustomerTopH2>자주 찾는 질문</MainCustomerTopH2>

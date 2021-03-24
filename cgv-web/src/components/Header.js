@@ -7,6 +7,7 @@ import iconFB from "../images/facebook_icon.png";
 import iconIG from "../images/instagram_icon.png";
 import bgHeader from "../images/header_bg.jpg";
 import { Dropdown } from "semantic-ui-react";
+import HeaderTopRightLinkBox from "./HeaderTopRightLinkBox";
 
 const HeaderContainer = styled.div`
   width: auto;
@@ -59,35 +60,6 @@ const HeaderTopLeftImg = styled.img`
   margin-right: 3px;
   border: 1px solid #dddddd;
   border-radius: 5px;
-`;
-
-const HeaderTopRightDiv = styled.div`
-  text-align: center;
-  align-items: center;
-  width: fit-content;
-  height: auto;
-  padding-top: 4px;
-  padding-bottom: 2px;
-`;
-
-const HeaderTopRightLink = styled(Link)`
-  font-size: 13px;
-  text-decoration: none;
-  color: black;
-  font-weight: 600;
-
-  &:hover {
-    text-decoration: none;
-    color: black;
-  }
-`;
-
-const HeaderTopRightSep = styled.span`
-  font-size: 11px;
-  color: #dddddd;
-  font-weight: 600;
-  margin-left: 5px;
-  margin-right: 5px;
 `;
 
 const HeaderBottomBox = styled.div`
@@ -233,19 +205,7 @@ const Header = () => {
               </HeaderTopLeftLink>
             </HeaderTopLeftDivItem>
           </HeaderTopLeftDiv>
-          <HeaderTopRightDiv>
-            <HeaderTopRightLink to="/login">로그인</HeaderTopRightLink>
-            <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink to="/join">회원가입</HeaderTopRightLink>
-            <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink to="/user/mycgv">MyCGV</HeaderTopRightLink>
-            <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink to="/">VIP LOUNGE</HeaderTopRightLink>
-            <HeaderTopRightSep>|</HeaderTopRightSep>
-            <HeaderTopRightLink to="/support/default">
-              고객센터
-            </HeaderTopRightLink>
-          </HeaderTopRightDiv>
+          <HeaderTopRightLinkBox />
         </HeaderTopDiv>
       </HeaderBox>
       <HeaderBottomBox>

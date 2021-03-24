@@ -10,6 +10,8 @@ import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +29,7 @@ public class User {
 	@Column(nullable = false, unique = true)
 	private String username; // 아이디
 	@Column(nullable = false)
+	@JsonIgnore
 	private String password; // 비밀번호
 	@Column(nullable = false)
 	private String name; // 이름(실명)

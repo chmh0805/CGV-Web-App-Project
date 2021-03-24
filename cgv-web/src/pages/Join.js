@@ -92,17 +92,17 @@ const JoinButton = styled.div`
 
 const Join = (props) => {
   const [joinReqDto, setJoinReqDto] = useState({
-    username: '',
-    name: '',
-    nickname: '',
-    password: '',
-    email: '',
-    phone: ''
-  })
+    username: "",
+    name: "",
+    nickname: "",
+    password: "",
+    email: "",
+    phone: "",
+  });
 
   const handleForm = (e) => {
-    setJoinReqDto({...joinReqDto, [e.target.name]: e.target.value});
-  }
+    setJoinReqDto({ ...joinReqDto, [e.target.name]: e.target.value });
+  };
 
   const isPhone = (phoneNum) => {
     var regExp = /^\d{3}-\d{3,4}-\d{4}$/;
@@ -111,7 +111,7 @@ const Join = (props) => {
     } else {
       return false;
     }
-  }
+  };
 
   const join = () => {
     joinReqDto.username = joinReqDto.username.trim();
@@ -122,56 +122,54 @@ const Join = (props) => {
     joinReqDto.phone = joinReqDto.phone.trim();
 
     if (joinReqDto.username === "") {
-      alert('아이디를 입력하세요.');
+      alert("아이디를 입력하세요.");
       return;
     }
     if (joinReqDto.name === "") {
-      alert('이름을 입력하세요.');
+      alert("이름을 입력하세요.");
       return;
     }
     if (joinReqDto.nickname === "") {
-      alert('닉네임을 입력하세요.');
+      alert("닉네임을 입력하세요.");
       return;
     }
     if (joinReqDto.password === "") {
-      alert('비밀번호를 입력하세요.');
+      alert("비밀번호를 입력하세요.");
       return;
     }
     if (joinReqDto.email === "") {
-      alert('이메일을 입력하세요.');
+      alert("이메일을 입력하세요.");
       return;
     }
     if (joinReqDto.phone === "") {
-      alert('전화번호를 입력하세요.');
+      alert("전화번호를 입력하세요.");
       return;
     }
 
-    if (!(isPhone(joinReqDto.phone))) {
-      alert('전화번호를 ***-****-**** 양식에 맞게 입력해주세요.');
+    if (!isPhone(joinReqDto.phone)) {
+      alert("전화번호를 ***-****-**** 양식에 맞게 입력해주세요.");
       return;
     }
 
-    var username = joinReqDto.username;
-    var password = joinReqDto.password;
-
-    fetch('http://localhost:8080/auth/join', {
+    fetch("http://localhost:8080/auth/join", {
       method: "POST",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json",
       },
-      body: JSON.stringify(joinReqDto)
-    }).then((res) => res.json()).then((res) => {
-      if (res.statusCode === 1) {
-        alert('회원가입에 성공하였습니다.');
-        props.history.push({
-          pathname: '/login',
-          state: {username: username, password: password}
-        });
-      } else {
-        alert('회원가입에 실패하였습니다.');
-      }
-    });
-  }
+      body: JSON.stringify(joinReqDto),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          alert("회원가입에 성공하였습니다.");
+          props.history.push({
+            pathname: "/login",
+          });
+        } else {
+          alert("회원가입에 실패하였습니다.");
+        }
+      });
+  };
 
   return (
     <JoinContainer>
@@ -195,12 +193,48 @@ const Join = (props) => {
           <Span666666>
             필요한 모든 정보를 입력하신 후, 회원가입 버튼을 클릭해 주세요.
           </Span666666>
-          <JoinSectionInput type="text" placeholder="아이디" value={joinReqDto.username} onChange={handleForm} name='username'/>
-          <JoinSectionInput type="text" placeholder="실명" value={joinReqDto.name} onChange={handleForm} name='name' />
-          <JoinSectionInput type="text" placeholder="닉네임" value={joinReqDto.nickname} onChange={handleForm} name='nickname' />
-          <JoinSectionInput type="password" placeholder="비밀번호" value={joinReqDto.password} onChange={handleForm} name='password' />
-          <JoinSectionInput type="email" placeholder="이메일" value={joinReqDto.email} onChange={handleForm} name='email' />
-          <JoinSectionInput type="text" placeholder="전화번호(***-****-****)의 형태로 적어주세요." value={joinReqDto.phone} onChange={handleForm} name='phone' />
+          <JoinSectionInput
+            type="text"
+            placeholder="아이디"
+            value={joinReqDto.username}
+            onChange={handleForm}
+            name="username"
+          />
+          <JoinSectionInput
+            type="text"
+            placeholder="실명"
+            value={joinReqDto.name}
+            onChange={handleForm}
+            name="name"
+          />
+          <JoinSectionInput
+            type="text"
+            placeholder="닉네임"
+            value={joinReqDto.nickname}
+            onChange={handleForm}
+            name="nickname"
+          />
+          <JoinSectionInput
+            type="password"
+            placeholder="비밀번호"
+            value={joinReqDto.password}
+            onChange={handleForm}
+            name="password"
+          />
+          <JoinSectionInput
+            type="email"
+            placeholder="이메일"
+            value={joinReqDto.email}
+            onChange={handleForm}
+            name="email"
+          />
+          <JoinSectionInput
+            type="text"
+            placeholder="전화번호(***-****-****)의 형태로 적어주세요."
+            value={joinReqDto.phone}
+            onChange={handleForm}
+            name="phone"
+          />
           <JoinButton onClick={() => join()}>회원가입</JoinButton>
         </JoinSectionItemBox>
       </JoinSection>
