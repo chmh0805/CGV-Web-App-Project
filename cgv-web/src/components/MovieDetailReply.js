@@ -44,7 +44,9 @@ const ReplySep = styled.span`
   padding-bottom: 4px;
 `;
 
-const ReplyFavIcon = styled.img``;
+const ReplyFavIcon = styled.img`
+  cursor: pointer;
+`;
 
 const ReplyFavCount = styled.span`
   margin-left: 5px;
@@ -63,9 +65,9 @@ const MovieDetailReply = () => {
           <ReplyDate>
             <span>2021.03.18</span>
             <ReplySep>|</ReplySep>
-            <Link>
+            <div style={{ display: "inline-block" }}>
               <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
-            </Link>
+            </div>
             <ReplyFavCount>0</ReplyFavCount>
           </ReplyDate>
         </MovieReplyContent>

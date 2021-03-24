@@ -4,6 +4,8 @@ import posterEx from "../images/movieChart/MoviePosterEx.jpg";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
 import addBtn from "../images/movieDetail/add_btn.png";
+import expectBtn from "../images/movieDetail/btn_expectegg.png";
+import expectEgg from "../images/movieDetail/btn_expectegg2.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
@@ -179,10 +181,34 @@ const MDMovieSep = styled.p`
   margin-right: 5px;
 `;
 
+const MDBtnBox = styled.div`
+  display: flex;
+  margin-top: 26px;
+`;
+
+const MDExpectBtn = styled.button`
+  width: 90px;
+  height: 33px;
+  border: 1px solid #222222;
+  text-align: center;
+  border-radius: 4px;
+  margin-right: 5px;
+  color: #222222;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: #fdfcf0;
+
+  &:focus {
+    background-color: #ffedec;
+    color: #e71a0f;
+    border-color: #e1817c;
+    font-weight: bold;
+  }
+`;
+
 const MDMovieBtn = styled(Link)``;
 
 const MDMovieBtnImg = styled.img`
-  margin-top: 26px;
   width: 91px;
   height: 35px;
 `;
@@ -280,7 +306,6 @@ const MDReplyBox = styled.div`
 
 const MDReplyUl = styled.ul`
   list-style: none;
-  border-top: 1px solid #999999;
   color: #333333;
   padding: 0 25px;
   height: 370px;
@@ -344,6 +369,7 @@ const ReplyPreviousBtn = styled.button`
   background-color: #faf9ed;
   color: #787877;
   border: 1px solid #cacac1;
+  padding-left: 2px;
 `;
 const ReplyNextBtn = styled.button`
   border-radius: 2px;
@@ -351,6 +377,7 @@ const ReplyNextBtn = styled.button`
   background-color: #faf9ed;
   color: #787877;
   border: 1px solid #cacac1;
+  padding-right: 2px;
 `;
 
 const MovieDetail = () => {
@@ -411,9 +438,12 @@ const MovieDetail = () => {
                 </MDMovieDiv>
               </MDMovieInfo>
 
-              <MDMovieBtn>
-                <MDMovieBtnImg src={ticketBtn} />
-              </MDMovieBtn>
+              <MDBtnBox>
+                <MDExpectBtn>기대돼요</MDExpectBtn>
+                <MDMovieBtn to="/ticket">
+                  <MDMovieBtnImg src={ticketBtn} />
+                </MDMovieBtn>
+              </MDBtnBox>
             </MDMovieInfoBox>
           </MDMovieBox>
 
@@ -485,16 +515,16 @@ const MovieDetail = () => {
                 <Link>
                   <MDReplyBtn>평점작성</MDReplyBtn>
                 </Link>
-                <Link>
+                <Link to="/movies/myReview">
                   <MDMyReplyBtn>내 평점</MDMyReplyBtn>
                 </Link>
               </MDReplyInfoBtnBox>
             </MDReplyInfoBox>
 
-            <MDReplyTitleBox>
-              <MDReplyNewText>최신순▼</MDReplyNewText>
-              <MDReplyRecommendText>추천순</MDReplyRecommendText>
-            </MDReplyTitleBox>
+            <MDContentTitleDiv style={{ marginBottom: "0", marginTop: "20px" }}>
+              <MDContentTitleH4>영화평점</MDContentTitleH4>
+              <MDContentCountSpan>15건</MDContentCountSpan>
+            </MDContentTitleDiv>
 
             <MDReplyBox>
               <MDReplyUl>

@@ -30,7 +30,6 @@ const NavSectionItemBox = styled.div`
 
 const NavSectionHome = styled(Link)`
   color: black;
-
   &:hover {
     color: black;
   }
@@ -62,7 +61,6 @@ const MCContentBox = styled.div`
 const MCHeadBox = styled.div`
   display: flex;
   justify-content: space-between;
-
   padding-top: 30px;
   border-bottom: 3px solid #241d1e;
 `;
@@ -93,6 +91,11 @@ const MCSub = styled(Link)`
   margin-left: 15px;
   margin-right: 8px;
   color: #737373;
+
+  &:hover {
+    color: red;
+    font-weight: bold;
+  }
 `;
 
 const MCBox = styled.div`
