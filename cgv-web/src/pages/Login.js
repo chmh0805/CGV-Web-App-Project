@@ -3,8 +3,8 @@ import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import { Checkbox } from "semantic-ui-react";
-import { useCookies } from "react-cookie";
 import axios from "axios";
+import { getCookie, setCookie } from "../utils/JWT";
 
 const LoginContainer = styled.div`
   background-color: #fdfcf0;
@@ -166,56 +166,56 @@ const LoginSectionFooterRightLink = styled(Link)`
 
 const Login = (props) => {
   const [loginReqDto, setLoginReqDto] = useState({
-    username: '',
-    password: ''
+    username: "",
+    password: "",
   });
 
-  const [cookie, setCookie, removeCookie] = useCookies(['ourCgvUsername']);
-
   const handleForm = (e) => {
-    setLoginReqDto({...loginReqDto, [e.target.name]: e.target.value});
-  }
+    setLoginReqDto({ ...loginReqDto, [e.target.name]: e.target.value });
+  };
 
   const login = () => {
     let username = loginReqDto.username.trim();
     let password = loginReqDto.password.trim();
-    let isChecked = document.getElementById('checkbox');
 
     if (username === "") {
-      alert('아이디를 입력해주세요.');
+      alert("아이디를 입력해주세요.");
       return;
     }
 
     if (password === "") {
-      alert('비밀번호를 입력해주세요.');
+      alert("비밀번호를 입력해주세요.");
       return;
     }
 
-    if (isChecked) {
-      setCookie('ourCgvUsername', username, {expires: new Date(Date.now()+7)});
-    }
-
-    axios.post('http://localhost:8080/login',
-    {
-      username: username,
-      password: password
-    },
-    {
-      headers: {
-        'Content-type': 'application/json'
-      }
-    }).then((res) => {
-      if (res.headers.authorization === null || res.headers.authorization === "") {
-        alert('알 수 없는 오류입니다.');
-      } else {
-        setCookie('cgvJWT', res.headers.authorization);
-        props.history.push('/');
-      }
-    }).catch((res) => {
-      alert('아이디 또는 비밀번호를 확인해주세요.');
-    });
-
-  }
+    axios
+      .post(
+        "http://localhost:8080/login",
+        {
+          username: username,
+          password: password,
+        },
+        {
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      )
+      .then((res) => {
+        if (
+          res.headers.authorization === null ||
+          res.headers.authorization === ""
+        ) {
+          alert("알 수 없는 오류입니다.");
+        } else {
+          setCookie("cgvJWT", res.headers.authorization, { "max-age": 10800 });
+          props.history.push("/");
+        }
+      })
+      .catch((res) => {
+        alert("아이디 또는 비밀번호를 확인해주세요.");
+      });
+  };
 
   return (
     <LoginContainer>
@@ -245,8 +245,20 @@ const Login = (props) => {
           <Span666666>
             아이디 비밀번호를 입력하신 후, 로그인 버튼을 클릭해 주세요.
           </Span666666>
-          <LoginSectionInput placeholder="아이디" type="text" onChange={handleForm} name="username" value={loginReqDto.username} />
-          <LoginSectionInput placeholder="비밀번호" type="text" onChange={handleForm} name="password" value={loginReqDto.password} />
+          <LoginSectionInput
+            placeholder="아이디"
+            type="text"
+            onChange={handleForm}
+            name="username"
+            value={loginReqDto.username}
+          />
+          <LoginSectionInput
+            placeholder="비밀번호"
+            type="password"
+            onChange={handleForm}
+            name="password"
+            value={loginReqDto.password}
+          />
           <LoginButton onClick={() => login()}>로그인</LoginButton>
           <LoginSectionFooter>
             <LoginSectionFooterLeftBox>
