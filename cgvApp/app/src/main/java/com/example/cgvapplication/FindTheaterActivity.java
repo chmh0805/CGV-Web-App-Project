@@ -5,25 +5,32 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.cgvapplication.adapter.findtheater.FindTheaterLocationAdapter;
+import com.example.cgvapplication.adapter.findtheater.FindTheaterPointAdapter;
 import com.example.cgvapplication.helper.MyNavigationHelper;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FindTheaterActivity extends AppCompatActivity {
 
     private static final String TAG = "FindTheaterActivity";
+
+    private FindTheaterActivity mContext = FindTheaterActivity.this;
+
     private Toolbar mToolbarFindTheater;
     private MyNavigationHelper myNavigationHelper;
     private LinearLayout mLinearNavigation;
     private List<String> mLocations;
-    private RecyclerView mRvFindTheaterLocation;
+    private RecyclerView mRvFindTheaterLocation, mRvFindTheaterPoint;
     private FindTheaterLocationAdapter adapter;
 
 
@@ -41,7 +48,7 @@ public class FindTheaterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_find_theater);
 
         mToolbarFindTheater = findViewById(R.id.toolbar_find_theater);
-        myNavigationHelper = new MyNavigationHelper(FindTheaterActivity.this);
+        myNavigationHelper = new MyNavigationHelper(mContext);
         mLinearNavigation = findViewById(R.id.linear_navigation);
         mRvFindTheaterLocation = findViewById(R.id.rv_find_theater_location);
         mLocations = new ArrayList<>();
@@ -56,7 +63,7 @@ public class FindTheaterActivity extends AppCompatActivity {
         mLocations.add("경상");
         mLocations.add("관주/전라/제주");
 
-        adapter = new FindTheaterLocationAdapter(mLocations);
+        adapter = new FindTheaterLocationAdapter(mLocations, mContext);
         LinearLayoutManager manager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
 
         setSupportActionBar(mToolbarFindTheater);
@@ -64,5 +71,12 @@ public class FindTheaterActivity extends AppCompatActivity {
         myNavigationHelper.enable(mLinearNavigation);
         mRvFindTheaterLocation.setAdapter(adapter);
         mRvFindTheaterLocation.setLayoutManager(manager);
+    }
+
+
+    public void findTheaterPoint(String location) {
+        Intent intent = new Intent(mContext, FindTheaterPointActivity.class);
+        intent.putExtra("location", location);
+        startActivity(intent);
     }
 }

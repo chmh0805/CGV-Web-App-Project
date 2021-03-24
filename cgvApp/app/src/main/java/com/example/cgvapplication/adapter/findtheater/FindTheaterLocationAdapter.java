@@ -1,6 +1,7 @@
 package com.example.cgvapplication.adapter.findtheater;
 
-import android.text.Layout;
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cgvapplication.FindTheaterActivity;
+import com.example.cgvapplication.FindTheaterPointActivity;
 import com.example.cgvapplication.R;
 
 import java.util.List;
@@ -16,9 +19,11 @@ import java.util.List;
 public class FindTheaterLocationAdapter extends RecyclerView.Adapter<FindTheaterLocationAdapter.MyViewHolder> {
 
     private final List<String> locations;
+    private final FindTheaterActivity findTheaterActivity;
 
-    public FindTheaterLocationAdapter(List<String> locations) {
+    public FindTheaterLocationAdapter(List<String> locations, FindTheaterActivity findTheaterActivity) {
         this.locations = locations;
+        this.findTheaterActivity = findTheaterActivity;
     }
 
     @NonNull
@@ -31,7 +36,11 @@ public class FindTheaterLocationAdapter extends RecyclerView.Adapter<FindTheater
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setItem(locations.get(position));
+        String location = locations.get(position);
+        holder.setItem(location);
+        holder.itemView.setOnClickListener(v -> {
+            findTheaterActivity.findTheaterPoint(location);
+        });
     }
 
     @Override
