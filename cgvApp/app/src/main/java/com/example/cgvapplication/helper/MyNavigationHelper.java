@@ -32,7 +32,7 @@ public class MyNavigationHelper {
     private final Context mContext;
     private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter;
     private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell;
-    private DrawerLayout mDrawer;
+    private DrawerLayout mDrawer, mFrequentlyCgvDrawer;
     private LinearLayout mLinearNavigation;
     public MyNavigationHelper(Context mContext) {
         this.mContext = mContext;
@@ -45,6 +45,7 @@ public class MyNavigationHelper {
     }
 
     private void init(View view) {
+        mFrequentlyCgvDrawer = view.findViewById(R.id.frequently_cgv_drawer);
         mDrawer = ((Activity) mContext).findViewById(R.id.drawer);
         mIvMenu = ((Activity) mContext).findViewById(R.id.iv_menu);
         mIvBack = ((Activity) mContext).findViewById(R.id.iv_back);

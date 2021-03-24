@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CGVApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FindTheaterPointActivity"></activity>
+        <activity android:name=".FrequentlyCgvViewActivity"></activity>
+        <activity android:name=".FindTheaterPointActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">

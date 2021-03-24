@@ -44,9 +44,4 @@ dependencies {
     implementation 'kr.co.prnd:readmore-textview:1.0.0'
     implementation 'info.androidhive:fontawesome:0.0.5'
 
-    // dependencies for retrofit
-    implementation 'com.google.code.gson:gson:2.8.6'
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
 }

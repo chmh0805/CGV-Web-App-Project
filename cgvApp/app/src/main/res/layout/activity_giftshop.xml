@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <include layout="@layout/toolbar_giftshop" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs_giftshop"
             android:background="@color/white"
