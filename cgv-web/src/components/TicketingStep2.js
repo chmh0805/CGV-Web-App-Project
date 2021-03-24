@@ -281,8 +281,8 @@ const PaymentBtn = styled.button`
 
 const MDAdBox = styled.div`
   position: absolute;
-  left: 100px;
-  top: 255px;
+  left: calc(50% - 690px);
+  top: 200px;
 `;
 
 const AsidesBannerImg = styled.img`
