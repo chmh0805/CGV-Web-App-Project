@@ -29,6 +29,7 @@ import Theater from "./pages/Theater";
 import Signout from "./pages/Signout";
 import FindUsername from "./pages/FindUsername";
 import FindPassword from "./pages/FindPassword";
+import UpdatePassword from "./pages/UpdatePassword";
 
 function App() {
   return (
@@ -53,7 +54,7 @@ function App() {
       {/* 비밀번호 찾기 */}
       <Route path="/findPassword" exact={true} component={FindPassword} />
       {/* 비밀번호 변경 */}
-      {/* <Route path="/updatePw" exact={true} component={UpdatePassword} /> */}
+      <Route path="/updatePw" exact={true} component={UpdatePassword} />
       {/* Auth 영역 끝 */}
 
       {/* My CGV 영역 */}

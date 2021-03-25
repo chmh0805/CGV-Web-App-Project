@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
+import { setCookie } from "../utils/JWT";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -213,7 +214,10 @@ const FindPassword = (props) => {
       .then((res) => {
         if (res.data.statusCode === 1) {
           props.history.push({
-            pathname: "/user/info",
+            pathname: "/updatePw",
+            state: {
+              'userId': res.data.data.id
+            },
           });
         } else {
           alert("입력 정보를 확인해주세요.");

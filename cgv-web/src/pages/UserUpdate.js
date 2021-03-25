@@ -113,8 +113,6 @@ const UserUpdate = (props) => {
       .then((res) => {
         let statusCode = res.data.statusCode;
         let data = res.data.data;
-        console.log(res);
-        console.log(res.data);
         if (statusCode === 1) {
           setUpdateReqDto({
             username: data.username,

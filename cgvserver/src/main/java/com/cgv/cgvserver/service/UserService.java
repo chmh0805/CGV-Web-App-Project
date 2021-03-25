@@ -10,6 +10,7 @@ import com.cgv.cgvserver.handler.exception.NotFoundUserException;
 import com.cgv.cgvserver.web.user.dto.FindPasswordReqDto;
 import com.cgv.cgvserver.web.user.dto.FindPasswordRespDto;
 import com.cgv.cgvserver.web.user.dto.FindUsernameReqDto;
+import com.cgv.cgvserver.web.user.dto.UpdatePasswordReqDto;
 import com.cgv.cgvserver.web.user.dto.UserUpdateReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -49,12 +50,14 @@ public class UserService {
 	}
 	
 	public User 회원정보찾기(Long id) {
-		return userRepository.findById(id).orElseThrow(() -> {throw new NotFoundUserException();});
+		return userRepository.findById(id)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
 	}
 	
 	@Transactional
 	public void 회원정보수정(Long id, UserUpdateReqDto updateReqDto) {
-		User userEntity = userRepository.findById(id).orElseThrow(() -> {throw new NotFoundUserException();});
+		User userEntity = userRepository.findById(id)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
 		String rawPassword = updateReqDto.getPassword();
 		String encPassword = encoder.encode(rawPassword);
 		
@@ -62,5 +65,15 @@ public class UserService {
 		userEntity.setPassword(encPassword);
 		userEntity.setEmail(updateReqDto.getEmail());
 		userEntity.setPhone(updateReqDto.getPassword());
+	}
+	
+	@Transactional
+	public void 비밀번호변경(UpdatePasswordReqDto updatePasswordReqDto) {
+		User userEntity = userRepository.findById(updatePasswordReqDto.getUserId())
+				.orElseThrow(() -> {throw new NotFoundUserException();});
+		String rawPassword = updatePasswordReqDto.getPassword();
+		String encPassword = encoder.encode(rawPassword);
+		
+		userEntity.setPassword(encPassword);
 	}
 }
