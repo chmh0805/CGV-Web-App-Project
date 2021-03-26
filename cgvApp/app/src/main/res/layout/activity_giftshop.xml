@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <include layout="@layout/toolbar_giftshop" />
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs_giftshop"
             android:background="@color/white"
@@ -27,6 +28,7 @@
             android:layout_height="match_parent"/>
 
     </LinearLayout>
+
     <include layout="@layout/my_navigation_view" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.adapter.HomeFeaturedMovieAdapter;
-import com.example.cgvapplication.adapter.HomeMovieListAdapter;
-import com.example.cgvapplication.adapter.HomeTopFeaturedAdapter;
+import com.example.cgvapplication.adapter.home.HomeFeaturedMovieAdapter;
+import com.example.cgvapplication.adapter.home.HomeMovieListAdapter;
+import com.example.cgvapplication.adapter.home.HomeTopFeaturedAdapter;
 import com.example.cgvapplication.model.movie.featuredmovie.FeaturedMovie;
 import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.model.movie.featuredmovie.TopFeaturedMovie;

@@ -10,7 +10,7 @@
     android:background="@drawable/ic_saw_movie_layout">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_saw_movie_poster"
         android:layout_width="wrap_content"
         android:layout_height="100dp"
         android:layout_marginTop="5dp"
@@ -24,8 +24,8 @@
         android:layout_height="100dp"
         android:layout_marginStart="5dp"
         android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
-        app:layout_constraintStart_toEndOf="@+id/imageView4">
+        app:layout_constraintBottom_toBottomOf="@+id/iv_saw_movie_poster"
+        app:layout_constraintStart_toEndOf="@+id/iv_saw_movie_poster">
 
         <TextView
             android:id="@+id/tv_saw_movie_title"
