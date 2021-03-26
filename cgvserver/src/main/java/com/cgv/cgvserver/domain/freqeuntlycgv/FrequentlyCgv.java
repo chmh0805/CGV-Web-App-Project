@@ -1,7 +1,4 @@
-package com.cgv.cgvserver.domain.review;
-
-import java.sql.Timestamp;
-import java.util.List;
+package com.cgv.cgvserver.domain.freqeuntlycgv;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,12 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
-import org.hibernate.annotations.CreationTimestamp;
-
-import com.cgv.cgvserver.domain.movie.Movie;
-import com.cgv.cgvserver.domain.reply.Reply;
+import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -28,26 +21,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Review {
+public class FrequentlyCgv {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	@JoinColumn(name = "userId")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	private User user;
 	
-	private String content;
-	
-	@JoinColumn(name = "movieId")
-	@ManyToOne
-	private Movie movie;
-	
-	private int isLike; // 좋아요 유무 1: 좋아요 0: x
-	
-	@OneToMany(mappedBy = "review", cascade = CascadeType.REMOVE)
-	private List<Reply> replys;
-	
-	@CreationTimestamp
-	private Timestamp createDate;
+	@JoinColumn(name = "theaterId")
+	@ManyToOne(cascade = CascadeType.REMOVE)
+	private Theater theater;
 }

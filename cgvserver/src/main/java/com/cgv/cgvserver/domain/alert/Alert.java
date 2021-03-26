@@ -1,13 +1,14 @@
-package com.cgv.cgvserver.domain.director;
+package com.cgv.cgvserver.domain.alert;
 
+import java.sql.Timestamp;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
-import com.cgv.cgvserver.domain.movie.Movie;
+import org.hibernate.annotations.CreationTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,16 +20,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Director {
+public class Alert {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String directorImageUrl;
+	@Column(nullable = false)
+	private String content;
 	
-	private String name;
-	
-	@JoinColumn(name = "movieId")
-	@OneToOne
-	private Movie movie;
+	@CreationTimestamp
+	private Timestamp createDate;
 }

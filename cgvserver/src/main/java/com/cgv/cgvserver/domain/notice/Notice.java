@@ -18,10 +18,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-//@Entity
+@Entity
 public class Notice {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private int sort; // 1:극장 2:시스템점검 3:기타
@@ -30,6 +30,6 @@ public class Notice {
 	
 	private int readCount; // 조회수
 	
-//	@CreationTimestamp
-//	private Timestamp createDate;
+	@CreationTimestamp
+	private Timestamp createDate;
 }

@@ -77,7 +77,7 @@ const TicketingPage = () => {
         </NavSectionItemBox>
       </NavSection>
       <TicketingSubContainer>
-        <TicketingStep1 />
+        <TicketingStep2 />
       </TicketingSubContainer>
     </TicketingMainContainer>
   );

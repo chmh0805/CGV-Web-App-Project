@@ -2,6 +2,10 @@ package com.cgv.cgvserver.domain.reply;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -18,20 +22,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-//@Entity
+@Entity
 public class Reply {
-//	@Id
-//	@GeneratedValue
+	@Id
+	@GeneratedValue
 	private Long id;
 	
-//	@ManyToOne
+	@JoinColumn(name = "userId")
+	@ManyToOne
 	private User user;
 	
 	private String content;
 	
-//	@ManyToOne
+	@JoinColumn(name = "reviewId")
+	@ManyToOne
 	private Review review;
 	
-//	@CreationTimestamp
+	@CreationTimestamp
 	private Timestamp createDate;
 }

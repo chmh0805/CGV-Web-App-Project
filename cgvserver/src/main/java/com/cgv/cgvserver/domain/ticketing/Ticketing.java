@@ -1,21 +1,19 @@
-package com.cgv.cgvserver.domain.review;
+package com.cgv.cgvserver.domain.ticketing;
 
 import java.sql.Timestamp;
-import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.cgv.cgvserver.domain.movie.Movie;
-import com.cgv.cgvserver.domain.reply.Reply;
+import com.cgv.cgvserver.domain.seat.Seat;
+import com.cgv.cgvserver.domain.timetable.TimeTable;
 import com.cgv.cgvserver.domain.user.User;
 
 import lombok.AllArgsConstructor;
@@ -23,30 +21,34 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Entity
-public class Review {
+public class Ticketing {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JoinColumn(name = "userId")
+	@JoinColumn(name="userId")
 	@ManyToOne
 	private User user;
 	
-	private String content;
+	private String tieketNum;
 	
-	@JoinColumn(name = "movieId")
+	private int personType;
+	
+	@JoinColumn(name = "seatId")
+	@OneToOne
+	private Seat seat;
+	
+	private int state;
+	
+	@JoinColumn(name="timeTableId")
 	@ManyToOne
-	private Movie movie;
-	
-	private int isLike; // 좋아요 유무 1: 좋아요 0: x
-	
-	@OneToMany(mappedBy = "review", cascade = CascadeType.REMOVE)
-	private List<Reply> replys;
+	private TimeTable timeTable;
 	
 	@CreationTimestamp
 	private Timestamp createDate;

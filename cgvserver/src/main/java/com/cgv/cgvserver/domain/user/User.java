@@ -1,15 +1,23 @@
 package com.cgv.cgvserver.domain.user;
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.cgv.cgvserver.domain.expectmovie.ExpectMovie;
+import com.cgv.cgvserver.domain.freqeuntlycgv.FrequentlyCgv;
+import com.cgv.cgvserver.domain.qna.Qna;
+import com.cgv.cgvserver.domain.review.Review;
+import com.cgv.cgvserver.domain.ticketing.Ticketing;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -50,4 +58,19 @@ public class User {
 	
 	@CreationTimestamp
 	private Timestamp createDate; // 생성일자
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<ExpectMovie> expectMovies;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<FrequentlyCgv> frequentlyCgvs;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<Qna> qnas;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+	private List<Review> reviews;
+	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
+	private List<Ticketing> ticketings;
 }
