@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.movietalk;
 
 import android.view.LayoutInflater;
 import android.view.View;

@@ -7,7 +7,7 @@
     android:padding="10dp">
 
     <ImageView
-        android:id="@+id/expect_movie_poster"
+        android:id="@+id/iv_expect_movie_poster"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
         android:adjustViewBounds="true"
@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/expect_movie_title"
+        android:id="@+id/tv_expect_movie_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -31,10 +31,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/expect_movie_poster" />
+        app:layout_constraintTop_toBottomOf="@+id/iv_expect_movie_poster" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/expect_movie_ticketing"
+        android:id="@+id/btn_expect_movie_ticketing"
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_marginEnd="10dp"
@@ -44,13 +44,13 @@
         android:textSize="13sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/expect_movie_remove"
+        app:layout_constraintEnd_toStartOf="@+id/btn_expect_movie_remove"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/expect_movie_remove"
+        android:id="@+id/btn_expect_movie_remove"
         android:layout_width="70dp"
         android:layout_height="30dp"
         android:layout_marginStart="10dp"
@@ -59,10 +59,10 @@
         android:textColor="#873333"
         android:textSize="13sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/expect_movie_ticketing"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_expect_movie_ticketing"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/expect_movie_ticketing" />
+        app:layout_constraintStart_toEndOf="@+id/btn_expect_movie_ticketing" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

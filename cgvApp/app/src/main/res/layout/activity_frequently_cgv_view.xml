@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/frequently_cgv_drawer"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="350dp"
+    tools:context=".FrequentlyCgvViewActivity">
 
     <LinearLayout
-        android:id="@+id/frequently_cgv_add_view"
         android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:orientation="vertical"
-        android:layout_gravity="bottom"
-        android:clickable="true"
-        android:focusable="true"
-        android:background="#EFEFEF">
-        
+        android:layout_height="match_parent"
+        android:background="#EFEFEF"
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="10dp"
             android:layout_marginBottom="1dp"
             android:background="@android:color/white"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <ImageView
                 android:layout_width="20dp"
@@ -30,9 +29,9 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ipt_frequently_cgv_search"
-                android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
+                android:layout_weight="1"
                 android:background="@drawable/ic_search_movie_input"
                 android:hint="검색"
                 android:textSize="16sp" />
@@ -42,28 +41,26 @@
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:background="@color/transparent"
-                android:src="@drawable/ic_close_blak"/>
+                android:src="@drawable/ic_close_blak" />
 
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tv_frequently_cgv_button_box"
+            android:id="@+id/rv_frequently_cgv_button_box"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
+            android:layout_marginBottom="1dp"
             android:background="@android:color/white"
-            android:layout_marginBottom="1dp"/>
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tv_frequently_cgv_list_box"
+            android:id="@+id/rv_frequently_cgv_list_box"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="10dp"
-            android:background="@android:color/white"/>
-
-
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:padding="10dp" />
 
     </LinearLayout>
 
-</merge>
+</androidx.drawerlayout.widget.DrawerLayout>

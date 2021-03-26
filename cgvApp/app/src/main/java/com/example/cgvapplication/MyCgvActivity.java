@@ -6,12 +6,13 @@ import androidx.appcompat.widget.Toolbar;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.example.cgvapplication.helper.MyNavigationHelper;
 
@@ -24,7 +25,8 @@ public class MyCgvActivity extends AppCompatActivity {
     private Toolbar mToolbarDefault;
     private MyNavigationHelper mMyNavigationHelper;
     private LinearLayout mLinearNavigation;
-    private TextView mTvToolbarTitle;
+    private TextView mTvToolbarTitle, mTvGoPaymentHistory;
+    private ImageView mIvGoSawMovie, mIvGoExpectMovie;
     private List<String> mMyCgvMenu;
     private ListView mLvMyCgv;
     private ArrayAdapter<String> adapter;
@@ -47,6 +49,9 @@ public class MyCgvActivity extends AppCompatActivity {
         mToolbarDefault = findViewById(R.id.toolbar_default);
         mLinearNavigation = findViewById(R.id.linear_navigation);
         mTvToolbarTitle = findViewById(R.id.tv_toolbar_title);
+        mIvGoSawMovie = findViewById(R.id.iv_go_saw_movie);
+        mIvGoExpectMovie = findViewById(R.id.iv_go_expect_movie);
+        mTvGoPaymentHistory = findViewById(R.id.tv_go_payment_history);
         mLvMyCgv = findViewById(R.id.lv_my_cgv);
         mMyNavigationHelper = new MyNavigationHelper(MyCgvActivity.this);
         mMyCgvMenu = new ArrayList<>();
@@ -61,12 +66,52 @@ public class MyCgvActivity extends AppCompatActivity {
     }
 
     public void listener() {
+
+        mTvGoPaymentHistory.setOnClickListener(v -> {
+            Intent intent = new Intent(MyCgvActivity.this, PaymentHistoryActivity.class);
+            startActivity(intent);
+        });
+
+        mIvGoSawMovie.setOnClickListener(v -> {
+            int page = 1;
+            Intent intent = new Intent(MyCgvActivity.this, MovieLogActivity.class);
+            intent.putExtra("MovieLog", page);
+            startActivity(intent);
+        });
+
+        mIvGoExpectMovie.setOnClickListener(v -> {
+            int page = 0;
+            Intent intent = new Intent(MyCgvActivity.this, MovieLogActivity.class);
+            intent.putExtra("MovieLog", page);
+            startActivity(intent);
+        });
+
+
         mLvMyCgv.setOnItemClickListener((adapterView, view, i, l) -> {
+
+            if(mMyCgvMenu.get(i).equals("자주가는 CGV")) {
+                Intent intent = new Intent(MyCgvActivity.this, FrequentlyCgvActivity.class);
+                startActivity(intent);
+            }
+
             if(mMyCgvMenu.get(i).equals("개인정보 관리")) {
                 Intent intent = new Intent(MyCgvActivity.this, PrivacyActivity.class);
                 startActivity(intent);
             }
 
+            if(mMyCgvMenu.get(i).equals("공지사항")) {
+                int page = 1;
+                Intent intent = new Intent(MyCgvActivity.this, ServiceCenterActivity.class);
+                intent.putExtra("ServiceCenter", page);
+                startActivity(intent);
+            }
+
+            if(mMyCgvMenu.get(i).equals("고객센터")) {
+                int page = 0;
+                Intent intent = new Intent(MyCgvActivity.this, ServiceCenterActivity.class);
+                intent.putExtra("ServiceCenter", page);
+                startActivity(intent);
+            }
         });
     }
 }
