@@ -1,9 +1,8 @@
 package com.cgv.cgvserver.domain.timetable;
 
-import java.sql.Timestamp;
-
 import javax.persistence.OneToMany;
 
+import com.cgv.cgvserver.domain.hall.Hall;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.user.User;
@@ -27,8 +26,10 @@ public class TimeTable {
 	private Movie movie;
 	
 	private Theater theater;
-//	
+
 //	private Hall hall;
-//	
-//	private Timestamp date;
+
+	private String date; // 상영일
+	
+	private String startTime; // 상영시간
 }
