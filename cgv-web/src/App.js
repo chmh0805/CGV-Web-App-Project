@@ -86,7 +86,7 @@ function App() {
       {/* Movie Detail */}
       <Route path="/movies/detail" exact={true} component={MovieDetail} />
       {/* 내가 쓴 평점 */}
-      <Route path="/movies/myReview" exact={true} component={MyMovieReview} />
+      <Route path="/user/myReview" exact={true} component={MyMovieReview} />
       {/* Movie 영역 끝 */}
 
       {/* 극장 영역 */}

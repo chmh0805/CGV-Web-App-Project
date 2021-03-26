@@ -515,7 +515,7 @@ const MovieDetail = () => {
                 <Link>
                   <MDReplyBtn>평점작성</MDReplyBtn>
                 </Link>
-                <Link to="/movies/myReview">
+                <Link to="/user/myReview">
                   <MDMyReplyBtn>내 평점</MDMyReplyBtn>
                 </Link>
               </MDReplyInfoBtnBox>
