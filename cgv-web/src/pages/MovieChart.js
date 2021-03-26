@@ -90,8 +90,13 @@ const MCSub = styled(Link)`
   text-decoration: none;
   font-size: 15px;
   font-weight: 500;
-  margin-left: 15px;
+  margin-left: 20px;
   color: #737373;
+
+  &:hover {
+    color: red;
+    font-weight: bold;
+  }
 `;
 
 const MCSortBox = styled.div`
@@ -137,6 +142,8 @@ const MovieChart = () => {
           <NavSectionArrow>〉</NavSectionArrow>
           <NavSectionSpan>영화</NavSectionSpan>
           <NavSectionArrow>〉</NavSectionArrow>
+          <NavSectionSpan>무비차트</NavSectionSpan>
+          <NavSectionArrow>〉</NavSectionArrow>
           <NavSectionSpan
             style={{ textDecoration: "underline", fontWeight: "700" }}
           >
@@ -150,7 +157,7 @@ const MovieChart = () => {
             <MCHeadTitle>무비차트</MCHeadTitle>
             <MCSubMenu>
               <MCSubNow>▶ 무비차트</MCSubNow>
-              <MCSub>상영예정작</MCSub>
+              <MCSub to="/movies/schedule">상영예정작</MCSub>
             </MCSubMenu>
           </MCHeadBox>
 

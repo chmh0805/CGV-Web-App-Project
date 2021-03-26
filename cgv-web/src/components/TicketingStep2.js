@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import topButtons from "../images/button/top_buttons.png";
 import BackMovieButton from "../images/button/backMovie_btn.png";
@@ -668,7 +667,11 @@ const TicketingStep3 = () => {
             </TheaterNoticeInfo>
           </TheaterMapSmallBox>
           <TheaterSeatInfoBox>
-            <img src={SeatInfo} style={{ width: "110px", height: "140px" }} />
+            <img
+              src={SeatInfo}
+              style={{ width: "110px", height: "140px" }}
+              alt="좌석안내표"
+            />
           </TheaterSeatInfoBox>
         </TheaterMapBox>
       </TicketingStepsSection>

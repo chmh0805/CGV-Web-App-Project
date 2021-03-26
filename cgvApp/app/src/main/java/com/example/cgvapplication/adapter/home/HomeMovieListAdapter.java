@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.home;
 
 import android.content.Context;
 import android.content.Intent;

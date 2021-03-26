@@ -104,7 +104,9 @@ const MovieChartItem = () => {
         </MCMovieInfo>
         <MCInfoText>2021.01.20</MCInfoText>
         <MCInfoText>개봉</MCInfoText>
-        <MCTicketImg src={ticketingBtn} />
+        <Link to="/ticket">
+          <MCTicketImg src={ticketingBtn} />
+        </Link>
       </MCItemInfoBox>
     </MCItemContainer>
   );

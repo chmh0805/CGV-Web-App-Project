@@ -6,7 +6,6 @@ import com.cgv.cgvserver.domain.hall.Hall;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.user.User;
-import com.cgv.cgvserver.domain.watchedmovie.WatchedMovie;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.home;
 
 import android.view.LayoutInflater;
 import android.view.View;

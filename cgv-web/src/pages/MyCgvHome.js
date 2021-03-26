@@ -504,7 +504,7 @@ const MyCgvHome = (props) => {
               <MainContentsItemBoxTitleP>
                 <MainContentsItemBoxTitleEm>0</MainContentsItemBoxTitleEm>
                 <MainContentsItemBoxTitleEm>건</MainContentsItemBoxTitleEm>
-                <MainContentsItemBoxTitleLink to="/" />
+                <MainContentsItemBoxTitleLink to="/user/mycgv/reserve" />
               </MainContentsItemBoxTitleP>
             </MainContentsItemBoxTitleItem1>
             <MainContentsItemBoxTitleItem2>

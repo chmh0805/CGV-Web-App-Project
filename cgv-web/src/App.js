@@ -13,6 +13,7 @@ import SupportMain from "./pages/SupportMain";
 import MovieDetail from "./pages/MovieDetail";
 import MovieFinder from "./pages/MovieFinder";
 import MovieChart from "./pages/MovieChart";
+import MovieChartSchedule from "./pages/MovieChartSchedule";
 import SupportFaqMain from "./pages/SupportFaqMain";
 import SupportNewsMain from "./pages/SupportNewsMain";
 import SupportQnaMain from "./pages/SupportQnaMain";
@@ -30,6 +31,7 @@ import Signout from "./pages/Signout";
 import FindUsername from "./pages/FindUsername";
 import FindPassword from "./pages/FindPassword";
 import UpdatePassword from "./pages/UpdatePassword";
+import MyMovieReview from "./pages/MyMovieReview";
 
 function App() {
   return (
@@ -83,6 +85,11 @@ function App() {
       {/* Movie 영역 */}
       {/* Moive 차트 */}
       <Route path="/movies" exact={true} component={MovieChart} />
+      <Route
+        path="/movies/schedule"
+        exact={true}
+        component={MovieChartSchedule}
+      />
       {/* Movie Trailer */}
       <Route path="/movies/trailler" exact={true} component={Trailler} />
       {/* Movie Finder */}
@@ -90,6 +97,8 @@ function App() {
 
       {/* Movie Detail */}
       <Route path="/movies/detail" exact={true} component={MovieDetail} />
+      {/* 내가 쓴 평점 */}
+      <Route path="/user/myReview" exact={true} component={MyMovieReview} />
       {/* Movie 영역 끝 */}
 
       {/* 극장 영역 */}

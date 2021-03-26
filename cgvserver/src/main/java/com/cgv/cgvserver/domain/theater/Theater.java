@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import javax.persistence.OneToMany;
 
 import com.cgv.cgvserver.domain.user.User;
-import com.cgv.cgvserver.domain.watchedmovie.WatchedMovie;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
