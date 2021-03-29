@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 
 import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,6 +27,7 @@ public class FrequentlyCgv {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonBackReference
 	@JoinColumn(name = "userId")
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	private User user;

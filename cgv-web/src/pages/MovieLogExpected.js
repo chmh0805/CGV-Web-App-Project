@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import MovieLogAsidesBox from "../components/MovieLogAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
+import { RestoreRounded } from "@material-ui/icons";
 
 const ExpectedLogMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -139,6 +140,31 @@ const MovieLogExpected = () => {
   setCookie("now-space", "movielog-expected");
   window.scrollTo(0, 0);
 
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [expectMovies, setExpectMovies] = useState([]);
+
+  const loadData = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/expectMovie/" + getCookie("userId"))
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (res.statusCode === 1) {
+            console.log(res.data);
+            setExpectMovies(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  loadData();
+
   return (
     <ExpectedLogMainContainer>
       <NavSection>
@@ -157,61 +183,26 @@ const MovieLogExpected = () => {
         </NavSectionItemBox>
       </NavSection>
       <ExpectedLogSubContainer>
-        <MovieLogAsidesBox nowSpace={getCookie("now-space")} />
+        <MovieLogAsidesBox
+          nowSpace={getCookie("now-space")}
+          expectMovieCount={expectMovies.length}
+        />
         <MainContentsBox>
           <MainContentsTitleBox>
             <MainContentsTitleH3>기대되는 영화</MainContentsTitleH3>
-            <MainContentsTitleP>1</MainContentsTitleP>
+            <MainContentsTitleP>{expectMovies.length}</MainContentsTitleP>
           </MainContentsTitleBox>
-          <WatchedMovieListBox>
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <WatchedMovieInfoP>
-                  2019.11.18 (월) 18:20 ~ 20:23
-                </WatchedMovieInfoP>
-                <WatchedMovieInfoP>CGV대연 6층 3관 / 2명</WatchedMovieInfoP>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <WatchedMovieInfoP>
-                  2019.11.18 (월) 18:20 ~ 20:23
-                </WatchedMovieInfoP>
-                <WatchedMovieInfoP>CGV대연 6층 3관 / 2명</WatchedMovieInfoP>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <WatchedMovieInfoP>
-                  2019.11.18 (월) 18:20 ~ 20:23
-                </WatchedMovieInfoP>
-                <WatchedMovieInfoP>CGV대연 6층 3관 / 2명</WatchedMovieInfoP>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <WatchedMovieInfoP>
-                  2019.11.18 (월) 18:20 ~ 20:23
-                </WatchedMovieInfoP>
-                <WatchedMovieInfoP>CGV대연 6층 3관 / 2명</WatchedMovieInfoP>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
+          <WatchedMovieListBox id="movieListBox">
+            {expectMovies.map((expectMovie) => (
+              <WatchedMovieListItem>
+                <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
+                <WatchedMovieInfo>
+                  <WatchedMovieInfoTitle>
+                    <WatchedMovieInfoStrong>제목</WatchedMovieInfoStrong>
+                  </WatchedMovieInfoTitle>
+                </WatchedMovieInfo>
+              </WatchedMovieListItem>
+            ))}
           </WatchedMovieListBox>
         </MainContentsBox>
       </ExpectedLogSubContainer>

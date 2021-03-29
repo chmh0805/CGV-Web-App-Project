@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -19,6 +20,7 @@ import com.cgv.cgvserver.domain.qna.Qna;
 import com.cgv.cgvserver.domain.review.Review;
 import com.cgv.cgvserver.domain.ticketing.Ticketing;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -59,18 +61,23 @@ public class User {
 	@CreationTimestamp
 	private Timestamp createDate; // 생성일자
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<ExpectMovie> expectMovies;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<FrequentlyCgv> frequentlyCgvs;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Qna> qnas;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
 	private List<Review> reviews;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "user", cascade = CascadeType.DETACH)
 	private List<Ticketing> ticketings;
 }

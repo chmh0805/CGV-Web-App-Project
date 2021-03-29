@@ -18,6 +18,7 @@
 		<item value="org.eclipse.jgit.ssh.jsch:5.10.0.202012080955-r"/>
 		<item value="org.eclipse.jgit:5.10.0.202012080955-r"/>
 		<item value="org.eclipse.jst.common.fproj.enablement.jdt:3.13.1.v202007161535"/>
+		<item value="org.eclipse.jst.enterprise_ui.feature:3.20.0.v202011230434"/>
 		<item value="org.eclipse.justj.openjdk.hotspot.jre.full:15.0.1.v20201027-0507"/>
 		<item value="org.eclipse.m2e.feature:1.17.1.20201207-1112"/>
 		<item value="org.eclipse.m2e.logback.feature:1.17.0.20200924-1339"/>
@@ -49,6 +50,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\workspace\lastproject\cgvserver"/>
 			<item value="D:\workspace\lastproject\CGV-Web-App-Project\cgvserver"/>
 		</list>
 	</section>

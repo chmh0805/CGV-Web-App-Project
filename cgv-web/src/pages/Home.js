@@ -8,6 +8,8 @@ import carouselImg01 from "../images/home/home_carousel_img01.jpg";
 import carouselImg02 from "../images/home/home_carousel_img02.jpg";
 import carouselImg03 from "../images/home/home_carousel_img03.jpg";
 import CommentIcon from "@material-ui/icons/Comment";
+import { getCookie, isLogined } from "../utils/JWT";
+import { setRole } from "../utils/AuthUtil";
 
 const CarouselSection = styled.section`
   width: auto;

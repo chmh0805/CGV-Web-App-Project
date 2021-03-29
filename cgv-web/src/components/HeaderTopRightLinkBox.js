@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { deleteCookie, isLogined } from "../utils/JWT";
+import { isAdmin, logout } from "../utils/AuthUtil";
+import { isLogined } from "../utils/JWT";
 
 const HeaderTopRightDiv = styled.div`
   text-align: center;
@@ -33,15 +34,23 @@ const HeaderTopRightSep = styled.span`
 `;
 
 const HeaderTopRightLinkBox = () => {
-  const logout = () => {
-    fetch("http://localhost:8080/logout").then(() => {
-      deleteCookie("cgvJWT");
-      deleteCookie("userId");
-      window.location.replace("/");
-    });
-  };
-
-  if (isLogined()) {
+  if (isLogined() && isAdmin()) {
+    return (
+      <HeaderTopRightDiv>
+        <HeaderTopRightLink onClick={() => logout()}>
+          로그아웃
+        </HeaderTopRightLink>
+        <HeaderTopRightSep>|</HeaderTopRightSep>
+        <HeaderTopRightLink to="/user/mycgv">MyCGV</HeaderTopRightLink>
+        <HeaderTopRightSep>|</HeaderTopRightSep>
+        <HeaderTopRightLink to="/support/default">고객센터</HeaderTopRightLink>
+        <HeaderTopRightSep>|</HeaderTopRightSep>
+        <HeaderTopRightLink to="/support/default">공지등록</HeaderTopRightLink>
+        <HeaderTopRightSep>|</HeaderTopRightSep>
+        <HeaderTopRightLink to="/theater/register">극장등록</HeaderTopRightLink>
+      </HeaderTopRightDiv>
+    );
+  } else if (isLogined()) {
     return (
       <HeaderTopRightDiv>
         <HeaderTopRightLink onClick={() => logout()}>

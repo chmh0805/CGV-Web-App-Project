@@ -17,6 +17,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.reply.Reply;
 import com.cgv.cgvserver.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,6 +34,7 @@ public class Review {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonBackReference
 	@JoinColumn(name = "userId")
 	@ManyToOne
 	private User user;

@@ -15,6 +15,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import com.cgv.cgvserver.domain.seat.Seat;
 import com.cgv.cgvserver.domain.timetable.TimeTable;
 import com.cgv.cgvserver.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -32,6 +33,7 @@ public class Ticketing {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonBackReference
 	@JoinColumn(name="userId")
 	@ManyToOne
 	private User user;

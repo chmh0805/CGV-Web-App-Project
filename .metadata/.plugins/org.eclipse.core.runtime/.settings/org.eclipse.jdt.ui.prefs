@@ -1,6 +1,6 @@
 content_assist_completion_replacement_background=200,200,0
 content_assist_completion_replacement_foreground=200,0,0
-content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.cgv.cgvserver.web.dto.CommonRespDto"><rhs name\="com.cgv.cgvserver.web.dto.CommonRespDto"/></lhs></history>
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="com.cgv.cgvserver.web.dto.CommonRespDto"><rhs name\="com.cgv.cgvserver.web.dto.CommonRespDto"/></lhs><lhs name\="com.fasterxml.jackson.core.Versioned"><rhs name\="com.fasterxml.jackson.databind.ObjectMapper"/></lhs><lhs name\="com.fasterxml.jackson.core.ObjectCodec"><rhs name\="com.fasterxml.jackson.databind.ObjectMapper"/></lhs><lhs name\="com.fasterxml.jackson.core.TreeCodec"><rhs name\="com.fasterxml.jackson.databind.ObjectMapper"/></lhs><lhs name\="com.fasterxml.jackson.databind.ObjectMapper"><rhs name\="com.fasterxml.jackson.databind.ObjectMapper"/></lhs><lhs name\="javax.servlet.Filter"><rhs name\="com.cgv.cgvserver.config.filter.TokenExceptionHandlerFilter"/></lhs></history>
 content_assist_number_of_computers=15
 content_assist_parameters_background=52,57,61
 content_assist_parameters_foreground=238,238,238

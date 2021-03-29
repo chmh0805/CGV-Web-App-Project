@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { Checkbox } from "semantic-ui-react";
 import axios from "axios";
 import { getCookie, parseJwt, setCookie } from "../utils/JWT";
+import { setRole } from "../utils/AuthUtil";
 
 const LoginContainer = styled.div`
   background-color: #fdfcf0;
@@ -206,10 +207,12 @@ const Login = (props) => {
           res.headers.authorization === null ||
           res.headers.authorization === ""
         ) {
-          alert("알 수 없는 오류입니다.");
+          alert("아이디 또는 비밀번호를 확인해주세요.");
         } else {
           setCookie("cgvJWT", res.headers.authorization, { "max-age": 10800 });
           setCookie("userId", parseJwt(getCookie("cgvJWT")).userId);
+          let id = getCookie("userId");
+          setRole(id);
           window.location.replace("/");
         }
       })

@@ -32,6 +32,7 @@ import FindUsername from "./pages/FindUsername";
 import FindPassword from "./pages/FindPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import MyMovieReview from "./pages/MyMovieReview";
+import TheaterRegister from "./pages/TheaterRegister";
 
 function App() {
   return (
@@ -102,12 +103,18 @@ function App() {
       {/* Movie 영역 끝 */}
 
       {/* 극장 영역 */}
+      {/* 극장 보기 */}
       <Route path="/theater" exact={true} component={Theater} />
+      {/* 극장 등록 */}
+      <Route
+        path="/theater/register"
+        exact={true}
+        component={TheaterRegister}
+      />
       {/* 극장 영역 끝 */}
 
       {/* 고객센터 영역 */}
       {/* 고객센터 홈 */}
-
       <Route path="/support/default" exact={true} component={SupportMain} />
       {/* 자주 찾는 질문 */}
       <Route

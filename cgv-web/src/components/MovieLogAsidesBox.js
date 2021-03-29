@@ -45,13 +45,13 @@ const AsidesItemStrong = styled.strong`
   font-weight: 600;
 `;
 
-const MovieLogAsidesBox = ({ nowSpace }) => {
+const MovieLogAsidesBox = ({ nowSpace, expectMovieCount }) => {
   if (nowSpace === "movielog-expected") {
     return (
       <MainAsidesBox>
         <Link to="/user/movielog/expected">
           <AsidesItemDiv1>
-            <AsidesItemEm>1</AsidesItemEm>
+            <AsidesItemEm>{expectMovieCount}</AsidesItemEm>
             <AsidesItemStrong>기대되는 영화</AsidesItemStrong>
           </AsidesItemDiv1>
         </Link>
@@ -68,7 +68,7 @@ const MovieLogAsidesBox = ({ nowSpace }) => {
       <MainAsidesBox>
         <Link to="/user/movielog/expected">
           <AsidesItemDiv2>
-            <AsidesItemEm>1</AsidesItemEm>
+            <AsidesItemEm>{expectMovieCount}</AsidesItemEm>
             <AsidesItemStrong>기대되는 영화</AsidesItemStrong>
           </AsidesItemDiv2>
         </Link>

@@ -7,11 +7,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.domain.user.UserRepository;
 import com.cgv.cgvserver.handler.exception.NotFoundUserException;
-import com.cgv.cgvserver.web.user.dto.FindPasswordReqDto;
-import com.cgv.cgvserver.web.user.dto.FindPasswordRespDto;
-import com.cgv.cgvserver.web.user.dto.FindUsernameReqDto;
-import com.cgv.cgvserver.web.user.dto.UpdatePasswordReqDto;
-import com.cgv.cgvserver.web.user.dto.UserUpdateReqDto;
+import com.cgv.cgvserver.web.dto.user.FindPasswordReqDto;
+import com.cgv.cgvserver.web.dto.user.FindPasswordRespDto;
+import com.cgv.cgvserver.web.dto.user.FindUsernameReqDto;
+import com.cgv.cgvserver.web.dto.user.UpdatePasswordReqDto;
+import com.cgv.cgvserver.web.dto.user.UserUpdateReqDto;
 
 import lombok.RequiredArgsConstructor;
 
