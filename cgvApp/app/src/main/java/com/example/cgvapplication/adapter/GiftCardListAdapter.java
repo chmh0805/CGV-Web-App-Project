@@ -2,7 +2,6 @@ package com.example.cgvapplication.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.GiftShopDetailActivity;
+import com.example.cgvapplication.activity.GiftShopDetailActivity;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.model.giftshop.GiftCard;
 
 import java.util.List;
-
-import static android.content.ContentValues.TAG;
 
 public class GiftCardListAdapter extends RecyclerView.Adapter<GiftCardListAdapter.MyViewHolder> {
 

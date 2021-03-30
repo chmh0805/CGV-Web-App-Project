@@ -3,8 +3,6 @@ package com.example.cgvapplication.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,25 +11,28 @@ import android.widget.TextView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import com.example.cgvapplication.FindTheaterActivity;
-import com.example.cgvapplication.GiftCardActivity;
-import com.example.cgvapplication.GiftshopActivity;
-import com.example.cgvapplication.LoginActivity;
-import com.example.cgvapplication.MainActivity;
-import com.example.cgvapplication.MovieListActivity;
-import com.example.cgvapplication.MovieLogActivity;
-import com.example.cgvapplication.MyCgvActivity;
-import com.example.cgvapplication.NoticeBoxActivity;
+import com.example.cgvapplication.activity.FindTheaterActivity;
+import com.example.cgvapplication.activity.GiftCardActivity;
+import com.example.cgvapplication.activity.LoginActivity;
+import com.example.cgvapplication.activity.MovieListActivity;
+import com.example.cgvapplication.activity.MovieLogActivity;
+import com.example.cgvapplication.activity.MyCgvActivity;
+import com.example.cgvapplication.activity.NoticeBoxActivity;
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.ServiceCenterActivity;
-import com.example.cgvapplication.TicketingActivity;
+import com.example.cgvapplication.activity.ServiceCenterActivity;
+import com.example.cgvapplication.activity.TicketingActivity;
+import com.example.cgvapplication.model.user.User;
+import com.example.cgvapplication.service.UserService;
+import com.example.cgvapplication.service.dto.CMRespDto;
+
+import retrofit2.Call;
 
 public class MyNavigationHelper {
 
     private static final String TAG = "MyNavigationHelper";
     private final Context mContext;
     private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter;
-    private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell;
+    private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell, mTvLogout;
     private DrawerLayout mDrawer, mFrequentlyCgvDrawer;
     private LinearLayout mLinearNavigation;
     public MyNavigationHelper(Context mContext) {
@@ -74,6 +75,10 @@ public class MyNavigationHelper {
             }
         });
         mTvGoMyCgv.setOnClickListener(v -> {
+
+            UserService userService = UserService.retrofit.create(UserService.class);
+            Call<CMRespDto<User>> call = userService.findById();
+
             if(!(mContext.getClass().equals(MyCgvActivity.class))) {
                 Intent intent = new Intent(mContext, MyCgvActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

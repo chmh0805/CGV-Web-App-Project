@@ -12,10 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CGVApplication"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FrequentlyCgvViewActivity"></activity>
-        <activity android:name=".FindTheaterPointActivity" />
+        <activity android:name=".activity.FrequentlyCgvViewActivity"></activity>
+        <activity android:name=".activity.FindTheaterPointActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".activity.SplashActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,27 +23,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PrivacyActivity" />
-        <activity android:name=".FindIdAndPasswordActivity" />
-        <activity android:name=".MovieListActivity" />
-        <activity android:name=".ShoppingBasketActivity" />
-        <activity android:name=".TicketingPaymentActivity" />
-        <activity android:name=".SeatChoiceActivity" />
-        <activity android:name=".MyCgvActivity" />
-        <activity android:name=".TicketingActivity" />
-        <activity android:name=".GiftCardActivity" />
-        <activity android:name=".NoticeBoxActivity" />
-        <activity android:name=".ServiceCenterActivity" />
-        <activity android:name=".FindTheaterActivity" />
-        <activity android:name=".MovieDetailActivity" />
-        <activity android:name=".MovieLogActivity" />
-        <activity android:name=".FrequentlyCgvActivity" />
-        <activity android:name=".PaymentHistoryActivity" />
-        <activity android:name=".JoinActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".GiftShopDetailActivity" />
-        <activity android:name=".GiftshopActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".activity.PrivacyActivity" />
+        <activity android:name=".activity.FindIdAndPasswordActivity" />
+        <activity android:name=".activity.MovieListActivity" />
+        <activity android:name=".activity.ShoppingBasketActivity" />
+        <activity android:name=".activity.TicketingPaymentActivity" />
+        <activity android:name=".activity.SeatChoiceActivity" />
+        <activity android:name=".activity.MyCgvActivity" />
+        <activity android:name=".activity.TicketingActivity" />
+        <activity android:name=".activity.GiftCardActivity" />
+        <activity android:name=".activity.NoticeBoxActivity" />
+        <activity android:name=".activity.ServiceCenterActivity" />
+        <activity android:name=".activity.FindTheaterActivity" />
+        <activity android:name=".activity.MovieDetailActivity" />
+        <activity android:name=".activity.MovieLogActivity" />
+        <activity android:name=".activity.FrequentlyCgvActivity" />
+        <activity android:name=".activity.PaymentHistoryActivity" />
+        <activity android:name=".activity.JoinActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.GiftShopDetailActivity" />
+        <activity android:name=".activity.GiftshopActivity" />
+        <activity android:name=".activity.MainActivity" />
     </application>
 
 </manifest>

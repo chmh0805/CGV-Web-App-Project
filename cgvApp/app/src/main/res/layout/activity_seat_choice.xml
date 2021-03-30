@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#131313"
-    tools:context=".SeatChoiceActivity">
+    tools:context=".activity.SeatChoiceActivity">
     <include layout="@layout/toolbar_seat_choice" />
     <View
         android:layout_width="match_parent"

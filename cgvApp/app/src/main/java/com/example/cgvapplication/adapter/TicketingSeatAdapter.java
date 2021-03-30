@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.TicketingBottomDialogFragment;
+import com.example.cgvapplication.fragment.TicketingBottomDialogFragment;
 import com.example.cgvapplication.R;
 
 public class TicketingSeatAdapter extends RecyclerView.Adapter<TicketingSeatAdapter.MyViewHolder> {

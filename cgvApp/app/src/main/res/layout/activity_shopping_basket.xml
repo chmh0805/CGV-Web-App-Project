@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ShoppingBasketActivity"
+        tools:context=".activity.ShoppingBasketActivity"
         android:orientation="vertical"
         android:background="#E2E2E2">
 
