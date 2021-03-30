@@ -17,8 +17,8 @@ const RegisterContainer = styled.div`
   margin: 0 auto;
 `;
 
-const SuppotNewsRegister = (props) => {
-  const [noticeReqDto, setNoticeReqDto] = useState({
+const SupportFaqRegister = (props) => {
+  const [faqReqDto, setFaqReqDto] = useState({
     sort: "",
     title: "",
     content: "",
@@ -30,52 +30,50 @@ const SuppotNewsRegister = (props) => {
   }
 
   const changeValue = (e) => {
-    setNoticeReqDto({ ...noticeReqDto, [e.target.name]: e.target.value });
+    setFaqReqDto({ ...faqReqDto, [e.target.name]: e.target.value });
   };
 
   const handleCatChange = (e) => {
-    setNoticeReqDto({ sort: e.target.value });
+    setFaqReqDto({ sort: e.target.value });
   };
 
-  const saveNotice = (e) => {
+  const saveFaq = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/support/news", {
+    fetch("http://localhost:8080/support/faq", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",
       },
-      body: JSON.stringify(noticeReqDto),
+      body: JSON.stringify(faqReqDto),
     })
       .then((res) => {
         return res.json();
       })
       .then((res) => {
         if (res.statusCode === 1) {
-          alert("공지사항 등록이 성공하였습니다.");
+          alert("자주찾는질문 등록이 성공하였습니다.");
         }
       })
       .catch((err) => {
         console.log(err);
-        alert("공지사항 등록이 실패하였습니다.");
+        alert("자주찾는질문 등록이 실패하였습니다.");
       });
   };
-
   return (
     <ContainerBox>
       <RegisterContainer>
-        <h1> 공지사항 등록</h1>
-        <Form onSubmit={saveNotice}>
+        <h1> 자주찾는질문 등록</h1>
+        <Form onSubmit={saveFaq}>
           <Form.Group>
             <Form.Label>구분</Form.Label>
             <select
               onChange={handleCatChange}
-              value={noticeReqDto.sort}
+              value={faqReqDto.sort}
               style={{ marginLeft: "10px" }}
             >
               <option value="">Select</option>
-              <option value="1">[극장]</option>
-              <option value="2">[시스템 점검]</option>
-              <option value="3">[기타]</option>
+              <option value="1">[예매/매표]</option>
+              <option value="2">[관람권/결제수단]</option>
             </select>
           </Form.Group>
 
@@ -85,7 +83,7 @@ const SuppotNewsRegister = (props) => {
               type="text"
               name="title"
               onChange={changeValue}
-              value={noticeReqDto.title}
+              value={faqReqDto.title}
               required={true}
             />
           </Form.Group>
@@ -99,7 +97,7 @@ const SuppotNewsRegister = (props) => {
               class="formControl"
               name="content"
               onChange={changeValue}
-              value={noticeReqDto.content}
+              value={faqReqDto.content}
               required={true}
             />
           </Form.Group>
@@ -112,4 +110,4 @@ const SuppotNewsRegister = (props) => {
   );
 };
 
-export default SuppotNewsRegister;
+export default SupportFaqRegister;

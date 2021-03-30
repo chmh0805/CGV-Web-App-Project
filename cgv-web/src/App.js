@@ -34,6 +34,7 @@ import UpdatePassword from "./pages/UpdatePassword";
 import MyMovieReview from "./pages/MyMovieReview";
 import TheaterRegister from "./pages/TheaterRegister";
 import SuppotNewsRegister from "./pages/SuppotNewsRegister";
+import SupportFaqRegister from "./pages/SupportFaqRegister";
 
 function App() {
   return (
@@ -122,6 +123,12 @@ function App() {
         path="/support/faq/default"
         exact={true}
         component={SupportFaqMain}
+      />
+      {/* 자주 찾는 질문  등록*/}
+      <Route
+        path="/support/faq/register"
+        exact={true}
+        component={SupportFaqRegister}
       />
       {/* 공지/뉴스 */}
       <Route

@@ -29,7 +29,6 @@ public class Notice {
 	
 	private String title;
 	
-	@Lob
 	private String content;
 	
 	private int readCount; // 조회수
