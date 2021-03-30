@@ -26,6 +26,8 @@ public class Notice {
 	
 	private int sort; // 1:극장 2:시스템점검 3:기타
 	
+	private String title;
+	
 	private String content;
 	
 	private int readCount; // 조회수

@@ -25,7 +25,15 @@ public class QnaService {
 	
 	@Transactional(readOnly = true)
 	public List<QnaFindRespDto> 유저아이디로찾기(long userId) {
-		List<Qna> qnaEntities = qnaRepository.findByUserId(userId);
+		List<Qna> qnaEntities = qnaRepository.mFindByUserIdDesc(userId);
+		List<QnaFindRespDto> dtos = QnaToRespDto.toDtos(qnaEntities);
+		
+		return dtos;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<QnaFindRespDto> 유저아이디로찾기(long userId, int limit) {
+		List<Qna> qnaEntities = qnaRepository.mFindByUserIdDescLimit(userId, limit);
 		List<QnaFindRespDto> dtos = QnaToRespDto.toDtos(qnaEntities);
 		
 		return dtos;

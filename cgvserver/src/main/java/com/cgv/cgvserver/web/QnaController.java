@@ -26,6 +26,13 @@ public class QnaController {
 		return new CommonRespDto<>(1, qnaService.유저아이디로찾기(userId));
 	}
 	
+	@GetMapping("/qna/limit/{limit}")
+	public CommonRespDto<?> findByUserId(@RequestHeader("Authorization") String jwtToken, @PathVariable int limit) {
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		return new CommonRespDto<>(1, qnaService.유저아이디로찾기(userId, limit));
+	}
+	
 	@PostMapping("/qna")
 	public CommonRespDto<?> save(@RequestHeader("Authorization") String jwtToken,
 			@RequestBody QnaSaveReqDto qnaSaveReqDto) {

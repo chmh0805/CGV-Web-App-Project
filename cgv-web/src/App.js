@@ -131,7 +131,7 @@ function App() {
       />
       {/* 공지/뉴스 */}
       <Route
-        path="/support/news/default"
+        path="/support/news/default/"
         exact={true}
         component={SupportNewsMain}
       />

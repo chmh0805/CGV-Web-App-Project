@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -7,6 +7,7 @@ import SupportMainServiceBox from "../components/SupportMainServiceBox";
 import { getCookie, setCookie } from "../utils/JWT";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import SupportMainBigSquareBox from "../components/SupportMainBigSquareBox";
+import MainNoticeBoxContentBox from "../components/support/MainNoticeBoxContentBox";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -108,47 +109,25 @@ const MoreButtonDiv = styled.div`
   cursor: pointer;
 `;
 
-const NoticeBoxContentBox = styled.div`
-  width: 100%;
-  height: 130px;
-`;
-
-const NoticeBoxContentItem = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  line-height: 1.2;
-  font-size: 13px;
-  margin-top: 18px;
-  margin-bottom: 18px;
-`;
-
-const NoticeBoxLink = styled(Link)`
-  overflow: hidden;
-  display: inline-block;
-  width: 400px;
-  color: #222;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-align: left;
-
-  &:hover {
-    color: #222;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    font-size: 15px;
-  }
-`;
-
-const NoticeBoxDate = styled.span`
-  color: #222;
-  font-size: 11px;
-  text-align: right;
-`;
-
 const SupportMain = () => {
   setCookie("now-space", "support-main");
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [fivenotices, setFivenotices] = useState([]);
+
+  if (isLoaded) {
+    setIsLoaded(false);
+
+    fetch("http://localhost:8080/notice/limit/5")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setFivenotices(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   return (
     <SupportMainContainer>
@@ -180,41 +159,7 @@ const SupportMain = () => {
                   <MoreButtonDiv />
                 </NoticeBoxTitleBox>
               </Link>
-              <NoticeBoxContentBox>
-                <NoticeBoxContentItem>
-                  <NoticeBoxLink>
-                    [극장] 연말연시 특별 방역조치에 따른 극장 운영 시간 조정
-                    안내
-                  </NoticeBoxLink>
-                  <NoticeBoxDate>2020.12.04</NoticeBoxDate>
-                </NoticeBoxContentItem>
-                <NoticeBoxContentItem>
-                  <NoticeBoxLink>
-                    [기타] 포토플레이 서비스 개선 안내
-                  </NoticeBoxLink>
-                  <NoticeBoxDate>2020.09.15</NoticeBoxDate>
-                </NoticeBoxContentItem>
-                <NoticeBoxContentItem>
-                  <NoticeBoxLink>
-                    [기타] 영진위 지원사업-“모든요일 6천원 할인”이벤트 조기 종료
-                    안내 (8/16 종료)
-                  </NoticeBoxLink>
-                  <NoticeBoxDate>2020.08.16</NoticeBoxDate>
-                </NoticeBoxContentItem>
-                <NoticeBoxContentItem>
-                  <NoticeBoxLink>
-                    [기타] 영화&lt;국제수사&gt; 개봉연기에 따른 예매취소 안내 건
-                  </NoticeBoxLink>
-                  <NoticeBoxDate>2020.08.16</NoticeBoxDate>
-                </NoticeBoxContentItem>
-                <NoticeBoxContentItem>
-                  <NoticeBoxLink>
-                    [기타] &lt;테넷&gt; 용산아이파크몰점 IMAX관 상영 시 화면비율
-                    안내
-                  </NoticeBoxLink>
-                  <NoticeBoxDate>2020.08.11</NoticeBoxDate>
-                </NoticeBoxContentItem>
-              </NoticeBoxContentBox>
+              <MainNoticeBoxContentBox fivenotices={fivenotices} />
             </NoticeBox>
           </CustomerNoticeBox>
           <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -152,34 +152,20 @@ const MyCgvMyQna = () => {
   setCookie("now-space", "mycgv-myqna");
   window.scrollTo(0, 0);
 
-  const [isLoaded, setIsLoaded] = useState(true);
   const [qnas, setQnas] = useState([]);
 
-  const loadQnas = async () => {
-    if (isLoaded) {
-      setIsLoaded(false);
-
-      await fetch("http://localhost:8080/qna", {
-        method: "GET",
-        headers: new Headers({
-          Authorization: getCookie("cgvJWT"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.statusCode === 1) {
-            setQnas(res.data);
-          } else {
-            fetch("http://localhost:8080/logout").then(() => {
-              deleteCookie("cgvJWT");
-              deleteCookie("userId");
-              deleteCookie("role");
-            });
-            alert("회원정보 조회 실패. 재로그인해주세요.");
-            window.location.replace("/login");
-          }
-        })
-        .catch((err) => {
+  useEffect(() => {
+    fetch("http://localhost:8080/qna", {
+      method: "GET",
+      headers: new Headers({
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setQnas(res.data);
+        } else {
           fetch("http://localhost:8080/logout").then(() => {
             deleteCookie("cgvJWT");
             deleteCookie("userId");
@@ -187,11 +173,20 @@ const MyCgvMyQna = () => {
           });
           alert("회원정보 조회 실패. 재로그인해주세요.");
           window.location.replace("/login");
+          return;
+        }
+      })
+      .catch((err) => {
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
         });
-    }
-  };
-
-  loadQnas();
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+        return;
+      });
+  }, []);
 
   return (
     <MyCgvReserveContainer>
