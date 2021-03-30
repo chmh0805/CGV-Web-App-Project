@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,45 +30,52 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Movie {
 
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private Long id; // 번호
+	/* 영속성 컨텍스트에서 변경 감지를 하는데 long id를 id로 할 경우
+	 * save할 때마다 중복 된 영화가 들어감. 그래서 api에서 받은 아이디를 primary key로....ㅜㅜ
+	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id; // 번호
-	
+	private String docId; 	
 	@Column(nullable = false)
 	private String title;
 	
-	private String subTitle;
+	private String subTitle; //titleEng
 	
 	private String genre;
 	
-	private int age;
+	private String age; // 연령 rating --> 12세관람가
 	
 	private String country;
 	
+	private String company;
+	
 	private int runningTime;
 	
-	private String releaseDate; // 상영일
+	private String releaseDate; // 상영일(개봉날짜)
 	
 	private int state;
 	
-	private String summary;
+	@Lob
+	private String summary; // 시놉 plot
 	
-	private String disribute;
+	private String disribute; // ??
 	
 	private String posterImgSrc;
 
-	@OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Review> review;
 	
-	@OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Actor> actors;
 	
-	@OneToOne(mappedBy = "movie", cascade = CascadeType.REMOVE)
+	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
 	private Director director;
 	
-	@OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<StillCut> stillCuts;
 	
-	@OneToMany(mappedBy = "movie", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Trailer> trailers;
 }
