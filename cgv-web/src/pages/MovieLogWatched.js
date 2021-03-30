@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -183,6 +183,53 @@ const MovieLogWatched = () => {
   setCookie("now-space", "movielog-watched");
   window.scrollTo(0, 0);
 
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [watchedMovies, setWatchedMovies] = useState([]);
+
+  const [expectMovies, setExpectMovies] = useState([]);
+
+  const loadExpectedData = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/expectMovie/" + getCookie("userId"))
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (res.statusCode === 1) {
+            console.log(res.data);
+            setExpectMovies(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  // const loadData = async () => {
+  //   if (isLoaded) {
+  //     setIsLoaded(false);
+  // timetable에서 시간들고와야 해서 보류
+  //     await fetch("http://localhost:8080/watchedMovie/" + getCookie("userId"))
+  //       .then((res) => {
+  //         return res.json();
+  //       })
+  //       .then((res) => {
+  //         if (res.statusCode === 1) {
+  //           console.log(res.data);
+  //           setWatchedMovies(res.data);
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       });
+  //   }
+  // };
+
+  loadExpectedData();
+
   return (
     <WatchedLogMainContainer>
       <NavSection>
@@ -201,25 +248,30 @@ const MovieLogWatched = () => {
         </NavSectionItemBox>
       </NavSection>
       <WatchedLogSubContainer>
-        <MovieLogAsidesBox nowSpace={getCookie("now-space")} />
+        <MovieLogAsidesBox
+          nowSpace={getCookie("now-space")}
+          expectMovieCount={expectMovies.length}
+        />
         <MainContentsBox>
           <MainContentsTitleBox>
             <MainContentsTitleH3>내가 본 영화</MainContentsTitleH3>
-            <MainContentsTitleP>22</MainContentsTitleP>
+            <MainContentsTitleP>{watchedMovies.length}</MainContentsTitleP>
           </MainContentsTitleBox>
           <WatchedMovieListBox>
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <WatchedMovieInfoP>
-                  2019.11.18 (월) 18:20 ~ 20:23
-                </WatchedMovieInfoP>
-                <WatchedMovieInfoP>CGV대연 6층 3관 / 2명</WatchedMovieInfoP>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
+            {watchedMovies.map((watchedMovie) => (
+              <WatchedMovieListItem>
+                <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
+                <WatchedMovieInfo>
+                  <WatchedMovieInfoTitle>
+                    <WatchedMovieInfoStrong>제목</WatchedMovieInfoStrong>
+                  </WatchedMovieInfoTitle>
+                  <WatchedMovieInfoP>
+                    2019.11.18 (월) 18:20 ~ 20:23
+                  </WatchedMovieInfoP>
+                  <WatchedMovieInfoP>CGV대연 6층 3관 / 2명</WatchedMovieInfoP>
+                </WatchedMovieInfo>
+              </WatchedMovieListItem>
+            ))}
             <WatchedMovieListItem>
               <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
               <WatchedMovieInfo>

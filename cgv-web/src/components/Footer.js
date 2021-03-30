@@ -28,6 +28,10 @@ const FooterInfoLink = styled(Link)`
   text-decoration: none;
   color: #444444;
   font-weight: 600;
+
+  &:hover {
+    color: #444444;
+  }
 `;
 
 const FooterImpLink = styled(Link)`
@@ -35,6 +39,10 @@ const FooterImpLink = styled(Link)`
   text-decoration: none;
   color: #e96736;
   font-weight: bold;
+
+  &:hover {
+    color: #e96736;
+  }
 `;
 
 const FooterSep = styled.span`
@@ -84,31 +92,31 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterInfoDiv>
-        <FooterInfoLink>회사소개</FooterInfoLink>
+        <FooterInfoLink to="#">회사소개</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>IR</FooterInfoLink>
+        <FooterInfoLink to="#">IR</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>채용정보</FooterInfoLink>
+        <FooterInfoLink to="#">채용정보</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>광고/프로모션문의</FooterInfoLink>
+        <FooterInfoLink to="#">광고/프로모션문의</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>제휴문의</FooterInfoLink>
+        <FooterInfoLink to="#">제휴문의</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>출점문의</FooterInfoLink>
+        <FooterInfoLink to="#">출점문의</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>이용약관</FooterInfoLink>
+        <FooterInfoLink to="#">이용약관</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>편성기준</FooterInfoLink>
+        <FooterInfoLink to="#">편성기준</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterImpLink>개인정보처리방침</FooterImpLink>
+        <FooterImpLink to="#">개인정보처리방침</FooterImpLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>법적고지</FooterInfoLink>
+        <FooterInfoLink to="#">법적고지</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>이메일주소무단수집거부</FooterInfoLink>
+        <FooterInfoLink to="#">이메일주소무단수집거부</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>윤리경영</FooterInfoLink>
+        <FooterInfoLink to="#">윤리경영</FooterInfoLink>
         <FooterSep>|</FooterSep>
-        <FooterInfoLink>사이트맵</FooterInfoLink>
+        <FooterInfoLink to="#">사이트맵</FooterInfoLink>
       </FooterInfoDiv>
 
       <FooterAdressDiv>

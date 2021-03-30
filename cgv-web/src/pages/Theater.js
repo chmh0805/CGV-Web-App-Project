@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import brickImg from "../images/brick_bg.jpg";
-import btnPlus from "../images/button/btn_plus.gif";
+import TheaterByAreaItemBox from "../components/theater/TheaterByAreaItemBox";
+import TheaterBottomItemBox from "../components/theater/TheaterBottomItemBox";
 
 const MyCgvHomeContainer = styled.div`
   background-color: #fdfcf0;
@@ -63,69 +64,6 @@ const InfoSectionContainer = styled.div`
   background-image: url("https://img.cgv.co.kr/R2014/images/common/bg/bg_showtimes_favorite.gif");
 `;
 
-const InfoSecFavCgv = styled.div`
-  width: 874px;
-  height: 49px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-`;
-
-const FavCgvImg = styled.img`
-  width: 145px;
-  height: 22px;
-`;
-
-const FavCgvListBox = styled.div`
-  width: 676px;
-  height: 49px;
-  line-height: 1.2;
-  color: #666;
-  display: flex;
-  justify-content: space-between;
-`;
-
-const InfoBottomItem1 = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-`;
-
-const InfoBottomItem1ItemBox = styled.div`
-  border: 2px solid #6e6c6d;
-  padding: 2px;
-  margin-right: 2px;
-`;
-
-const InfoBottomItem1Item = styled.div`
-  width: 109px;
-  height: 41px;
-  border: 1px solid #6e6c6d;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: "CJONLYONENEW", "맑은 고딕", "돋움", Dotum, sans-serif;
-  cursor: pointer;
-  word-break: break-all;
-  color: white;
-  font-weight: 600;
-  font-size: 11px;
-  line-height: 39px;
-`;
-
-const InfoBottomItemButton = styled.button`
-  width: 49px;
-  height: 49px;
-  background: #636162 url(${btnPlus}) 0 0 no-repeat;
-  border: 2px solid #6e6c6d;
-  outline: 0px;
-  border: 0px;
-  text-indent: 100%;
-  white-space: nowrap;
-  text-align: center;
-  text-decoration: none;
-`;
-
 const TheaterAreaBox = styled.div`
   width: 100%;
   height: 42px;
@@ -172,35 +110,59 @@ const MovieSectionImg = styled.img`
   margin-right: 3px;
 `;
 
-const TheaterInfoSection = styled.section`
-  width: 980px;
-  height: auto;
-  margin: 0 auto;
-  margin-top: 10px;
-`;
-
-const TheaterTitleDiv = styled.div`
-  width: 100%;
-  height: 34px;
-  color: #333333;
-  font-size: 29px;
-  font-weight: 600;
-`;
-
-const TheaterImg = styled.img`
-  width: 980px;
-  height: 420px;
-  margin-bottom: 20px;
-`;
-
-const BannerImg = styled.img`
-  width: 980px;
-  height: 90px;
-  margin-bottom: 30px;
-`;
-
 const Theater = () => {
-  window.scrollTo(0, 0);
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [theaters, setTheaters] = useState([]); // 극장들
+  const [areaList, setAreaList] = useState([]); // 지역들
+  const [theatersByArea, setTheatersByArea] = useState([]); // 지역별 극장들
+  const [theaterDetail, setTheaterDetail] = useState({}); // 현재 보고 있는 극장 정보
+
+  const loadData = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/theater")
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (res.statusCode === 1) {
+            setTheaters(res.data);
+            setTheaterDetail(res.data[0]);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  loadData();
+
+  theaters.forEach((theater) => {
+    if (!areaList.includes(theater.area)) {
+      setAreaList([...areaList, theater.area]);
+    }
+  });
+
+  const findAreaTheaters = (area) => {
+    setTheatersByArea([]);
+    let tempList = [];
+    theaters.forEach((theater) => {
+      if (theater.area === area) {
+        tempList.push(theater.name);
+      }
+    });
+    setTheatersByArea(tempList);
+  };
+
+  const findTheaterDetails = (theaterName) => {
+    theaters.forEach((theater) => {
+      if (theater.name === theaterName) {
+        setTheaterDetail(theater);
+      }
+    });
+  };
 
   return (
     <MyCgvHomeContainer>
@@ -221,45 +183,21 @@ const Theater = () => {
       </NavSection>
       <InfoSection>
         <InfoSectionContainer>
-          <InfoSecFavCgv>
-            <div style={{ width: "180px", paddingLeft: "30px" }}>
-              <FavCgvImg src="https://img.cgv.co.kr/R2014/images/title/h4_favorite_cgv.png" />
-            </div>
-            <FavCgvListBox>
-              <InfoBottomItem1>
-                <InfoBottomItem1ItemBox>
-                  <InfoBottomItem1Item>CGV서면삼정타워</InfoBottomItem1Item>
-                </InfoBottomItem1ItemBox>
-                <InfoBottomItem1ItemBox>
-                  <InfoBottomItem1Item></InfoBottomItem1Item>
-                </InfoBottomItem1ItemBox>
-                <InfoBottomItem1ItemBox>
-                  <InfoBottomItem1Item></InfoBottomItem1Item>
-                </InfoBottomItem1ItemBox>
-                <InfoBottomItem1ItemBox>
-                  <InfoBottomItem1Item></InfoBottomItem1Item>
-                </InfoBottomItem1ItemBox>
-                <InfoBottomItem1ItemBox>
-                  <InfoBottomItem1Item></InfoBottomItem1Item>
-                </InfoBottomItem1ItemBox>
-                <InfoBottomItem1ItemBox
-                  style={{ border: "0px", padding: "0px" }}
-                >
-                  <InfoBottomItemButton />
-                </InfoBottomItem1ItemBox>
-              </InfoBottomItem1>
-            </FavCgvListBox>
-          </InfoSecFavCgv>
           <TheaterAreaBox>
-            <TheaterAreaItem>서울</TheaterAreaItem>
-            <TheaterAreaItem>경기</TheaterAreaItem>
-            <TheaterAreaItem>인천</TheaterAreaItem>
-            <TheaterAreaItem>강원</TheaterAreaItem>
-            <TheaterAreaItem>대전/충청</TheaterAreaItem>
-            <TheaterAreaItem>대구</TheaterAreaItem>
-            <TheaterAreaItem>부산/울산</TheaterAreaItem>
-            <TheaterAreaItem>경상</TheaterAreaItem>
+            {areaList.map((area) => (
+              <TheaterAreaItem
+                onClick={() => {
+                  findAreaTheaters(area);
+                }}
+              >
+                {area}
+              </TheaterAreaItem>
+            ))}
           </TheaterAreaBox>
+          <TheaterByAreaItemBox
+            theatersByArea={theatersByArea}
+            findTheaterDetails={findTheaterDetails}
+          />
         </InfoSectionContainer>
       </InfoSection>
       <HomeMiddleToBottomContainer>
@@ -273,11 +211,7 @@ const Theater = () => {
             <span>〓〓〓〓〓〓〓〓〓〓〓〓〓</span>
           </HomeH3>
         </TitleSection>
-        <TheaterInfoSection>
-          <TheaterTitleDiv>CGV센텀시티</TheaterTitleDiv>
-          <TheaterImg src="https://img.cgv.co.kr/Theater/Theater/2014/1211/CGVcentumcity.jpg" />
-          <BannerImg src="https://adimg.cgv.co.kr/images/202103/GodzillaKong/0315_980x90_02.jpg" />
-        </TheaterInfoSection>
+        <TheaterBottomItemBox theaterDetail={theaterDetail} />
       </HomeMiddleToBottomContainer>
     </MyCgvHomeContainer>
   );

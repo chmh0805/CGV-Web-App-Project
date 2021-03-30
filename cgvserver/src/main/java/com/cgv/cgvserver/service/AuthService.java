@@ -5,6 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.domain.user.UserRepository;
+import com.cgv.cgvserver.handler.exception.NotFoundUserException;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,5 +23,13 @@ public class AuthService {
 		} else {
 			return -1;
 		}
+	}
+	
+	@Transactional(readOnly = true)
+	public String 권한조회(long id) {
+		User userEntity = userRepository.findById(id)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
+		
+		return userEntity.getRole();
 	}
 }

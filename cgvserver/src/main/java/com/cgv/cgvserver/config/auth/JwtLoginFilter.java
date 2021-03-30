@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -16,7 +18,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.cgv.cgvserver.web.user.dto.LoginReqDto;
+import com.cgv.cgvserver.web.dto.user.LoginReqDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -25,19 +27,23 @@ import lombok.RequiredArgsConstructor;
 public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final AuthenticationManager authenticationManager;
+	private static final Logger log = LoggerFactory.getLogger(JwtLoginFilter.class);
+
 	
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-		System.out.println("로그인 요청 옴");
+		log.info("JwtLoginFilter : 로그인 요청 받음.");
 		
 		ObjectMapper om = new ObjectMapper();
 		LoginReqDto loginReqDto = null;
 		
 		try {
 			loginReqDto = om.readValue(request.getInputStream(), LoginReqDto.class);
+			log.info("JwtLoginFilter : 로그인 유저 dto : " + loginReqDto);
 		} catch (Exception e) {
-			e.printStackTrace();
+			log.warn("JwtLoginFilter : 로그인 요청 dto 생성 중 실패");
+			log.warn(e.getStackTrace().toString());
 		}
 		
 		// 1. UsernamePassword 토큰 만들기
@@ -52,16 +58,18 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		System.out.println("로그인 완료되어서 세션 만들어짐. 이제 JWT토큰 만들어서 response.header에 응답할 차례");
 		PrincipalDetails principalDetails = (PrincipalDetails) authResult.getPrincipal();
+		
+		Date expireDate = new Date(System.currentTimeMillis() + 1000 * 10 * 60);
 		
 		String jwtToken = JWT.create()
 							.withSubject("cgvToken")
-							.withExpiresAt(new Date(System.currentTimeMillis() + 1000*60*10))
+							.withExpiresAt(expireDate)
 							.withClaim("userId", principalDetails.getUser().getId())
 							.sign(Algorithm.HMAC512("영화관"));
 		
-		System.out.println("jwtToken : " + jwtToken);
 		response.setHeader("Authorization", "Bearer " + jwtToken);
+		log.info("JwtLoginFilter : Token 생성 완료. 만료 시각 : " + expireDate);
+		log.info("JwtLoginFilter : " + principalDetails.getUser().getUsername() + "의 token : " + jwtToken);
 	}
 }

@@ -1,5 +1,6 @@
 package com.cgv.cgvserver.domain.stillcut;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,13 +18,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 public class StillCut {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@JoinColumn(name = "movieId")
-//	@ManyToOne
+	@JoinColumn(name = "movieId")
+	@ManyToOne
 	private Movie movie;
+	
+	private String imageUrl;
 }

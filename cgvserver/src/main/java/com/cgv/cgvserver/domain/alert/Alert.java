@@ -1,33 +1,34 @@
-package com.cgv.cgvserver.alert;
+package com.cgv.cgvserver.domain.alert;
 
 import java.sql.Timestamp;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.cgv.cgvserver.domain.notice.Notice;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-//@Entity
+@Entity
 public class Alert {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String title;
+	@Column(nullable = false)
+	private String content;
 	
-//	@CreationTimestamp
-//	private Timestamp createDate;
-	
+	@CreationTimestamp
+	private Timestamp createDate;
 }

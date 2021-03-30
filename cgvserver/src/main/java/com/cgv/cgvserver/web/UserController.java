@@ -4,20 +4,21 @@ import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.service.UserService;
+import com.cgv.cgvserver.utils.MyJWT;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
-import com.cgv.cgvserver.web.user.dto.FindPasswordReqDto;
-import com.cgv.cgvserver.web.user.dto.FindPasswordRespDto;
-import com.cgv.cgvserver.web.user.dto.FindUsernameReqDto;
-import com.cgv.cgvserver.web.user.dto.UpdatePasswordReqDto;
-import com.cgv.cgvserver.web.user.dto.UserUpdateReqDto;
+import com.cgv.cgvserver.web.dto.user.FindPasswordReqDto;
+import com.cgv.cgvserver.web.dto.user.FindPasswordRespDto;
+import com.cgv.cgvserver.web.dto.user.FindUsernameReqDto;
+import com.cgv.cgvserver.web.dto.user.UpdatePasswordReqDto;
+import com.cgv.cgvserver.web.dto.user.UserUpdateReqDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -57,16 +58,20 @@ public class UserController {
 		return new CommonRespDto<>(1, null);
 	}
 	
-	@GetMapping("/user/{id}")
-	public CommonRespDto<?> findById(@PathVariable long id) {
-		User userEntity = userService.회원정보찾기(id);
+	@GetMapping("/user")
+	public CommonRespDto<?> findById(@RequestHeader("Authorization") String jwtToken) {
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		User userEntity = userService.회원정보찾기(userId);
 		return new CommonRespDto<>(1, userEntity);
 	}
 	
-	@PutMapping("/user/{id}")
-	public CommonRespDto<?> updateById(@PathVariable long id, @Valid @RequestBody UserUpdateReqDto updateReqDto,
-									BindingResult bindingResult) {
-		userService.회원정보수정(id, updateReqDto);
+	@PutMapping("/user")
+	public CommonRespDto<?> updateById(@RequestHeader("Authorization") String jwtToken,
+			@Valid @RequestBody UserUpdateReqDto updateReqDto, BindingResult bindingResult) {
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		userService.회원정보수정(userId, updateReqDto);
 		return new CommonRespDto<>(1, null);
 	}
 }

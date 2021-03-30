@@ -1,4 +1,4 @@
-package com.cgv.cgvserver.web.user.dto;
+package com.cgv.cgvserver.web.dto.user;
 
 import javax.validation.constraints.NotEmpty;
 

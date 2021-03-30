@@ -1,14 +1,13 @@
 package com.cgv.cgvserver.domain.trailer;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.cgv.cgvserver.domain.expectmovie.ExpectMovie;
 import com.cgv.cgvserver.domain.movie.Movie;
-import com.cgv.cgvserver.domain.user.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,14 +18,14 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 public class Trailer {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-//	@JoinColumn(name = "movieId")
-//	@ManyToOne
+	@JoinColumn(name = "movieId")
+	@ManyToOne
 	private Movie movie;
 	
 	private String trailerUrl;

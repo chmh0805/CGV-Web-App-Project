@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,8 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
 
 	private final AuthenticationManager authenticationManager;
 	private final UserRepository userRepository;
+	private static final Logger log = LoggerFactory.getLogger(JwtVerifyFilter.class);
+
 	
 	public JwtVerifyFilter(AuthenticationManager authenticationManager, UserRepository userRepository) {
 		super(authenticationManager);
@@ -35,7 +39,6 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		String header = request.getHeader("Authorization");
-		System.out.println("header : " + header);
 		
 		if (header == null || !(header.startsWith("Bearer"))) {
 			chain.doFilter(request, response);
@@ -43,17 +46,16 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
 		}
 		
 		String token = request.getHeader("Authorization").replace("Bearer ", "");
+		log.info("JwtVerifyFilter : 받은 JWT : " + token);
 		
 		// 검증 1 (Header + Payload + Secret을 HMAC512로 해쉬한 값과 Signature 값이 같은 지)
 		// 검증 2 (만료시간 확인)
 		DecodedJWT dJwt = JWT.require(Algorithm.HMAC512("영화관")).build().verify(token);
 		long userId = dJwt.getClaim("userId").asLong();
-		System.out.println("userId : " + userId);
 		
 		try {
 			User userEntity = userRepository.findById(userId)
 						.orElseThrow(NotFoundUserException::new);
-			System.out.println("userEntity : " + userEntity);
 			
 			PrincipalDetails principalDetails = new PrincipalDetails(userEntity);
 			Authentication authentication =
@@ -62,7 +64,7 @@ public class JwtVerifyFilter extends BasicAuthenticationFilter {
 			
 			chain.doFilter(request, response);
 		} catch (NotFoundUserException e) {
-			e.printStackTrace();
+			log.warn("JwtVerifyFilter : " + e.getStackTrace().toString());
 		}
 
 	}

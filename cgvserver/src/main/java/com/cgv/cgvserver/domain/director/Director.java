@@ -1,14 +1,13 @@
 package com.cgv.cgvserver.domain.director;
 
-import java.util.List;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import com.cgv.cgvserver.domain.movie.Movie;
-import com.cgv.cgvserver.domain.seat.Seat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,16 +18,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 public class Director {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String directorImageUrl;
 	
-	private String directorName;
+	private String name;
 	
-//	@OneToMany(mappedBy = "director")
-	private List<Movie> movie;
+	@JoinColumn(name = "movieId")
+	@OneToOne
+	private Movie movie;
 }

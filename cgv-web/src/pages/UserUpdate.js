@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
-import { getCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
 import axios from "axios";
 
 const JoinContainer = styled.div`
@@ -102,10 +102,11 @@ const UserUpdate = (props) => {
     phone: "",
   });
 
-  if (isLoaded) {
+  const getInfo = () => {
     setIsLoaded(false);
+
     axios
-      .get("http://localhost:8080/user/" + getCookie("userId"), {
+      .get("http://localhost:8080/user", {
         headers: {
           Authorization: getCookie("cgvJWT"),
         },
@@ -122,15 +123,18 @@ const UserUpdate = (props) => {
             email: data.email,
             phone: data.phone,
           });
-        } else {
-          alert("회원정보 조회 실패. 재로그인해주세요.");
-          window.location.replace("/");
         }
       })
       .catch((err) => {
+        deleteCookie("cgvJWT");
+        deleteCookie("userId");
         alert("회원정보 조회 실패. 재로그인해주세요.");
-        window.location.replace("/");
+        window.location.replace("/login");
       });
+  };
+
+  if (isLoaded === true) {
+    getInfo();
   }
 
   const handleForm = (e) => {
@@ -188,7 +192,7 @@ const UserUpdate = (props) => {
 
     axios
       .put(
-        "http://localhost:8080/user/" + getCookie("userId"),
+        "http://localhost:8080/user",
         {
           nickname: nickname,
           password: password,

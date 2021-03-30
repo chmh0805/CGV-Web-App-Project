@@ -2687,3 +2687,25 @@
 2021-03-30 16:41:24,880 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-03-30 16:41:24,880 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2021-03-30 16:41:24,880 [Worker-1: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Programing\workspace\CGV-Web-App-Project\cgvserver\src\test\resources
+2021-03-30 16:44:45,086 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-03-30 16:44:45,086 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-03-30 16:44:45,089 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-03-30 16:44:45,117 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2021-03-30 16:44:45,166 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-03-30 16:44:45,166 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-03-30 16:44:45,167 [Worker-10: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Programing\workspace\CGV-Web-App-Project\cgvserver\src\test\resources
+2021-03-30 16:48:31,667 [Worker-6: Launching Executing clean in C__Programing_workspace_CGV-Web-App-Project_cgvserver] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Programing\workspace\CGV-Web-App-Project\cgvserver
+2021-03-30 16:48:31,670 [Worker-6: Launching Executing clean in C__Programing_workspace_CGV-Web-App-Project_cgvserver] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B clean -Dstyle.color=always
+2021-03-30 16:48:34,211 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-03-30 16:48:34,211 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-03-30 16:48:34,213 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-03-30 16:48:34,223 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2021-03-30 16:48:34,252 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-03-30 16:48:34,252 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-03-30 16:48:34,252 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Programing\workspace\CGV-Web-App-Project\cgvserver\src\test\resources
+2021-03-30 16:48:37,630 [Worker-13: Launching Executing install in C__Programing_workspace_CGV-Web-App-Project_cgvserver] INFO  o.e.m.i.launch.MavenLaunchDelegate - C:\Programing\workspace\CGV-Web-App-Project\cgvserver
+2021-03-30 16:48:37,630 [Worker-13: Launching Executing install in C__Programing_workspace_CGV-Web-App-Project_cgvserver] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn -B install -Dstyle.color=always
+2021-03-30 16:48:57,911 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-03-30 16:48:57,911 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-03-30 16:48:57,912 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-03-30 16:48:57,924 [Worker-15: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources

@@ -1,12 +1,13 @@
 package com.cgv.cgvserver.domain.actor;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.cgv.cgvserver.domain.movie.Movie;
-import com.cgv.cgvserver.domain.seat.Seat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,19 +18,18 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-//@Entity
+@Entity
 public class Actor {
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String actorImageUrl;
+	private String imageUrl;
 	
 	private String name;
 	
-	private String characterName;
-	
-//	@ManyToOne
+	@JoinColumn(name = "movieId")
+	@ManyToOne
 	private Movie movie;
 	
 }
