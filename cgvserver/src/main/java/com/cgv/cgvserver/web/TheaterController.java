@@ -46,15 +46,15 @@ public class TheaterController {
 	}
 	
 	// 진행중
-//	@GetMapping("/theater/image/{id}")
-//	public ResponseEntity<Resource> findImage(@PathVariable long id) throws IOException {
-//		Path path = theaterService.극장이미지찾기(id);
-//		Resource resource = new InputStreamResource(Files.newInputStream(path));
-//
-//		String contentType = Files.probeContentType(path);
-//		HttpHeaders headers = new HttpHeaders();
-//		headers.add(HttpHeaders.CONTENT_TYPE, contentType);
-//		
-//		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
-//	}
+	@GetMapping("/theater/image/{id}")
+	public ResponseEntity<Resource> findImage(@PathVariable long id) throws IOException {
+		Path path = theaterService.극장이미지찾기(id);
+		Resource resource = new InputStreamResource(Files.newInputStream(path));
+
+		String contentType = Files.probeContentType(path);
+		HttpHeaders headers = new HttpHeaders();
+		headers.add(HttpHeaders.CONTENT_TYPE, contentType);
+		
+		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
+	}
 }

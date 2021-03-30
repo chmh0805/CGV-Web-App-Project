@@ -111,8 +111,6 @@ const MovieSectionImg = styled.img`
 `;
 
 const Theater = () => {
-  window.scrollTo(0, 0);
-
   const [isLoaded, setIsLoaded] = useState(true);
   const [theaters, setTheaters] = useState([]); // 극장들
   const [areaList, setAreaList] = useState([]); // 지역들

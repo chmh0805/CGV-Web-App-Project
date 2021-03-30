@@ -26,7 +26,6 @@ public class TheaterService {
 	private final TheaterRepository theaterRepository;
 	private static final Logger log = LoggerFactory.getLogger(TheaterService.class);
 
-	
 	@Value("${file.path}")
 	private String uploadFolder;
 	
