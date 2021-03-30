@@ -12,6 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
@@ -28,7 +29,7 @@ public interface UserService {
     Call<CMRespDto<UpdatePasswordReqDto>> changePassword(@Body UpdatePasswordReqDto updatePasswordReqDto);
 
     @GET("/user")
-    Call<CMRespDto<User>> findById();
+    Call<CMRespDto<User>> findById(@Header("Authorization") String authHeader);
 
     @PUT("/user")
     Call<CMRespDto<User>> updateById(@Body UserUpdateReqDto userUpdateReqDto);

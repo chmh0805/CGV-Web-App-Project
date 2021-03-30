@@ -3,6 +3,7 @@ package com.example.cgvapplication.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,10 +23,16 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.activity.ServiceCenterActivity;
 import com.example.cgvapplication.activity.TicketingActivity;
 import com.example.cgvapplication.model.user.User;
+import com.example.cgvapplication.service.SharedPreference;
 import com.example.cgvapplication.service.UserService;
 import com.example.cgvapplication.service.dto.CMRespDto;
+import com.google.gson.Gson;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.http.Header;
 
 public class MyNavigationHelper {
 
@@ -35,6 +42,7 @@ public class MyNavigationHelper {
     private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell, mTvLogout;
     private DrawerLayout mDrawer, mFrequentlyCgvDrawer;
     private LinearLayout mLinearNavigation;
+
     public MyNavigationHelper(Context mContext) {
         this.mContext = mContext;
     }
@@ -66,7 +74,7 @@ public class MyNavigationHelper {
 
     private void listener() {
         mTvGoLogin.setOnClickListener(v -> {
-            if(!(mContext.getClass().equals(LoginActivity.class))) {
+            if (!(mContext.getClass().equals(LoginActivity.class))) {
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(intent);
@@ -74,18 +82,34 @@ public class MyNavigationHelper {
                 mDrawer.closeDrawer(GravityCompat.END);
             }
         });
+
         mTvGoMyCgv.setOnClickListener(v -> {
 
             UserService userService = UserService.retrofit.create(UserService.class);
-            Call<CMRespDto<User>> call = userService.findById();
+            String token = SharedPreference.getAttribute(mContext, "Authorization");
+            Call<CMRespDto<User>> call = userService.findById(token);
+            call.enqueue(new Callback<CMRespDto<User>>() {
+                @Override
+                public void onResponse(Call<CMRespDto<User>> call, Response<CMRespDto<User>> response) {
 
-            if(!(mContext.getClass().equals(MyCgvActivity.class))) {
-                Intent intent = new Intent(mContext, MyCgvActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                mContext.startActivity(intent);
-            } else {
-                mDrawer.closeDrawer(GravityCompat.END);
-            }
+                    CMRespDto<User> userData = response.body();
+                    if (userData.getStatusCode() == 1) {
+                        Intent intent = new Intent(mContext, MyCgvActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+                        Gson gson = new Gson();
+                        String userEntity = gson.toJson(userData.getData());
+                        Log.d(TAG, "onResponse: "+userEntity);
+                        intent.putExtra("userEntity", userEntity);
+                        mContext.startActivity(intent);
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<CMRespDto<User>> call, Throwable t) {
+
+                }
+            });
         });
 
         mIvMenu.setOnClickListener(v -> {
@@ -95,7 +119,7 @@ public class MyNavigationHelper {
         mIvClose.setOnClickListener(v -> {
             mDrawer.closeDrawer(GravityCompat.END);
         });
-        mIvTicketingMovie.setOnClickListener(v ->{
+        mIvTicketingMovie.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, TicketingActivity.class);
             mContext.startActivity(intent);
         });
@@ -116,7 +140,7 @@ public class MyNavigationHelper {
             mContext.startActivity(intent);
         });
 
-        mIvTicketingMovie.setOnClickListener(v ->{
+        mIvTicketingMovie.setOnClickListener(v -> {
             Intent intent = new Intent(mContext, TicketingActivity.class);
             mContext.startActivity(intent);
         });
@@ -157,7 +181,7 @@ public class MyNavigationHelper {
             mContext.startActivity(intent);
         });
 
-        if(mIvBack != null) {
+        if (mIvBack != null) {
             mIvBack.setOnClickListener(v -> {
                 ((Activity) mContext).finish();
             });

@@ -15,6 +15,7 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.helper.MyNavigationHelper;
 import com.example.cgvapplication.model.user.User;
 import com.example.cgvapplication.service.AuthService;
+import com.example.cgvapplication.service.SharedPreference;
 import com.example.cgvapplication.service.dto.auth.LoginReqDto;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -85,12 +86,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(LoginReqDto loginReqDto) {
+
         AuthService authService = AuthService.retrofit.create(AuthService.class);
         Call<Void> call = authService.login(loginReqDto);
 
         call.enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
+                String accessToken = response.headers().get("Authorization");
+                Log.d(TAG, "onResponse: "+accessToken);
+
+                SharedPreference.setAttribute(LoginActivity.this, "Authorization", accessToken);
+
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
             }

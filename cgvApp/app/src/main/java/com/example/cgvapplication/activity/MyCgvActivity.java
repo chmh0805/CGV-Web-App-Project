@@ -16,9 +16,13 @@ import android.widget.TextView;
 
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.example.cgvapplication.model.user.User;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MyCgvActivity extends AppCompatActivity {
 
@@ -26,8 +30,9 @@ public class MyCgvActivity extends AppCompatActivity {
     private Toolbar mToolbarDefault;
     private MyNavigationHelper mMyNavigationHelper;
     private LinearLayout mLinearNavigation;
-    private TextView mTvToolbarTitle, mTvGoPaymentHistory;
+    private TextView mTvToolbarTitle, mTvGoPaymentHistory, mTvNickname;
     private ImageView mIvGoSawMovie, mIvGoExpectMovie;
+    private CircleImageView mProfileImage;
     private List<String> mMyCgvMenu;
     private ListView mLvMyCgv;
     private ArrayAdapter<String> adapter;
@@ -44,16 +49,20 @@ public class MyCgvActivity extends AppCompatActivity {
         mMyNavigationHelper.enable(mLinearNavigation);
         mLvMyCgv.setAdapter(adapter);
         listener();
+
+        download();
     }
 
     public void init() {
         mToolbarDefault = findViewById(R.id.toolbar_default);
         mLinearNavigation = findViewById(R.id.linear_navigation);
         mTvToolbarTitle = findViewById(R.id.tv_toolbar_title);
+        mTvNickname = findViewById(R.id.tv_nickname);
         mIvGoSawMovie = findViewById(R.id.iv_go_saw_movie);
         mIvGoExpectMovie = findViewById(R.id.iv_go_expect_movie);
         mTvGoPaymentHistory = findViewById(R.id.tv_go_payment_history);
         mLvMyCgv = findViewById(R.id.lv_my_cgv);
+        mProfileImage = findViewById(R.id.profile_image);
         mMyNavigationHelper = new MyNavigationHelper(MyCgvActivity.this);
         mMyCgvMenu = new ArrayList<>();
 
@@ -114,5 +123,14 @@ public class MyCgvActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void download() {
+        Gson gson = new Gson();
+
+        String userData = getIntent().getStringExtra("userEntity");
+        User userEntity = gson.fromJson(userData, User.class);
+
+        mTvNickname.setText(userEntity.getNickname());
     }
 }
