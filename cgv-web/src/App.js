@@ -33,6 +33,7 @@ import FindPassword from "./pages/FindPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import MyMovieReview from "./pages/MyMovieReview";
 import TheaterRegister from "./pages/TheaterRegister";
+import MyCgvMyQnaDetail from "./pages/MyCgvMyQnaDetail";
 
 function App() {
   return (
@@ -81,6 +82,12 @@ function App() {
       />
       {/* My CGV 내 문의내역 */}
       <Route path="/user/mycgv/myqna" exact={true} component={MyCgvMyQna} />
+      {/* My CGV 내 문의내역 상세보기 */}
+      <Route
+        path="/user/mycgv/myqna/detail"
+        exact={true}
+        component={MyCgvMyQnaDetail}
+      />
       {/* My CGV 영역 끝 */}
 
       {/* Movie 영역 */}

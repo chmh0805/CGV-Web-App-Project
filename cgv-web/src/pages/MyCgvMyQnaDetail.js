@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import MyCgvAsidesBox from "../components/MyCgvAsidesBox";
-import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
+import { getCookie, setCookie } from "../utils/JWT";
 import MyCGVInfoBox from "../components/MyCGVInfoBox";
-import TableContentSection from "../components/mycgv/myqna/TableContentSection";
+import MyCgvQnaDetailBox from "../components/mycgv/myqna/MyCgvQnaDetailBox";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -79,87 +79,19 @@ const MainContentsTitleH3 = styled.h3`
   line-height: 30px;
 `;
 
-const GiftconInfoSection = styled.section`
-  width: 100%;
-  height: auto;
-  margin-top: 30px;
-`;
-
-const GiftconInfoSectionTitle = styled.strong`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-  padding-top: 10px;
-  padding-right: 30px;
-  font-size: 14px;
-  color: #000;
-  line-height: 1.2;
-  font-weight: 500;
-`;
-
-const GoToWriteBtn = styled.button`
-  width: 100px;
-  height: 30px;
-  background-color: inherit;
-  color: black;
-  border: 1px solid black;
-  border-radius: 5px;
-`;
-
-const GiftconInfoTable = styled.div`
-  width: 100%;
-  height: auto;
-  border-top: 1px solid #b8b6aa;
-  border-bottom: 1px solid #b8b6aa;
-`;
-
-const TableTitleSec = styled.div`
-  width: 100%;
-  height: 35px;
-  display: flex;
-  background-color: #e2e2e0;
-`;
-
-const TableTitle = styled.div`
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 13px;
-  line-height: 34px;
-  color: #666;
-`;
-
-const TableNoTitle = styled(TableTitle)`
-  width: 150px;
-`;
-
-const TableNameTitle = styled(TableTitle)`
-  width: 350px;
-`;
-
-const TableCreateDateTitle = styled(TableTitle)`
-  width: 200px;
-`;
-
-const TableStateTitle = styled(TableTitle)`
-  width: 100px;
-`;
-
-const MyCgvMyQna = () => {
+const MyCgvMyQnaDetail = (props) => {
   setCookie("now-space", "mycgv-myqna");
   window.scrollTo(0, 0);
 
+  let qnaId = props.location.state.qnaId;
   const [isLoaded, setIsLoaded] = useState(true);
-  const [qnas, setQnas] = useState([]);
+  const [qna, setQna] = useState({});
 
   const loadQnas = async () => {
     if (isLoaded) {
       setIsLoaded(false);
 
-      await fetch("http://localhost:8080/qna", {
+      await fetch("http://localhost:8080/qna/" + qnaId, {
         method: "GET",
         headers: new Headers({
           Authorization: getCookie("cgvJWT"),
@@ -168,25 +100,13 @@ const MyCgvMyQna = () => {
         .then((res) => res.json())
         .then((res) => {
           if (res.statusCode === 1) {
-            setQnas(res.data);
-          } else {
-            fetch("http://localhost:8080/logout").then(() => {
-              deleteCookie("cgvJWT");
-              deleteCookie("userId");
-              deleteCookie("role");
-            });
-            alert("회원정보 조회 실패. 재로그인해주세요.");
-            window.location.replace("/login");
+            setQna(res.data);
           }
         })
         .catch((err) => {
-          fetch("http://localhost:8080/logout").then(() => {
-            deleteCookie("cgvJWT");
-            deleteCookie("userId");
-            deleteCookie("role");
-          });
-          alert("회원정보 조회 실패. 재로그인해주세요.");
-          window.location.replace("/login");
+          // logout();
+          // alert("회원정보 조회 실패. 재로그인해주세요.");
+          // window.location.replace("/login");
         });
     }
   };
@@ -219,26 +139,11 @@ const MyCgvMyQna = () => {
           <MainContentsTitleBox>
             <MainContentsTitleH3>나의 문의내역</MainContentsTitleH3>
           </MainContentsTitleBox>
-          <GiftconInfoSectionTitle>
-            <Link to="/support/qna/default">
-              <GoToWriteBtn>1:1문의하기</GoToWriteBtn>
-            </Link>
-          </GiftconInfoSectionTitle>
-          <GiftconInfoSection>
-            <GiftconInfoTable>
-              <TableTitleSec>
-                <TableNoTitle>번호</TableNoTitle>
-                <TableNameTitle>제목</TableNameTitle>
-                <TableCreateDateTitle>등록일</TableCreateDateTitle>
-                <TableStateTitle>상태</TableStateTitle>
-              </TableTitleSec>
-              <TableContentSection qnas={qnas} />
-            </GiftconInfoTable>
-          </GiftconInfoSection>
+          <MyCgvQnaDetailBox qna={qna} />
         </MainContentsBox>
       </MyCGVMainContainer>
     </MyCgvReserveContainer>
   );
 };
 
-export default MyCgvMyQna;
+export default MyCgvMyQnaDetail;

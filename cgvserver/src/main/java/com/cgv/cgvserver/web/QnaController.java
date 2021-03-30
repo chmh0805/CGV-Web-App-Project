@@ -1,41 +1,43 @@
 package com.cgv.cgvserver.web;
 
-import javax.validation.Valid;
-
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cgv.cgvserver.service.ExpectMovieService;
+import com.cgv.cgvserver.service.QnaService;
 import com.cgv.cgvserver.utils.MyJWT;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
-import com.cgv.cgvserver.web.dto.expectmovie.ExpectSaveReqDto;
+import com.cgv.cgvserver.web.dto.qna.QnaSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
 
-@CrossOrigin
 @RequiredArgsConstructor
 @RestController
-public class ExpectMovieController {
-	private final ExpectMovieService expectMovieService;
+public class QnaController {
+	private final QnaService qnaService;
 	
-	@GetMapping("/expectMovie")
-	public CommonRespDto<?> findAll(@RequestHeader("Authorization") String jwtToken) {
+	@GetMapping("/qna")
+	public CommonRespDto<?> findByUserId(@RequestHeader("Authorization") String jwtToken) {
 		String token = jwtToken.substring(7);
 		Long userId = MyJWT.getId(token);
-		return new CommonRespDto<>(1, expectMovieService.기대되는영화찾기(userId));
+		return new CommonRespDto<>(1, qnaService.유저아이디로찾기(userId));
 	}
 	
-	@PostMapping("/expectMovie")
+	@PostMapping("/qna")
 	public CommonRespDto<?> save(@RequestHeader("Authorization") String jwtToken,
-			@Valid @RequestBody ExpectSaveReqDto expectSaveReqDto, BindingResult bindingResult) {
+			@RequestBody QnaSaveReqDto qnaSaveReqDto) {
+		
 		String token = jwtToken.substring(7);
 		Long userId = MyJWT.getId(token);
-		expectMovieService.기대되는영화등록(expectSaveReqDto.getMovieId(), userId);
+		qnaService.문의등록(userId, qnaSaveReqDto);
 		return new CommonRespDto<>(1, null);
+	}
+	
+	@GetMapping("/qna/{id}")
+	public CommonRespDto<?> findById(@PathVariable long id) {
+		return new CommonRespDto<>(1, qnaService.상세보기(id));
 	}
 }

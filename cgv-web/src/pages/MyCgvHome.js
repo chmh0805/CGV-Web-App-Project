@@ -318,11 +318,13 @@ const MyCgvHome = (props) => {
       })
       .catch((err) => {
         console.log(err);
-        // deleteCookie("cgvJWT");
-        // deleteCookie("userId");
-        // deleteCookie("role");
-        // alert("회원정보 조회 실패. 재로그인해주세요.");
-        // window.location.replace("/login");
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
       });
   }
 

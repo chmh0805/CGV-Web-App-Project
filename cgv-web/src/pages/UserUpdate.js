@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
-import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie } from "../utils/JWT";
 import axios from "axios";
 
 const JoinContainer = styled.div`
