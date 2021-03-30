@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -26,6 +27,9 @@ public class Notice {
 	
 	private int sort; // 1:극장 2:시스템점검 3:기타
 	
+	private String title;
+	
+	@Lob
 	private String content;
 	
 	private int readCount; // 조회수

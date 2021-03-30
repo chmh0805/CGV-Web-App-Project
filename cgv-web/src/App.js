@@ -33,6 +33,7 @@ import FindPassword from "./pages/FindPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import MyMovieReview from "./pages/MyMovieReview";
 import TheaterRegister from "./pages/TheaterRegister";
+import SuppotNewsRegister from "./pages/SuppotNewsRegister";
 
 function App() {
   return (
@@ -127,6 +128,12 @@ function App() {
         path="/support/news/default"
         exact={true}
         component={SupportNewsMain}
+      />
+      {/* 공지/뉴스 등록 */}
+      <Route
+        path="/support/news/register"
+        exact={true}
+        component={SuppotNewsRegister}
       />
       {/* 이메일 문의 */}
       <Route

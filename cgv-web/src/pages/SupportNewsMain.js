@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import btnPaging from "../images/button/btn_paging.gif";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
+import SearchTableContentBox from "../components/notice/SearchTableContentBox";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -180,60 +181,6 @@ const SearchTableTitleReadCount = styled.div`
   font-weight: 500;
 `;
 
-const SearchTableContent = styled.div`
-  width: 100%;
-  height: 37px;
-  display: flex;
-  align-items: center;
-`;
-
-const SearchTableContentNo = styled.div`
-  width: 40px;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-`;
-
-const SearchTableContentType = styled.div`
-  width: 120px;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-`;
-
-const SearchTableContentTitle = styled(Link)`
-  width: 540px;
-  display: block;
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-
-  &:hover {
-    color: #666;
-    font-style: bold;
-    font-size: 15px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-  }
-`;
-
-const SearchTableContentReadCount = styled.div`
-  width: 70px;
-  display: flex;
-  justify-content: center;
-  font-size: 14px;
-  color: #666;
-  font-weight: 500;
-`;
-
 const PagingBoxSection = styled.div`
   width: 100%;
   display: flex;
@@ -282,6 +229,30 @@ const NextPageButton = styled.button`
 const SupportNewsMain = () => {
   setCookie("now-space", "support-news");
 
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [notices, setNotices] = useState([]);
+
+  const loadData = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/support/news")
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          if (res.statusCode === 1) {
+            setNotices(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  };
+
+  loadData();
+
   return (
     <SupportMainContainer>
       <NavSection>
@@ -323,96 +294,9 @@ const SupportNewsMain = () => {
               <SearchTableTitleTitle>제목</SearchTableTitleTitle>
               <SearchTableTitleReadCount>조회수</SearchTableTitleReadCount>
             </SearchTableTitle>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
-            <SearchTableContent>
-              <SearchTableContentNo>172</SearchTableContentNo>
-              <SearchTableContentType>[홈페이지/모바일]</SearchTableContentType>
-              <SearchTableContentTitle>
-                예매대행업체(맥스무비, 인터파크, YES24) 예매 시 적립/내가 본
-                영화 등록/포토플레이 제작은 어떻게 하나요?
-              </SearchTableContentTitle>
-              <SearchTableContentReadCount>16</SearchTableContentReadCount>
-            </SearchTableContent>
+            {notices.map((notice) => (
+              <SearchTableContentBox notice={notice} />
+            ))}
           </SearchTableBox>
           <PagingBoxSection>
             <PagingBox>

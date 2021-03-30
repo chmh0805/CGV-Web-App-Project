@@ -45,7 +45,9 @@ const HeaderTopRightLinkBox = () => {
         <HeaderTopRightSep>|</HeaderTopRightSep>
         <HeaderTopRightLink to="/support/default">고객센터</HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
-        <HeaderTopRightLink to="/support/default">공지등록</HeaderTopRightLink>
+        <HeaderTopRightLink to="/support/news/register">
+          공지등록
+        </HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
         <HeaderTopRightLink to="/theater/register">극장등록</HeaderTopRightLink>
       </HeaderTopRightDiv>
