@@ -106,7 +106,7 @@ const UserUpdate = (props) => {
     setIsLoaded(false);
 
     axios
-      .get("http://localhost:8080/user/" + getCookie("userId"), {
+      .get("http://localhost:8080/user", {
         headers: {
           Authorization: getCookie("cgvJWT"),
         },
@@ -192,7 +192,7 @@ const UserUpdate = (props) => {
 
     axios
       .put(
-        "http://localhost:8080/user/" + getCookie("userId"),
+        "http://localhost:8080/user",
         {
           nickname: nickname,
           password: password,

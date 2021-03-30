@@ -175,7 +175,7 @@ const Login = (props) => {
     setLoginReqDto({ ...loginReqDto, [e.target.name]: e.target.value });
   };
 
-  const login = () => {
+  const login = async () => {
     let username = loginReqDto.username.trim();
     let password = loginReqDto.password.trim();
 
@@ -189,7 +189,7 @@ const Login = (props) => {
       return;
     }
 
-    axios
+    await axios
       .post(
         "http://localhost:8080/login",
         {
@@ -211,14 +211,12 @@ const Login = (props) => {
         } else {
           setCookie("cgvJWT", res.headers.authorization, { "max-age": 10800 });
           setCookie("userId", parseJwt(getCookie("cgvJWT")).userId);
-          let id = getCookie("userId");
-          setRole(id);
-          window.location.replace("/");
         }
       })
       .catch((res) => {
         alert("아이디 또는 비밀번호를 확인해주세요.");
       });
+    window.location.replace("/");
   };
 
   useEffect(() => {

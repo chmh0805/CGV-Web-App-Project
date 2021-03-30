@@ -15,7 +15,6 @@ import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.service.AuthService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
 import com.cgv.cgvserver.web.dto.auth.JoinReqDto;
-import com.cgv.cgvserver.web.dto.auth.RoleRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -39,7 +38,6 @@ public class AuthController {
 	
 	@GetMapping("/auth/role/{id}")
 	public CommonRespDto<?> getAuth(@PathVariable long id) {
-		RoleRespDto dto = new RoleRespDto(authService.권한조회(id));
-		return new CommonRespDto<>(1, dto);
+		return new CommonRespDto<>(1, authService.권한조회(id));
 	}
 }

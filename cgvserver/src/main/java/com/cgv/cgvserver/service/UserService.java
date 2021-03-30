@@ -49,6 +49,7 @@ public class UserService {
 		}
 	}
 	
+	@Transactional(readOnly = true)
 	public User 회원정보찾기(Long id) {
 		return userRepository.findById(id)
 				.orElseThrow(() -> {throw new NotFoundUserException();});

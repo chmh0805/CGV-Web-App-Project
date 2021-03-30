@@ -296,7 +296,7 @@ const MyCgvHome = (props) => {
     setIsLoaded(false);
 
     axios
-      .get("http://localhost:8080/user/" + getCookie("userId"), {
+      .get("http://localhost:8080/user", {
         headers: {
           Authorization: getCookie("cgvJWT"),
         },

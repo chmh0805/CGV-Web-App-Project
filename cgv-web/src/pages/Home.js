@@ -143,6 +143,7 @@ const HomeNoticeSectionDateBox = styled.div`
 const HomeNoticeSectionDate = styled.span``;
 
 const Home = () => {
+  setRole(getCookie("userId"));
   return (
     <div>
       <CarouselSection>

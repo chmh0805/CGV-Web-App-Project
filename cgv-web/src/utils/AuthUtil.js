@@ -14,7 +14,7 @@ export function setRole(id) {
     .get("http://localhost:8080/auth/role/" + id)
     .then((res) => {
       if (res.data.statusCode === 1) {
-        setCookie("role", res.data.data.role);
+        setCookie("role", res.data.data);
       }
     })
     .catch((err) => {

@@ -1,19 +1,18 @@
 package com.cgv.cgvserver.utils;
 
-import java.util.Date;
+import java.util.Map;
 
 import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 
 public class MyJWT {
 
-	public String createJWTToken(Long id) {
-		String jwtToken = JWT.create()
-				.withSubject("cgvToken")
-				.withExpiresAt(new Date(System.currentTimeMillis() + 1000*60*10))
-				.withClaim("userId", id)
-				.sign(Algorithm.HMAC512("영화관"));
+	public static long getId(String token) {
+		DecodedJWT jwt = JWT.decode(token);
 		
-		return jwtToken;
+		Map<String, Claim> claims = jwt.getClaims();
+		
+		return claims.get("userId").asLong();
 	}
 }
