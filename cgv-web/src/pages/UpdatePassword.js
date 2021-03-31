@@ -91,14 +91,17 @@ const JoinButton = styled.button`
 `;
 
 const UpdatePassword = (props) => {
-    const [userId, setUserId] = useState(props.location.state.userId);
+  const userId = props.location.state.userId;
   const [updatePasswordReqDto, setUpdatePasswordReqDto] = useState({
-      userId: "",
+    userId: "",
     password: "",
   });
 
   const handleForm = (e) => {
-    setUpdatePasswordReqDto({ ...updatePasswordReqDto, [e.target.name]: e.target.value });
+    setUpdatePasswordReqDto({
+      ...updatePasswordReqDto,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const update = () => {
@@ -109,7 +112,7 @@ const UpdatePassword = (props) => {
     ) {
       alert("비밀번호를 입력하세요.");
       return;
-    };
+    }
 
     let password = updatePasswordReqDto.password.trim();
 
@@ -117,7 +120,7 @@ const UpdatePassword = (props) => {
       .put(
         "http://localhost:8080/changePassword",
         {
-            userId: userId,
+          userId: userId,
           password: password,
         },
         {
@@ -174,6 +177,5 @@ const UpdatePassword = (props) => {
     </JoinContainer>
   );
 };
-
 
 export default UpdatePassword;

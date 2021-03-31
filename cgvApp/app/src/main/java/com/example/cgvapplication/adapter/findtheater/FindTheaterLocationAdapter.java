@@ -1,7 +1,5 @@
 package com.example.cgvapplication.adapter.findtheater;
 
-import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +8,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.FindTheaterActivity;
-import com.example.cgvapplication.FindTheaterPointActivity;
+import com.example.cgvapplication.activity.FindTheaterActivity;
 import com.example.cgvapplication.R;
 
 import java.util.List;

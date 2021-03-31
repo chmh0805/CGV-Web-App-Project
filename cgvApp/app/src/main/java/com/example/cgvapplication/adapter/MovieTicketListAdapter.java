@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.GiftShopDetailActivity;
+import com.example.cgvapplication.activity.GiftShopDetailActivity;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.model.giftshop.MovieTicket;
 

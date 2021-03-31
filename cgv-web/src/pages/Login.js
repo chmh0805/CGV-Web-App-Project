@@ -4,8 +4,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
 import { Checkbox } from "semantic-ui-react";
 import axios from "axios";
-import { getCookie, parseJwt, setCookie } from "../utils/JWT";
-import { setRole } from "../utils/AuthUtil";
+import { deleteCookie, getCookie, parseJwt, setCookie } from "../utils/JWT";
 
 const LoginContainer = styled.div`
   background-color: #fdfcf0;
@@ -170,9 +169,24 @@ const Login = (props) => {
     username: "",
     password: "",
   });
+  const [isChecked, setIsChecked] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
+
+  if (getCookie("cgvUsernameRemember") !== undefined && isLoaded) {
+    setIsLoaded(false);
+    setIsChecked(true);
+    setLoginReqDto({
+      ...loginReqDto,
+      username: getCookie("cgvUsernameRemember"),
+    });
+  }
 
   const handleForm = (e) => {
     setLoginReqDto({ ...loginReqDto, [e.target.name]: e.target.value });
+  };
+
+  const handleCheck = (e) => {
+    setIsChecked(e.target.checked);
   };
 
   const login = async () => {
@@ -208,15 +222,22 @@ const Login = (props) => {
           res.headers.authorization === ""
         ) {
           alert("아이디 또는 비밀번호를 확인해주세요.");
+          return;
         } else {
+          if (isChecked) {
+            setCookie("cgvUsernameRemember", loginReqDto.username);
+          } else {
+            deleteCookie("cgvUsernameRemember");
+          }
           setCookie("cgvJWT", res.headers.authorization, { "max-age": 10800 });
           setCookie("userId", parseJwt(getCookie("cgvJWT")).userId);
+          window.location.replace("/");
         }
       })
       .catch((res) => {
         alert("아이디 또는 비밀번호를 확인해주세요.");
+        return;
       });
-    window.location.replace("/");
   };
 
   useEffect(() => {
@@ -276,7 +297,12 @@ const Login = (props) => {
           <LoginButton onClick={() => login()}>로그인</LoginButton>
           <LoginSectionFooter>
             <LoginSectionFooterLeftBox>
-              <Checkbox style={{ margin: "0 3px 0 0" }} id="checkbox" />
+              <Checkbox
+                style={{ margin: "0 3px 0 0" }}
+                id="checkbox"
+                onChange={handleCheck}
+                checked={isChecked}
+              />
               <Span666666>아이디 저장</Span666666>
             </LoginSectionFooterLeftBox>
             <LoginSectionFooterRightBox>

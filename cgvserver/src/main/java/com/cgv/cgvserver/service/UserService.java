@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.domain.user.UserRepository;
 import com.cgv.cgvserver.handler.exception.NotFoundUserException;
+import com.cgv.cgvserver.web.dto.user.DeleteUserReqDto;
 import com.cgv.cgvserver.web.dto.user.FindPasswordReqDto;
 import com.cgv.cgvserver.web.dto.user.FindPasswordRespDto;
 import com.cgv.cgvserver.web.dto.user.FindUsernameReqDto;
@@ -22,11 +23,13 @@ public class UserService {
 	private final UserRepository userRepository;
 	private final BCryptPasswordEncoder encoder;
 	
+	@Transactional(readOnly = true)
 	public String 아이디찾기(FindUsernameReqDto findUsernameReqDto) {
 		String name = findUsernameReqDto.getName();
 		String email = findUsernameReqDto.getEmail();
-		User userEntity = userRepository.findByNameAndEmail(name, email);
-		
+		User userEntity = userRepository.findByNameAndEmail(name, email)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
+
 		if (userEntity == null) {
 			return null;
 		} else {
@@ -34,19 +37,16 @@ public class UserService {
 		}
 	}
 	
+	@Transactional(readOnly = true)
 	public FindPasswordRespDto 비밀번호찾기(FindPasswordReqDto findPasswordReqDto) {
 		String username = findPasswordReqDto.getUsername();
 		String phone = findPasswordReqDto.getPhone();
-		User userEntity = userRepository.findByUsernameAndPhone(username, phone);
+		User userEntity = userRepository.findByUsernameAndPhone(username, phone)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
 		
 		FindPasswordRespDto respDto = new FindPasswordRespDto();
 		respDto.setId(userEntity.getId());
-		
-		if (userEntity == null) {
-			return null;
-		} else {
-			return respDto;
-		}
+		return respDto;
 	}
 	
 	@Transactional(readOnly = true)
@@ -76,5 +76,18 @@ public class UserService {
 		String encPassword = encoder.encode(rawPassword);
 		
 		userEntity.setPassword(encPassword);
+	}
+	
+	@Transactional
+	public boolean 회원탈퇴(long userId, DeleteUserReqDto deleteUserReqDto) {
+		User userEntity = userRepository.findById(userId)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
+		
+		if (encoder.matches(deleteUserReqDto.getPassword(), userEntity.getPassword())) {
+			userRepository.deleteById(userId);
+			return true;
+		} else {
+			return false;
+		}
 	}
 }

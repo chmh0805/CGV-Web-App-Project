@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.FrequentlyCgvViewActivity;
+import com.example.cgvapplication.activity.FrequentlyCgvViewActivity;
 import com.example.cgvapplication.R;
 
 import java.util.List;

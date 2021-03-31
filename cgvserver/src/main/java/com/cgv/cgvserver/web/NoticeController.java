@@ -1,5 +1,6 @@
 package com.cgv.cgvserver.web;
 
+
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,18 +16,23 @@ import com.cgv.cgvserver.domain.notice.Notice;
 import com.cgv.cgvserver.service.NoticeService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
 import com.cgv.cgvserver.web.dto.notice.NoticeSaveReqDto;
-import com.cgv.cgvserver.web.dto.theater.TheaterSaveReqDto;
+
+import org.springframework.web.bind.annotation.PathVariable;
+
+
+
 
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
 public class NoticeController {
+
 	
 	private final NoticeService noticeService;
 	
 	@GetMapping("/support/news")
-	public CommonRespDto<?> findAll() {
+	public CommonRespDto<?> findAllNotice() {
 		List<Notice> notices = noticeService.공지뉴스전체조회();
 		return new CommonRespDto<>(1, notices);
 	}
@@ -38,4 +44,18 @@ public class NoticeController {
 		return new CommonRespDto<>(1, null);
 	}
 
+	@GetMapping("/notice/limit/{limit}")
+	public CommonRespDto<?> findAllDescLimit(@PathVariable int limit) {
+		return new CommonRespDto<>(1, noticeService.리밋찾기(limit));
+	}
+	
+	@GetMapping("/notice")
+	public CommonRespDto<?> findAll() {
+		return new CommonRespDto<>(1, noticeService.전체찾기());
+	}
+	
+	@GetMapping("/notice/{keyword}")
+	public CommonRespDto<?> findByKeyword(@PathVariable String keyword) {
+		return new CommonRespDto<>(1, noticeService.키워드찾기(keyword));
+	}
 }

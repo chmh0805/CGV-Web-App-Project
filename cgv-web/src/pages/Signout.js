@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -7,7 +7,7 @@ import bgMyCGVInfo from "../images/bg_mycgv_info.gif";
 import defaultProfileImg from "../images/default_profile.gif";
 import iconSetting from "../images/icon_setting.png";
 import MyCgvAsidesBox from "../components/MyCgvAsidesBox";
-import { getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
 import logoCGV from "../images/cgv_logo.png";
 
 const MyCgvReserveContainer = styled.div`
@@ -287,6 +287,56 @@ const Signout = () => {
   setCookie("now-space", "signout");
   window.scrollTo(0, 0);
 
+  const [password, setPassword] = useState("");
+
+  const handleForm = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const userSignout = () => {
+    if (password === "") {
+      alert("비밀번호를 입력하세요.");
+      return;
+    }
+
+    let data = {
+      password: password,
+    };
+
+    fetch("http://localhost:8080/user", {
+      method: "DELETE",
+      headers: new Headers({
+        Authorization: getCookie("cgvJWT"),
+        "Content-Type": "application/json",
+      }),
+      body: JSON.stringify(data),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          alert("정상적으로 회원탈퇴되었습니다.");
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          window.location.replace("/");
+        } else {
+          alert("아이디 또는 비밀번호를 확인해주세요.");
+          return;
+        }
+      })
+      .catch((err) => {
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
+  };
+
   return (
     <MyCgvReserveContainer>
       <NavSection>
@@ -360,8 +410,14 @@ const Signout = () => {
           </RegisterBox>
           <PasswordDIv>
             <span>비밀번호&nbsp;</span>
-            <PasswordInput type="password" />
-            <PasswordButton>회원탈퇴</PasswordButton>
+            <PasswordInput
+              type="password"
+              onChange={handleForm}
+              value={password}
+            />
+            <PasswordButton onClick={() => userSignout()}>
+              회원탈퇴
+            </PasswordButton>
           </PasswordDIv>
           <ReservationNoticeBox>
             <ReservationNoticeItem>

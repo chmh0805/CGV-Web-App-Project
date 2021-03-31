@@ -1,5 +1,5 @@
 import axios from "axios";
-import { deleteCookie, getCookie, setCookie } from "./JWT";
+import { getCookie, setCookie } from "./JWT";
 
 export function isUser() {
   return getCookie("role") === "USER";
@@ -20,13 +20,4 @@ export function setRole(id) {
     .catch((err) => {
       console.log(err);
     });
-}
-
-export function logout() {
-  fetch("http://localhost:8080/logout").then(() => {
-    deleteCookie("cgvJWT");
-    deleteCookie("userId");
-    deleteCookie("role");
-    window.location.replace("/");
-  });
 }

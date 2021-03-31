@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
-import btnPaging from "../images/button/btn_paging.gif";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
+<<<<<<< HEAD
 import SearchTableContentBox from "../components/notice/SearchTableContentBox";
+=======
+import NoticeBoxTableBox from "../components/support/notice/NoticeBoxTableBox";
+import BoardPagingBox from "../components/support/BoardPagingBox";
+>>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -125,6 +133,7 @@ const SearchResultBox = styled.div`
   color: #666;
 `;
 
+<<<<<<< HEAD
 const SearchTableBox = styled.div`
   width: 100%;
   height: auto;
@@ -181,6 +190,8 @@ const SearchTableTitleReadCount = styled.div`
   font-weight: 500;
 `;
 
+=======
+>>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 const PagingBoxSection = styled.div`
   width: 100%;
   display: flex;
@@ -190,44 +201,51 @@ const PagingBoxSection = styled.div`
   border-top: 1px solid #b8b6aa;
 `;
 
-const PagingBox = styled.div`
-  width: 350px;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-`;
-
-const PagingLink = styled(Link)`
-  color: #333333;
-  font-weight: bold;
-  line-height: 28px;
-  text-decoration: none;
-
-  &:hover {
-    color: #993333;
-    text-decoration: underline;
-  }
-`;
-
-const NextPageButton = styled.button`
-  padding: 0 24px 0 10px;
-  background: #faf9ed url(${btnPaging}) no-repeat;
-  background-position: right -52px;
-  display: inline-block;
-  min-width: 56px;
-  height: 28px;
-  margin: 0 2px;
-  border: 1px solid #cacac1;
-  color: #333333;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 28px;
-  vertical-align: middle;
-  overflow: visible;
-`;
-
 const SupportNewsMain = () => {
   setCookie("now-space", "support-news");
+  const [notices, setNotices] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/notice")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setNotices(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
+  const [keyword, setKeyword] = useState("");
+
+  const handleInput = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  function search() {
+    let key = keyword.trim();
+
+    fetch("http://localhost:8080/notice/" + key)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setNotices(res.data);
+        }
+      });
+  }
 
   const [isLoaded, setIsLoaded] = useState(true);
   const [notices, setNotices] = useState([]);
@@ -279,14 +297,25 @@ const SupportNewsMain = () => {
               CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.
             </MainCustomerTopP>
             <MainCustomerInputBox>
-              <MainCustomerInput placeholder="검색어를 입력해 주세요" />
-              <MainCustomerInputButton>검색하기</MainCustomerInputButton>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <MainCustomerInput
+                  placeholder="검색어를 입력해 주세요"
+                  value={keyword}
+                  onChange={handleInput}
+                  type="text"
+                />
+                <MainCustomerInputButton onClick={() => search()}>
+                  검색하기
+                </MainCustomerInputButton>
+              </form>
             </MainCustomerInputBox>
           </MainCustomerTop>
           <SearchResultBox>
-            총 <span style={{ fontStyle: "bold" }}>172건</span>이
+            총&nbsp;
+            <span style={{ fontStyle: "bold" }}>{notices.length}건</span>이
             검색되었습니다.
           </SearchResultBox>
+<<<<<<< HEAD
           <SearchTableBox>
             <SearchTableTitle>
               <SearchTableTitleNo>번호</SearchTableTitleNo>
@@ -298,19 +327,16 @@ const SupportNewsMain = () => {
               <SearchTableContentBox notice={notice} />
             ))}
           </SearchTableBox>
+=======
+          <NoticeBoxTableBox notices={currentPosts(notices)} />
+>>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
           <PagingBoxSection>
-            <PagingBox>
-              <PagingLink to="?1">1</PagingLink>
-              <PagingLink to="?1">2</PagingLink>
-              <PagingLink to="?1">3</PagingLink>
-              <PagingLink to="?1">4</PagingLink>
-              <PagingLink to="?1">5</PagingLink>
-              <PagingLink to="?1">6</PagingLink>
-              <PagingLink to="?1">7</PagingLink>
-              <PagingLink to="?1">8</PagingLink>
-              <PagingLink to="?1">9</PagingLink>
-              <NextPageButton>다음</NextPageButton>
-            </PagingBox>
+            <BoardPagingBox
+              currentPage={currentPage}
+              postsPerPage={postsPerPage}
+              totalPosts={notices.length}
+              paginate={setCurrentPage}
+            />
           </PagingBoxSection>
         </MainContentsBox>
       </SupportSubContainer>

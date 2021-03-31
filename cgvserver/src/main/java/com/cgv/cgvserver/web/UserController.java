@@ -3,6 +3,7 @@ package com.cgv.cgvserver.web;
 import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import com.cgv.cgvserver.domain.user.User;
 import com.cgv.cgvserver.service.UserService;
 import com.cgv.cgvserver.utils.MyJWT;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
+import com.cgv.cgvserver.web.dto.user.DeleteUserReqDto;
 import com.cgv.cgvserver.web.dto.user.FindPasswordReqDto;
 import com.cgv.cgvserver.web.dto.user.FindPasswordRespDto;
 import com.cgv.cgvserver.web.dto.user.FindUsernameReqDto;
@@ -73,5 +75,20 @@ public class UserController {
 		Long userId = MyJWT.getId(token);
 		userService.회원정보수정(userId, updateReqDto);
 		return new CommonRespDto<>(1, null);
+	}
+	
+	@DeleteMapping("/user")
+	public CommonRespDto<?> deleteById(@RequestHeader("Authorization") String jwtToken,
+			@Valid @RequestBody DeleteUserReqDto deleteUserReqDto, BindingResult bindingResult) {
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		
+		boolean isRight = userService.회원탈퇴(userId, deleteUserReqDto);
+		
+		if (isRight) {
+			return new CommonRespDto<>(1, null);			
+		} else {
+			return new CommonRespDto<>(-1, null);
+		}
 	}
 }

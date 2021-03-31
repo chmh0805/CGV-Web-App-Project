@@ -4,7 +4,7 @@
     android:id="@+id/frequently_cgv_drawer"
     android:layout_width="match_parent"
     android:layout_height="350dp"
-    tools:context=".FrequentlyCgvViewActivity">
+    tools:context=".activity.FrequentlyCgvViewActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

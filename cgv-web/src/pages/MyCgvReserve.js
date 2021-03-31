@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import MyCgvAsidesBox from "../components/MyCgvAsidesBox";
-import { getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
 import MyCGVInfoBox from "../components/MyCGVInfoBox";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setFrequentlyCgvs, setInfo, setQnas, setTicketings } from "../store";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -256,6 +259,43 @@ const ReservationP = styled.p`
 const MyCgvReserve = () => {
   setCookie("now-space", "mycgv-reserve");
   window.scrollTo(0, 0);
+
+  const [isLoaded, setIsLoaded] = useState(true);
+  const dispatcher = useDispatch();
+
+  if (isLoaded) {
+    setIsLoaded(false);
+
+    axios
+      .get("http://localhost:8080/user", {
+        headers: {
+          Authorization: getCookie("cgvJWT"),
+        },
+      })
+      .then((res) => {
+        let statusCode = res.data.statusCode;
+        let data = res.data.data;
+        if (statusCode === 1) {
+          const names = {
+            name: data.name,
+            username: data.username,
+            nickname: data.nickname,
+          };
+          dispatcher(setInfo(names));
+          dispatcher(setFrequentlyCgvs(data.frequentlyCgvs));
+          dispatcher(setTicketings(data.ticketings));
+          dispatcher(setQnas(data.qnas));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        deleteCookie("cgvJWT");
+        deleteCookie("userId");
+        deleteCookie("role");
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
+  }
 
   return (
     <MyCgvReserveContainer>

@@ -33,8 +33,12 @@ import FindPassword from "./pages/FindPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import MyMovieReview from "./pages/MyMovieReview";
 import TheaterRegister from "./pages/TheaterRegister";
+<<<<<<< HEAD
 import SuppotNewsRegister from "./pages/SuppotNewsRegister";
 import SupportFaqRegister from "./pages/SupportFaqRegister";
+=======
+import MyCgvMyQnaDetail from "./pages/MyCgvMyQnaDetail";
+>>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 
 function App() {
   return (
@@ -83,6 +87,12 @@ function App() {
       />
       {/* My CGV 내 문의내역 */}
       <Route path="/user/mycgv/myqna" exact={true} component={MyCgvMyQna} />
+      {/* My CGV 내 문의내역 상세보기 */}
+      <Route
+        path="/user/mycgv/myqna/detail"
+        exact={true}
+        component={MyCgvMyQnaDetail}
+      />
       {/* My CGV 영역 끝 */}
 
       {/* Movie 영역 */}
@@ -132,7 +142,7 @@ function App() {
       />
       {/* 공지/뉴스 */}
       <Route
-        path="/support/news/default"
+        path="/support/news/default/"
         exact={true}
         component={SupportNewsMain}
       />
