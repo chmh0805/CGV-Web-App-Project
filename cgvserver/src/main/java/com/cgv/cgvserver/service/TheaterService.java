@@ -12,9 +12,14 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cgv.cgvserver.domain.hall.Hall;
+import com.cgv.cgvserver.domain.hall.HallRepository;
+import com.cgv.cgvserver.domain.seat.Seat;
+import com.cgv.cgvserver.domain.seat.SeatRepository;
 import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.theater.TheaterRepository;
 import com.cgv.cgvserver.handler.exception.NotFoundTheaterException;
+import com.cgv.cgvserver.utils.theater.InitTheater;
 import com.cgv.cgvserver.web.dto.theater.TheaterSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -23,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class TheaterService {
 	private final TheaterRepository theaterRepository;
+	private final HallRepository hallRepository;
+	private final SeatRepository seatRepository;
 	private static final Logger log = LoggerFactory.getLogger(TheaterService.class);
 
 	@Value("${file.path}")
@@ -49,7 +56,18 @@ public class TheaterService {
 		String area = theaterSaveReqDto.getLocation().substring(0, 2);
 		Theater theater = theaterSaveReqDto.toEntity(imageFileName);
 		theater.setArea(area);
-		theaterRepository.save(theater);
+		Theater theaterEntity = theaterRepository.save(theater); // 극장 생성
+		// 극장등록 끝
+		
+		// 홀, 좌석 정보 생성
+		List<Hall> halls = InitTheater.makeHalls(theaterEntity);
+		List<Hall> hallEntities = hallRepository.saveAll(halls); // 홀 생성
+		
+		for (Hall hallEntity : hallEntities) {
+			List<Seat> seats = InitTheater.makeSeats(hallEntity);
+			seatRepository.saveAll(seats);						 // 좌석 생성
+		}
+		
 	}
 	
 	@Transactional(readOnly = true)
