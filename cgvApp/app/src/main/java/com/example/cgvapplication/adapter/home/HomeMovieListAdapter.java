@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.MovieDetailActivity;
+import com.example.cgvapplication.activity.MovieDetailActivity;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.model.movie.Movie;
 

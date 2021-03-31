@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.cgv.cgvserver.domain.movie.Movie;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,10 +25,11 @@ public class Actor {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String imageUrl;
+	private String imageUrl; // 이미지는 차후..
 	
 	private String name;
 	
+	@JsonIgnore
 	@JoinColumn(name = "movieId")
 	@ManyToOne
 	private Movie movie;

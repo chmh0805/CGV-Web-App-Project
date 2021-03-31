@@ -17,3 +17,8 @@ spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
     properties:      hibernate.format_sql: true
   
   jackson:    serialization:      fail-on-empty-beans: false
+      
+  servlet:    multipart:      enabled: true
+
+file:
+  path: D:\workspace\lastproject\cgvserver\src\main\resources\upload\
