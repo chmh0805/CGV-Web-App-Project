@@ -33,12 +33,9 @@ import FindPassword from "./pages/FindPassword";
 import UpdatePassword from "./pages/UpdatePassword";
 import MyMovieReview from "./pages/MyMovieReview";
 import TheaterRegister from "./pages/TheaterRegister";
-<<<<<<< HEAD
 import SuppotNewsRegister from "./pages/SuppotNewsRegister";
 import SupportFaqRegister from "./pages/SupportFaqRegister";
-=======
 import MyCgvMyQnaDetail from "./pages/MyCgvMyQnaDetail";
->>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 
 function App() {
   return (

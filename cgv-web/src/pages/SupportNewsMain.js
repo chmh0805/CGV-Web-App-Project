@@ -1,19 +1,12 @@
-<<<<<<< HEAD
-import React, { useState } from "react";
-=======
 import React, { useEffect, useState } from "react";
->>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
-<<<<<<< HEAD
 import SearchTableContentBox from "../components/notice/SearchTableContentBox";
-=======
 import NoticeBoxTableBox from "../components/support/notice/NoticeBoxTableBox";
 import BoardPagingBox from "../components/support/BoardPagingBox";
->>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -133,7 +126,6 @@ const SearchResultBox = styled.div`
   color: #666;
 `;
 
-<<<<<<< HEAD
 const SearchTableBox = styled.div`
   width: 100%;
   height: auto;
@@ -190,8 +182,6 @@ const SearchTableTitleReadCount = styled.div`
   font-weight: 500;
 `;
 
-=======
->>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
 const PagingBoxSection = styled.div`
   width: 100%;
   display: flex;
@@ -248,7 +238,7 @@ const SupportNewsMain = () => {
   }
 
   const [isLoaded, setIsLoaded] = useState(true);
-  const [notices, setNotices] = useState([]);
+  const [supportNotices, setSupportNotices] = useState([]);
 
   const loadData = async () => {
     if (isLoaded) {
@@ -260,7 +250,7 @@ const SupportNewsMain = () => {
         })
         .then((res) => {
           if (res.statusCode === 1) {
-            setNotices(res.data);
+            setSupportNotices(res.data);
           }
         })
         .catch((err) => {
@@ -315,7 +305,6 @@ const SupportNewsMain = () => {
             <span style={{ fontStyle: "bold" }}>{notices.length}건</span>이
             검색되었습니다.
           </SearchResultBox>
-<<<<<<< HEAD
           <SearchTableBox>
             <SearchTableTitle>
               <SearchTableTitleNo>번호</SearchTableTitleNo>
@@ -323,13 +312,11 @@ const SupportNewsMain = () => {
               <SearchTableTitleTitle>제목</SearchTableTitleTitle>
               <SearchTableTitleReadCount>조회수</SearchTableTitleReadCount>
             </SearchTableTitle>
-            {notices.map((notice) => (
-              <SearchTableContentBox notice={notice} />
+            {supportNotices.map((supportNotice) => (
+              <SearchTableContentBox notice={supportNotice} />
             ))}
           </SearchTableBox>
-=======
           <NoticeBoxTableBox notices={currentPosts(notices)} />
->>>>>>> df8b69b39f38e0b557c877e3bdf1364bef5fba8d
           <PagingBoxSection>
             <BoardPagingBox
               currentPage={currentPage}
