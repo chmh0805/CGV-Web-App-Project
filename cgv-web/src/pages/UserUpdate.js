@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import { Link } from "react-router-dom";
-import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie } from "../utils/JWT";
 import axios from "axios";
 
 const JoinContainer = styled.div`
@@ -92,7 +92,6 @@ const JoinButton = styled.button`
 `;
 
 const UserUpdate = (props) => {
-  const [isLoaded, setIsLoaded] = useState(true);
   const [updateReqDto, setUpdateReqDto] = useState({
     username: "",
     name: "",
@@ -102,9 +101,7 @@ const UserUpdate = (props) => {
     phone: "",
   });
 
-  const getInfo = () => {
-    setIsLoaded(false);
-
+  useEffect(() => {
     axios
       .get("http://localhost:8080/user", {
         headers: {
@@ -131,11 +128,7 @@ const UserUpdate = (props) => {
         alert("회원정보 조회 실패. 재로그인해주세요.");
         window.location.replace("/login");
       });
-  };
-
-  if (isLoaded === true) {
-    getInfo();
-  }
+  }, []);
 
   const handleForm = (e) => {
     setUpdateReqDto({ ...updateReqDto, [e.target.name]: e.target.value });
@@ -247,7 +240,6 @@ const UserUpdate = (props) => {
             type="text"
             placeholder="아이디"
             value={updateReqDto.username}
-            onChange={handleForm}
             name="username"
             disabled="disabled"
           />
@@ -255,7 +247,6 @@ const UserUpdate = (props) => {
             type="text"
             placeholder="실명"
             value={updateReqDto.name}
-            onChange={handleForm}
             name="name"
             disabled="disabled"
           />

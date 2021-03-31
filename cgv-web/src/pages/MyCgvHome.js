@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import { setFrequentlyCgvs, setInfo, setQnas, setTicketings } from "../store";
 import { useDispatch } from "react-redux";
 import MyCGVInfoBox from "../components/MyCGVInfoBox";
+import MyCgvHomeMyQnaBox from "../components/mycgv/MyCgvHomeMyQnaBox";
 
 const MyCgvHomeContainer = styled.div`
   background-color: #fdfcf0;
@@ -287,14 +288,11 @@ const MyPurchaseGiftConEm = styled.em`
 const MyCgvHome = (props) => {
   setCookie("now-space", "mycgv-home");
   window.scrollTo(0, 0);
-  const [isLoaded, setIsLoaded] = useState(true);
-
   const { ticketings, qnas } = useSelector((store) => store);
   const dispatcher = useDispatch();
+  const [limitedQnas, setLimitedQnas] = useState([]);
 
-  if (isLoaded) {
-    setIsLoaded(false);
-
+  useEffect(() => {
     axios
       .get("http://localhost:8080/user", {
         headers: {
@@ -314,17 +312,63 @@ const MyCgvHome = (props) => {
           dispatcher(setFrequentlyCgvs(data.frequentlyCgvs));
           dispatcher(setTicketings(data.ticketings));
           dispatcher(setQnas(data.qnas));
+        } else {
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
+          return;
         }
       })
       .catch((err) => {
         console.log(err);
-        // deleteCookie("cgvJWT");
-        // deleteCookie("userId");
-        // deleteCookie("role");
-        // alert("회원정보 조회 실패. 재로그인해주세요.");
-        // window.location.replace("/login");
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+        return;
       });
-  }
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/qna/limit/5", {
+      headers: new Headers({
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setLimitedQnas(res.data);
+        } else {
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
+          return;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+        return;
+      });
+  }, []);
 
   return (
     <MyCgvHomeContainer>
@@ -405,13 +449,7 @@ const MyCgvHome = (props) => {
               </MainContentsItemBoxTitleP>
             </MainContentsItemBoxTitleItem1>
           </MainContentsItemBoxTitle>
-          <MainContentsCommonItemBox>
-            <MainContentsCommonItemBoxInner>
-              <MainContentsCommonItemBoxListItem>
-                고객님의 1:1 문의내역이 존재하지 않습니다.
-              </MainContentsCommonItemBoxListItem>
-            </MainContentsCommonItemBoxInner>
-          </MainContentsCommonItemBox>
+          <MyCgvHomeMyQnaBox qnas={limitedQnas} />
           <MyPurchasesBox>
             <MainContentsItemBoxTitle>
               <MainContentsItemBoxTitleH3 style={{ width: "auto" }}>

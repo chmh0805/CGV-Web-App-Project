@@ -4,7 +4,6 @@ import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import MovieLogAsidesBox from "../components/MovieLogAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
-import { RestoreRounded } from "@material-ui/icons";
 
 const ExpectedLogMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -128,14 +127,6 @@ const WatchedMovieInfoStrong = styled.strong`
   white-space: nowrap;
 `;
 
-const WatchedMovieInfoP = styled.p`
-  margin-bottom: 9px;
-  color: #222;
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 14px;
-`;
-
 const MovieLogExpected = () => {
   setCookie("now-space", "movielog-expected");
   window.scrollTo(0, 0);
@@ -147,7 +138,12 @@ const MovieLogExpected = () => {
     if (isLoaded) {
       setIsLoaded(false);
 
-      await fetch("http://localhost:8080/expectMovie/" + getCookie("userId"))
+      await fetch("http://localhost:8080/expectMovie", {
+        method: "GET",
+        headers: new Headers({
+          Authorization: getCookie("cgvJWT"),
+        }),
+      })
         .then((res) => {
           return res.json();
         })

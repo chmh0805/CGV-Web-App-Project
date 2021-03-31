@@ -29,7 +29,7 @@ public class ExpectMovieService {
 	}
 	
 	@Transactional
-	public void 기대되는영화등록(long movieId, long userId) {
+	public void 기대되는영화등록(String movieId, long userId) {
 		Movie movieEntity = movieRepository.findById(movieId)
 				.orElseThrow(() -> {throw new NotFoundMovieException();});
 		

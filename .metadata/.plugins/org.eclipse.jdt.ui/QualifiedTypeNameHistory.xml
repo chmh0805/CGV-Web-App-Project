@@ -1,44 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="lombok.Builder"/>
-    <fullyQualifiedTypeName name="java.util.UUID"/>
-    <fullyQualifiedTypeName name="java.nio.file.Paths"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Value"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.theater.TheaterSaveReqDto"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.expectmovie.ExpectMovieRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.service.ExpectMovieService"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.expectmovie.ExpectSaveReqDto"/>
-    <fullyQualifiedTypeName name="javax.validation.Valid"/>
-    <fullyQualifiedTypeName name="org.springframework.validation.BindingResult"/>
-    <fullyQualifiedTypeName name="javax.validation.constraints.NotEmpty"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.movie.MovieRepository"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.movie.Movie"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.user.UserRepository"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.user.User"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundUserException"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.expectmovie.ExpectMovie"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.ticketing.TicketingRepository"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="lombok.Data"/>
-    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
-    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.theater.Theater"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundMovieException"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundTheaterException"/>
-    <fullyQualifiedTypeName name="java.awt.PageAttributes.MediaType"/>
-    <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
-    <fullyQualifiedTypeName name="java.io.InputStream"/>
-    <fullyQualifiedTypeName name="org.apache.tomcat.util.http.fileupload.IOUtils"/>
+    <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
-    <fullyQualifiedTypeName name="java.io.IOException"/>
     <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.CommonRespDto"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="org.springframework.core.io.InputStreamResource"/>
     <fullyQualifiedTypeName name="org.springframework.core.io.Resource"/>
     <fullyQualifiedTypeName name="java.nio.file.Path"/>
@@ -60,4 +27,8 @@
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestHeader"/>
     <fullyQualifiedTypeName name="org.springframework.security.core.annotation.AuthenticationPrincipal"/>
     <fullyQualifiedTypeName name="com.cgv.cgvserver.config.auth.PrincipalDetails"/>
+=======
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundNoticeException"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.notice.NoticeFindOneRespDto"/>
+>>>>>>> 7074f3c7db984eb18450def7e0905c5a881c87fa
 </qualifiedTypeNameHistroy>

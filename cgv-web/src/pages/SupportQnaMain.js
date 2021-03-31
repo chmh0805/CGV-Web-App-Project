@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import imgMiso from "../images/desc_miso.png";
 import { Form } from "react-bootstrap";
 import SupportAsidesBox from "../components/SupportAsidesBox";
-import { getCookie, isLogined, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, isLogined, setCookie } from "../utils/JWT";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setFrequentlyCgvs, setInfo, setQnas, setTicketings } from "../store";
+import { useSelector } from "react-redux";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -244,6 +248,14 @@ const SubmitButton = styled.button`
 `;
 
 const SupportQnaMain = (props) => {
+  const [isLoaded, setIsLoaded] = useState(true);
+  const { info } = useSelector((store) => store);
+  const [qnaSaveReqDto, setQnaSaveReqDto] = useState({
+    title: "",
+    content: "",
+  });
+  const dispatcher = useDispatch();
+
   const goToLogin = () => {
     props.history.push("/login");
   };
@@ -253,6 +265,90 @@ const SupportQnaMain = (props) => {
   }
 
   setCookie("now-space", "support-qna");
+
+  const handleInput = (e) => {
+    setQnaSaveReqDto({ ...qnaSaveReqDto, [e.target.name]: e.target.value });
+  };
+
+  const userData = async () => {
+    await axios
+      .get("http://localhost:8080/user", {
+        headers: {
+          Authorization: getCookie("cgvJWT"),
+        },
+      })
+      .then((res) => {
+        let statusCode = res.data.statusCode;
+        let data = res.data.data;
+        if (statusCode === 1) {
+          const names = {
+            name: data.name,
+            username: data.username,
+            nickname: data.nickname,
+            email: "****" + data.email.substring(data.email.indexOf("@")),
+            phone: data.phone.slice(0, 9) + "****",
+          };
+          dispatcher(setInfo(names));
+          dispatcher(setFrequentlyCgvs(data.frequentlyCgvs));
+          dispatcher(setTicketings(data.ticketings));
+          dispatcher(setQnas(data.qnas));
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
+  };
+
+  if (isLoaded) {
+    setIsLoaded(false);
+    userData();
+  }
+
+  const submitSaveDto = () => {
+    if (qnaSaveReqDto.title === "") {
+      alert("제목을 입력해주세요.");
+      return;
+    }
+
+    if (qnaSaveReqDto.content === "") {
+      alert("내용을 입력해주세요.");
+      return;
+    }
+
+    fetch("http://localhost:8080/qna", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: getCookie("cgvJWT"),
+      }),
+      body: JSON.stringify(qnaSaveReqDto),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.statusCode === 1) {
+          alert("등록 완료");
+          window.location.replace("/user/mycgv/myqna");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
+  };
 
   return (
     <SupportMainContainer>
@@ -293,11 +389,9 @@ const SupportQnaMain = (props) => {
             </QnaTableRowBox>
             <QnaTableRowBox>
               <QnaTableContentTitle>휴대전화</QnaTableContentTitle>
-              <QnaTableContentShortBody>010-6518-****</QnaTableContentShortBody>
+              <QnaTableContentShortBody>{info.phone}</QnaTableContentShortBody>
               <QnaTableContentTitle>이메일</QnaTableContentTitle>
-              <QnaTableContentShortBody>
-                chmh08**@naver.com
-              </QnaTableContentShortBody>
+              <QnaTableContentShortBody>{info.email}</QnaTableContentShortBody>
             </QnaTableRowBox>
             <div style={{ height: "100px" }}>
               <MisoBox>
@@ -320,7 +414,11 @@ const SupportQnaMain = (props) => {
                 제목&nbsp;<RedStarEm>*</RedStarEm>
               </QnaTableContentTitle>
               <QnaTableContentLongBody>
-                <QnaTableContentInput />
+                <QnaTableContentInput
+                  name="title"
+                  value={qnaSaveReqDto.title}
+                  onChange={handleInput}
+                />
               </QnaTableContentLongBody>
             </QnaTableRowBox>
             <QnaTableRowBox
@@ -334,21 +432,22 @@ const SupportQnaMain = (props) => {
                 내용&nbsp;<RedStarEm>*</RedStarEm>
               </QnaTableContentTitle>
               <QnaTableContentLongBody>
-                <QnaTableContentTextarea />
-              </QnaTableContentLongBody>
-            </QnaTableRowBox>
-            <QnaTableRowBox>
-              <QnaTableContentTitle>첨부파일</QnaTableContentTitle>
-              <QnaTableContentLongBody>
-                <Form.File
-                  id="exampleFormControlFile1"
-                  style={{ fontWeight: 500 }}
+                <QnaTableContentTextarea
+                  name="content"
+                  value={qnaSaveReqDto.content}
+                  onChange={handleInput}
                 />
               </QnaTableContentLongBody>
             </QnaTableRowBox>
           </QnaTableBox>
           <BottomButtonBox>
-            <SubmitButton>등록하기</SubmitButton>
+            <SubmitButton
+              onClick={() => {
+                submitSaveDto();
+              }}
+            >
+              등록하기
+            </SubmitButton>
           </BottomButtonBox>
         </MainContentsBox>
       </SupportSubContainer>

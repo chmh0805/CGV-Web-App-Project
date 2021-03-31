@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { isAdmin, logout } from "../utils/AuthUtil";
-import { isLogined } from "../utils/JWT";
+import { isAdmin } from "../utils/AuthUtil";
+import { deleteCookie, isLogined } from "../utils/JWT";
 
 const HeaderTopRightDiv = styled.div`
   text-align: center;
@@ -34,10 +34,19 @@ const HeaderTopRightSep = styled.span`
 `;
 
 const HeaderTopRightLinkBox = () => {
+  const logoutHandler = async () => {
+    fetch("http://localhost:8080/logout").then(() => {
+      deleteCookie("cgvJWT");
+      deleteCookie("userId");
+      deleteCookie("role");
+      window.location.replace("/");
+    });
+  };
+
   if (isLogined() && isAdmin()) {
     return (
       <HeaderTopRightDiv>
-        <HeaderTopRightLink onClick={() => logout()}>
+        <HeaderTopRightLink onClick={() => logoutHandler()}>
           로그아웃
         </HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
@@ -45,7 +54,9 @@ const HeaderTopRightLinkBox = () => {
         <HeaderTopRightSep>|</HeaderTopRightSep>
         <HeaderTopRightLink to="/support/default">고객센터</HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
-        <HeaderTopRightLink to="/support/default">공지등록</HeaderTopRightLink>
+        <HeaderTopRightLink to="/support/news/register">
+          공지등록
+        </HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
         <HeaderTopRightLink to="/theater/register">극장등록</HeaderTopRightLink>
       </HeaderTopRightDiv>
@@ -53,7 +64,7 @@ const HeaderTopRightLinkBox = () => {
   } else if (isLogined()) {
     return (
       <HeaderTopRightDiv>
-        <HeaderTopRightLink onClick={() => logout()}>
+        <HeaderTopRightLink onClick={() => logoutHandler()}>
           로그아웃
         </HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>

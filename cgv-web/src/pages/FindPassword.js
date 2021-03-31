@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import axios from "axios";
-import { setCookie } from "../utils/JWT";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -216,7 +215,7 @@ const FindPassword = (props) => {
           props.history.push({
             pathname: "/updatePw",
             state: {
-              'userId': res.data.data.id
+              userId: res.data.data.id,
             },
           });
         } else {

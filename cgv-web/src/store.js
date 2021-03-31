@@ -23,6 +23,8 @@ const initstate = {
     username: "아이디",
     name: "이름",
     nickname: "닉네임",
+    email: "이메일",
+    phone: "번호",
   },
   frequentlyCgvs: [
     {
