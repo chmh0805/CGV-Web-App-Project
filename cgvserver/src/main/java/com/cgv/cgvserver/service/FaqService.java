@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cgv.cgvserver.domain.faq.Faq;
 import com.cgv.cgvserver.domain.faq.FaqRepository;
+import com.cgv.cgvserver.utils.faq.FaqToRespDto;
+import com.cgv.cgvserver.web.dto.faq.FaqFindAllRespDto;
 import com.cgv.cgvserver.web.dto.faq.FaqSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -18,8 +20,9 @@ public class FaqService {
 	private final FaqRepository faqRepository;
 	
 	@Transactional(readOnly = true)
-	public List<Faq> Faq전체조회() {
-		return faqRepository.mFindAll();
+	public List<FaqFindAllRespDto> Faq전체조회() {
+		List<Faq> faqEntities = faqRepository.mFindAll();
+		return FaqToRespDto.toFindAllDtos(faqEntities);
 	}
 
 	@Transactional
@@ -27,5 +30,11 @@ public class FaqService {
 		Faq faq = faqSaveReqDto.toEntity();
 		faq.setReadCount(0);
 		faqRepository.save(faq);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<FaqFindAllRespDto> 키워드찾기(String keyword) {
+		List<Faq> faqEntities = faqRepository.mFindByKeyword(keyword);
+		return FaqToRespDto.toFindAllDtos(faqEntities);
 	}
 }

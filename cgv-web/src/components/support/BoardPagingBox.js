@@ -5,7 +5,7 @@ import btnPaging from "../../images/button/btn_paging.gif";
 const PagingBox = styled.div`
   width: 350px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin: 0 auto;
 `;
 
@@ -14,6 +14,8 @@ const PagingSpan = styled.span`
   font-weight: bold;
   line-height: 28px;
   text-decoration: none;
+  margin-left: 5px;
+  margin-right: 5px;
   cursor: pointer;
 
   &:hover {
@@ -40,11 +42,13 @@ const PageButton = styled.button`
 const NextPageButton = styled(PageButton)`
   padding: 0 24px 0 10px;
   background-position: right -52px;
+  margin-left: 5px;
 `;
 
 const PrevPageButton = styled(PageButton)`
   padding: 0 10px 0 24px;
   background-position: 0 0;
+  margin-right: 5px;
 `;
 
 const BoardPagingBox = ({

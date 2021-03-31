@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -6,6 +6,7 @@ import btnPaging from "../images/button/btn_paging.gif";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
 import FaqTableContent from "../components/faq/FaqTableContent";
+import BoardPagingBox from "../components/support/BoardPagingBox";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
@@ -190,68 +191,53 @@ const PagingBoxSection = styled.div`
   border-top: 1px solid #b8b6aa;
 `;
 
-const PagingBox = styled.div`
-  width: 350px;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
-`;
-
-const PagingLink = styled(Link)`
-  color: #333333;
-  font-weight: bold;
-  line-height: 28px;
-  text-decoration: none;
-
-  &:hover {
-    color: #993333;
-    text-decoration: underline;
-  }
-`;
-
-const NextPageButton = styled.button`
-  padding: 0 24px 0 10px;
-  background: #faf9ed url(${btnPaging}) no-repeat;
-  background-position: right -52px;
-  display: inline-block;
-  min-width: 56px;
-  height: 28px;
-  margin: 0 2px;
-  border: 1px solid #cacac1;
-  color: #333333;
-  font-size: 11px;
-  font-weight: 600;
-  line-height: 28px;
-  vertical-align: middle;
-  overflow: visible;
-`;
-
 const SupportFaqMain = () => {
   setCookie("now-space", "support-faq");
 
-  const [isLoaded, setIsLoaded] = useState(true);
-  const [faqs, setfaqs] = useState([]);
+  const [faqs, setFaqs] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
+  const [keyword, setKeyword] = useState("");
 
-  const loadData = async () => {
-    if (isLoaded) {
-      setIsLoaded(false);
+  useEffect(() => {
+    fetch("http://localhost:8080/faq")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setFaqs(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-      await fetch("http://localhost:8080/support/faq")
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          if (res.statusCode === 1) {
-            setfaqs(res.data);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
+  const handleInput = (e) => {
+    setKeyword(e.target.value);
   };
 
-  loadData();
+  function search() {
+    let key = keyword.trim();
+
+    fetch("http://localhost:8080/faq/search/" + key)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setFaqs(res.data);
+        }
+      });
+  }
 
   return (
     <SupportMainContainer>
@@ -281,12 +267,22 @@ const SupportFaqMain = () => {
               궁금하신 내용에 대해 검색해보세요.
             </MainCustomerTopP>
             <MainCustomerInputBox>
-              <MainCustomerInput placeholder="검색어를 입력해 주세요" />
-              <MainCustomerInputButton>검색하기</MainCustomerInputButton>
+              <form onSubmit={(e) => e.preventDefault()}>
+                <MainCustomerInput
+                  placeholder="검색어를 입력해 주세요"
+                  value={keyword}
+                  onChange={handleInput}
+                  type="text"
+                />
+                <MainCustomerInputButton onClick={() => search()}>
+                  검색하기
+                </MainCustomerInputButton>
+              </form>
             </MainCustomerInputBox>
           </MainCustomerTop>
           <SearchResultBox>
-            총 <span style={{ fontStyle: "bold" }}>172건</span>이
+            총&nbsp;
+            <span style={{ fontStyle: "bold" }}>{faqs.length}건</span>이
             검색되었습니다.
           </SearchResultBox>
           <SearchTableBox>
@@ -296,23 +292,15 @@ const SupportFaqMain = () => {
               <SearchTableTitleTitle>제목</SearchTableTitleTitle>
               <SearchTableTitleReadCount>조회수</SearchTableTitleReadCount>
             </SearchTableTitle>
-            {faqs.map((faq) => (
-              <FaqTableContent faq={faq} />
-            ))}
+            <FaqTableContent faqs={currentPosts(faqs)} />
           </SearchTableBox>
           <PagingBoxSection>
-            <PagingBox>
-              <PagingLink to="?1">1</PagingLink>
-              <PagingLink to="?1">2</PagingLink>
-              <PagingLink to="?1">3</PagingLink>
-              <PagingLink to="?1">4</PagingLink>
-              <PagingLink to="?1">5</PagingLink>
-              <PagingLink to="?1">6</PagingLink>
-              <PagingLink to="?1">7</PagingLink>
-              <PagingLink to="?1">8</PagingLink>
-              <PagingLink to="?1">9</PagingLink>
-              <NextPageButton>다음</NextPageButton>
-            </PagingBox>
+            <BoardPagingBox
+              currentPage={currentPage}
+              postsPerPage={postsPerPage}
+              totalPosts={faqs.length}
+              paginate={setCurrentPage}
+            />
           </PagingBoxSection>
         </MainContentsBox>
       </SupportSubContainer>
