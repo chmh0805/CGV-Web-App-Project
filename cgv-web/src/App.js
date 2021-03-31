@@ -36,6 +36,8 @@ import TheaterRegister from "./pages/TheaterRegister";
 import SuppotNewsRegister from "./pages/SuppotNewsRegister";
 import SupportFaqRegister from "./pages/SupportFaqRegister";
 import MyCgvMyQnaDetail from "./pages/MyCgvMyQnaDetail";
+import SupportNewsDetail from "./pages/SupportNewsDetail";
+import SupportFaqDetail from "./pages/SupportFaqDetail";
 
 function App() {
   return (
@@ -131,6 +133,12 @@ function App() {
         exact={true}
         component={SupportFaqMain}
       />
+      {/* 자주 찾는 질문 상세보기 */}
+      <Route
+        path="/support/faq/detail"
+        exact={true}
+        component={SupportFaqDetail}
+      />
       {/* 자주 찾는 질문  등록*/}
       <Route
         path="/support/faq/register"
@@ -142,6 +150,12 @@ function App() {
         path="/support/news/default/"
         exact={true}
         component={SupportNewsMain}
+      />
+      {/* 공지/뉴스 상세보기 */}
+      <Route
+        path="/support/news/detail"
+        exact={true}
+        component={SupportNewsDetail}
       />
       {/* 공지/뉴스 등록 */}
       <Route

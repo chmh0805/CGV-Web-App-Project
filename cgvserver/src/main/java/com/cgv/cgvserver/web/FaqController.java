@@ -24,14 +24,14 @@ public class FaqController {
 
 	private final FaqService faqService;
 	
-	@GetMapping("/support/faq")
+	@GetMapping("/faq")
 	public CommonRespDto<?> findAll() {
 		List<Faq> faqs = faqService.Faq전체조회();
 		return new CommonRespDto<>(1, faqs);
 	}
 	
 	@CrossOrigin
-	@PostMapping("/support/faq")
+	@PostMapping("/faq")
 	public CommonRespDto<?> save(@Valid  @RequestBody FaqSaveReqDto faqSaveReqDto, BindingResult bindingResult) {
 		faqService.Faq등록(faqSaveReqDto);
 		return new CommonRespDto<>(1, null);

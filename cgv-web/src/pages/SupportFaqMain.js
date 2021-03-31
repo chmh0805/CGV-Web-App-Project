@@ -5,7 +5,7 @@ import HomeIcon from "@material-ui/icons/Home";
 import btnPaging from "../images/button/btn_paging.gif";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
-import FaqTableContent from "../components/faq/FaqTableContent";
+import FaqTableContent from "../components/support/faq/FaqTableContent";
 
 const SupportMainContainer = styled.div`
   background-color: #fdfcf0;
