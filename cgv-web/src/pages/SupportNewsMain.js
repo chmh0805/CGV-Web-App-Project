@@ -35,7 +35,6 @@ const NavSectionItemBox = styled.div`
 
 const NavSectionHome = styled(Link)`
   color: black;
-
   &:hover {
     color: black;
   }
