@@ -19,7 +19,7 @@ public class FaqService {
 	
 	@Transactional(readOnly = true)
 	public List<Faq> Faq전체조회() {
-		return faqRepository.findAll();
+		return faqRepository.mFindAll();
 	}
 
 	@Transactional

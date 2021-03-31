@@ -19,7 +19,7 @@ public class NoticeService {
 
 	@Transactional(readOnly = true)
 	public List<Notice> 공지뉴스전체조회() {
-		return noticeRepository.findAll();
+		return noticeRepository.mFindAll();
 	}
 
 	@Transactional
