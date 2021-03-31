@@ -12,11 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cgv.cgvserver.domain.faq.Faq;
-import com.cgv.cgvserver.domain.notice.Notice;
 import com.cgv.cgvserver.service.FaqService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
 import com.cgv.cgvserver.web.dto.faq.FaqSaveReqDto;
-import com.cgv.cgvserver.web.dto.notice.NoticeSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
 

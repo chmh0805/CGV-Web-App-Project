@@ -4,7 +4,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.cgv.cgvserver.domain.faq.Faq;
-import com.cgv.cgvserver.domain.notice.Notice;
 
 import lombok.Data;
 
