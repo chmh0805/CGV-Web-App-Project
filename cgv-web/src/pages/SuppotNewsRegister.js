@@ -38,8 +38,13 @@ const SuppotNewsRegister = (props) => {
   };
 
   const saveNotice = (e) => {
+    if ((noticeReqDto.sort = "")) {
+      alert("구분을 선택하세요.");
+      return;
+    }
+
     e.preventDefault();
-    fetch("http://localhost:8080/support/news", {
+    fetch("http://localhost:8080/notice", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",

@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cgv.cgvserver.domain.notice.Notice;
 import com.cgv.cgvserver.domain.notice.NoticeRepository;
-
+import com.cgv.cgvserver.handler.exception.NotFoundNoticeException;
 import com.cgv.cgvserver.web.dto.notice.NoticeSaveReqDto;
 
 import com.cgv.cgvserver.utils.notice.NoticeToDto;
 import com.cgv.cgvserver.web.dto.notice.NoticeFindAllRespDto;
+import com.cgv.cgvserver.web.dto.notice.NoticeFindOneRespDto;
 import com.cgv.cgvserver.web.dto.notice.NoticeLimitRespDto;
 
 
@@ -53,4 +54,12 @@ public class NoticeService {
 		return NoticeToDto.toFindAllDtos(noticeEntities);
 	}
 	
+	@Transactional // 조회수 +1 되기 때문에 readOnly 아님
+	public NoticeFindOneRespDto 상세보기(long id) {
+		Notice noticeEntity = noticeRepository.findById(id)
+				.orElseThrow(() -> {throw new NotFoundNoticeException();});
+		
+		noticeEntity.setReadCount(noticeEntity.getReadCount()+1);
+		return NoticeToDto.toFindOneDto(noticeEntity);
+	}
 }

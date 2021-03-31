@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import com.cgv.cgvserver.handler.exception.NotFoundMovieException;
+import com.cgv.cgvserver.handler.exception.NotFoundNoticeException;
 import com.cgv.cgvserver.handler.exception.NotFoundTheaterException;
 import com.cgv.cgvserver.handler.exception.NotFoundUserException;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
@@ -31,6 +32,11 @@ public class ExceptionAdvicer {
 	
 	@ExceptionHandler
 	public CommonRespDto<String> notFoundTheaterEx(NotFoundTheaterException e) {
+		return new CommonRespDto<>(-1, e.getMessage());
+	}
+	
+	@ExceptionHandler
+	public CommonRespDto<String> notFoundNoticeEx(NotFoundNoticeException e) {
 		return new CommonRespDto<>(-1, e.getMessage());
 	}
 	

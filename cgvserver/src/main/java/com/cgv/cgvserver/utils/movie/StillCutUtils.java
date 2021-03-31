@@ -3,7 +3,6 @@ package com.cgv.cgvserver.utils.movie;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.cgv.cgvserver.domain.actor.Actor;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.stillcut.StillCut;
 

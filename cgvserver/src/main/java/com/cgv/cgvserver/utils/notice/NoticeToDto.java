@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.cgv.cgvserver.domain.notice.Notice;
 import com.cgv.cgvserver.web.dto.notice.NoticeFindAllRespDto;
+import com.cgv.cgvserver.web.dto.notice.NoticeFindOneRespDto;
 import com.cgv.cgvserver.web.dto.notice.NoticeLimitRespDto;
 
 public class NoticeToDto {
@@ -62,5 +63,27 @@ public class NoticeToDto {
 		}
 		
 		return dtos;
+	}
+	
+	public static NoticeFindOneRespDto toFindOneDto(Notice noticeEntity) {
+		String sort = "";
+		if (noticeEntity.getSort() == 1) {
+			sort = "[극장]";
+		} else if (noticeEntity.getSort() == 2) {
+			sort = "[시스템점검]";
+		} else {
+			sort = "[기타]";
+		}
+		
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		
+		return NoticeFindOneRespDto.builder()
+						.id(noticeEntity.getId())
+						.sort(sort)
+						.title(noticeEntity.getTitle())
+						.content(noticeEntity.getContent())
+						.createDate(format.format(noticeEntity.getCreateDate()).toString())
+						.readCount(noticeEntity.getReadCount())
+						.build();
 	}
 }

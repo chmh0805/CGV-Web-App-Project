@@ -38,7 +38,7 @@ public class NoticeController {
 	}
 	
 	@CrossOrigin
-	@PostMapping("/support/news")
+	@PostMapping("/notice")
 	public CommonRespDto<?> save(@Valid  @RequestBody NoticeSaveReqDto noticeSaveReqDto, BindingResult bindingResult) {
 		noticeService.공지뉴스등록(noticeSaveReqDto);
 		return new CommonRespDto<>(1, null);
@@ -54,8 +54,13 @@ public class NoticeController {
 		return new CommonRespDto<>(1, noticeService.전체찾기());
 	}
 	
-	@GetMapping("/notice/{keyword}")
+	@GetMapping("/notice/search/{keyword}")
 	public CommonRespDto<?> findByKeyword(@PathVariable String keyword) {
 		return new CommonRespDto<>(1, noticeService.키워드찾기(keyword));
+	}
+	
+	@GetMapping("/notice/{id}")
+	public CommonRespDto<?> findById(@PathVariable long id) {
+		return new CommonRespDto<>(1, noticeService.상세보기(id));
 	}
 }
