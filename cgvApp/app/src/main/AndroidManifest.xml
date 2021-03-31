@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:launchMode="singleInstance"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -24,27 +23,69 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PrivacyActivity" />
-        <activity android:name=".activity.FindIdAndPasswordActivity" />
-        <activity android:name=".activity.MovieListActivity" />
-        <activity android:name=".activity.ShoppingBasketActivity" />
-        <activity android:name=".activity.TicketingPaymentActivity" />
-        <activity android:name=".activity.SeatChoiceActivity" />
-        <activity android:name=".activity.MyCgvActivity" />
-        <activity android:name=".activity.TicketingActivity" />
-        <activity android:name=".activity.GiftCardActivity" />
-        <activity android:name=".activity.NoticeBoxActivity" />
-        <activity android:name=".activity.ServiceCenterActivity" />
-        <activity android:name=".activity.FindTheaterActivity" />
-        <activity android:name=".activity.MovieDetailActivity" />
-        <activity android:name=".activity.MovieLogActivity" />
-        <activity android:name=".activity.FrequentlyCgvActivity" />
-        <activity android:name=".activity.PaymentHistoryActivity" />
-        <activity android:name=".activity.JoinActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.GiftShopDetailActivity" />
-        <activity android:name=".activity.GiftshopActivity" />
-        <activity android:name=".activity.MainActivity" />
+        <activity
+            android:name=".activity.PrivacyActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.FindIdAndPasswordActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.MovieListActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.ShoppingBasketActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.TicketingPaymentActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.SeatChoiceActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.MyCgvActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.TicketingActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.GiftCardActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.NoticeBoxActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.ServiceCenterActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.FindTheaterActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.MovieDetailActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.MovieLogActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.FrequentlyCgvActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.PaymentHistoryActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.JoinActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.GiftShopDetailActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.GiftshopActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:launchMode="singleInstance" />
     </application>
 
 </manifest>

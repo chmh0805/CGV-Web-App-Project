@@ -9,12 +9,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.example.cgvapplication.activity.FindTheaterActivity;
 import com.example.cgvapplication.activity.GiftCardActivity;
 import com.example.cgvapplication.activity.LoginActivity;
+import com.example.cgvapplication.activity.MainActivity;
 import com.example.cgvapplication.activity.MovieListActivity;
 import com.example.cgvapplication.activity.MovieLogActivity;
 import com.example.cgvapplication.activity.MyCgvActivity;
@@ -38,10 +40,14 @@ public class MyNavigationHelper {
 
     private static final String TAG = "MyNavigationHelper";
     private final Context mContext;
-    private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter;
-    private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell, mTvLogout;
+    private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter, mTvLogout, mTvNickName;
+    private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell;
     private DrawerLayout mDrawer, mFrequentlyCgvDrawer;
+    private ConstraintLayout mClProfile;
     private LinearLayout mLinearNavigation;
+    private String token;
+    private String userEntity;
+    private Gson gson = new Gson();
 
     public MyNavigationHelper(Context mContext) {
         this.mContext = mContext;
@@ -65,54 +71,98 @@ public class MyNavigationHelper {
         mIvMyViewMovie = view.findViewById(R.id.iv_my_view_movie);
         mTvGoServiceCenter = view.findViewById(R.id.tv_go_service_center);
         mTvGoLogin = view.findViewById(R.id.tv_go_login);
+        mTvNickName = view.findViewById(R.id.tv_nickname);
+        mTvLogout = view.findViewById(R.id.tv_logout);
         mTvGoMyCgv = view.findViewById(R.id.tv_go_my_cgv);
         mTvGoGiftCard = view.findViewById(R.id.tv_go_gift_card);
         mIvClose = view.findViewById(R.id.iv_close);
         mIvBell = view.findViewById(R.id.iv_bell);
-
+        mClProfile = view.findViewById(R.id.cl_profile);
     }
 
     private void listener() {
+
+        mTvLogout.setOnClickListener(v -> {
+            SharedPreference.removeAllAttribute(mContext);
+            mDrawer.closeDrawer(GravityCompat.END);
+            mClProfile.setVisibility(View.GONE);
+            mTvGoLogin.setVisibility(View.VISIBLE);
+            if (!(mContext.getClass().equals(MainActivity.class))) {
+                Intent intent = new Intent(mContext, MainActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+
         mTvGoLogin.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
+
             if (!(mContext.getClass().equals(LoginActivity.class))) {
+                mDrawer.closeDrawer(GravityCompat.END);
                 Intent intent = new Intent(mContext, LoginActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 mContext.startActivity(intent);
-            } else {
-                mDrawer.closeDrawer(GravityCompat.END);
+            }
+        });
+
+        mClProfile.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
+
+            if (!(mContext.getClass().equals(MyCgvActivity.class))) {
+                Intent intent = new Intent(mContext, MyCgvActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                userEntity = SharedPreference.getAttribute(mContext, "userEntity");
+                intent.putExtra("userEntity", userEntity);
+                mContext.startActivity(intent);
             }
         });
 
         mTvGoMyCgv.setOnClickListener(v -> {
+            token = SharedPreference.getAttribute(mContext, "Authorization");
+            mDrawer.closeDrawer(GravityCompat.END);
 
-            UserService userService = UserService.retrofit.create(UserService.class);
-            String token = SharedPreference.getAttribute(mContext, "Authorization");
-            Call<CMRespDto<User>> call = userService.findById(token);
-            call.enqueue(new Callback<CMRespDto<User>>() {
-                @Override
-                public void onResponse(Call<CMRespDto<User>> call, Response<CMRespDto<User>> response) {
-
-                    CMRespDto<User> userData = response.body();
-                    if (userData.getStatusCode() == 1) {
-                        Intent intent = new Intent(mContext, MyCgvActivity.class);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-
-                        Gson gson = new Gson();
-                        String userEntity = gson.toJson(userData.getData());
-                        Log.d(TAG, "onResponse: "+userEntity);
-                        intent.putExtra("userEntity", userEntity);
-                        mContext.startActivity(intent);
-                    }
+            if (token == null) {
+                if (!(mContext.getClass().equals(LoginActivity.class))) {
+                    Intent intent = new Intent(mContext, LoginActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    mContext.startActivity(intent);
                 }
-
-                @Override
-                public void onFailure(Call<CMRespDto<User>> call, Throwable t) {
-
+            } else {
+                if (!(mContext.getClass().equals(MyCgvActivity.class))) {
+                    Intent intent = new Intent(mContext, MyCgvActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    userEntity = SharedPreference.getAttribute(mContext, "userEntity");
+                    intent.putExtra("userEntity", userEntity);
+                    mContext.startActivity(intent);
                 }
-            });
+            }
         });
 
         mIvMenu.setOnClickListener(v -> {
+            token = SharedPreference.getAttribute(mContext, "Authorization");
+            if (!(token == null)) {
+                UserService userService = UserService.retrofit.create(UserService.class);
+                String token = SharedPreference.getAttribute(mContext, "Authorization");
+                Call<CMRespDto<User>> callUserEntity = userService.findById(token);
+                callUserEntity.enqueue(new Callback<CMRespDto<User>>() {
+                    @Override
+                    public void onResponse(Call<CMRespDto<User>> call, Response<CMRespDto<User>> response) {
+                        CMRespDto<User> userData = response.body();
+                        if (userData.getStatusCode() == 1) {
+                            mClProfile.setVisibility(View.VISIBLE);
+                            mTvNickName.setText(userData.getData().getUsername());
+                            mTvGoLogin.setVisibility(View.GONE);
+                            Gson gson = new Gson();
+                            String userEntity = gson.toJson(userData.getData());
+                            SharedPreference.setAttribute(mContext, "userEntity", userEntity);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<CMRespDto<User>> call, Throwable t) {
+
+                    }
+                });
+            }
             mDrawer.openDrawer(GravityCompat.END);
         });
 

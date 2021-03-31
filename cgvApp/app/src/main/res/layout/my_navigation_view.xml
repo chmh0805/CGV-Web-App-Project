@@ -101,7 +101,7 @@
                         android:paddingTop="10dp"
                         android:paddingBottom="10dp">
                         <LinearLayout
-                            android:layout_weight="3"
+                            android:layout_weight="1"
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:gravity="center_vertical|right">
@@ -116,8 +116,8 @@
                         </LinearLayout>
                         <TextView
                             android:id="@+id/tv_go_login"
-                            android:layout_weight="4"
-                            android:layout_width="wrap_content"
+                            android:layout_weight="3"
+                            android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:text="로그인을 해주세요"
                             android:paddingLeft="15dp"
@@ -125,17 +125,18 @@
                             android:paddingRight="10dp"
                             android:paddingBottom="20dp"
                             android:textStyle="bold"
-                            android:visibility="visible"/>
+                            android:visibility="gone"/>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
-                            android:layout_weight="9"
+                            android:id="@+id/cl_profile"
+                            android:layout_weight="3"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:paddingLeft="10dp"
                             android:paddingTop="15dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="15dp"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
 
                             <TextView
