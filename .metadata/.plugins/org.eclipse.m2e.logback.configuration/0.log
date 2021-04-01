@@ -8048,3 +8048,10 @@
 2021-04-01 10:35:13,693 [Worker-119: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-04-01 10:35:13,694 [Worker-119: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2021-04-01 10:35:13,694 [Worker-119: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\HeeJin\mylab\projectwork\CGV-Web-App-Project\cgvserver\src\test\resources
+2021-04-01 10:45:23,209 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-04-01 10:45:23,209 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-04-01 10:45:23,209 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-01 10:45:23,223 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 4 resources
+2021-04-01 10:45:23,225 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-04-01 10:45:23,225 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-04-01 10:45:23,225 [Worker-120: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\HeeJin\mylab\projectwork\CGV-Web-App-Project\cgvserver\src\test\resources

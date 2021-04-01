@@ -38,6 +38,8 @@
 	<section name="NewPackageWizardPage">
 		<item key="create_package_info_java" value="false"/>
 	</section>
+<<<<<<< HEAD
+=======
 	<section name="org.eclipse.jdt.internal.ui.text.QuickOutline">
 		<item key="GoIntoTopLevelTypeAction.isChecked" value="false"/>
 		<item key="org.eclipse.jdt.internal.ui.text.JavaOutlineInformationControlDIALOG_WIDTH" value="500"/>
@@ -51,4 +53,5 @@
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_LOCATION" value="false"/>
 	</section>
+>>>>>>> 7074f3c7db984eb18450def7e0905c5a881c87fa
 </section>

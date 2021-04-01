@@ -94,8 +94,25 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+<<<<<<< HEAD
 			<item value="D:\HeeJin\mylab\projectwork\CGV-Web-App-Project\cgvserver"/>
+=======
+<<<<<<< HEAD
+			<item value="C:\Programing\workspace\CGV-Web-App-Project\cgvserver"/>
+			<item value="D:\workspace\lastproject\CGV-Web-App-Project\cgvserver"/>
+		</list>
+	</section>
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_X_ORIGIN" value="354"/>
+		<item key="DIALOG_Y_ORIGIN" value="402"/>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+			<item value="org.eclipse.ui.preferences"/>
+=======
+>>>>>>> 063c4260522460c08f1fb0efd5e32a5dfc2e7f0e
 			<item value="D:\HeeJin\mylab\projectwork\CGV-Web-App-Project"/>
+>>>>>>> 7074f3c7db984eb18450def7e0905c5a881c87fa
 		</list>
 	</section>
 </section>
