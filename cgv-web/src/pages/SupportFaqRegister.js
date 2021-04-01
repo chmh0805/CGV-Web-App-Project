@@ -39,7 +39,7 @@ const SupportFaqRegister = (props) => {
 
   const saveFaq = (e) => {
     e.preventDefault();
-    fetch("http://localhost:8080/support/faq", {
+    fetch("http://localhost:8080/faq", {
       method: "POST",
       headers: {
         "Content-Type": "application/json; charset=utf-8",

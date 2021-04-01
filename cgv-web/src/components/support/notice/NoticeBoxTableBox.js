@@ -83,7 +83,7 @@ const SearchTableContentType = styled.div`
   font-weight: 500;
 `;
 
-const SearchTableContentTitle = styled(Link)`
+const SearchTableContentTitle = styled.span`
   width: 540px;
   display: block;
   font-size: 14px;
@@ -125,7 +125,16 @@ const NoticeBoxTableBox = ({ notices }) => {
         <SearchTableContent>
           <SearchTableContentNo>{notice.id}</SearchTableContentNo>
           <SearchTableContentType>{notice.sort}</SearchTableContentType>
-          <SearchTableContentTitle>{notice.title}</SearchTableContentTitle>
+          <Link
+            to={{
+              pathname: "/support/news/detail",
+              state: {
+                noticeId: notice.id,
+              },
+            }}
+          >
+            <SearchTableContentTitle>{notice.title}</SearchTableContentTitle>
+          </Link>
           <SearchTableContentReadCount>
             {notice.readCount}
           </SearchTableContentReadCount>
