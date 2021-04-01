@@ -38,4 +38,5 @@ public class FaqController {
 	public CommonRespDto<?> findByKeyword(@PathVariable String keyword) {
 		return new CommonRespDto<>(1, faqService.키워드찾기(keyword));
 	}
+	
 }
