@@ -56,16 +56,20 @@ const SearchTableContentReadCount = styled.div`
   font-weight: 500;
 `;
 
-const FaqTableContent = ({ faq }) => {
+const FaqTableContent = ({ faqs }) => {
   return (
-    <SearchTableContent>
-      <SearchTableContentNo>{faq.id}</SearchTableContentNo>
-      <SearchTableContentType>
-        {faq.sort === 1 ? "[예매/매표]" : "[관람권/결제수단]"}
-      </SearchTableContentType>
-      <SearchTableContentTitle>{faq.title}</SearchTableContentTitle>
-      <SearchTableContentReadCount>{faq.readCount}</SearchTableContentReadCount>
-    </SearchTableContent>
+    <>
+      {faqs.map((faq) => (
+        <SearchTableContent>
+          <SearchTableContentNo>{faq.id}</SearchTableContentNo>
+          <SearchTableContentType>{faq.sort}</SearchTableContentType>
+          <SearchTableContentTitle>{faq.title}</SearchTableContentTitle>
+          <SearchTableContentReadCount>
+            {faq.readCount}
+          </SearchTableContentReadCount>
+        </SearchTableContent>
+      ))}
+    </>
   );
 };
 
