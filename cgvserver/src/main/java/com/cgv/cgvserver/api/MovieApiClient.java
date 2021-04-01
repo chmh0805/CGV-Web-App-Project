@@ -58,6 +58,7 @@ public class MovieApiClient {
 			
 			int i = 0;
 			for (DailyBoxOfficeList dailyBoxOffice : dailyBoxOfficeLists) {
+				
 				StringBuilder urlBuilder = new StringBuilder(
 						"http://api.koreafilm.or.kr/openapi-data2/wisenut/search_api/search_json2.jsp?collection=kmdb_new2&detail=Y");
 				urlBuilder.append("&" + URLEncoder.encode("ServiceKey", "UTF-8") + "=" + serviceKey);
@@ -91,9 +92,20 @@ public class MovieApiClient {
 
 				JsonObject jsonObject = (JsonObject) JsonParser.parseString(movieJsonArray.get(i));  
 				JsonArray jsonArray = (JsonArray) jsonObject.get("Data");
+				
 				jsonObject = (JsonObject) jsonArray.get(0);
-				jsonArray = (JsonArray) jsonObject.get("Result");
-				movieJsonParseArray.add(jsonArray.get(0).toString());
+				System.out.println(jsonObject);
+				
+				if(!jsonObject.get("Count").toString().equals("0")) {
+					
+					jsonArray = (JsonArray) jsonObject.get("Result");
+					movieJsonParseArray.add(jsonArray.get(0).toString());
+				} else {
+					i++;
+					if(i>=jsonObject.size()) { break; }
+					else continue;
+					
+				}
 				
 				rd.close();
 				conn.disconnect();
@@ -153,6 +165,7 @@ public class MovieApiClient {
 				movieDetailApiRespDtos.get(i).setRank(Integer.parseInt(dailyBoxOffice.getRank()));
 				String[] spPosters = movieDetailApiRespDtos.get(i).getPosters().split("\\|");
 				movieDetailApiRespDtos.get(i).setPosters(spPosters[0]);
+				
 				i++;
 			
 			}

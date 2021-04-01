@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.cgv.cgvserver.domain.hall.Hall;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.theater.Theater;
 
@@ -29,10 +30,14 @@ public class TimeTable {
 	@ManyToOne
 	private Movie movie;
 	
-	@JoinColumn(name="theaterId")
+//	@JoinColumn(name="theaterId")
+//	@ManyToOne
+//	private Theater theater;
+	
+	@JoinColumn(name="hallId")
 	@ManyToOne
-	private Theater theater;
-
+	private Hall hall;
+	
 	private String date; // 상영일
 	
 	private String startTime; // 상영시간
