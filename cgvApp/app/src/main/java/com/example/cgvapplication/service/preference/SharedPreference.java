@@ -1,4 +1,4 @@
-package com.example.cgvapplication.service;
+package com.example.cgvapplication.service.preference;
 
 import android.content.Context;
 import android.content.SharedPreferences;

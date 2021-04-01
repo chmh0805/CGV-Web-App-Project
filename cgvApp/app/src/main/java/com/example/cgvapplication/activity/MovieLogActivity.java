@@ -15,6 +15,8 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.adapter.movielog.MovieLogExpectAdapter;
 import com.example.cgvapplication.adapter.movielog.MovieLogSawAdapter;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.example.cgvapplication.model.user.User;
+import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 public class MovieLogActivity extends AppCompatActivity {
@@ -74,6 +76,13 @@ public class MovieLogActivity extends AppCompatActivity {
             sawMovie();
         }
 
+        Gson gson = new Gson();
+
+        String userDate = getIntent().getStringExtra("userEntity");
+        User userEntity = gson.fromJson(userDate, User.class);
+
+        tvMovieLogUsername.setText(userEntity.getUsername());
+        tvMovieLogNickname.setText(userEntity.getNickname());
     }
 
     public void expectMovie() {

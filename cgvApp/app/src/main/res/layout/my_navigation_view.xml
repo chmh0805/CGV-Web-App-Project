@@ -361,6 +361,7 @@
                             android:layout_marginBottom="10dp">
                         </ImageView>
                         <TextView
+                            android:id="@+id/tv_go_movie_log_saw"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="내가본 영화"

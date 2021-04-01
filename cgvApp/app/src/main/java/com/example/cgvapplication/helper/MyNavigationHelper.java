@@ -3,7 +3,6 @@ package com.example.cgvapplication.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -25,22 +24,20 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.activity.ServiceCenterActivity;
 import com.example.cgvapplication.activity.TicketingActivity;
 import com.example.cgvapplication.model.user.User;
-import com.example.cgvapplication.service.SharedPreference;
+import com.example.cgvapplication.service.preference.SharedPreference;
 import com.example.cgvapplication.service.UserService;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.google.gson.Gson;
 
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.http.Header;
 
 public class MyNavigationHelper {
 
     private static final String TAG = "MyNavigationHelper";
     private final Context mContext;
-    private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter, mTvLogout, mTvNickName;
+    private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter, mTvLogout, mTvNickName, mTvGoMovieLogSaw;
     private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell;
     private DrawerLayout mDrawer, mFrequentlyCgvDrawer;
     private ConstraintLayout mClProfile;
@@ -75,6 +72,7 @@ public class MyNavigationHelper {
         mTvLogout = view.findViewById(R.id.tv_logout);
         mTvGoMyCgv = view.findViewById(R.id.tv_go_my_cgv);
         mTvGoGiftCard = view.findViewById(R.id.tv_go_gift_card);
+        mTvGoMovieLogSaw = view.findViewById(R.id.tv_go_movie_log_saw);
         mIvClose = view.findViewById(R.id.iv_close);
         mIvBell = view.findViewById(R.id.iv_bell);
         mClProfile = view.findViewById(R.id.cl_profile);
@@ -170,32 +168,38 @@ public class MyNavigationHelper {
             mDrawer.closeDrawer(GravityCompat.END);
         });
         mIvTicketingMovie.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, TicketingActivity.class);
             mContext.startActivity(intent);
         });
 
         mIvTicketingTheater.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             int page = 1;
             Intent intent = new Intent(mContext, TicketingActivity.class);
             intent.putExtra("TicketingTheater", page);
             mContext.startActivity(intent);
         });
         mIvMovie.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, MovieListActivity.class);
             mContext.startActivity(intent);
         });
 
         mIvBell.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, NoticeBoxActivity.class);
             mContext.startActivity(intent);
         });
 
         mIvTicketingMovie.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, TicketingActivity.class);
             mContext.startActivity(intent);
         });
 
         mIvTicketingTheater.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             int page = 1;
             Intent intent = new Intent(mContext, TicketingActivity.class);
             intent.putExtra("TicketingTheater", page);
@@ -203,11 +207,23 @@ public class MyNavigationHelper {
         });
 
         mIvSearchTheater.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, FindTheaterActivity.class);
             mContext.startActivity(intent);
         });
 
+        mTvGoMovieLogSaw.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
+            int page = 1;
+            Intent intent = new Intent(mContext, MovieLogActivity.class);
+            userEntity = SharedPreference.getAttribute(mContext, "userEntity");
+            intent.putExtra("userEntity", userEntity);
+            intent.putExtra("MovieLog", page);
+            mContext.startActivity(intent);
+        });
+
         mTvGoServiceCenter.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             int page = 0;
             Intent intent = new Intent(mContext, ServiceCenterActivity.class);
             intent.putExtra("ServiceCenter", page);
@@ -215,16 +231,19 @@ public class MyNavigationHelper {
         });
 
         mTvGoGiftCard.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, GiftCardActivity.class);
             mContext.startActivity(intent);
         });
 
         mIvMovie.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             Intent intent = new Intent(mContext, MovieListActivity.class);
             mContext.startActivity(intent);
         });
 
         mIvMyViewMovie.setOnClickListener(v -> {
+            mDrawer.closeDrawer(GravityCompat.END);
             int page = 1;
             Intent intent = new Intent(mContext, MovieLogActivity.class);
             intent.putExtra("MovieLog", page);
