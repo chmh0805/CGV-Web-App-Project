@@ -20,7 +20,7 @@ import retrofit2.http.Path;
 public interface UserService {
 
     @POST("/findUsername")
-    Call<CMRespDto<FindUsernameRespDto>> findUsername(@Body FindUsernameRespDto fIndPasswordRespDto);
+    Call<CMRespDto<String>> findUsername(@Body FindUsernameRespDto fIndPasswordRespDto);
 
     @POST("/findPassword")
     Call<CMRespDto<FindPasswordRespDto>> findPassword(@Body FindPasswordRespDto fIndPasswordRespDto);

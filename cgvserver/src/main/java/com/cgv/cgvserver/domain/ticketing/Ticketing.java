@@ -38,7 +38,7 @@ public class Ticketing {
 	@ManyToOne
 	private User user;
 	
-	private String tieketNum;
+	private String ticketNum;
 	
 	private int personType;
 	

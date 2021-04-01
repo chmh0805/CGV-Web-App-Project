@@ -63,7 +63,7 @@ public class MovieController {
 		Movie movie = movieService.영화상세보기(movieId);
 		return new CommonRespDto<>(1, movie);
 	}
-	// 앱 시작 또는 웹 시작 시 실행하면 될 듯!
+	
 	@PostMapping("/movie/boxoffice")
 	public CommonRespDto<?> save() throws IOException {
 		String oneDaysAgo = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
