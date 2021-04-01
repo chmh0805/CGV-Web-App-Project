@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ExceptionHandler"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundNoticeException"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.notice.NoticeFindOneRespDto"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.context.properties.bind.DefaultValue"/>
+    <fullyQualifiedTypeName name="javax.persistence.Transient"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.faq.Faq"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.faq.FaqFindAllRespDto"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.utils.faq.FaqToRespDto"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.hall.HallRepository"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.seat.SeatRepository"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.hibernate.mapping.Array"/>
+    <fullyQualifiedTypeName name="java.lang.reflect.Array"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.utils.theater.InitTheater"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.seat.Seat"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnoreProperties"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.ResponseBody"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.movie.MovieReqDto"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.service.MovieService"/>
+    <fullyQualifiedTypeName name="javax.management.Query"/>
+    <fullyQualifiedTypeName name="javax.persistence.Query"/>
+    <fullyQualifiedTypeName name="javax.persistence.EntityManager"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.movie.MovieRepository"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.service.TheaterService"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.timetable.TimeTableRespDto"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.CommonRespDto"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.movie.Movie"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.hall.Hall"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.theater.Theater"/>
+</qualifiedTypeNameHistroy>

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import com.cgv.cgvserver.domain.seat.Seat;
 import com.cgv.cgvserver.domain.theater.Theater;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,8 +31,9 @@ public class Hall {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonIgnoreProperties({"halls"})
 	@JoinColumn(name = "theaterId")
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Theater theater;
 	
 	private String name;

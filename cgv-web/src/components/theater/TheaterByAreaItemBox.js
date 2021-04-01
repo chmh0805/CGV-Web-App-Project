@@ -13,7 +13,7 @@ const TheaterByAreaBox = styled.div`
 `;
 
 const TheaterByAreaItem = styled.div`
-  width: 60px;
+  width: auto;
   height: auto;
   display: flex;
   justify-content: center;

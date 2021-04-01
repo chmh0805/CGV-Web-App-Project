@@ -1,5 +1,6 @@
 package com.cgv.cgvserver.domain.timetable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -35,8 +36,12 @@ public class TimeTable {
 //	private Theater theater;
 	
 	@JoinColumn(name="hallId")
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Hall hall;
+	
+	@JoinColumn(name="theaterId")
+	@ManyToOne
+	private Theater theater;
 	
 	private String date; // 상영일
 	

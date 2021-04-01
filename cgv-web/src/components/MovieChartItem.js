@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import posterEx from "../images/movieChart/MoviePosterEx.jpg";
@@ -86,15 +86,24 @@ const MCTicketImg = styled.img`
   margin-top: 8px;
 `;
 
-const MovieChartItem = () => {
+const MovieChartItem = ({ movieData }) => {
+  const [movie, setMovie] = useState({
+    rankNum: 0,
+    posterImageSrc: "",
+    title: "",
+    releaseDate: "",
+  });
+
+  setMovie(movieData);
+
   return (
     <MCItemContainer>
-      <MCRankBox>No.1</MCRankBox>
+      <MCRankBox>No.{movie.rankNum}</MCRankBox>
       <MCItemImgBox>
-        <MCItemImg src={posterEx} />
+        <MCItemImg src={movie.posterImageSrc} />
       </MCItemImgBox>
       <MCItemInfoBox>
-        <MCMovieTitle to="/movies/detail/">소울</MCMovieTitle>
+        <MCMovieTitle to="/movies/detail/">{movie.title}</MCMovieTitle>
         <MCMovieInfo>
           <MCInfoText>예매율</MCInfoText>
           <MCInfoNum>1.9%</MCInfoNum>
@@ -102,7 +111,7 @@ const MovieChartItem = () => {
           <MCEggImg src={kingEgg} />
           <MCInfoNum>92%</MCInfoNum>
         </MCMovieInfo>
-        <MCInfoText>2021.01.20</MCInfoText>
+        <MCInfoText>{movie.releaseDate}</MCInfoText>
         <MCInfoText>개봉</MCInfoText>
         <Link to="/ticket">
           <MCTicketImg src={ticketingBtn} />

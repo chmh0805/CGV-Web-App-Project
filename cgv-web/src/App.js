@@ -36,6 +36,7 @@ import TheaterRegister from "./pages/TheaterRegister";
 import SuppotNewsRegister from "./pages/SuppotNewsRegister";
 import SupportFaqRegister from "./pages/SupportFaqRegister";
 import MyCgvMyQnaDetail from "./pages/MyCgvMyQnaDetail";
+import TimeTableRegister from "./pages/TimeTableRegister";
 
 function App() {
   return (
@@ -121,7 +122,13 @@ function App() {
         component={TheaterRegister}
       />
       {/* 극장 영역 끝 */}
-
+      {/* 극장 등록 */}
+      <Route
+        path="/timetable/register"
+        exact={true}
+        component={TimeTableRegister}
+      />
+      {/* 극장 영역 끝 */}
       {/* 고객센터 영역 */}
       {/* 고객센터 홈 */}
       <Route path="/support/default" exact={true} component={SupportMain} />

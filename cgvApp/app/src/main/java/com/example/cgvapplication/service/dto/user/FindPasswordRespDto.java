@@ -4,5 +4,6 @@ import lombok.Data;
 
 @Data
 public class FindPasswordRespDto {
-    private Long id;
+    private String username;
+    private String phone;
 }

@@ -38,7 +38,7 @@ public class Ticketing {
 	@ManyToOne
 	private User user;
 	
-	private String tieketNum;
+	private String ticketNum;
 	
 	private int personType;
 	
@@ -46,7 +46,7 @@ public class Ticketing {
 	@OneToOne
 	private Seat seat;
 	
-	private int state;
+	private int state; // 0: 미사용 1: 사용
 	
 	@JoinColumn(name="timeTableId")
 	@ManyToOne
