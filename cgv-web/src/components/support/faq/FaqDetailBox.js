@@ -65,17 +65,15 @@ const FaqTableContentBox = styled.div`
   vertical-align: top;
 `;
 
-const FaqDetailBox = ({ notice }) => {
+const FaqDetailBox = ({ faq }) => {
   return (
     <>
       <FaqTableBox>
         <FaqTableRowBox>
           <FaqTableContentTitle>제목</FaqTableContentTitle>
           <FaqTableContentLongBody>
-            <FaqTableContentDiv>{notice.title}</FaqTableContentDiv>
-            <FaqTableContentTitle>
-              조회수 {notice.readCount}
-            </FaqTableContentTitle>
+            <FaqTableContentDiv>{faq.title}</FaqTableContentDiv>
+            <FaqTableContentTitle>조회수 {faq.readCount}</FaqTableContentTitle>
           </FaqTableContentLongBody>
         </FaqTableRowBox>
         <FaqTableRowBox
@@ -87,7 +85,7 @@ const FaqDetailBox = ({ notice }) => {
         >
           <FaqTableContentTitle>내용</FaqTableContentTitle>
           <FaqTableContentLongBody>
-            <FaqTableContentBox>{notice.content}</FaqTableContentBox>
+            <FaqTableContentBox>{faq.content}</FaqTableContentBox>
           </FaqTableContentLongBody>
         </FaqTableRowBox>
       </FaqTableBox>

@@ -27,7 +27,7 @@ const SearchTableContentType = styled.div`
   font-weight: 500;
 `;
 
-const SearchTableContentTitle = styled(Link)`
+const SearchTableContentTitle = styled.span`
   width: 540px;
   display: block;
   font-size: 14px;
@@ -63,7 +63,16 @@ const FaqTableContent = ({ faqs }) => {
         <SearchTableContent>
           <SearchTableContentNo>{faq.id}</SearchTableContentNo>
           <SearchTableContentType>{faq.sort}</SearchTableContentType>
-          <SearchTableContentTitle>{faq.title}</SearchTableContentTitle>
+          <Link
+            to={{
+              pathname: "/support/faq/detail",
+              state: {
+                faqId: faq.id,
+              },
+            }}
+          >
+            <SearchTableContentTitle>{faq.title}</SearchTableContentTitle>
+          </Link>
           <SearchTableContentReadCount>
             {faq.readCount}
           </SearchTableContentReadCount>

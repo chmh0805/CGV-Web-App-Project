@@ -82,15 +82,15 @@ const MyCGVMainContainer = styled.div`
 const SupportFaqDetail = (props) => {
   setCookie("now-space", "support-faq");
 
-  let noticeId = props.location.state.noticeId;
+  let faqId = props.location.state.faqId;
   const [isLoaded, setIsLoaded] = useState(true);
-  const [notice, setNotice] = useState({});
+  const [faq, setFaq] = useState({});
 
-  const loadNotices = async () => {
+  const loadFaqs = async () => {
     if (isLoaded) {
       setIsLoaded(false);
 
-      await fetch("http://localhost:8080/notice/" + noticeId, {
+      await fetch("http://localhost:8080/faq/" + faqId, {
         method: "GET",
         headers: new Headers({
           Authorization: getCookie("cgvJWT"),
@@ -99,7 +99,7 @@ const SupportFaqDetail = (props) => {
         .then((res) => res.json())
         .then((res) => {
           if (res.statusCode === 1) {
-            setNotice(res.data);
+            setFaq(res.data);
           }
         })
         .catch((err) => {
@@ -110,7 +110,8 @@ const SupportFaqDetail = (props) => {
     }
   };
 
-  loadNotices();
+  loadFaqs();
+
   return (
     <SupportMainContainer>
       <NavSection>
@@ -124,7 +125,7 @@ const SupportFaqDetail = (props) => {
           <NavSectionSpan
             style={{ textDecoration: "underline", fontWeight: "700" }}
           >
-            공지/뉴스
+            자주찾는 질문
           </NavSectionSpan>
         </NavSectionItemBox>
       </NavSection>
@@ -134,9 +135,9 @@ const SupportFaqDetail = (props) => {
 
         <MainContentsBox>
           <MainContentsTitleBox>
-            <MainContentsTitleH3>공지/뉴스</MainContentsTitleH3>
+            <MainContentsTitleH3>자주찾는 질문</MainContentsTitleH3>
           </MainContentsTitleBox>
-          <FaqDetailBox notice={notice} />
+          <FaqDetailBox faq={faq} />
         </MainContentsBox>
       </MyCGVMainContainer>
     </SupportMainContainer>

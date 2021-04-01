@@ -38,4 +38,9 @@ public class FaqController {
 	public CommonRespDto<?> findByKeyword(@PathVariable String keyword) {
 		return new CommonRespDto<>(1, faqService.키워드찾기(keyword));
 	}
+	
+	@GetMapping("/faq/{id}")
+	public CommonRespDto<?> findById(@PathVariable long id) {
+		return new CommonRespDto<>(1, faqService.상세보기(id));
+	}
 }
