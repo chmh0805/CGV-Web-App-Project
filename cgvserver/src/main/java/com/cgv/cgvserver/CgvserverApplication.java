@@ -29,6 +29,7 @@ import com.cgv.cgvserver.utils.movie.TrailerUtils;
 import com.cgv.cgvserver.web.dto.movie.MovieDetailApiRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieReqDto;
 
+
 @SpringBootApplication
 public class CgvserverApplication implements CommandLineRunner{
 	@Autowired
@@ -144,7 +145,7 @@ public class CgvserverApplication implements CommandLineRunner{
 		BoxOfficeMovie boxOfficeMovie = BoxOfficeUtils.boxOfficeMovieObject(movieReqDto.getRank(), movieEntity);
 		boxOfficeMovieRepository.save(boxOfficeMovie);
 	
-		
+//		
 	}
 
 }
