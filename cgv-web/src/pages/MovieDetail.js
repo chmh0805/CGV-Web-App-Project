@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import posterEx from "../images/movieChart/MoviePosterEx.jpg";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
 import addBtn from "../images/movieDetail/add_btn.png";
-import expectBtn from "../images/movieDetail/btn_expectegg.png";
+import playBtn from "../images/movieDetail/play_icon.png";
 import expectEgg from "../images/movieDetail/btn_expectegg2.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
+import { getCookie, setCookie } from "../utils/JWT";
+import MovieChartOlItem from "../components/MovieChartOlItem";
 
 const MDCon = styled.div`
   width: 100%;
@@ -174,6 +176,13 @@ const MDMovieP = styled.p`
   margin: 0;
 `;
 
+const MDMovieSpan = styled.span`
+  margin: 0;
+  font-weight: 800;
+  margin-left: 2px;
+  margin-right: 4px;
+`;
+
 const MDMovieSep = styled.p`
   margin: 0;
   font-weight: 800;
@@ -219,6 +228,7 @@ const MDMovieContentDiv = styled.div`
 
 const MDTrailerBox = styled.div`
   margin-top: 40px;
+  height: auto;
 `;
 
 const MDContentTitleDiv = styled.div`
@@ -259,6 +269,7 @@ const MDReplyInfoBox = styled.div`
   box-sizing: border-box;
   border-radius: 5px;
   position: relative;
+  margin-top: 10px;
 `;
 
 const MDReplyInfoText = styled.p`
@@ -380,7 +391,78 @@ const ReplyNextBtn = styled.button`
   padding-right: 2px;
 `;
 
-const MovieDetail = () => {
+const ItemOl = styled.ol`
+  list-style: none;
+  padding-left: 0;
+  margin-left: -10px;
+`;
+
+const ItemLi = styled.li`
+  width: 260px;
+  margin: 0 0 15px 10px;
+  display: inline-block;
+`;
+
+const TrailerImgBox = styled.div`
+  width: 260px;
+  height: 142px;
+  position: relative;
+`;
+
+const TrailerImg = styled.img`
+  width: 260px;
+  height: 142px;
+`;
+
+const PlayButton = styled.img`
+  position: absolute;
+  right: 5px;
+  bottom: 6px;
+  width: 44px;
+  height: 44px;
+`;
+
+const MovieDetail = (props) => {
+  window.scrollTo(0, 0);
+
+  let movieDocId = props.location.state.movieDocId;
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [movie, setMovie] = useState({});
+  const [poster, setPoster] = useState();
+  const [directors, setDirectors] = useState({});
+  const [actors, setActors] = useState([]);
+  const [trailers, setTrailers] = useState([]);
+
+  const loadMovies = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/movie/" + movieDocId, {
+        method: "GET",
+        headers: new Headers({
+          Authorization: getCookie("cgvJWT"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.statusCode === 1) {
+            setMovie(res.data);
+            setPoster(res.data.posterImgSrc);
+            setDirectors(res.data.director);
+            setActors(res.data.actors);
+            setTrailers(res.data.trailers);
+          }
+        })
+        .catch((err) => {
+          // logout();
+          // alert("회원정보 조회 실패. 재로그인해주세요.");
+          // window.location.replace("/login");
+        });
+    }
+  };
+
+  loadMovies();
+
   return (
     <MDCon>
       <NavSection>
@@ -404,11 +486,11 @@ const MovieDetail = () => {
             <MDHeadTitle>영화상세</MDHeadTitle>
           </MDHeadBox>
           <MDMovieBox>
-            <MDMoviePoster src={posterEx} />
+            <MDMoviePoster src={poster} />
             <MDMovieInfoBox>
               <MDTitleBox>
-                <MDTitle>소울</MDTitle>
-                <MDSubTitle>SOUL</MDSubTitle>
+                <MDTitle>{movie.title}</MDTitle>
+                <MDSubTitle>{movie.subTitle}</MDSubTitle>
               </MDTitleBox>
               <MCMovieInfo>
                 <MCInfoText>예매율</MCInfoText>
@@ -418,23 +500,36 @@ const MovieDetail = () => {
                 <MCInfoNum>92%</MCInfoNum>
               </MCMovieInfo>
               <MDMovieInfo>
-                <MDMovieDiv>
+                <MDMovieDiv
+                  style={{
+                    overflow: "hidden",
+                    width: "760px",
+                    height: "20px",
+                    textOverflow: "ellipsis",
+                  }}
+                >
                   <MDMovieP>감독 : </MDMovieP>
-                  <MDMovieP>피트 닥터</MDMovieP>
+
+                  <MDMovieP>{directors.name}</MDMovieP>
+
                   <MDMovieSep>|</MDMovieSep>
                   <MDMovieP>배우 : </MDMovieP>
-                  <MDMovieP>제이미 폭스, 티나 페이, 다비드 딕스</MDMovieP>
+                  {actors.map((actor) => (
+                    <MDMovieSpan>{actor.name}</MDMovieSpan>
+                  ))}
                 </MDMovieDiv>
                 <MDMovieDiv>
                   <MDMovieP>장르 : </MDMovieP>
-                  <MDMovieP>애니메이션</MDMovieP>
+                  <MDMovieP>{movie.genre}</MDMovieP>
                   <MDMovieSep>|</MDMovieSep>
                   <MDMovieP>기본 : </MDMovieP>
-                  <MDMovieP>전체, 107분, 미국</MDMovieP>
+                  <MDMovieP>
+                    {movie.age}, {movie.runningTime}분, {movie.country}
+                  </MDMovieP>
                 </MDMovieDiv>
                 <MDMovieDiv>
                   <MDMovieP>개봉 : </MDMovieP>
-                  <MDMovieP>2021.01.20</MDMovieP>
+                  <MDMovieP>{movie.releaseDate}</MDMovieP>
                 </MDMovieDiv>
               </MDMovieInfo>
 
@@ -461,47 +556,29 @@ const MovieDetail = () => {
 
           <MDMovieContentDiv>
             <MDStoryBox>
-              <MDStoryP>나는 어떻게 ‘나’로 태어나게 되었을까?</MDStoryP>
-              <MDStoryP>
-                지구에 오기 전 영혼들이 머무는 ‘태어나기 전 세상’이 있다면?
-              </MDStoryP>
-              <br />
-              <MDStoryP>뉴욕에서 음악 선생님으로 일하던 ‘조’는</MDStoryP>
-              <MDStoryP>
-                꿈에 그리던 최고의 밴드와 재즈 클럽에서 연주하게된 그 날,
-              </MDStoryP>
-              <MDStoryP>
-                예기치 못한 사고로 영혼이 되어 ‘태어나기 전 세상’에 떨어진다.
-              </MDStoryP>
-              <br />
-              <MDStoryP>
-                탄생 전 영혼들이 멘토와 함께 자신의 관심사를 발견하면 지구
-                통행증을 발급하는 ‘태어나기 전 세상’
-              </MDStoryP>
-              <MDStoryP>
-                ‘조’는 그 곳에서 유일하게 지구에 가고 싶어하지 않는 시니컬한
-                영혼 ‘22’의 멘토가 된다.
-              </MDStoryP>
-              <br />
-              <MDStoryP>
-                링컨, 간디, 테레사 수녀도 멘토되길 포기한 영혼 ‘22’
-              </MDStoryP>
-              <MDStoryP>
-                꿈의 무대에 서려면 ‘22’의 지구 통행증이 필요한 ‘조’
-              </MDStoryP>
-              <MDStoryP>
-                그는 다시 지구로 돌아가 꿈의 무대에 설 수 있을까?
-              </MDStoryP>
+              <MDStoryP>{movie.summary}</MDStoryP>
             </MDStoryBox>
 
             <MDTrailerBox>
               <MDContentTitleDiv>
                 <MDContentTitleH4>트레일러</MDContentTitleH4>
-                <MDContentCountSpan>15건</MDContentCountSpan>
-                <MDMovieBtn>
+                <MDContentCountSpan>{trailers.length}건</MDContentCountSpan>
+                <MDMovieBtn to="/movies/trailler">
                   <MDContentAddBtn src={addBtn} />
                 </MDMovieBtn>
               </MDContentTitleDiv>
+              <ItemOl>
+                {trailers.map((trailer) => (
+                  <ItemLi>
+                    <TrailerImgBox>
+                      <a href={trailer.trailerUrl}>
+                        <TrailerImg src={trailer.thumbImageUrl}></TrailerImg>
+                        <PlayButton src={playBtn} />
+                      </a>
+                    </TrailerImgBox>
+                  </ItemLi>
+                ))}
+              </ItemOl>
             </MDTrailerBox>
 
             <MDReplyInfoBox>

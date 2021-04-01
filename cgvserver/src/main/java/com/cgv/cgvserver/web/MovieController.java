@@ -31,6 +31,7 @@ public class MovieController {
 		return movieService.findByBoxOfficeDate(oneDaysAgo);
 	}
 	
+	
 	/********** 여기는 혹시 사용할 수 있어서 만들어 놓음 ***********/
 	// trailer thumb 가져오기
 	@GetMapping("/movie/{movieId}/trailer")
