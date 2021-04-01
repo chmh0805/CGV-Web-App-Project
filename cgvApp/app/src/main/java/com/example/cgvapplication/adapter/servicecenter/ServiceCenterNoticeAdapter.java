@@ -10,8 +10,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.model.notice.Notice;
+
+import java.util.List;
 
 public class ServiceCenterNoticeAdapter extends RecyclerView.Adapter<ServiceCenterNoticeAdapter.MyViewHolder> {
+
+    private final List<Notice> notices;
+
+    public ServiceCenterNoticeAdapter(List<Notice> notices) {
+        this.notices = notices;
+    }
 
     @NonNull
     @Override
@@ -23,29 +32,32 @@ public class ServiceCenterNoticeAdapter extends RecyclerView.Adapter<ServiceCent
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        holder.setItem(notices.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return notices.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private LinearLayout noticeContainer;
-        private TextView noticeTitle, noticeCreateDate;
+        private LinearLayout mNoticeContainer;
+        private TextView mNoticeTitle, mNoticeCreateDate, mNoticeContent;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            noticeContainer = itemView.findViewById(R.id.notice_container);
-            noticeTitle = itemView.findViewById(R.id.notice_title);
-            noticeCreateDate = itemView.findViewById(R.id.notice_create_date);
+            mNoticeContainer = itemView.findViewById(R.id.notice_container);
+            mNoticeTitle = itemView.findViewById(R.id.notice_title);
+            mNoticeCreateDate = itemView.findViewById(R.id.notice_create_date);
+            mNoticeContent = itemView.findViewById(R.id.notice_container);
         }
 
-        public void setItem() {
-
+        public void setItem(Notice notice) {
+            mNoticeTitle.setText(notice.getTitle());
+            mNoticeCreateDate.setText(notice.getCreateDate().toString());
+            mNoticeContent.setText(notice.getContent());
         }
     }
 }

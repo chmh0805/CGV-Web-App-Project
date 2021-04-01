@@ -40,4 +40,14 @@ public class AuthController {
 	public CommonRespDto<?> getAuth(@PathVariable long id) {
 		return new CommonRespDto<>(1, authService.권한조회(id));
 	}
+	
+	@PostMapping("/auth/username")
+	public CommonRespDto<?> findByUsername(@RequestBody String username){
+		if(authService.아이디중복체크(username)==null) {
+			return new CommonRespDto<>(1, "사용가능");
+		} else {
+			return new CommonRespDto<>(1, "사용불가");
+		}
+		
+	}
 }

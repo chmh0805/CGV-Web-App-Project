@@ -26,6 +26,9 @@ public interface AuthService {
     @POST("/auth/join")
     Call<CMRespDto<JoinReqDto>> join(@Body JoinReqDto joinReqDto);
 
+    @POST("/auth/username")
+    Call<CMRespDto<String>> findByUsername(@Body String username);
+
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://112.162.114.11:8080")
             .addConverterFactory(GsonConverterFactory.create())

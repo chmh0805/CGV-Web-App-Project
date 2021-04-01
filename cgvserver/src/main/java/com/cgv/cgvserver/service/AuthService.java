@@ -25,6 +25,10 @@ public class AuthService {
 		}
 	}
 	
+	public User 아이디중복체크(String username) {
+		return userRepository.findByUsername(username);
+	}
+	
 	@Transactional(readOnly = true)
 	public String 권한조회(long id) {
 		User userEntity = userRepository.findById(id)

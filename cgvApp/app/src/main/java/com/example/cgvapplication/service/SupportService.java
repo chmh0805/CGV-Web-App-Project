@@ -15,7 +15,7 @@ public interface SupportService {
 
 
     @GET("/support/faq")
-    Call<CMRespDto<List<Faq>>> findAll();
+    Call<CMRespDto<List<Faq>>> findAllFaq();
 
     @GET("/support/news")
     Call<CMRespDto<List<Notice>>> findAllNotice();

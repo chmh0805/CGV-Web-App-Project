@@ -17,4 +17,8 @@ public class Faq {
     private String content;
     private int readCount;
     private Timestamp createDate;
+
+    public Faq(String title) {
+        this.title = title;
+    }
 }

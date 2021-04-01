@@ -90,9 +90,7 @@ public class MyCgvActivity extends AppCompatActivity {
         });
 
         mIvGoExpectMovie.setOnClickListener(v -> {
-            int page = 0;
             Intent intent = new Intent(MyCgvActivity.this, MovieLogActivity.class);
-            intent.putExtra("MovieLog", page);
             startActivity(intent);
         });
 
