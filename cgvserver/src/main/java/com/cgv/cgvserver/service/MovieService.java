@@ -98,6 +98,10 @@ public class MovieService {
 		return movieBoxOfficeRespDtos;
 	}
 	@Transactional(readOnly = true)
+	public List<Movie> 영화모두찾기() {
+		return movieRepository.findAll();
+	}
+	@Transactional(readOnly = true)
 	public Movie 영화상세보기(String movieId) {
 		Movie movie = movieRepository.findById(movieId).orElseThrow(() -> {throw new NotFoundMovieException();});
 		return movie;

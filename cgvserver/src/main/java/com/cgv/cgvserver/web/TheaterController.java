@@ -39,7 +39,7 @@ public class TheaterController {
 	
 	@CrossOrigin
 	@PostMapping("/theater")
-	public CommonRespDto<?> save(@Valid TheaterSaveReqDto theaterSaveReqDto, BindingResult bindingResult) {
+	public CommonRespDto<?> save(@Valid TheaterSaveReqDto theaterSaveReqDto, BindingResult bindingResult) {	
 		theaterService.극장등록(theaterSaveReqDto);
 		return new CommonRespDto<>(1, null);
 	}
