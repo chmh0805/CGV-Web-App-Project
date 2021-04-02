@@ -28,7 +28,7 @@
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:text="영화 제목"
-        android:textSize="17sp"
+        android:textSize="14sp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
         android:maxLines="1"
@@ -52,7 +52,7 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/lalaland" />
+            android:src="@drawable/king_egg" />
 
         <TextView
             android:id="@+id/tv_home_movielist_eggrate"

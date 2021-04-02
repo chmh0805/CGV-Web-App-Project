@@ -12,19 +12,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.activity.MovieDetailActivity;
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.activity.MovieDetailActivity;
 import com.example.cgvapplication.model.movie.Movie;
 
 import java.util.List;
 
-public class HomeMovieListAdapter extends RecyclerView.Adapter<HomeMovieListAdapter.MyViewHolder> {
+public class HomeWillScreeningAdapter extends RecyclerView.Adapter<HomeWillScreeningAdapter.MyViewHolder> {
 
     private static final String TAG = "HomeMovieListAdapter";
     private final Context mContext;
     private List<Movie> movies;
 
-    public HomeMovieListAdapter(Context mContext, List<Movie> movies) {
+    public HomeWillScreeningAdapter(Context mContext, List<Movie> movies) {
         this.mContext = mContext;
         this.movies = movies;
     }

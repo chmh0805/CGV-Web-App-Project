@@ -3,6 +3,7 @@ package com.example.cgvapplication.helper;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,7 +44,7 @@ public class MyNavigationHelper {
     private static final String TAG = "MyNavigationHelper";
     private final Context mContext;
     private TextView mTvGoLogin, mTvGoMyCgv, mTvGoGiftCard, mTvGoServiceCenter, mTvLogout, mTvNickName, mTvGoMovieLogSaw;
-    private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell, mIvHome;
+    private ImageView mIvMenu, mIvClose, mIvBack, mIvTicketingMovie, mIvTicketingTheater, mIvMovie, mIvSearchTheater, mIvMyViewMovie, mIvBell, mIvHome, mIvCineShop;
     private DrawerLayout mDrawer, mFrequentlyCgvDrawer;
     private ConstraintLayout mClProfile;
     private LinearLayout mLinearNavigation;
@@ -81,6 +82,7 @@ public class MyNavigationHelper {
         mIvClose = view.findViewById(R.id.iv_close);
         mIvBell = view.findViewById(R.id.iv_bell);
         mIvHome = view.findViewById(R.id.iv_home);
+        mIvCineShop = view.findViewById(R.id.iv_cineshop);
         mClProfile = view.findViewById(R.id.cl_profile);
     }
 
@@ -276,6 +278,11 @@ public class MyNavigationHelper {
             int page = 1;
             Intent intent = new Intent(mContext, MovieLogActivity.class);
             intent.putExtra("MovieLog", page);
+            mContext.startActivity(intent);
+        });
+
+        mIvCineShop.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://smartstore.naver.com/cgv_cineshop"));
             mContext.startActivity(intent);
         });
 
