@@ -3,11 +3,15 @@ package com.cgv.cgvserver.web;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cgv.cgvserver.domain.movie.Movie;
@@ -17,6 +21,7 @@ import com.cgv.cgvserver.web.dto.movie.MovieBoxOfficeRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieDetailApiRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieReqDto;
 import com.cgv.cgvserver.web.dto.movie.TrailerRespDto;
+import com.cgv.cgvserver.web.dto.movie.moviefinder.MovieFinderRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -24,6 +29,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 public class MovieController {
 	private final MovieService movieService;
+	private static final Logger log = LoggerFactory.getLogger(MovieController.class);
 	
 	@GetMapping("/test/movie")
 	public List<MovieDetailApiRespDto> getBoxOfficeMovie() throws IOException {
@@ -31,7 +37,11 @@ public class MovieController {
 		return movieService.findByBoxOfficeDate(oneDaysAgo);
 	}
 	
-	
+	@GetMapping("/movie")
+	public CommonRespDto<?> findByMovieAll() {
+		 return new CommonRespDto<>(1,movieService.영화모두찾기());
+	}
+
 	/********** 여기는 혹시 사용할 수 있어서 만들어 놓음 ***********/
 	// trailer thumb 가져오기
 	@GetMapping("/movie/{movieId}/trailer")
@@ -95,6 +105,22 @@ public class MovieController {
 		
 		return new CommonRespDto<>(1, null);
 		
+	}
+	
+	// 영화 검색기능 추가합니다. (정민혁)
+	// sort가 1이면 영화제목검색, 2이면 감독명 검색
+	// countryNm : 제작국가
+	@GetMapping("/movie/search")
+	public CommonRespDto<?> search(@RequestParam int sort, @RequestParam String keyword, @RequestParam List<String> countryNm,
+							@RequestParam String startYear, @RequestParam String endYear) {
+		List<MovieFinderRespDto> dtos = new ArrayList<>();
+		try {
+			 dtos = movieService.무비파인더검색(sort, keyword, countryNm, startYear, endYear);
+		} catch (IOException e) {
+			log.error(e.getStackTrace().toString());
+		}
+		
+		return new CommonRespDto<>(1, dtos);
 	}
 	
 	

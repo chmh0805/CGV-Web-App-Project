@@ -10,7 +10,7 @@ spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
     username: cgv
     password: cgv1234
   jpa:    open-in-view: true
-    hibernate:      ddl-auto: update
+    hibernate:      ddl-auto: create
       naming:        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
     show-sql: true
@@ -18,7 +18,6 @@ spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
   
   jackson:    serialization:      fail-on-empty-beans: false
       
-  servlet:    multipart:      enabled: true
-
+  servlet:    multipart:      enabled: true  batch:    job:      enabled: false
 file:
   path: D:\workspace\lastproject\cgvserver\src\main\resources\upload\

@@ -12,7 +12,12 @@ import lombok.NoArgsConstructor;
 public class Notice {
     private Long id;
     private int sort;
+    private String title;
     private String content;
     private int readCount;
     private Timestamp createDate;
+
+    public Notice (String title) {
+        this.title =title;
+    }
 }

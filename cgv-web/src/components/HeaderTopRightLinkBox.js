@@ -63,6 +63,8 @@ const HeaderTopRightLinkBox = () => {
         </HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
         <HeaderTopRightLink to="/theater/register">극장등록</HeaderTopRightLink>
+        <HeaderTopRightSep>|</HeaderTopRightSep>
+        <HeaderTopRightLink to="/timetable/register">타임테이블등록</HeaderTopRightLink>
       </HeaderTopRightDiv>
     );
   } else if (isLogined()) {

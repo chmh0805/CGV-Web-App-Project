@@ -15,6 +15,9 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.adapter.movielog.MovieLogExpectAdapter;
 import com.example.cgvapplication.adapter.movielog.MovieLogSawAdapter;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.example.cgvapplication.model.user.User;
+import com.example.cgvapplication.service.preference.SharedPreference;
+import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 public class MovieLogActivity extends AppCompatActivity {
@@ -29,6 +32,8 @@ public class MovieLogActivity extends AppCompatActivity {
     private TextView tvMovieLogNickname, tvMovieLogUsername;
     private AppCompatButton btnMovieLogExpect, btnMovieLogSaw;
     private RecyclerView rvMovieLogContainer;
+
+    private Gson gson = new Gson();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,13 @@ public class MovieLogActivity extends AppCompatActivity {
     }
 
     private void listener() {
+        String userData = SharedPreference.getAttribute(MovieLogActivity.this, "userEntity");
+
+        User userEntity = gson.fromJson(userData, User.class);
+
+        tvMovieLogNickname.setText(userEntity.getNickname());
+        tvMovieLogUsername.setText(userEntity.getUsername());
+
         int defaultValue = 0;
         int page = getIntent().getIntExtra("MovieLog", defaultValue);
 
@@ -73,7 +85,6 @@ public class MovieLogActivity extends AppCompatActivity {
         } else {
             sawMovie();
         }
-
     }
 
     public void expectMovie() {
