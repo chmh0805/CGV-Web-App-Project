@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -58,29 +58,99 @@ const TicketingSubContainer = styled.div`
   margin-top: 25px;
 `;
 
-const TicketingPage = () => {
-  return (
-    <TicketingMainContainer>
-      <NavSection>
-        <NavSectionItemBox>
-          <NavSectionHome to="/">
-            <HomeIcon />
-          </NavSectionHome>
-          <NavSectionArrow>〉</NavSectionArrow>
-          <NavSectionSpan>예매</NavSectionSpan>
-          <NavSectionArrow>〉</NavSectionArrow>
-          <NavSectionSpan
-            style={{ textDecoration: "underline", fontWeight: "700" }}
-          >
-            빠른예매
-          </NavSectionSpan>
-        </NavSectionItemBox>
-      </NavSection>
-      <TicketingSubContainer>
-        <TicketingStep2 />
-      </TicketingSubContainer>
-    </TicketingMainContainer>
-  );
+const TicketingPage = ({ getMovie }) => {
+  const [nowStep, setNowStep] = useState(1);
+  const [movie, setMovie] = useState(0); // 고른 영화
+  const [theater, setTheater] = useState(0); // 고른 극장
+  const [selectedDate, setSelectedDate] = useState(""); // 고른 날짜, Date() 객체
+  const [selectedTimeTable, setSelectedTimeTable] = useState({}); // 고른 timetable
+  const [prettyDate, setPrettyDate] = useState(""); // 정제된 날짜 yyyy.MM.dd (day) time의 형태
+
+  if (nowStep === 1) {
+    return (
+      <TicketingMainContainer>
+        <NavSection>
+          <NavSectionItemBox>
+            <NavSectionHome to="/">
+              <HomeIcon />
+            </NavSectionHome>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan>예매</NavSectionSpan>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan
+              style={{ textDecoration: "underline", fontWeight: "700" }}
+            >
+              빠른예매
+            </NavSectionSpan>
+          </NavSectionItemBox>
+        </NavSection>
+        <TicketingSubContainer>
+          <TicketingStep1
+            movie={movie}
+            setNowStep={setNowStep}
+            setMovie={setMovie}
+            setTheater={setTheater}
+            setSelectedDate={setSelectedDate}
+            setSelectedTimeTable={setSelectedTimeTable}
+            setPrettyDate={setPrettyDate}
+          />
+        </TicketingSubContainer>
+      </TicketingMainContainer>
+    );
+  } else if (nowStep === 2) {
+    return (
+      <TicketingMainContainer>
+        <NavSection>
+          <NavSectionItemBox>
+            <NavSectionHome to="/">
+              <HomeIcon />
+            </NavSectionHome>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan>예매</NavSectionSpan>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan
+              style={{ textDecoration: "underline", fontWeight: "700" }}
+            >
+              빠른예매
+            </NavSectionSpan>
+          </NavSectionItemBox>
+        </NavSection>
+        <TicketingSubContainer>
+          <TicketingStep2
+            setNowStep={setNowStep}
+            movie={movie}
+            theater={theater}
+            selectedDate={selectedDate}
+            selectedTimeTable={selectedTimeTable}
+            prettyDate={prettyDate}
+          />
+        </TicketingSubContainer>
+      </TicketingMainContainer>
+    );
+  } else {
+    return (
+      <TicketingMainContainer>
+        <NavSection>
+          <NavSectionItemBox>
+            <NavSectionHome to="/">
+              <HomeIcon />
+            </NavSectionHome>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan>예매</NavSectionSpan>
+            <NavSectionArrow>〉</NavSectionArrow>
+            <NavSectionSpan
+              style={{ textDecoration: "underline", fontWeight: "700" }}
+            >
+              빠른예매
+            </NavSectionSpan>
+          </NavSectionItemBox>
+        </NavSection>
+        <TicketingSubContainer>
+          <TicketingStep3 setNowStep={setNowStep} />
+        </TicketingSubContainer>
+      </TicketingMainContainer>
+    );
+  }
 };
 
 export default TicketingPage;

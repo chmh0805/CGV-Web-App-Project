@@ -292,8 +292,8 @@ const PaymentBtn = styled.button`
 
 const MDAdBox = styled.div`
   position: absolute;
-  left: 100px;
-  top: 255px;
+  left: calc(50% - 690px);
+  top: 200px;
 `;
 
 const AsidesBannerImg = styled.img`
@@ -303,7 +303,13 @@ const AsidesBannerImg = styled.img`
   margin-top: 20px;
 `;
 
-const TicketingStep3 = () => {
+const TicketingStep3 = (props) => {
+  const { setNowStep } = props;
+
+  const goToBack = () => {
+    setNowStep(2);
+  };
+
   return (
     <>
       <TicketingTopButtonBox>
@@ -452,7 +458,7 @@ const TicketingStep3 = () => {
 
       <BlackBoxSection>
         <BackSeatBtnBox>
-          <BackSeatBtn />
+          <BackSeatBtn onClick={() => goToBack()} />
         </BackSeatBtnBox>
         <TicketInfoBox></TicketInfoBox>
         <PaymentBtnBox>

@@ -27,6 +27,7 @@
     "react-select": "^4.3.0",
     "react-sticky-box": "^0.9.3",
     "react-summernote": "^2.0.2",
+    "react-time-picker": "^4.2.1",
     "react-tooltip": "^4.2.15",
     "react-youtube": "^7.13.1",
     "redux": "^4.0.5",

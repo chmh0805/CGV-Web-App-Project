@@ -378,13 +378,43 @@ const TheaterInfoContent = styled.span`
   font-weight: bolder;
 `;
 
-const TicketingStep3 = () => {
+const TicketingStep2 = (props) => {
+  const {
+    setNowStep,
+    movie,
+    theater,
+    selectedDate,
+    selectedTimeTable,
+    prettyDate,
+  } = props;
+  console.log(selectedTimeTable);
+
+  let toDate = new Date(prettyDate);
+  let endDate = new Date(
+    toDate.setMinutes(toDate.getMinutes() + (movie.runningTime + 10))
+  );
+  let endHour = endDate.getHours() + "";
+  let endMinutes = endDate.getMinutes() + "";
+  if (endMinutes.length === 1) {
+    endMinutes = "0" + endMinutes;
+  }
+  let totalSeats = selectedTimeTable.hall.seats.length;
+  let posterImg = selectedTimeTable.movie.posterImgSrc;
+  let movieName = selectedTimeTable.movie.title;
+  let age = selectedTimeTable.movie.age;
+  let theaterName = selectedTimeTable.theater.name;
+  let hallName = selectedTimeTable.hall.name;
+
+  const goToBack = () => {
+    setNowStep(1);
+  };
+
+  const goToFront = () => {
+    setNowStep(3);
+  };
+
   return (
     <>
-      <TicketingTopButtonBox>
-        <TicketingTopButton />
-      </TicketingTopButtonBox>
-
       <MDAdBox>
         <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202003/house/A_skin_160x300.png" />
       </MDAdBox>
@@ -406,10 +436,6 @@ const TicketingStep3 = () => {
                   <PeopleNumButton>2</PeopleNumButton>
                   <PeopleNumButton>3</PeopleNumButton>
                   <PeopleNumButton>4</PeopleNumButton>
-                  <PeopleNumButton>5</PeopleNumButton>
-                  <PeopleNumButton>6</PeopleNumButton>
-                  <PeopleNumButton>7</PeopleNumButton>
-                  <PeopleNumButton>8</PeopleNumButton>
                 </ButtonGroup>
               </GroupBox>
 
@@ -421,10 +447,6 @@ const TicketingStep3 = () => {
                   <PeopleNumButton>2</PeopleNumButton>
                   <PeopleNumButton>3</PeopleNumButton>
                   <PeopleNumButton>4</PeopleNumButton>
-                  <PeopleNumButton>5</PeopleNumButton>
-                  <PeopleNumButton>6</PeopleNumButton>
-                  <PeopleNumButton>7</PeopleNumButton>
-                  <PeopleNumButton>8</PeopleNumButton>
                 </ButtonGroup>
               </GroupBox>
 
@@ -436,10 +458,6 @@ const TicketingStep3 = () => {
                   <PeopleNumButton>2</PeopleNumButton>
                   <PeopleNumButton>3</PeopleNumButton>
                   <PeopleNumButton>4</PeopleNumButton>
-                  <PeopleNumButton>5</PeopleNumButton>
-                  <PeopleNumButton>6</PeopleNumButton>
-                  <PeopleNumButton>7</PeopleNumButton>
-                  <PeopleNumButton>8</PeopleNumButton>
                 </ButtonGroup>
               </GroupBox>
             </PeopleNumSelectBox>
@@ -451,17 +469,19 @@ const TicketingStep3 = () => {
               <TheaterText>CGV 등촌</TheaterText>
               <TheaterText>4관 7층</TheaterText>
               <TheaterSeatNumText>
-                남은좌석{" "}
+                남은좌석&nbsp;
                 <b class="restNum" style={{ color: "#CA4D10" }}>
                   111
                 </b>
-                /<b class="totalNum">170</b>
+                /<b class="totalNum">{totalSeats}</b>
               </TheaterSeatNumText>
             </p>
             <p style={{ fontSize: "20px", paddingLeft: "10px" }}>
-              <b style={{ marginRight: "5px" }}>2021.03.25</b>
-              <b style={{ marginRight: "5px" }}>(목)</b>
-              <b>17:20 ~ 19:27</b>
+              <b>{prettyDate} ~</b>
+              <b>
+                &nbsp;
+                {endHour}:{endMinutes}
+              </b>
             </p>
           </TicketTheaterInfoBox>
         </TicketConfigBox>
@@ -475,13 +495,6 @@ const TicketingStep3 = () => {
                 <TheaterRowHead>B</TheaterRowHead>
                 <TheaterRowHead>C</TheaterRowHead>
                 <TheaterRowHead>D</TheaterRowHead>
-                <TheaterRowHead>E</TheaterRowHead>
-                <TheaterRowHead>F</TheaterRowHead>
-                <TheaterRowHead>G</TheaterRowHead>
-                <TheaterRowHead>H</TheaterRowHead>
-                <TheaterRowHead>I</TheaterRowHead>
-                <TheaterRowHead>J</TheaterRowHead>
-                <TheaterRowHead>K</TheaterRowHead>
               </TheaterRowHeadBox>
               <TheaterSeatBox>
                 <TheaterSeatNum>
@@ -490,15 +503,6 @@ const TicketingStep3 = () => {
                   <SeatNumBtn>3</SeatNumBtn>
                   <SeatNumBtn>4</SeatNumBtn>
                   <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
                 </TheaterSeatNum>
                 <TheaterSeatNum>
                   <SeatNumBtn>1</SeatNumBtn>
@@ -506,15 +510,6 @@ const TicketingStep3 = () => {
                   <SeatNumBtn>3</SeatNumBtn>
                   <SeatNumBtn>4</SeatNumBtn>
                   <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
                 </TheaterSeatNum>
                 <TheaterSeatNum>
                   <SeatNumBtn>1</SeatNumBtn>
@@ -522,15 +517,6 @@ const TicketingStep3 = () => {
                   <SeatNumBtn>3</SeatNumBtn>
                   <SeatNumBtn>4</SeatNumBtn>
                   <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
                 </TheaterSeatNum>
                 <TheaterSeatNum>
                   <SeatNumBtn>1</SeatNumBtn>
@@ -538,127 +524,6 @@ const TicketingStep3 = () => {
                   <SeatNumBtn>3</SeatNumBtn>
                   <SeatNumBtn>4</SeatNumBtn>
                   <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
-                </TheaterSeatNum>
-                <TheaterSeatNum>
-                  <SeatNumBtn>1</SeatNumBtn>
-                  <SeatNumBtn>2</SeatNumBtn>
-                  <SeatNumBtn>3</SeatNumBtn>
-                  <SeatNumBtn>4</SeatNumBtn>
-                  <SeatNumBtn>5</SeatNumBtn>
-                  <SeatNumBtn>6</SeatNumBtn>
-                  <SeatNumBtn>7</SeatNumBtn>
-                  <SeatNumBtn>8</SeatNumBtn>
-                  <SeatNumBtn>9</SeatNumBtn>
-                  <SeatNumBtn>10</SeatNumBtn>
-                  <SeatNumBtn>11</SeatNumBtn>
-                  <SeatNumBtn>12</SeatNumBtn>
-                  <SeatNumBtn>13</SeatNumBtn>
-                  <SeatNumBtn>14</SeatNumBtn>
                 </TheaterSeatNum>
               </TheaterSeatBox>
             </TheaterMap>
@@ -678,29 +543,28 @@ const TicketingStep3 = () => {
 
       <BlackBoxSection>
         <BackSeatBtnBox>
-          <BackSeatBtn />
+          <BackSeatBtn onClick={() => goToBack()} />
         </BackSeatBtnBox>
         <TicketInfoBox>
           <TicketMovieInfo>
-            <TicketMovieImg src={posterEx} />
+            <TicketMovieImg src={posterImg} />
             <TicketInfo>
-              <TicketMovieTitle>극장판귀멸의칼날-무한열차편</TicketMovieTitle>
-              <TicketMovieTitle>4DX 2D 자막</TicketMovieTitle>
-              <TicketMovieTitle>15세 관람가</TicketMovieTitle>
+              <TicketMovieTitle>{movieName}</TicketMovieTitle>
+              <TicketMovieTitle>{age}</TicketMovieTitle>
             </TicketInfo>
           </TicketMovieInfo>
           <TicketMovieInfo style={{ width: "185px", display: "block" }}>
             <TheaterInfoRow>
               <TheaterInfoHead>극장</TheaterInfoHead>
-              <TheaterInfoContent>CGV 서면</TheaterInfoContent>
+              <TheaterInfoContent>{theaterName}</TheaterInfoContent>
             </TheaterInfoRow>
             <TheaterInfoRow style={{ marginTop: "0" }}>
               <TheaterInfoHead>일시</TheaterInfoHead>
-              <TheaterInfoContent>2021.3.24(수) 13:30</TheaterInfoContent>
+              <TheaterInfoContent>{prettyDate}</TheaterInfoContent>
             </TheaterInfoRow>
             <TheaterInfoRow style={{ marginTop: "0" }}>
               <TheaterInfoHead>상영관</TheaterInfoHead>
-              <TheaterInfoContent>1관[4DX관]</TheaterInfoContent>
+              <TheaterInfoContent>{hallName}</TheaterInfoContent>
             </TheaterInfoRow>
             <TheaterInfoRow style={{ marginTop: "0" }}>
               <TheaterInfoHead>인원</TheaterInfoHead>
@@ -729,11 +593,11 @@ const TicketingStep3 = () => {
           </TicketMovieInfo>
         </TicketInfoBox>
         <PaymentBtnBox>
-          <PaymentBtn />
+          <PaymentBtn onClick={() => goToFront()} />
         </PaymentBtnBox>
       </BlackBoxSection>
     </>
   );
 };
 
-export default TicketingStep3;
+export default TicketingStep2;
