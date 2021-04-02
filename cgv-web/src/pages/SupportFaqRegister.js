@@ -52,6 +52,7 @@ const SupportFaqRegister = (props) => {
       .then((res) => {
         if (res.statusCode === 1) {
           alert("자주찾는질문 등록이 성공하였습니다.");
+          window.location.replace("/support/faq/default/");
         }
       })
       .catch((err) => {

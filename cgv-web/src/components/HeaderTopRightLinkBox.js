@@ -58,6 +58,10 @@ const HeaderTopRightLinkBox = () => {
           공지등록
         </HeaderTopRightLink>
         <HeaderTopRightSep>|</HeaderTopRightSep>
+        <HeaderTopRightLink to="/support/faq/register">
+          FAQ등록
+        </HeaderTopRightLink>
+        <HeaderTopRightSep>|</HeaderTopRightSep>
         <HeaderTopRightLink to="/theater/register">극장등록</HeaderTopRightLink>
       </HeaderTopRightDiv>
     );

@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import posterEx from "../images/movieChart/MoviePosterEx.jpg";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
 import addBtn from "../images/movieDetail/add_btn.png";
 import playBtn from "../images/movieDetail/play_icon.png";
-import expectEgg from "../images/movieDetail/btn_expectegg2.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
 import { getCookie, setCookie } from "../utils/JWT";
-import MovieChartOlItem from "../components/MovieChartOlItem";
+import Slider from "react-slick";
 
 const MDCon = styled.div`
   width: 100%;
@@ -286,29 +284,6 @@ const MDReplyInfoSubText = styled.p`
   margin-top: 10px;
 `;
 
-const MDReplyTitleBox = styled.div`
-  text-align: left;
-  margin: 20px 0 10px;
-`;
-
-const MDReplyNewText = styled.span`
-  padding-left: 0;
-  border-left: none;
-  padding: 0 8px 0 9px;
-  font-weight: 600;
-  color: #ef5549;
-  font-size: 13px;
-`;
-
-const MDReplyRecommendText = styled.span`
-  display: inline-block;
-  padding: 0 8px 0 9px;
-  border-left: 1px solid #d7d3c8;
-  font-weight: 600;
-  color: #666666;
-  font-size: 13px;
-`;
-
 const MDReplyBox = styled.div`
   margin: 0;
   padding: 0;
@@ -422,8 +397,37 @@ const PlayButton = styled.img`
   height: 44px;
 `;
 
+const StillCutBox = styled.div`
+  width: 700px;
+  height: 480px;
+  margin: 0 auto;
+`;
+
+const Wrap = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  display: inline-block;
+  .slick-prev:before {
+    opaicty: 1; // 기존에 숨어있던 화살표 버튼이 보이게
+    color: black; // 버튼 색은 검은색으로
+    left: 0;
+  }
+  .slick-next:before {
+    opacity: 1;
+    color: black;
+  }
+`;
+
 const MovieDetail = (props) => {
   window.scrollTo(0, 0);
+
+  const settings = {
+    dots: false, // 캐러셀의 점을 보여줄 것인지
+    infinite: true, // 마지막 장 다음에 첫번째가 나오게 할 것인지
+    speed: 500, // 넘어가는 속도는 몇으로 할 것인지
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
 
   let movieDocId = props.location.state.movieDocId;
   const [isLoaded, setIsLoaded] = useState(true);
@@ -432,6 +436,7 @@ const MovieDetail = (props) => {
   const [directors, setDirectors] = useState({});
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
+  const [stillCuts, setStillCuts] = useState([]);
 
   const loadMovies = async () => {
     if (isLoaded) {
@@ -451,6 +456,7 @@ const MovieDetail = (props) => {
             setDirectors(res.data.director);
             setActors(res.data.actors);
             setTrailers(res.data.trailers);
+            setStillCuts(res.data.stillCuts);
           }
         })
         .catch((err) => {
@@ -579,6 +585,37 @@ const MovieDetail = (props) => {
                   </ItemLi>
                 ))}
               </ItemOl>
+            </MDTrailerBox>
+
+            <MDTrailerBox style={{ height: "500px" }}>
+              <MDContentTitleDiv>
+                <MDContentTitleH4>스틸컷</MDContentTitleH4>
+                <MDContentCountSpan>{stillCuts.length}건</MDContentCountSpan>
+              </MDContentTitleDiv>
+              <Wrap>
+                <StillCutBox>
+                  <Slider {...settings}>
+                    {stillCuts.map((stillCut) => (
+                      <div
+                        style={{
+                          display: "flex",
+                          height: "auto",
+                        }}
+                      >
+                        <img
+                          src={stillCut.imageUrl}
+                          style={{
+                            width: "90%",
+                            height: "90%",
+                            margin: "0 auto",
+                          }}
+                          alt="스틸컷"
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                </StillCutBox>
+              </Wrap>
             </MDTrailerBox>
 
             <MDReplyInfoBox>
