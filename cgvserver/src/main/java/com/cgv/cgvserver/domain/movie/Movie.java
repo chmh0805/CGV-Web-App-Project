@@ -15,6 +15,7 @@ import com.cgv.cgvserver.domain.director.Director;
 import com.cgv.cgvserver.domain.review.Review;
 import com.cgv.cgvserver.domain.stillcut.StillCut;
 import com.cgv.cgvserver.domain.trailer.Trailer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,6 +63,7 @@ public class Movie {
 	
 	private String posterImgSrc;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Review> review;
 	

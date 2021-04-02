@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import userImg from "../images/movieDetail/profile.gif";
 
@@ -51,26 +51,28 @@ const ReplyFavCount = styled.span`
   margin-left: 5px;
 `;
 
-const MovieDetailReply = () => {
+const MovieDetailReply = ({ reviews }) => {
   return (
-    <div>
-      <MovieReplyBox>
-        <ReplyUserImgBox>
-          <ReplyUserImg src={userImg} />
-        </ReplyUserImgBox>
-        <MovieReplyContent>
-          <span>user1</span>
-          <p>너무 재밌어요!!</p>
-          <ReplyDate>
-            <span>2021.03.18</span>
-            <ReplySep>|</ReplySep>
-            <div style={{ display: "inline-block" }}>
-              <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
-            </div>
-            <ReplyFavCount>0</ReplyFavCount>
-          </ReplyDate>
-        </MovieReplyContent>
-      </MovieReplyBox>
+    <div style={{ height: "auto", display: "inline-block" }}>
+      {reviews.map((review) => (
+        <MovieReplyBox>
+          <ReplyUserImgBox>
+            <ReplyUserImg src={userImg} />
+          </ReplyUserImgBox>
+          <MovieReplyContent>
+            <span>{review.user.nickname}</span>
+            <p>{review.content}</p>
+            <ReplyDate>
+              <span>{review.createDate}</span>
+              <ReplySep>|</ReplySep>
+              <div style={{ display: "inline-block" }}>
+                <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
+              </div>
+              <ReplyFavCount>{review.isLike}</ReplyFavCount>
+            </ReplyDate>
+          </MovieReplyContent>
+        </MovieReplyBox>
+      ))}
     </div>
   );
 };

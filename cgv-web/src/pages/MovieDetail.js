@@ -9,6 +9,7 @@ import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
 import { getCookie, setCookie } from "../utils/JWT";
 import Slider from "react-slick";
+import BoardPagingBox from "../components/support/BoardPagingBox";
 
 const MDCon = styled.div`
   width: 100%;
@@ -294,7 +295,8 @@ const MDReplyUl = styled.ul`
   list-style: none;
   color: #333333;
   padding: 0 25px;
-  height: 370px;
+  height: auto;
+  margin-bottom: 10px;
 `;
 
 const AsidesBannerImg = styled.img`
@@ -343,10 +345,12 @@ const MDMyReplyBtn = styled.span`
   margin-left: 10px;
 `;
 
-const ReplyPagingBox = styled.div`
-  text-align: center;
-  margin-top: 25px;
-  padding-right: 15px;
+const PagingBoxSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
 `;
 
 const ReplyPreviousBtn = styled.button`
@@ -431,12 +435,16 @@ const MovieDetail = (props) => {
 
   let movieDocId = props.location.state.movieDocId;
   const [isLoaded, setIsLoaded] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(4);
+
   const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState();
   const [directors, setDirectors] = useState({});
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [stillCuts, setStillCuts] = useState([]);
+  const [reviews, setReviews] = useState([]);
 
   const loadMovies = async () => {
     if (isLoaded) {
@@ -467,7 +475,41 @@ const MovieDetail = (props) => {
     }
   };
 
+  const loadReviews = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/movie/" + movieDocId + "/review", {
+        method: "GET",
+        headers: new Headers({
+          Authorization: getCookie("cgvJWT"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.statusCode === 1) {
+            setReviews(res.data);
+          }
+        })
+        .catch((err) => {
+          // logout();
+          // alert("회원정보 조회 실패. 재로그인해주세요.");
+          // window.location.replace("/login");
+        });
+    }
+  };
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
   loadMovies();
+  loadReviews();
 
   return (
     <MDCon>
@@ -623,7 +665,7 @@ const MovieDetail = (props) => {
                 관람일 포함 7일 이내 관람평을 남기시면 CJ ONE 20P가 적립됩니다.
               </MDReplyInfoText>
               <MDReplyInfoSubText>
-                28,885 명의 실관람객이 평가해주셨습니다.
+                {reviews.length}명의 실관람객이 평가해주셨습니다.
               </MDReplyInfoSubText>
               <MDReplyInfoBtnBox>
                 <Link>
@@ -637,20 +679,21 @@ const MovieDetail = (props) => {
 
             <MDContentTitleDiv style={{ marginBottom: "0", marginTop: "20px" }}>
               <MDContentTitleH4>영화평점</MDContentTitleH4>
-              <MDContentCountSpan>15건</MDContentCountSpan>
+              <MDContentCountSpan>{reviews.length}건</MDContentCountSpan>
             </MDContentTitleDiv>
 
             <MDReplyBox>
               <MDReplyUl>
-                <MovieDetailReply />
-                <MovieDetailReply />
-                <MovieDetailReply />
-                <MovieDetailReply />
+                <MovieDetailReply reviews={currentPosts(reviews)} />
               </MDReplyUl>
-              <ReplyPagingBox>
-                <ReplyPreviousBtn>◀</ReplyPreviousBtn>
-                <ReplyNextBtn>▶</ReplyNextBtn>
-              </ReplyPagingBox>
+              <PagingBoxSection>
+                <BoardPagingBox
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={reviews.length}
+                  paginate={setCurrentPage}
+                />
+              </PagingBoxSection>
             </MDReplyBox>
           </MDMovieContentDiv>
         </MDContentBox>
