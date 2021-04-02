@@ -17,6 +17,7 @@ const TheaterTitleDiv = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 const TheaterImg = styled.img`
@@ -69,7 +70,6 @@ const TheaterBottomItemBox = ({ theaterDetail }) => {
     <TheaterInfoSection>
       <TheaterTitleDiv>
         <span>{theaterDetail.name}</span>
-        <span>{theaterDetail.phone}</span>
       </TheaterTitleDiv>
       <TheaterImgBox>
         <TheaterImg src={theaterImgSrc} />
