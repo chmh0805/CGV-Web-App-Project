@@ -265,6 +265,14 @@ const TicketingStep2 = (props) => {
     selectedTimeTable,
     prettyDate,
     setTotalPrice,
+    selectedSeatNums,
+    setSelectedSeatNums,
+    normalPeopleCount,
+    youngPeopleCount,
+    oldPeopleCount,
+    setNormalPeopleCount,
+    setYoungPeopleCount,
+    setOldPeopleCount,
   } = props;
 
   let toDate = new Date(prettyDate);
@@ -284,11 +292,7 @@ const TicketingStep2 = (props) => {
   let hallName = selectedTimeTable.hall.name;
   let useableSeatsCount = 20;
 
-  const [normalPeopleCount, setNormalPeopleCount] = useState(0);
-  const [youngPeopleCount, setYoungPeopleCount] = useState(0);
-  const [oldPeopleCount, setOldPeopleCount] = useState(0);
   const [totalPeopleCount, setTotalPeopleCount] = useState(0);
-  const [selectedSeatNums, setSelectedSeatNums] = useState([]); // 선택한 좌석들
   const [useableSeats, setUseableSeats] = useState([]); // 사용 가능 좌석 객체들
   const [allSeats, setAllseats] = useState(selectedTimeTable.hall.seats);
   const [isAll, setIsAll] = useState(false); // 다했는가

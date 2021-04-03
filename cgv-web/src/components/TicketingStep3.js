@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import topButtons from "../images/button/top_buttons.png";
 import BackSeatButton from "../images/button/backSeat_btn.png";
 import PayButton from "../images/button/pay_btn.png";
+import { ticketNormal, ticketOld, ticketYoung } from "../utils/Ticketing";
 
 const TicketingTopButtonBox = styled.div`
   width: 100%;
@@ -304,11 +304,75 @@ const AsidesBannerImg = styled.img`
 `;
 
 const TicketingStep3 = (props) => {
-  const { setNowStep } = props;
+  const {
+    setNowStep,
+    totalPrice,
+    userInfo,
+    selectedTimeTable,
+    normalPeopleCount,
+    youngPeopleCount,
+    oldPeopleCount,
+    selectedSeatNums,
+    setNormalPeopleCount,
+    setYoungPeopleCount,
+    setOldPeopleCount,
+  } = props;
 
   const goToBack = () => {
+    setNormalPeopleCount(0);
+    setYoungPeopleCount(0);
+    setOldPeopleCount(0);
     setNowStep(2);
   };
+
+  const payClick = () => {
+    onClickPayment();
+  };
+
+  var IMP = window.IMP;
+  IMP.init("imp59232554");
+
+  function onClickPayment() {
+    IMP.request_pay(
+      {
+        pg: "inicis", // version 1.1.0부터 지원.
+        pay_method: "card",
+        merchant_uid: `2조CGV_${new Date().getTime()}`,
+        amount: totalPrice, // 결제금액
+        name: "영화관에선나초조 CGV 웹결제", // 주문명
+        buyer_name: userInfo.name, // 구매자 이름
+        buyer_tel: userInfo.phone, // 구매자 전화번호
+        buyer_email: userInfo.email, // 구매자 이메일
+      },
+      function (rsp) {
+        for (var j = 0; j < normalPeopleCount; j++) {
+          ticketNormal(
+            selectedSeatNums.pop(),
+            selectedTimeTable.id,
+            userInfo.id
+          );
+        }
+        for (var k = 0; k < youngPeopleCount; k++) {
+          ticketYoung(
+            selectedSeatNums.pop(),
+            selectedTimeTable.id,
+            userInfo.id
+          );
+        }
+        for (var l = 0; l < oldPeopleCount; l++) {
+          ticketOld(selectedSeatNums.pop(), selectedTimeTable.id, userInfo.id);
+        }
+        if (rsp.success) {
+          var msg = "결제가 완료되었습니다.\n";
+          msg += "결제 금액 : " + rsp.paid_amount;
+        } else {
+          var msg = rsp.error_msg;
+        }
+        alert(msg);
+        window.location.replace("/user/mycgv/reserve");
+      }
+    );
+  }
 
   return (
     <>
@@ -417,13 +481,6 @@ const TicketingStep3 = (props) => {
                     <span>
                       ※ 신용카드 결제 가능 최소 금액은 1,000원 이상입니다.
                     </span>
-                    <span style={{ display: "block" }}>
-                      <Link>삼성U포인트적립</Link>
-                      <Link style={{ marginLeft: "10px" }}>OK캐쉬백적립</Link>
-                      <span style={{ display: "block" }}>
-                        (삼성U포인트, OK캐쉬백 포인트는 포인트 중복 적립 불가)
-                      </span>
-                    </span>
                   </PayCreditInfoBox>
                 </PayCreditBox>
               </PaymentBox>
@@ -435,7 +492,7 @@ const TicketingStep3 = (props) => {
           <TicketingTotalBox>
             <TicketingTotalTop>결제하실 금액</TicketingTotalTop>
             <TicketingTotalBottom>
-              <span>15,000</span>원
+              <span>{totalPrice}</span>원
             </TicketingTotalBottom>
           </TicketingTotalBox>
 
@@ -445,12 +502,12 @@ const TicketingStep3 = (props) => {
               <TicketPayInfo>
                 <TicketPayInfoTitle>신용카드</TicketPayInfoTitle>
                 <TicketPayInfoPrice>
-                  <span>15,000</span>원
+                  <span>{totalPrice}</span>원
                 </TicketPayInfoPrice>
               </TicketPayInfo>
             </TicketingPayMiddle>
             <TicketingPayBottom>
-              <span>15,000</span>원
+              <span>{totalPrice}</span>원
             </TicketingPayBottom>
           </TicketingTotalBox>
         </TicketingCalBox>
@@ -462,7 +519,7 @@ const TicketingStep3 = (props) => {
         </BackSeatBtnBox>
         <TicketInfoBox></TicketInfoBox>
         <PaymentBtnBox>
-          <PaymentBtn />
+          <PaymentBtn onClick={() => payClick()} />
         </PaymentBtnBox>
       </BlackBoxSection>
     </>

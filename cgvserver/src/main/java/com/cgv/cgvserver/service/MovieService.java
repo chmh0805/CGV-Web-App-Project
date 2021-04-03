@@ -177,7 +177,7 @@ public class MovieService {
 		BoxOfficeMovie boxOfficeMovie = BoxOfficeUtils.boxOfficeMovieObject(movieReqDto.getRank(), movieEntity);
 		boxOfficeMovieRepository.save(boxOfficeMovie);
 	}
-	
+	@Transactional(readOnly = true)
 	public List<MovieFinderRespDto> 무비파인더검색(int sort, String keyword, List<String> countryNm, String startYear, String endYear) throws IOException {
 		List<MovieFinderRespDto> dtos = new ArrayList<>(); // 결과값 담을 그릇
 		BufferedReader reader;

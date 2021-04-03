@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import TicketingStep1 from "../components/TicketingStep1";
 import TicketingStep2 from "../components/TicketingStep2";
 import TicketingStep3 from "../components/TicketingStep3";
+import { deleteCookie, getCookie } from "../utils/JWT";
 
 const TicketingMainContainer = styled.div`
   background-color: white;
@@ -66,6 +67,34 @@ const TicketingPage = ({ getMovie }) => {
   const [selectedTimeTable, setSelectedTimeTable] = useState({}); // 고른 timetable
   const [prettyDate, setPrettyDate] = useState(""); // 정제된 날짜 yyyy.MM.dd (day) time의 형태
   const [totalPrice, setTotalPrice] = useState(0); // 전체금액
+  const [userInfo, setUserInfo] = useState({}); // 유저 정보
+  const [selectedSeatNums, setSelectedSeatNums] = useState([]); // 선택한 좌석들
+  const [normalPeopleCount, setNormalPeopleCount] = useState(0); // 일반
+  const [youngPeopleCount, setYoungPeopleCount] = useState(0); // 청소년
+  const [oldPeopleCount, setOldPeopleCount] = useState(0); // 우대
+
+  useEffect(() => {
+    fetch("http://localhost:8080/user", {
+      headers: new Headers({
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setUserInfo(res.data);
+        } else {
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
+          return;
+        }
+      });
+  }, []);
 
   if (nowStep === 1) {
     return (
@@ -124,6 +153,14 @@ const TicketingPage = ({ getMovie }) => {
             prettyDate={prettyDate}
             setTotalPrice={setTotalPrice}
             totalPrice={totalPrice}
+            selectedSeatNums={selectedSeatNums}
+            setSelectedSeatNums={setSelectedSeatNums}
+            normalPeopleCount={normalPeopleCount}
+            setNormalPeopleCount={setNormalPeopleCount}
+            youngPeopleCount={youngPeopleCount}
+            setYoungPeopleCount={setYoungPeopleCount}
+            oldPeopleCount={oldPeopleCount}
+            setOldPeopleCount={setOldPeopleCount}
           />
         </TicketingSubContainer>
       </TicketingMainContainer>
@@ -147,7 +184,19 @@ const TicketingPage = ({ getMovie }) => {
           </NavSectionItemBox>
         </NavSection>
         <TicketingSubContainer>
-          <TicketingStep3 setNowStep={setNowStep} />
+          <TicketingStep3
+            setNowStep={setNowStep}
+            totalPrice={totalPrice}
+            userInfo={userInfo}
+            selectedTimeTable={selectedTimeTable}
+            normalPeopleCount={normalPeopleCount}
+            youngPeopleCount={youngPeopleCount}
+            oldPeopleCount={oldPeopleCount}
+            selectedSeatNums={selectedSeatNums}
+            setNormalPeopleCount={setNormalPeopleCount}
+            setYoungPeopleCount={setYoungPeopleCount}
+            setOldPeopleCount={setOldPeopleCount}
+          />
         </TicketingSubContainer>
       </TicketingMainContainer>
     );

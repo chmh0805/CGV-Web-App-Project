@@ -29,7 +29,7 @@ public class SeatService {
 			long seatId = seatEntity.getId();
 			Ticketing ticketingEntity = ticketingRepository.findBySeatIdAndTimeTableId(seatId, timeTableId);
 			if (ticketingEntity != null) {
-				ticketedSeats.add(ticketingEntity.getId());
+				ticketedSeats.add(ticketingEntity.getSeat().getId());
 			}
 		}
 		
@@ -38,7 +38,6 @@ public class SeatService {
 			for (int i = 0; i < ticketedSeats.size(); i++) {
 				if (ticketedSeats.get(i) == seatEntity.getId()) {
 					isNotReserved = false;
-					break;
 				}
 			}
 			if (isNotReserved) {

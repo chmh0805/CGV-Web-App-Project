@@ -178,7 +178,7 @@ const TicketingStep2PriceBox = ({
       <>
         <TheaterInfoRow>
           <TheaterInfoHead>청소년</TheaterInfoHead>
-          <TheaterInfoContent>10,000원 x{normalPeopleCount}</TheaterInfoContent>
+          <TheaterInfoContent>10,000원 x{youngPeopleCount}</TheaterInfoContent>
         </TheaterInfoRow>
         <TheaterInfoRow>
           <TheaterInfoHead>우대</TheaterInfoHead>
