@@ -65,6 +65,7 @@ const TicketingPage = ({ getMovie }) => {
   const [selectedDate, setSelectedDate] = useState(""); // 고른 날짜, Date() 객체
   const [selectedTimeTable, setSelectedTimeTable] = useState({}); // 고른 timetable
   const [prettyDate, setPrettyDate] = useState(""); // 정제된 날짜 yyyy.MM.dd (day) time의 형태
+  const [totalPrice, setTotalPrice] = useState(0); // 전체금액
 
   if (nowStep === 1) {
     return (
@@ -119,10 +120,10 @@ const TicketingPage = ({ getMovie }) => {
           <TicketingStep2
             setNowStep={setNowStep}
             movie={movie}
-            theater={theater}
-            selectedDate={selectedDate}
             selectedTimeTable={selectedTimeTable}
             prettyDate={prettyDate}
+            setTotalPrice={setTotalPrice}
+            totalPrice={totalPrice}
           />
         </TicketingSubContainer>
       </TicketingMainContainer>

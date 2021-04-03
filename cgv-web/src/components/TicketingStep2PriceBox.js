@@ -25,6 +25,7 @@ const TicketingStep2PriceBox = ({
   normalPeopleCount,
   youngPeopleCount,
   oldPeopleCount,
+  setTotalPrice,
 }) => {
   let totalPrice = 0;
   if (normalPeopleCount !== 0) {
@@ -36,6 +37,7 @@ const TicketingStep2PriceBox = ({
   if (oldPeopleCount !== 0) {
     totalPrice += 5000 * oldPeopleCount;
   }
+  setTotalPrice(totalPrice);
 
   if (
     youngPeopleCount !== 0 &&

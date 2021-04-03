@@ -45,8 +45,9 @@ const SuccessBtnBox = styled.div`
 const SuccessBtn = styled.button`
   width: 30px;
   height: 80px;
-  background-color: black;
+  background-color: rgb(200, 130, 0);
   color: white;
+  font-weight: bold;
   border: 1px solid white;
 `;
 
@@ -162,15 +163,21 @@ const TicketingStep2SeatsBox = ({
 
   const successBtnClick = () => {
     if (tmpList.length !== totalPeopleCount) {
-      alert("인원에 맞게 좌석을 선택해주세요 !");
+      alert("인원에 맞게 좌석을 선택해주세요.");
       return;
     }
     if (totalPeopleCount === 0) {
-      alert("인원을 선택해주세요 !");
+      alert("인원을 선택해주세요.");
       return;
     }
     setIsAll(true);
     setSelectedSeatNums(tmpList);
+
+    let seats = document.getElementsByName("seatBtn");
+    seats.forEach((seat) => {
+      seat.disabled = true;
+      seat.style = "background-color: gray";
+    });
   };
 
   return (

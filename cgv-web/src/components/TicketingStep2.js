@@ -262,10 +262,9 @@ const TicketingStep2 = (props) => {
   const {
     setNowStep,
     movie,
-    theater,
-    selectedDate,
     selectedTimeTable,
     prettyDate,
+    setTotalPrice,
   } = props;
 
   let toDate = new Date(prettyDate);
@@ -296,13 +295,13 @@ const TicketingStep2 = (props) => {
   const [seatNames, SetSeatNames] = useState([]); // 하단 박스에 뿌려주는 용도, 좌석번호
   let peopleInfo = ""; // 하단 박스에 뿌려주는 용도 텍스트 (ex) 청소년 1명
   if (normalPeopleCount !== 0) {
-    peopleInfo += `청소년 ${normalPeopleCount}명 `;
+    peopleInfo += `일반 ${normalPeopleCount}명 `;
   }
   if (youngPeopleCount !== 0) {
-    peopleInfo += `어린이 ${youngPeopleCount}명 `;
+    peopleInfo += `청소년 ${youngPeopleCount}명 `;
   }
   if (oldPeopleCount !== 0) {
-    peopleInfo += `성인 ${oldPeopleCount}명 `;
+    peopleInfo += `우대 ${oldPeopleCount}명 `;
   }
 
   const goToBack = () => {
@@ -311,7 +310,7 @@ const TicketingStep2 = (props) => {
 
   const goToFront = () => {
     if (!isAll) {
-      alert("좌석 선택을 진행해주세요.");
+      alert("좌석 선택 후, 우측 선택완료를 클릭해주세요.");
       return;
     }
     setNowStep(3);
@@ -347,16 +346,17 @@ const TicketingStep2 = (props) => {
   }, []);
 
   useEffect(() => {
+    console.log(selectedSeatNums);
     let tmpNameList = [];
     allSeats.forEach((seat) => {
       selectedSeatNums.forEach((seatId) => {
-        if (seat.id === seatId) {
+        if (Number(seat.id) === Number(seatId)) {
           tmpNameList.push(seat.name);
         }
       });
     });
     SetSeatNames(tmpNameList);
-  }, selectedSeatNums);
+  }, [selectedSeatNums]);
 
   return (
     <>
@@ -499,6 +499,7 @@ const TicketingStep2 = (props) => {
               normalPeopleCount={normalPeopleCount}
               youngPeopleCount={youngPeopleCount}
               oldPeopleCount={oldPeopleCount}
+              setTotalPrice={setTotalPrice}
             />
           </TicketMovieInfo>
         </TicketInfoBox>
