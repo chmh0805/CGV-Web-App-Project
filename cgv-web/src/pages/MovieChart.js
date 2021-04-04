@@ -155,10 +155,6 @@ const MovieChart = () => {
         <MCContentBox>
           <MCHeadBox>
             <MCHeadTitle>무비차트</MCHeadTitle>
-            <MCSubMenu>
-              <MCSubNow>▶ 무비차트</MCSubNow>
-              <MCSub to="/movies/schedule">상영예정작</MCSub>
-            </MCSubMenu>
           </MCHeadBox>
 
           <MCSortBox>
@@ -166,14 +162,6 @@ const MovieChart = () => {
               <input type="checkbox" id="" />
               <MCCheckTxt>현재 상영작만 보기</MCCheckTxt>
             </MCCheckBox>
-            <MCSelectBox>
-              <select id="" name="" className="MCselect">
-                <option value="1">예매율순</option>
-                <option value="2">평점순</option>
-                <option value="3">관람객순</option>
-              </select>
-              <MCSelectBtn>GO</MCSelectBtn>
-            </MCSelectBox>
           </MCSortBox>
 
           <MCBox>
