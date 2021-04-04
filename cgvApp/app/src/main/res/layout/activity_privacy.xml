@@ -13,6 +13,7 @@
         android:background="#E2E2E2">
         <include layout="@layout/toolbar_default" />
         <TextView
+            android:id="@+id/tv_update_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -26,6 +27,7 @@
             android:layout_height="1dp"
             android:background="#E2E2E2"/>
         <TextView
+            android:id="@+id/tv_delete_user_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
@@ -43,7 +45,7 @@
             android:textSize="15sp"
             android:textStyle="bold"/>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_search_password2"
+            android:id="@+id/btn_logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/main"

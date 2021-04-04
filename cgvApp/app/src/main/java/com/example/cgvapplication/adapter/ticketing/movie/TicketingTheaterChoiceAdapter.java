@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.ticketing.movie;
 
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -10,23 +10,31 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.fragment.FragTicketingTheater;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TicketingTheaterChoiceAdapter extends RecyclerView.Adapter<TicketingTheaterChoiceAdapter.MyViewHolder> {
 
     private int lastSelectedPosition = 0;
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.theater_check_item, parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.theater_check_item, parent, false);
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.mRbTheater.setChecked(lastSelectedPosition == position);
-        if(holder.mRbTheater.isChecked()) holder.mRbTheater.setTextColor(Color.WHITE);
-        else holder.mRbTheater.setTextColor(Color.BLACK);
+        if (holder.mRbTheater.isChecked()) {
+            holder.mRbTheater.setTextColor(Color.WHITE);
+        } else {
+            holder.mRbTheater.setTextColor(Color.BLACK);
+        }
     }
 
 
@@ -41,7 +49,7 @@ public class TicketingTheaterChoiceAdapter extends RecyclerView.Adapter<Ticketin
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             mRbTheater = (RadioButton) itemView.findViewById(R.id.rb_theater);
-            mRbTheater.setOnClickListener(this::onClick);
+            mRbTheater.setOnClickListener( this::onClick );
         }
 
         private void onClick(View view) {

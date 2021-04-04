@@ -2,6 +2,7 @@ package com.example.cgvapplication.service;
 
 import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.service.dto.CMRespDto;
+import com.example.cgvapplication.service.dto.movie.AppMovieHomeRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.example.cgvapplication.service.dto.movie.TrailerRespDto;
 
@@ -33,9 +34,8 @@ public interface MovieService {
     @GET("/movie/{movieId}")
     Call<CMRespDto<Movie>>findById(@Path("movieId") String movieId);
 
-    // App 시작 시 실행
-    @POST("/movie/boxoffice")
-    Call<CMRespDto<Void>> save();
+    @GET("/movie/fragHome")
+    Call<CMRespDto<List<AppMovieHomeRespDto>>> fragHomeData();
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://112.162.114.11:8080")

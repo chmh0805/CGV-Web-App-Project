@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.signature.ObjectKey;
 import com.example.cgvapplication.activity.MovieDetailActivity;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
+import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.io.BufferedInputStream;
 import java.net.URL;
@@ -47,7 +53,7 @@ public class HomeMovieChartAdapter extends RecyclerView.Adapter<HomeMovieChartAd
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setItem(movies.get(position));
-        holder.itemView.setOnClickListener(view -> {
+        holder.mIvHomeMovieListPoster.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, MovieDetailActivity.class);
             mContext.startActivity(intent);
         });
@@ -60,7 +66,7 @@ public class HomeMovieChartAdapter extends RecyclerView.Adapter<HomeMovieChartAd
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView mIvHomeMovieListPoster;
+        private RoundedImageView mIvHomeMovieListPoster;
         private TextView mTvHomeMovieListTitle, mTvHomeMovieListEggrate, mTvHomeMovieListPurchaserate;
         private AppCompatButton mBtnHomeMovielistPurchase;
 
@@ -74,16 +80,14 @@ public class HomeMovieChartAdapter extends RecyclerView.Adapter<HomeMovieChartAd
         }
 
         public void setItem(MovieBoxOfficeRespDto dto) {
-            try {
-                URL url = new URL(dto.getPosterImageSrc());
-                URLConnection conn = url.openConnection();
-                BufferedInputStream bis = new BufferedInputStream(conn.getInputStream());
-                Bitmap bm = BitmapFactory.decodeStream(bis);
-                bis.close();
-                mIvHomeMovieListPoster.setImageBitmap(bm);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            Glide.with(mContext)
+                    .load(dto.getPosterImageSrc())
+                    .apply(new RequestOptions()
+                            .signature(new ObjectKey("signature string"))
+                            .skipMemoryCache(true)
+                            .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    )
+                    .into(mIvHomeMovieListPoster);
             mIvHomeMovieListPoster.setImageURI(Uri.parse(dto.getPosterImageSrc()));
             mTvHomeMovieListTitle.setText(dto.getTitle());
         }

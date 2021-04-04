@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.service.MovieService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
+import com.cgv.cgvserver.web.dto.movie.AppMovieHomeRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieBoxOfficeRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieDetailApiRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieReqDto;
@@ -121,5 +122,12 @@ public class MovieController {
 		return new CommonRespDto<>(1, dtos);
 	}
 	
+	@GetMapping("/movie/fragHome")
+	public CommonRespDto<?> fragHome() {
+		
+		List<AppMovieHomeRespDto> appMovieHomeRespDtos = movieService.fragHomeData();
+		
+		return new CommonRespDto<>(1, appMovieHomeRespDtos);
+	}
 	
 }
