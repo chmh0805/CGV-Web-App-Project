@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="170dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:gravity="center"
+        android:textSize="16dp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:text="회원 탈퇴를 하시겠습니까?\n탈퇴를 위해 비밀번호를 입력해주십시오."/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/et_delete_password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:hint="패스워드 입력란"
+        android:inputType="textPassword"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_delete_user"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginRight="20dp"
+            android:text="탈퇴"
+            android:textColor="#873333"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:background="@drawable/ic_delete_user_y_btn"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            android:text="취소"
+            android:textColor="@android:color/black"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:background="@drawable/ic_delete_user_n_btn"/>
+
+    </LinearLayout>
+
+</LinearLayout>

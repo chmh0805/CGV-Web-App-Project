@@ -32,6 +32,7 @@ import com.cgv.cgvserver.utils.movie.BoxOfficeUtils;
 import com.cgv.cgvserver.utils.movie.DirectorUtils;
 import com.cgv.cgvserver.utils.movie.StillCutUtils;
 import com.cgv.cgvserver.utils.movie.TrailerUtils;
+import com.cgv.cgvserver.web.dto.movie.AppMovieHomeRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieBoxOfficeRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieDetailApiRespDto;
 import com.cgv.cgvserver.web.dto.movie.MovieReqDto;
@@ -305,5 +306,30 @@ public class MovieService {
 			dtos.add(dto);
 		}
 		return dtos;
+	}
+	
+	@Transactional(readOnly = true)
+	public List<AppMovieHomeRespDto> fragHomeData() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT b.rankNum, m.docId, m.posterImgSrc, m.title, m.releaseDate, ");
+		sb.append("MAX(s.imageUrl) imageUrl, ");
+		sb.append("MAX(t.thumbImageUrl) thumbImageUrl, MAX(t.trailerUrl) trailerUrl ");
+		sb.append("FROM boxofficemovie b ");
+		sb.append("INNER JOIN stillcut s ");
+		sb.append("ON s.movieId = b.movieId ");
+		sb.append("INNER JOIN trailer t ");
+		sb.append("ON t.movieId = b.movieId ");
+		sb.append("INNER JOIN movie m ");
+		sb.append("ON b.movieId = m.docId ");
+		sb.append("GROUP BY rankNum ORDER BY rankNum LIMIT 2");
+		
+		JpaResultMapper result = new JpaResultMapper();
+		
+		
+		Query query = entityManager.createNativeQuery(sb.toString());
+		
+		List<AppMovieHomeRespDto> appMovieHomeRespDtos = result.list(query, AppMovieHomeRespDto.class);
+		
+		return appMovieHomeRespDtos;
 	}
 }

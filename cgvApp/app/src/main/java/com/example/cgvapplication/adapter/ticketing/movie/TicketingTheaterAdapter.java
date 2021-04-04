@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.ticketing.movie;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -6,23 +6,23 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.fragment.TicketingBottomDialogFragment;
 import com.example.cgvapplication.R;
 
-public class TicketingSeatAdapter extends RecyclerView.Adapter<TicketingSeatAdapter.MyViewHolder> {
+public class TicketingTheaterAdapter extends RecyclerView.Adapter<TicketingTheaterAdapter.MyViewHolder> {
 
     private final FragmentManager fm;
-    public TicketingSeatAdapter(FragmentManager fm) {
+
+    public TicketingTheaterAdapter(FragmentManager fm) {
         this.fm = fm;
     }
-
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ticketing_seat_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ticketing_theater_item, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -33,23 +33,20 @@ public class TicketingSeatAdapter extends RecyclerView.Adapter<TicketingSeatAdap
 
     @Override
     public int getItemCount() {
-        return 10;
+        return 2;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private final TicketingBottomDialogFragment mTicketingBottomDialogFragment;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            mTicketingBottomDialogFragment = new TicketingBottomDialogFragment();
-            itemView.setOnClickListener(this::onClick);
-
+            RecyclerView mRvHall = itemView.findViewById(R.id.rv_hall);
+            TicketingHallListAdapter mTicketingHallListAdapter = new TicketingHallListAdapter(fm);
+            LinearLayoutManager manager = new LinearLayoutManager(itemView.getContext(), RecyclerView.VERTICAL, false);
+            mRvHall.setLayoutManager(manager);
+            mRvHall.setAdapter(mTicketingHallListAdapter);
         }
 
-        private void onClick(View view) {
-            mTicketingBottomDialogFragment.show(fm, "bottomSheet");
 
-        }
     }
 }

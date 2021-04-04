@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.adapter.TicketingFragMentPagerAdapter;
+import com.example.cgvapplication.adapter.ticketing.TicketingFragMentPagerAdapter;
 import com.example.cgvapplication.fragment.FragTicketingMovie;
 import com.example.cgvapplication.fragment.FragTicketingTheater;
 import com.google.android.material.tabs.TabLayout;

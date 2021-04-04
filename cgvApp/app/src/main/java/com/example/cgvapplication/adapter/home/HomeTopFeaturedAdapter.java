@@ -1,26 +1,33 @@
 package com.example.cgvapplication.adapter.home;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.model.movie.featuredmovie.TopFeaturedMovie;
+import com.example.cgvapplication.activity.MovieDetailActivity;
+import com.example.cgvapplication.service.dto.movie.AppMovieHomeRespDto;
 
 import java.util.List;
 
 public class HomeTopFeaturedAdapter extends RecyclerView.Adapter<HomeTopFeaturedAdapter.MyViewHolder> {
 
     private static final String TAG = "HomeTopBlurbAdapter";
-    private final List<TopFeaturedMovie> topFeaturedMovies;
+    private final Context mContext;
+    private final List<AppMovieHomeRespDto> movies;
 
-    public HomeTopFeaturedAdapter(List<TopFeaturedMovie> topFeaturedMovies) {
-        this.topFeaturedMovies = topFeaturedMovies;
+    public HomeTopFeaturedAdapter(Context mContext, List<AppMovieHomeRespDto> movies) {
+        this.mContext = mContext;
+        this.movies = movies;
     }
 
     @NonNull
@@ -34,23 +41,34 @@ public class HomeTopFeaturedAdapter extends RecyclerView.Adapter<HomeTopFeatured
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        holder.setItem(movies.get(position));
+        holder.btnHomeTopFeaturedMovie.setOnClickListener(view -> {
+            Intent intent = new Intent(mContext, MovieDetailActivity.class);
+            mContext.startActivity(intent);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return movies.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
+        private TextView mTvMovieTitle;
         private ImageView ivHomeTopFeaturedMoviePoster;
-        private AppCompatButton btnHomeTopFeaturedMovieBtn;
+        private AppCompatButton btnHomeTopFeaturedMovie;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            mTvMovieTitle = itemView.findViewById(R.id.tv_home_top_featuredMovie_title);
             ivHomeTopFeaturedMoviePoster = itemView.findViewById(R.id.iv_home_top_featuredMovie_poster);
-            btnHomeTopFeaturedMovieBtn = itemView.findViewById(R.id.btn_home_top_featuredMovie_btn);
+            btnHomeTopFeaturedMovie = itemView.findViewById(R.id.btn_home_top_featuredMovie_btn);
+        }
+
+        public void setItem(AppMovieHomeRespDto dto) {
+            Glide.with(mContext).load(dto.getImageUrl()).into(ivHomeTopFeaturedMoviePoster);
+            mTvMovieTitle.setText(dto.getTitle());
         }
     }
 }

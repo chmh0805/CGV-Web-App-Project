@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cgv.cgvserver.domain.movie.Movie;
@@ -17,6 +18,8 @@ import com.cgv.cgvserver.service.MovieService;
 import com.cgv.cgvserver.service.TheaterService;
 import com.cgv.cgvserver.service.TimeTableService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
+import com.cgv.cgvserver.web.dto.timetable.AppTimeTableTheaterReqDto;
+import com.cgv.cgvserver.web.dto.timetable.AppTimeTableTheaterRespDto;
 import com.cgv.cgvserver.web.dto.timetable.TimeTableReqDto;
 import com.cgv.cgvserver.web.dto.timetable.TimeTableRespDto;
 
@@ -46,7 +49,15 @@ public class TimeTableController {
 		
 		return new CommonRespDto<>(1, timeTableRespDto);
 	}
-	
+
+	@PostMapping("/timetable/app/theater")
+	public CommonRespDto<?> findAllByLocation(@RequestBody AppTimeTableTheaterReqDto dto) {
+		List<AppTimeTableTheaterRespDto> dtos = timeTableService.극장별예매(dto);
+		System.out.println("/timetable/app/theater : "+dto);
+		
+		return new CommonRespDto<>(1,dtos);
+	}
+
 	@GetMapping("/timetable/movie/{movieId}")
 	public CommonRespDto<?> findByMovieId(@PathVariable String movieId) {
 		return new CommonRespDto<>(1, timeTableService.영화번호로찾기(movieId));
@@ -62,5 +73,4 @@ public class TimeTableController {
 									@PathVariable String month, @PathVariable String day) {
 		return new CommonRespDto<>(1, timeTableService.전체정보로찾기(movieId, theaterId, month, day));
 	}
-
 }

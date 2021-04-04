@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -49,14 +50,6 @@ public class ServiceCenterActivity extends AppCompatActivity {
         init();
         listener();
 
-        btnServiceCenterFAQ.setOnClickListener(v -> {
-            faqList();
-        });
-
-        btnServiceCenterNotice.setOnClickListener(v -> {
-            noticeList();
-        });
-
     }
 
     private void init() {
@@ -78,6 +71,15 @@ public class ServiceCenterActivity extends AppCompatActivity {
     }
 
     private void listener() {
+
+        btnServiceCenterFAQ.setOnClickListener(v -> {
+            faqList();
+        });
+
+        btnServiceCenterNotice.setOnClickListener(v -> {
+            noticeList();
+        });
+
         int defaultValue = 0;
         int page = getIntent().getIntExtra("ServiceCenter", defaultValue);
 
@@ -90,6 +92,12 @@ public class ServiceCenterActivity extends AppCompatActivity {
 
     public void faqList() {
 
+        btnServiceCenterFAQ.setSelected(true);
+        btnServiceCenterNotice.setSelected(false);
+        btnServiceCenterFAQ.setTextColor(getResources().getColor(R.color.black));
+        mLinearNavigation = findViewById(R.id.linear_navigation);
+        btnServiceCenterNotice.setTextColor(getResources().getColor(R.color.grey_dark));
+
         SupportService supportService = SupportService.retrofit.create(SupportService.class);
         Call<CMRespDto<List<Faq>>> call = supportService.findAllFaq();
         call.enqueue(new Callback<CMRespDto<List<Faq>>>() {
@@ -97,7 +105,11 @@ public class ServiceCenterActivity extends AppCompatActivity {
             public void onResponse(Call<CMRespDto<List<Faq>>> call, Response<CMRespDto<List<Faq>>> response) {
                 CMRespDto<List<Faq>> faqsData = response.body();
                 try {
+                    Log.d(TAG, "onResponse: "+faqsData);
                     faqs = faqsData.getData();
+                    ServiceCenterFAQAdapter faqAdapter = new ServiceCenterFAQAdapter(faqs);
+                    rvServiceCenterContainer.setAdapter(faqAdapter);
+                    rvServiceCenterContainer.setLayoutManager(containerManager);
                 }catch (Exception e) {
 
                 }
@@ -108,19 +120,13 @@ public class ServiceCenterActivity extends AppCompatActivity {
 
             }
         });
-
-        btnServiceCenterFAQ.setSelected(true);
-        btnServiceCenterNotice.setSelected(false);
-        btnServiceCenterFAQ.setTextColor(getResources().getColor(R.color.black));
-        mLinearNavigation = findViewById(R.id.linear_navigation);
-        btnServiceCenterNotice.setTextColor(getResources().getColor(R.color.grey_dark));
-
-        ServiceCenterFAQAdapter faqAdapter = new ServiceCenterFAQAdapter(faqs);
-        rvServiceCenterContainer.setAdapter(faqAdapter);
-        rvServiceCenterContainer.setLayoutManager(containerManager);
     }
 
     public void noticeList() {
+        btnServiceCenterFAQ.setSelected(false);
+        btnServiceCenterNotice.setSelected(true);
+        btnServiceCenterFAQ.setTextColor(getResources().getColor(R.color.grey_dark));
+        btnServiceCenterNotice.setTextColor(getResources().getColor(R.color.black));
 
         SupportService supportService = SupportService.retrofit.create(SupportService.class);
         Call<CMRespDto<List<Notice>>> call = supportService.findAllNotice();
@@ -129,7 +135,11 @@ public class ServiceCenterActivity extends AppCompatActivity {
             public void onResponse(Call<CMRespDto<List<Notice>>> call, Response<CMRespDto<List<Notice>>> response) {
                 CMRespDto<List<Notice>> noticesData = response.body();
                 try {
+                    Log.d(TAG, "onResponse: "+noticesData);
                     notices = noticesData.getData();
+                    ServiceCenterNoticeAdapter noticeAdapter = new ServiceCenterNoticeAdapter(notices);
+                    rvServiceCenterContainer.setAdapter(noticeAdapter);
+                    rvServiceCenterContainer.setLayoutManager(containerManager);
                 }catch (Exception e) {
 
                 }
@@ -140,14 +150,5 @@ public class ServiceCenterActivity extends AppCompatActivity {
 
             }
         });
-
-        btnServiceCenterFAQ.setSelected(false);
-        btnServiceCenterNotice.setSelected(true);
-        btnServiceCenterFAQ.setTextColor(getResources().getColor(R.color.grey_dark));
-        btnServiceCenterNotice.setTextColor(getResources().getColor(R.color.black));
-
-        ServiceCenterNoticeAdapter noticeAdapter = new ServiceCenterNoticeAdapter(notices);
-        rvServiceCenterContainer.setAdapter(noticeAdapter);
-        rvServiceCenterContainer.setLayoutManager(containerManager);
     }
 }

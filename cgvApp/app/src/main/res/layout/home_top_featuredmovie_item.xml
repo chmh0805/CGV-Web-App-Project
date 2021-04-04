@@ -9,28 +9,41 @@
     android:layout_marginLeft="5dp">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/iv_home_top_featuredMovie_poster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/lalaland"
         android:scaleType="centerCrop"
+        android:src="@drawable/lalaland"
         app:riv_corner_radius="15dp"
-        app:riv_tile_mode="clamp"
-        app:riv_oval="false" />
+        app:riv_oval="false"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_home_top_featuredMovie_btn"
-        android:layout_width="35dp"
-        android:layout_height="15dp"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginBottom="16dp"
         android:text="상세보기"
         android:textStyle="bold"
-        android:textSize="7sp"
+        android:textSize="10sp"
         android:background="@drawable/ic_home_top_featuredmovie_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_home_top_featuredMovie_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:text="영화제목"
+        android:textColor="#D8E32208"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
