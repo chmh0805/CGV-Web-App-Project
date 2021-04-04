@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
@@ -7,7 +7,7 @@ import playBtn from "../images/movieDetail/play_icon.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
-import { getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, isLogined, setCookie } from "../utils/JWT";
 import Slider from "react-slick";
 import BoardPagingBox from "../components/support/BoardPagingBox";
 
@@ -446,40 +446,24 @@ const MovieDetail = (props) => {
   const [stillCuts, setStillCuts] = useState([]);
   const [reviews, setReviews] = useState([]);
 
-  const loadMovies = async () => {
-    if (isLoaded) {
-      setIsLoaded(false);
-
-      await fetch("http://localhost:8080/movie/" + movieDocId, {
-        method: "GET",
-        headers: new Headers({
-          Authorization: getCookie("cgvJWT"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.statusCode === 1) {
-            setMovie(res.data);
-            setPoster(res.data.posterImgSrc);
-            setDirectors(res.data.director);
-            setActors(res.data.actors);
-            setTrailers(res.data.trailers);
-            setStillCuts(res.data.stillCuts);
-          }
-        })
-        .catch((err) => {
-          // logout();
-          // alert("회원정보 조회 실패. 재로그인해주세요.");
-          // window.location.replace("/login");
-        });
-    }
-  };
+  useEffect(() => {
+    fetch("http://localhost:8080/movie/" + movieDocId)
+      .then((res) => res.json())
+      .then((res) => {
+        setMovie(res.data);
+        setPoster(res.data.posterImgSrc);
+        setDirectors(res.data.director);
+        setActors(res.data.actors);
+        setTrailers(res.data.trailers);
+        setStillCuts(res.data.stillCuts);
+      });
+  }, []);
 
   const loadReviews = async () => {
     if (isLoaded) {
       setIsLoaded(false);
 
-      await fetch("http://localhost:8080/movie/" + movieDocId + "/review", {
+      await fetch("http://localhost:8080/review/" + movieDocId, {
         method: "GET",
         headers: new Headers({
           Authorization: getCookie("cgvJWT"),
@@ -508,8 +492,42 @@ const MovieDetail = (props) => {
     return currentPosts;
   }
 
-  loadMovies();
   loadReviews();
+
+  const goToLogin = () => {
+    props.history.push("/login");
+  };
+
+  const ExpectMovie = () => {
+    if (!isLogined()) {
+      goToLogin();
+    }
+
+    fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.statusCode === 1) {
+          alert("기대되는 영화에 등록 완료");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
+  };
 
   return (
     <MDCon>
@@ -582,7 +600,7 @@ const MovieDetail = (props) => {
               </MDMovieInfo>
 
               <MDBtnBox>
-                <MDExpectBtn>기대돼요</MDExpectBtn>
+                <MDExpectBtn onClick={ExpectMovie}>기대돼요</MDExpectBtn>
                 <MDMovieBtn to="/ticket">
                   <MDMovieBtnImg src={ticketBtn} />
                 </MDMovieBtn>

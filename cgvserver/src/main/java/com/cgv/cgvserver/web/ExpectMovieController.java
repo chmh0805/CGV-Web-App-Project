@@ -4,7 +4,9 @@ import javax.validation.Valid;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -36,6 +38,24 @@ public class ExpectMovieController {
 		String token = jwtToken.substring(7);
 		Long userId = MyJWT.getId(token);
 		expectMovieService.기대되는영화등록(expectSaveReqDto.getMovieId(), userId);
+		return new CommonRespDto<>(1, null);
+	}
+	
+	@PostMapping("/expectMovie/{movieId}/expect")
+	public CommonRespDto<?> expect(@RequestHeader("Authorization") String jwtToken, @PathVariable String movieId){
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		
+		expectMovieService.기대돼요(userId, movieId);
+		return new CommonRespDto<>(1, null);
+	}
+	
+	@DeleteMapping("/expectMovie/{movieId}/expect")
+	public CommonRespDto<?> Unexpect(@RequestHeader("Authorization") String jwtToken, @PathVariable String movieId){
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		
+		expectMovieService.기대돼요취소(userId, movieId);
 		return new CommonRespDto<>(1, null);
 	}
 }

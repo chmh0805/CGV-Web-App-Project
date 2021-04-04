@@ -19,7 +19,7 @@ public class ReviewController {
 	
 	private final ReviewService reviewService;
 
-	@GetMapping("/movie/{movieId}/review")
+	@GetMapping("/review/{movieId}")
 	public CommonRespDto<?> reviewByMovieId(@PathVariable String movieId) {
 		return new CommonRespDto<>(1, reviewService.무비아이디로찾기(movieId));
 	}
