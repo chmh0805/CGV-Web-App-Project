@@ -81,7 +81,6 @@ const MainContentsTitleH3 = styled.h3`
 
 const MyCgvMyQnaDetail = (props) => {
   setCookie("now-space", "mycgv-myqna");
-  window.scrollTo(0, 0);
 
   let qnaId = props.location.state.qnaId;
   const [isLoaded, setIsLoaded] = useState(true);

@@ -49,7 +49,7 @@ const MCItemInfoBox = styled.div`
   height: 93px;
 `;
 
-const MCMovieTitle = styled(Link)`
+const MCMovieTitle = styled.span`
   display: block;
   overflow: hidden;
   width: 90%;
@@ -59,6 +59,7 @@ const MCMovieTitle = styled(Link)`
   font-size: 16px;
   font-weight: bolder;
   color: #333333;
+  margin-bottom: 5px;
 `;
 
 const MCMovieInfo = styled.div``;
@@ -115,11 +116,21 @@ const MovieChartOlItem = () => {
           {movies.map((movie) => (
             <MCItemContainer>
               <MCRankBox>No.{movie.rankNum}</MCRankBox>
-              <MCItemImgBox>
-                <MCItemImg src={movie.posterImageSrc} />
-              </MCItemImgBox>
+              <Link
+                to={{
+                  pathname: "/movies/detail",
+                  state: {
+                    movieDocId: movie.docId,
+                  },
+                }}
+              >
+                <MCItemImgBox>
+                  <MCItemImg src={movie.posterImageSrc} />
+                </MCItemImgBox>
+                <MCMovieTitle>{movie.title}</MCMovieTitle>
+              </Link>
+
               <MCItemInfoBox>
-                <MCMovieTitle to="/movies/detail/">{movie.title}</MCMovieTitle>
                 <MCMovieInfo>
                   <MCInfoText>예매율</MCInfoText>
                   <MCInfoNum>1.9%</MCInfoNum>

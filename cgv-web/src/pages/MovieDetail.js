@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import posterEx from "../images/movieChart/MoviePosterEx.jpg";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
 import addBtn from "../images/movieDetail/add_btn.png";
-import expectBtn from "../images/movieDetail/btn_expectegg.png";
-import expectEgg from "../images/movieDetail/btn_expectegg2.png";
+import playBtn from "../images/movieDetail/play_icon.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
+import { getCookie, setCookie } from "../utils/JWT";
+import Slider from "react-slick";
+import BoardPagingBox from "../components/support/BoardPagingBox";
 
 const MDCon = styled.div`
   width: 100%;
@@ -174,6 +175,13 @@ const MDMovieP = styled.p`
   margin: 0;
 `;
 
+const MDMovieSpan = styled.span`
+  margin: 0;
+  font-weight: 800;
+  margin-left: 2px;
+  margin-right: 4px;
+`;
+
 const MDMovieSep = styled.p`
   margin: 0;
   font-weight: 800;
@@ -219,6 +227,7 @@ const MDMovieContentDiv = styled.div`
 
 const MDTrailerBox = styled.div`
   margin-top: 40px;
+  height: auto;
 `;
 
 const MDContentTitleDiv = styled.div`
@@ -259,6 +268,7 @@ const MDReplyInfoBox = styled.div`
   box-sizing: border-box;
   border-radius: 5px;
   position: relative;
+  margin-top: 10px;
 `;
 
 const MDReplyInfoText = styled.p`
@@ -275,29 +285,6 @@ const MDReplyInfoSubText = styled.p`
   margin-top: 10px;
 `;
 
-const MDReplyTitleBox = styled.div`
-  text-align: left;
-  margin: 20px 0 10px;
-`;
-
-const MDReplyNewText = styled.span`
-  padding-left: 0;
-  border-left: none;
-  padding: 0 8px 0 9px;
-  font-weight: 600;
-  color: #ef5549;
-  font-size: 13px;
-`;
-
-const MDReplyRecommendText = styled.span`
-  display: inline-block;
-  padding: 0 8px 0 9px;
-  border-left: 1px solid #d7d3c8;
-  font-weight: 600;
-  color: #666666;
-  font-size: 13px;
-`;
-
 const MDReplyBox = styled.div`
   margin: 0;
   padding: 0;
@@ -308,7 +295,8 @@ const MDReplyUl = styled.ul`
   list-style: none;
   color: #333333;
   padding: 0 25px;
-  height: 370px;
+  height: auto;
+  margin-bottom: 10px;
 `;
 
 const AsidesBannerImg = styled.img`
@@ -357,10 +345,12 @@ const MDMyReplyBtn = styled.span`
   margin-left: 10px;
 `;
 
-const ReplyPagingBox = styled.div`
-  text-align: center;
-  margin-top: 25px;
-  padding-right: 15px;
+const PagingBoxSection = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 25px;
 `;
 
 const ReplyPreviousBtn = styled.button`
@@ -380,7 +370,147 @@ const ReplyNextBtn = styled.button`
   padding-right: 2px;
 `;
 
-const MovieDetail = () => {
+const ItemOl = styled.ol`
+  list-style: none;
+  padding-left: 0;
+  margin-left: -10px;
+`;
+
+const ItemLi = styled.li`
+  width: 260px;
+  margin: 0 0 15px 10px;
+  display: inline-block;
+`;
+
+const TrailerImgBox = styled.div`
+  width: 260px;
+  height: 142px;
+  position: relative;
+`;
+
+const TrailerImg = styled.img`
+  width: 260px;
+  height: 142px;
+`;
+
+const PlayButton = styled.img`
+  position: absolute;
+  right: 5px;
+  bottom: 6px;
+  width: 44px;
+  height: 44px;
+`;
+
+const StillCutBox = styled.div`
+  width: 700px;
+  height: 480px;
+  margin: 0 auto;
+`;
+
+const Wrap = styled.div`
+  margin: 0 auto;
+  width: 100%;
+  display: inline-block;
+  .slick-prev:before {
+    opaicty: 1; // 기존에 숨어있던 화살표 버튼이 보이게
+    color: black; // 버튼 색은 검은색으로
+    left: 0;
+  }
+  .slick-next:before {
+    opacity: 1;
+    color: black;
+  }
+`;
+
+const MovieDetail = (props) => {
+  window.scrollTo(0, 0);
+
+  const settings = {
+    dots: false, // 캐러셀의 점을 보여줄 것인지
+    infinite: true, // 마지막 장 다음에 첫번째가 나오게 할 것인지
+    speed: 500, // 넘어가는 속도는 몇으로 할 것인지
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  let movieDocId = props.location.state.movieDocId;
+  const [isLoaded, setIsLoaded] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(4);
+
+  const [movie, setMovie] = useState({});
+  const [poster, setPoster] = useState();
+  const [directors, setDirectors] = useState({});
+  const [actors, setActors] = useState([]);
+  const [trailers, setTrailers] = useState([]);
+  const [stillCuts, setStillCuts] = useState([]);
+  const [reviews, setReviews] = useState([]);
+
+  const loadMovies = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/movie/" + movieDocId, {
+        method: "GET",
+        headers: new Headers({
+          Authorization: getCookie("cgvJWT"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.statusCode === 1) {
+            setMovie(res.data);
+            setPoster(res.data.posterImgSrc);
+            setDirectors(res.data.director);
+            setActors(res.data.actors);
+            setTrailers(res.data.trailers);
+            setStillCuts(res.data.stillCuts);
+          }
+        })
+        .catch((err) => {
+          // logout();
+          // alert("회원정보 조회 실패. 재로그인해주세요.");
+          // window.location.replace("/login");
+        });
+    }
+  };
+
+  const loadReviews = async () => {
+    if (isLoaded) {
+      setIsLoaded(false);
+
+      await fetch("http://localhost:8080/movie/" + movieDocId + "/review", {
+        method: "GET",
+        headers: new Headers({
+          Authorization: getCookie("cgvJWT"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.statusCode === 1) {
+            setReviews(res.data);
+          }
+        })
+        .catch((err) => {
+          // logout();
+          // alert("회원정보 조회 실패. 재로그인해주세요.");
+          // window.location.replace("/login");
+        });
+    }
+  };
+
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
+
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
+  loadMovies();
+  loadReviews();
+
   return (
     <MDCon>
       <NavSection>
@@ -404,11 +534,11 @@ const MovieDetail = () => {
             <MDHeadTitle>영화상세</MDHeadTitle>
           </MDHeadBox>
           <MDMovieBox>
-            <MDMoviePoster src={posterEx} />
+            <MDMoviePoster src={poster} />
             <MDMovieInfoBox>
               <MDTitleBox>
-                <MDTitle>소울</MDTitle>
-                <MDSubTitle>SOUL</MDSubTitle>
+                <MDTitle>{movie.title}</MDTitle>
+                <MDSubTitle>{movie.subTitle}</MDSubTitle>
               </MDTitleBox>
               <MCMovieInfo>
                 <MCInfoText>예매율</MCInfoText>
@@ -418,23 +548,36 @@ const MovieDetail = () => {
                 <MCInfoNum>92%</MCInfoNum>
               </MCMovieInfo>
               <MDMovieInfo>
-                <MDMovieDiv>
+                <MDMovieDiv
+                  style={{
+                    overflow: "hidden",
+                    width: "760px",
+                    height: "20px",
+                    textOverflow: "ellipsis",
+                  }}
+                >
                   <MDMovieP>감독 : </MDMovieP>
-                  <MDMovieP>피트 닥터</MDMovieP>
+
+                  <MDMovieP>{directors.name}</MDMovieP>
+
                   <MDMovieSep>|</MDMovieSep>
                   <MDMovieP>배우 : </MDMovieP>
-                  <MDMovieP>제이미 폭스, 티나 페이, 다비드 딕스</MDMovieP>
+                  {actors.map((actor) => (
+                    <MDMovieSpan>{actor.name}</MDMovieSpan>
+                  ))}
                 </MDMovieDiv>
                 <MDMovieDiv>
                   <MDMovieP>장르 : </MDMovieP>
-                  <MDMovieP>애니메이션</MDMovieP>
+                  <MDMovieP>{movie.genre}</MDMovieP>
                   <MDMovieSep>|</MDMovieSep>
                   <MDMovieP>기본 : </MDMovieP>
-                  <MDMovieP>전체, 107분, 미국</MDMovieP>
+                  <MDMovieP>
+                    {movie.age}, {movie.runningTime}분, {movie.country}
+                  </MDMovieP>
                 </MDMovieDiv>
                 <MDMovieDiv>
                   <MDMovieP>개봉 : </MDMovieP>
-                  <MDMovieP>2021.01.20</MDMovieP>
+                  <MDMovieP>{movie.releaseDate}</MDMovieP>
                 </MDMovieDiv>
               </MDMovieInfo>
 
@@ -461,47 +604,60 @@ const MovieDetail = () => {
 
           <MDMovieContentDiv>
             <MDStoryBox>
-              <MDStoryP>나는 어떻게 ‘나’로 태어나게 되었을까?</MDStoryP>
-              <MDStoryP>
-                지구에 오기 전 영혼들이 머무는 ‘태어나기 전 세상’이 있다면?
-              </MDStoryP>
-              <br />
-              <MDStoryP>뉴욕에서 음악 선생님으로 일하던 ‘조’는</MDStoryP>
-              <MDStoryP>
-                꿈에 그리던 최고의 밴드와 재즈 클럽에서 연주하게된 그 날,
-              </MDStoryP>
-              <MDStoryP>
-                예기치 못한 사고로 영혼이 되어 ‘태어나기 전 세상’에 떨어진다.
-              </MDStoryP>
-              <br />
-              <MDStoryP>
-                탄생 전 영혼들이 멘토와 함께 자신의 관심사를 발견하면 지구
-                통행증을 발급하는 ‘태어나기 전 세상’
-              </MDStoryP>
-              <MDStoryP>
-                ‘조’는 그 곳에서 유일하게 지구에 가고 싶어하지 않는 시니컬한
-                영혼 ‘22’의 멘토가 된다.
-              </MDStoryP>
-              <br />
-              <MDStoryP>
-                링컨, 간디, 테레사 수녀도 멘토되길 포기한 영혼 ‘22’
-              </MDStoryP>
-              <MDStoryP>
-                꿈의 무대에 서려면 ‘22’의 지구 통행증이 필요한 ‘조’
-              </MDStoryP>
-              <MDStoryP>
-                그는 다시 지구로 돌아가 꿈의 무대에 설 수 있을까?
-              </MDStoryP>
+              <MDStoryP>{movie.summary}</MDStoryP>
             </MDStoryBox>
 
             <MDTrailerBox>
               <MDContentTitleDiv>
                 <MDContentTitleH4>트레일러</MDContentTitleH4>
-                <MDContentCountSpan>15건</MDContentCountSpan>
-                <MDMovieBtn>
+                <MDContentCountSpan>{trailers.length}건</MDContentCountSpan>
+                <MDMovieBtn to="/movies/trailler">
                   <MDContentAddBtn src={addBtn} />
                 </MDMovieBtn>
               </MDContentTitleDiv>
+              <ItemOl>
+                {trailers.map((trailer) => (
+                  <ItemLi>
+                    <TrailerImgBox>
+                      <a href={trailer.trailerUrl}>
+                        <TrailerImg src={trailer.thumbImageUrl}></TrailerImg>
+                        <PlayButton src={playBtn} />
+                      </a>
+                    </TrailerImgBox>
+                  </ItemLi>
+                ))}
+              </ItemOl>
+            </MDTrailerBox>
+
+            <MDTrailerBox style={{ height: "500px" }}>
+              <MDContentTitleDiv>
+                <MDContentTitleH4>스틸컷</MDContentTitleH4>
+                <MDContentCountSpan>{stillCuts.length}건</MDContentCountSpan>
+              </MDContentTitleDiv>
+              <Wrap>
+                <StillCutBox>
+                  <Slider {...settings}>
+                    {stillCuts.map((stillCut) => (
+                      <div
+                        style={{
+                          display: "flex",
+                          height: "auto",
+                        }}
+                      >
+                        <img
+                          src={stillCut.imageUrl}
+                          style={{
+                            width: "90%",
+                            height: "90%",
+                            margin: "0 auto",
+                          }}
+                          alt="스틸컷"
+                        />
+                      </div>
+                    ))}
+                  </Slider>
+                </StillCutBox>
+              </Wrap>
             </MDTrailerBox>
 
             <MDReplyInfoBox>
@@ -509,7 +665,7 @@ const MovieDetail = () => {
                 관람일 포함 7일 이내 관람평을 남기시면 CJ ONE 20P가 적립됩니다.
               </MDReplyInfoText>
               <MDReplyInfoSubText>
-                28,885 명의 실관람객이 평가해주셨습니다.
+                {reviews.length}명의 실관람객이 평가해주셨습니다.
               </MDReplyInfoSubText>
               <MDReplyInfoBtnBox>
                 <Link>
@@ -523,20 +679,21 @@ const MovieDetail = () => {
 
             <MDContentTitleDiv style={{ marginBottom: "0", marginTop: "20px" }}>
               <MDContentTitleH4>영화평점</MDContentTitleH4>
-              <MDContentCountSpan>15건</MDContentCountSpan>
+              <MDContentCountSpan>{reviews.length}건</MDContentCountSpan>
             </MDContentTitleDiv>
 
             <MDReplyBox>
               <MDReplyUl>
-                <MovieDetailReply />
-                <MovieDetailReply />
-                <MovieDetailReply />
-                <MovieDetailReply />
+                <MovieDetailReply reviews={currentPosts(reviews)} />
               </MDReplyUl>
-              <ReplyPagingBox>
-                <ReplyPreviousBtn>◀</ReplyPreviousBtn>
-                <ReplyNextBtn>▶</ReplyNextBtn>
-              </ReplyPagingBox>
+              <PagingBoxSection>
+                <BoardPagingBox
+                  currentPage={currentPage}
+                  postsPerPage={postsPerPage}
+                  totalPosts={reviews.length}
+                  paginate={setCurrentPage}
+                />
+              </PagingBoxSection>
             </MDReplyBox>
           </MDMovieContentDiv>
         </MDContentBox>

@@ -37,10 +37,12 @@ public class MovieController {
 		String oneDaysAgo = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		return movieService.findByBoxOfficeDate(oneDaysAgo);
 	}
+	
 	@GetMapping("/movie")
 	public CommonRespDto<?> findByMovieAll() {
 		 return new CommonRespDto<>(1,movieService.영화모두찾기());
 	}
+
 	/********** 여기는 혹시 사용할 수 있어서 만들어 놓음 ***********/
 	// trailer thumb 가져오기
 	@GetMapping("/movie/{movieId}/trailer")

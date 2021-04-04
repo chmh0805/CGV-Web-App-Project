@@ -248,7 +248,9 @@ const Header = () => {
                           <DropdownDivLink to="/ticket">
                             빠른예매
                           </DropdownDivLink>
-                          <DropdownDivLink to="/">상영시간표</DropdownDivLink>
+                          <DropdownDivLink to="/theater">
+                            상영시간표
+                          </DropdownDivLink>
                         </DropdownBoxDiv>
                       </DropdownBox>
                     </MyDropdownItem>
