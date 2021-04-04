@@ -84,6 +84,7 @@ public class MovieService {
 		List<String> stillCutImageUrl = query.getResultList();
 		return stillCutImageUrl;
 	}
+	
 	@Transactional(readOnly = true)
 	public List<MovieBoxOfficeRespDto> 박스오피스영화리스트() {
 		StringBuffer sb = new StringBuffer();
