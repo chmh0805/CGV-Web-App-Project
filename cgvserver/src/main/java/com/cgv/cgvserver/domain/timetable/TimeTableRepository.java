@@ -19,4 +19,7 @@ public interface TimeTableRepository extends JpaRepository<TimeTable, Long> {
 	
 	@Query(value = "SELECT * FROM timetable WHERE movieId = :movieId AND theaterId = :theaterId AND date = :date", nativeQuery = true)
 	List<TimeTable> mFindByAllInfo(String movieId, long theaterId, String date);
+	
+	@Query(value = "SELECT * FROM timetable WHERE date = :date AND theaterId = :theaterId", nativeQuery = true)
+	List<TimeTable> mFindByDateAndTheaterId(String date, long theaterId);
 }

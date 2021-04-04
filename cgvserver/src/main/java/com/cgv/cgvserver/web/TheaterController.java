@@ -55,4 +55,9 @@ public class TheaterController {
 		
 		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
+	
+	@GetMapping("/theater/timetable/date/{date}/theaterId/{theaterId}")
+	public CommonRespDto<?> findByDateAndTheaterId(@PathVariable String date, @PathVariable long theaterId) {
+		return new CommonRespDto<>(1, theaterService.극장별상영시간표조회(date, theaterId));
+	}
 }

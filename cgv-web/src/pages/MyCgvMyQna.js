@@ -150,7 +150,6 @@ const TableStateTitle = styled(TableTitle)`
 
 const MyCgvMyQna = () => {
   setCookie("now-space", "mycgv-myqna");
-  window.scrollTo(0, 0);
 
   const [qnas, setQnas] = useState([]);
 

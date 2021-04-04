@@ -345,6 +345,7 @@ const TicketingStep3 = (props) => {
         buyer_email: userInfo.email, // 구매자 이메일
       },
       function (rsp) {
+        console.log(selectedSeatNums);
         for (var j = 0; j < normalPeopleCount; j++) {
           ticketNormal(
             selectedSeatNums.pop(),

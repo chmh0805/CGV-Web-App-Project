@@ -56,31 +56,47 @@ const TimeItemContentItem = styled.div`
 
 const TicketingStep1TimeBox = ({ lastTimeTable, setSelecTimeTable }) => {
   let timeTables = lastTimeTable;
+  let tmpHallIdList = [];
+  let hallList = [];
+
+  timeTables.forEach((timeTable) => {
+    if (tmpHallIdList.length === 0) {
+      tmpHallIdList.push(timeTable.hall.id);
+      hallList.push(timeTable.hall);
+    } else {
+      if (tmpHallIdList.indexOf(timeTable.hall.id) === -1) {
+        tmpHallIdList.push(timeTable.hall.id);
+        hallList.push(timeTable.hall);
+      }
+    }
+  });
 
   const selectOne = (timeTable) => {
     setSelecTimeTable(timeTable);
   };
 
-  if (!timeTables.length) {
-    return <TicketingTimeSection></TicketingTimeSection>;
-  } else {
-    return (
-      <TicketingTimeSection>
-        {timeTables.map((timeTable) => (
-          <TicketingTimeItem>
-            <TimeItemTitle>
-              {timeTable.hall.name}&nbsp;(총{timeTable.hall.seats.length}석)
-            </TimeItemTitle>
-            <TimeItemContentBox>
-              <TimeItemContentItem onClick={() => selectOne(timeTable)}>
-                {timeTable.startTime}
-              </TimeItemContentItem>
-            </TimeItemContentBox>
-          </TicketingTimeItem>
-        ))}
-      </TicketingTimeSection>
-    );
-  }
+  return (
+    <TicketingTimeSection>
+      {hallList.map((hall) => (
+        <TicketingTimeItem>
+          <TimeItemTitle>
+            {hall.name}&nbsp;(총{hall.seats.length}석)
+          </TimeItemTitle>
+          <TimeItemContentBox>
+            {timeTables.map((timeTable) => {
+              if (hall.id === timeTable.hall.id) {
+                return (
+                  <TimeItemContentItem onClick={() => selectOne(timeTable)}>
+                    {timeTable.startTime}
+                  </TimeItemContentItem>
+                );
+              }
+            })}
+          </TimeItemContentBox>
+        </TicketingTimeItem>
+      ))}
+    </TicketingTimeSection>
+  );
 };
 
 export default TicketingStep1TimeBox;

@@ -119,7 +119,9 @@ const MyCgvReservedBox = ({ ticketings }) => {
               </ReservedItemBookingNo>
             </ReservedItemBookingNoBox>
             <ReservedItemBookingInfoBox>
-              <ReservedItemBookingImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000084/84273/84273_126.jpg" />
+              <ReservedItemBookingImg
+                src={ticketing.timeTable.movie.posterImgSrc}
+              />
               <ReservedItemBookingDetail>
                 <BookingDetailTitle>
                   <span>{ticketing.timeTable.movie.title}</span>

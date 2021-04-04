@@ -98,7 +98,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
           <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
         </AsidesBoxLink>
-        <AsidesBoxLink>
+        {/* <AsidesBoxLink>
           <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
         </AsidesBoxLink>
         <AsidesBoxLink to="/user/mycgv/giftcon">
@@ -109,7 +109,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         </AsidesBoxLink>
         <AsidesBoxLink>
           <AsidesBodyItem>결제내역</AsidesBodyItem>
-        </AsidesBoxLink>
+        </AsidesBoxLink> */}
         <AsidesBoxLink to="/user/info">
           <AsidesHeadItem>회원정보</AsidesHeadItem>
         </AsidesBoxLink>
@@ -148,7 +148,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
           <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
         </AsidesBoxLink>
-        <AsidesBoxLink>
+        {/* <AsidesBoxLink>
           <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
         </AsidesBoxLink>
         <AsidesBoxLink to="/user/mycgv/giftcon">
@@ -159,7 +159,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         </AsidesBoxLink>
         <AsidesBoxLink>
           <AsidesBodyItem>결제내역</AsidesBodyItem>
-        </AsidesBoxLink>
+        </AsidesBoxLink> */}
         <AsidesBoxLink to="/user/info">
           <AsidesHeadItem>회원정보</AsidesHeadItem>
         </AsidesBoxLink>
@@ -202,7 +202,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
             CGV 영화관람권
           </AsidesBodyItem>
         </AsidesBoxLink>
-        <AsidesBoxLink>
+        {/* <AsidesBoxLink>
           <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
         </AsidesBoxLink>
         <AsidesBoxLink to="/user/mycgv/giftcon">
@@ -213,7 +213,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         </AsidesBoxLink>
         <AsidesBoxLink>
           <AsidesBodyItem>결제내역</AsidesBodyItem>
-        </AsidesBoxLink>
+        </AsidesBoxLink> */}
         <AsidesBoxLink to="/user/info">
           <AsidesHeadItem>회원정보</AsidesHeadItem>
         </AsidesBoxLink>
@@ -252,7 +252,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
           <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
         </AsidesBoxLink>
-        <AsidesBoxLink>
+        {/* <AsidesBoxLink>
           <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
         </AsidesBoxLink>
         <AsidesBoxLink to="/user/mycgv/giftcon">
@@ -265,7 +265,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         </AsidesBoxLink>
         <AsidesBoxLink>
           <AsidesBodyItem>결제내역</AsidesBodyItem>
-        </AsidesBoxLink>
+        </AsidesBoxLink> */}
         <AsidesBoxLink to="/user/info">
           <AsidesHeadItem>회원정보</AsidesHeadItem>
         </AsidesBoxLink>
@@ -304,7 +304,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
           <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
         </AsidesBoxLink>
-        <AsidesBoxLink>
+        {/* <AsidesBoxLink>
           <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
         </AsidesBoxLink>
         <AsidesBoxLink to="/user/mycgv/giftcon">
@@ -315,7 +315,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         </AsidesBoxLink>
         <AsidesBoxLink>
           <AsidesBodyItem>결제내역</AsidesBodyItem>
-        </AsidesBoxLink>
+        </AsidesBoxLink> */}
         <AsidesBoxLink to="/user/info">
           <AsidesHeadItem>회원정보</AsidesHeadItem>
         </AsidesBoxLink>
@@ -356,7 +356,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         <AsidesBoxLink to="/user/mycgv/coupon/movie-ticket/register">
           <AsidesBodyItem>CGV 영화관람권</AsidesBodyItem>
         </AsidesBoxLink>
-        <AsidesBoxLink>
+        {/* <AsidesBoxLink>
           <AsidesBodyItem>CGV 기프트카드</AsidesBodyItem>
         </AsidesBoxLink>
         <AsidesBoxLink to="/user/mycgv/giftcon">
@@ -367,7 +367,7 @@ const MyCgvAsidesBox = ({ nowSpace }) => {
         </AsidesBoxLink>
         <AsidesBoxLink>
           <AsidesBodyItem>결제내역</AsidesBodyItem>
-        </AsidesBoxLink>
+        </AsidesBoxLink> */}
         <AsidesBoxLink to="/user/info">
           <AsidesHeadSpecialItem>회원정보</AsidesHeadSpecialItem>
         </AsidesBoxLink>

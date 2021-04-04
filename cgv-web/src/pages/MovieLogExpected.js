@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -131,35 +131,46 @@ const MovieLogExpected = () => {
   setCookie("now-space", "movielog-expected");
   window.scrollTo(0, 0);
 
-  const [isLoaded, setIsLoaded] = useState(true);
   const [expectMovies, setExpectMovies] = useState([]);
+  const [watchedMovies, setWatchedMovies] = useState([]);
 
-  const loadData = async () => {
-    if (isLoaded) {
-      setIsLoaded(false);
-
-      await fetch("http://localhost:8080/expectMovie", {
-        method: "GET",
-        headers: new Headers({
-          Authorization: getCookie("cgvJWT"),
-        }),
+  useEffect(() => {
+    fetch("http://localhost:8080/expectMovie", {
+      method: "GET",
+      headers: new Headers({
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => {
+        return res.json();
       })
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          if (res.statusCode === 1) {
-            console.log(res.data);
-            setExpectMovies(res.data);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
+      .then((res) => {
+        if (res.statusCode === 1) {
+          console.log(res.data);
+          setExpectMovies(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
-  loadData();
+  useEffect(() => {
+    fetch(
+      "http://localhost:8080/ticketing/user/" + getCookie("userId") + "/watched"
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setWatchedMovies(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <ExpectedLogMainContainer>
@@ -182,6 +193,7 @@ const MovieLogExpected = () => {
         <MovieLogAsidesBox
           nowSpace={getCookie("now-space")}
           expectMovieCount={expectMovies.length}
+          watchedMovieCount={watchedMovies.length}
         />
         <MainContentsBox>
           <MainContentsTitleBox>

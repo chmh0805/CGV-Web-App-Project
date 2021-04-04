@@ -10,7 +10,7 @@ public interface TicketingRepository extends JpaRepository<Ticketing, Long> {
 	Ticketing findBySeatIdAndTimeTableId(long seatId, long timeTableId);
 	
 	@Modifying
-	@Query(value = "INSERT INTO ticketing(state, ticketNum, personType, seatId, timeTableId, userId) VALUES(0, :ticketNum, :personType, :seatId, :timeTableId, :userId)", nativeQuery = true)
+	@Query(value = "INSERT INTO ticketing(state, ticketNum, personType, seatId, timeTableId, userId, createDate) VALUES(0, :ticketNum, :personType, :seatId, :timeTableId, :userId, now())", nativeQuery = true)
 	void mSave(String ticketNum, int personType, long seatId, long timeTableId, long userId);
 	
 	List<Ticketing> findByUserId(long userId);

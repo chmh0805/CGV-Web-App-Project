@@ -59,7 +59,7 @@ const TicketingSubContainer = styled.div`
   margin-top: 25px;
 `;
 
-const TicketingPage = ({ getMovie }) => {
+const TicketingPage = (props) => {
   const [nowStep, setNowStep] = useState(1);
   const [movie, setMovie] = useState(0); // 고른 영화
   const [theater, setTheater] = useState(0); // 고른 극장

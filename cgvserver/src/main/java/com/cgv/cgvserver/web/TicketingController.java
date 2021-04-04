@@ -33,4 +33,9 @@ public class TicketingController {
 	public CommonRespDto<?> findByUserId(@PathVariable long userId) {
 		return new CommonRespDto<>(1, ticketingService.유저예약정보찾기(userId));
 	}
+	
+	@GetMapping("/ticketing/user/{userId}/watched")
+	public CommonRespDto<?> findWatchedMovies(@PathVariable long userId) {
+		return new CommonRespDto<>(1, ticketingService.내가본영화찾기(userId));
+	}
 }
