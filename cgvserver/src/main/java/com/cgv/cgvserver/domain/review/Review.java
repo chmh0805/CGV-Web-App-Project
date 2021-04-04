@@ -18,7 +18,6 @@ import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.reply.Reply;
 import com.cgv.cgvserver.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

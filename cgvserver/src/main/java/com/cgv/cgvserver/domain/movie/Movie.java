@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.cgv.cgvserver.domain.actor.Actor;
 import com.cgv.cgvserver.domain.director.Director;

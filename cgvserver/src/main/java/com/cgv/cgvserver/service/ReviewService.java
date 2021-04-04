@@ -5,13 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cgv.cgvserver.domain.qna.Qna;
 import com.cgv.cgvserver.domain.review.Review;
 import com.cgv.cgvserver.domain.review.ReviewRepository;
 
 import com.cgv.cgvserver.utils.Review.ReviewToRespDto;
-import com.cgv.cgvserver.utils.qna.QnaToRespDto;
-import com.cgv.cgvserver.web.dto.qna.QnaFindRespDto;
 import com.cgv.cgvserver.web.dto.review.ReviewFindRespDto;
 
 import lombok.RequiredArgsConstructor;
