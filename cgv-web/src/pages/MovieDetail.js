@@ -446,6 +446,8 @@ const MovieDetail = (props) => {
   const [stillCuts, setStillCuts] = useState([]);
   const [reviews, setReviews] = useState([]);
 
+  const [isExpect, setIsExpect] = useState(true);
+
   useEffect(() => {
     fetch("http://localhost:8080/movie/" + movieDocId)
       .then((res) => res.json())
@@ -503,30 +505,59 @@ const MovieDetail = (props) => {
       goToLogin();
     }
 
-    fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
-      method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-        Authorization: getCookie("cgvJWT"),
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        if (res.statusCode === 1) {
-          alert("기대되는 영화에 등록 완료");
-        }
+    if (!isExpect) {
+      setIsExpect(true);
+      fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
+        method: "POST",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: getCookie("cgvJWT"),
+        }),
       })
-      .catch((err) => {
-        console.log(err);
-        fetch("http://localhost:8080/logout").then(() => {
-          deleteCookie("cgvJWT");
-          deleteCookie("userId");
-          deleteCookie("role");
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.statusCode === 1) {
+            alert("기대되는 영화에 등록 완료");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
         });
-        alert("회원정보 조회 실패. 재로그인해주세요.");
-        window.location.replace("/login");
-      });
+    } else {
+      setIsExpect(false);
+      fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
+        method: "DELETE",
+        headers: new Headers({
+          "Content-Type": "application/json",
+          Authorization: getCookie("cgvJWT"),
+        }),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          if (res.statusCode === 1) {
+            alert("기대돼요 취소 완료");
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
+        });
+    }
   };
 
   return (
