@@ -36,7 +36,6 @@ const NavSectionItemBox = styled.div`
 
 const NavSectionHome = styled(Link)`
   color: black;
-
   &:hover {
     color: black;
   }
@@ -205,7 +204,6 @@ const MDExpectBtn = styled.button`
   font-size: 13px;
   font-weight: 500;
   background-color: #fdfcf0;
-
   &:focus {
     background-color: #ffedec;
     color: #e71a0f;
@@ -353,23 +351,6 @@ const PagingBoxSection = styled.div`
   padding-top: 25px;
 `;
 
-const ReplyPreviousBtn = styled.button`
-  border-radius: 2px;
-  margin-right: 3px;
-  background-color: #faf9ed;
-  color: #787877;
-  border: 1px solid #cacac1;
-  padding-left: 2px;
-`;
-const ReplyNextBtn = styled.button`
-  border-radius: 2px;
-  margin-left: 3px;
-  background-color: #faf9ed;
-  color: #787877;
-  border: 1px solid #cacac1;
-  padding-right: 2px;
-`;
-
 const ItemOl = styled.ol`
   list-style: none;
   padding-left: 0;
@@ -505,59 +486,32 @@ const MovieDetail = (props) => {
       goToLogin();
     }
 
-    if (!isExpect) {
-      setIsExpect(true);
-      fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
-        method: "POST",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: getCookie("cgvJWT"),
-        }),
+    fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.statusCode === 1) {
+          alert("기대되는 영화에 등록 완료");
+        } else if (res.statusCode === -1) {
+          alert("이미 기대돼요 등록된 영화입니다.");
+        }
       })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          if (res.statusCode === 1) {
-            alert("기대되는 영화에 등록 완료");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          fetch("http://localhost:8080/logout").then(() => {
-            deleteCookie("cgvJWT");
-            deleteCookie("userId");
-            deleteCookie("role");
-          });
-          alert("회원정보 조회 실패. 재로그인해주세요.");
-          window.location.replace("/login");
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
         });
-    } else {
-      setIsExpect(false);
-      fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
-        method: "DELETE",
-        headers: new Headers({
-          "Content-Type": "application/json",
-          Authorization: getCookie("cgvJWT"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          console.log(res);
-          if (res.statusCode === 1) {
-            alert("기대돼요 취소 완료");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-          fetch("http://localhost:8080/logout").then(() => {
-            deleteCookie("cgvJWT");
-            deleteCookie("userId");
-            deleteCookie("role");
-          });
-          alert("회원정보 조회 실패. 재로그인해주세요.");
-          window.location.replace("/login");
-        });
-    }
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
   };
 
   return (

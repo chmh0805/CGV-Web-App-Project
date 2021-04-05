@@ -2,6 +2,7 @@ package com.cgv.cgvserver.handler;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +60,12 @@ public class ExceptionAdvicer {
 	public CommonRespDto<String> malFormUrlEx(MalformedURLException e) {
 		log.error(e.getMessage());
 		return new CommonRespDto<>(-1, "영화서버 접근 중 오류발생");
+	}
+	
+	@ExceptionHandler
+	public CommonRespDto<String> createSQLException(SQLIntegrityConstraintViolationException e) {
+		log.error(e.getMessage());
+		return new CommonRespDto<>(-1, "무결성 제약 조건에 위배");
 	}
 	
 }
