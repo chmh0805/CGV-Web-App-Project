@@ -98,7 +98,7 @@ public class FragMovieDetailInfo extends Fragment {
             @Override
             public void onResponse(Call<CMRespDto<Movie>> call, Response<CMRespDto<Movie>> response) {
                 Movie movie = response.body().getData();
-                List<Director> directors = movie.getDirector();
+                List<Director> directors = movie.getDirectors();
                 List<Actor> actors = movie.getActors();
                 List<StillCut> stillCuts = movie.getStillCuts();
                 List<Trailer> trailers = movie.getTrailers();
@@ -109,6 +109,7 @@ public class FragMovieDetailInfo extends Fragment {
                 mTvGenre.setText(movie.getGenre());
                 mTvRunningTime.setText(movie.getRunningTime()+"");
                 mTvSummary.setText(movie.getSummary());
+
                 for(int i=0; i<directors.size(); i++) {
                     mMoviePeople.add(directors.get(i).getName());
                 }
@@ -136,7 +137,7 @@ public class FragMovieDetailInfo extends Fragment {
                         .into(mIvStill);
 
                 Log.d(TAG, "onResponse: 통신성공"+movie);
-                Log.d(TAG, "onResponse: directorSize: "+ movie.getDirector().size());
+                Log.d(TAG, "onResponse: directorSize: "+ movie.getDirectors().size());
                 LinearLayoutManager mLinearLayoutManager = new LinearLayoutManager(view.getContext(), RecyclerView.HORIZONTAL, false);
                 mRvMoviePerson.setLayoutManager(mLinearLayoutManager);
                 mMoviePersonAdapter = new MoviePersonAdapter(directors, mMoviePeople);

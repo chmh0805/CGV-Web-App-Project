@@ -1,4 +1,6 @@
+
 package com.example.cgvapplication.adapter.ticketing.movie;
+
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;
@@ -14,19 +16,26 @@ import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.fragment.FragTicketingTheater;
 
 import java.time.LocalDate;
 import java.time.format.TextStyle;
 import java.util.List;
 import java.util.Locale;
 
-public class TicketingCalendarListAdapter extends RecyclerView.Adapter<TicketingCalendarListAdapter.MyViewHolder>{
+class TicketingTheaterCalendarListAdapter extends RecyclerView.Adapter<TicketingTheaterCalendarListAdapter.MyViewHolder> {
 
     private static final String TAG = "TicketingCalendarListAd";
 
+    private FragTicketingTheater mFragTicketingTheater;
     private final List<LocalDate> mLocalDates;
 
-    public TicketingCalendarListAdapter(List<LocalDate> localDates) {
+    public TicketingTheaterCalendarListAdapter(FragTicketingTheater mFragTicketingTheater, List<LocalDate> localDates) {
+        this.mFragTicketingTheater = mFragTicketingTheater;
+        this.mLocalDates = localDates;
+    }
+
+    public TicketingTheaterCalendarListAdapter(List<LocalDate> localDates) {
         this.mLocalDates = localDates;
     }
 
@@ -40,8 +49,12 @@ public class TicketingCalendarListAdapter extends RecyclerView.Adapter<Ticketing
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-       holder.setItem(mLocalDates.get(position));
-
+        holder.setItem(mLocalDates.get(position));
+        holder.itemView.setOnClickListener(v -> {
+            Log.d(TAG, "onBindViewHolder: " + holder.day);
+            mFragTicketingTheater.setDate(holder.day, holder.tvDays.getText().toString());
+            mFragTicketingTheater.selectLocation();
+        });
     }
 
     @Override
@@ -54,28 +67,33 @@ public class TicketingCalendarListAdapter extends RecyclerView.Adapter<Ticketing
         private final TextView tvDaysNum;
         private final TextView tvDays;
 
+        private String day = null;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             tvDaysNum = itemView.findViewById(R.id.tv_day_num);
             tvDays = itemView.findViewById(R.id.tv_day);
-            itemView.setOnClickListener(view -> Log.d(TAG, "MyViewHolder: 클릭됨."+getAdapterPosition()));
-            //Log.d(TAG, "MyViewHolder: "+itemView.get);
-
         }
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         @SuppressLint("SetTextI18n")
         public void setItem(LocalDate localDate) {
             String localDateDay = localDate.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
-           // int myBlueColor = ContextCompat.getColor()
-            if(localDateDay.equals("토")) {
+            // int myBlueColor = ContextCompat.getColor()
+            if (localDateDay.equals("토")) {
                 tvDays.setTextColor(Color.parseColor("#3333FF"));
             } else if (localDateDay.equals("일")) {
                 tvDays.setTextColor(Color.parseColor("#FF3636"));
             }
             tvDays.setText(localDateDay);
 
-            tvDaysNum.setText(localDate.getDayOfMonth()+"");
+            tvDaysNum.setText(localDate.getDayOfMonth() + "");
+
+            if (0 < localDate.getDayOfMonth() && localDate.getDayOfMonth() < 10) {
+                day = "0" + localDate.getDayOfMonth();
+            } else {
+                day = localDate.getDayOfMonth() + "";
+            }
         }
 
     }

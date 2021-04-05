@@ -22,8 +22,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.adapter.ticketing.movie.TicketingCalendarListAdapter;
-import com.example.cgvapplication.adapter.ticketing.movie.TicketingMoviePosterAdapter;
+
 import com.example.cgvapplication.adapter.ticketing.movie.TicketingTheaterAdapter;
 
 import com.example.cgvapplication.model.hall.Hall;
@@ -37,6 +36,11 @@ import com.example.cgvapplication.service.TimeTableService;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.example.cgvapplication.service.dto.timetable.TimeTableHallRespDto;
+
+import com.example.cgvapplication.adapter.ticketing.theater.TicketingTheaterCalendarListAdapter;
+import com.example.cgvapplication.adapter.ticketing.TicketingMoviePosterAdapter;
+import com.example.cgvapplication.adapter.ticketing.movie.TicketingTheaterAdapter;
+
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 import java.text.ParseException;
@@ -100,7 +104,7 @@ public class FragTicketingMovie extends Fragment {
             mLocalDates.add(LocalDate.now().plusDays(i));
         }
         mTvMovieTitle.setSelected(true);
-        TicketingCalendarListAdapter mTicketingCalendarListAdapter = new TicketingCalendarListAdapter(mLocalDates);
+        TicketingTheaterCalendarListAdapter mTicketingCalendarListAdapter = new TicketingTheaterCalendarListAdapter(mLocalDates);
         mRvCalendar.setAdapter(mTicketingCalendarListAdapter);
         currentDate();
 

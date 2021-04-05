@@ -6,7 +6,6 @@ import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.cgvapplication.R;
@@ -39,17 +38,12 @@ public class MainActivity extends AppCompatActivity {
     private MyNavigationHelper mMyNavigationHelper;
     private LinearLayout mLinearNagiation;
 
-    private Gson gson = new Gson();
-    private List<MovieBoxOfficeRespDto> moviesBoxOffice;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        download();
         init();
-
 
         setSupportActionBar(mToolbarMain);
 
@@ -81,25 +75,4 @@ public class MainActivity extends AppCompatActivity {
         mMyNavigationHelper = new MyNavigationHelper(MainActivity.this);
 
     }
-
-    private void download() {
-        MovieService movieService = MovieService.retrofit.create(MovieService.class);
-        Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call = movieService.findBoxOfficeAll();
-        call.enqueue(new Callback<CMRespDto<List<MovieBoxOfficeRespDto>>>() {
-            @Override
-            public void onResponse(Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call, Response<CMRespDto<List<MovieBoxOfficeRespDto>>> response) {
-
-                CMRespDto<List<MovieBoxOfficeRespDto>> cmRespDto = response.body();
-                moviesBoxOffice = cmRespDto.getData();
-
-            }
-
-            @Override
-            public void onFailure(Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call, Throwable t) {
-            }
-        });
-
-    }
-
-
 }

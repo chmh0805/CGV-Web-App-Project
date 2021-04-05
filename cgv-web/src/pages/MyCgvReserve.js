@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -8,6 +8,8 @@ import MyCGVInfoBox from "../components/MyCGVInfoBox";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setFrequentlyCgvs, setInfo, setQnas, setTicketings } from "../store";
+import { useSelector } from "react-redux";
+import MyCgvReservedBox from "../components/mycgv/reserve/MyCgvReservedBox";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -127,97 +129,6 @@ const BookingNoticeSpan = styled.span`
   text-align: center;
 `;
 
-const ReservedItemBox = styled.div`
-  width: 800px;
-  padding: 30px;
-  border-bottom: 1px solid #d6d4ca;
-`;
-
-const ReservedItemBookingNoBox = styled.div`
-  width: 100%;
-  display: flex;
-  text-align: left;
-  margin-bottom: 20px;
-  line-height: 1.2;
-  color: #666;
-`;
-
-const ReservedItemBookingNo = styled.div`
-  color: #000;
-  line-height: 1.2;
-  font-weight: 600;
-  font-size: 14px;
-  margin-left: 15px;
-`;
-
-const ReservedItemBookingInfoBox = styled.div`
-  width: 100%;
-  height: 140px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const ReservedItemBookingImg = styled.img`
-  width: 90px;
-  height: 100%;
-`;
-
-const ReservedItemBookingDetail = styled.div`
-  width: 620px;
-  height: 100%;
-`;
-
-const BookingDetailTitle = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  color: #222;
-  font-size: 15px;
-  overflow: hidden;
-  line-height: 1.6;
-  padding-bottom: 10px;
-  border-bottom: 1px solid #bbb9b1;
-  margin-bottom: 8px;
-`;
-
-const BookingBlueSpan = styled.span`
-  font-size: 14px;
-  color: #0077a8;
-  font-weight: bold;
-  padding-right: 30px;
-  line-height: 1.6;
-`;
-
-const BookingDetailContentBox = styled.div`
-  width: 100%;
-  height: 60px;
-  display: grid;
-  grid-template-rows: 16px 16px 16px;
-  row-gap: 6px;
-  grid-template-columns: 300px 300px;
-  column-gap: 10px;
-  overflow: hidden;
-  margin-top: 8px;
-`;
-
-const BookingDetailItemBox = styled.div`
-  display: flex;
-`;
-
-const BookingDetailItemTitle = styled.div`
-  width: 60px;
-  text-align: left;
-  color: #222;
-`;
-
-const BookingDetailItemContent = styled.div`
-  width: 240px;
-  text-align: left;
-  color: #666;
-  line-height: 1.3;
-`;
-
 const ReservationNoticeBox = styled.div`
   width: 100%;
   height: auto;
@@ -260,12 +171,10 @@ const MyCgvReserve = () => {
   setCookie("now-space", "mycgv-reserve");
   window.scrollTo(0, 0);
 
-  const [isLoaded, setIsLoaded] = useState(true);
   const dispatcher = useDispatch();
+  const { ticketings } = useSelector((store) => store);
 
-  if (isLoaded) {
-    setIsLoaded(false);
-
+  useEffect(() => {
     axios
       .get("http://localhost:8080/user", {
         headers: {
@@ -295,7 +204,7 @@ const MyCgvReserve = () => {
         alert("회원정보 조회 실패. 재로그인해주세요.");
         window.location.replace("/login");
       });
-  }
+  }, []);
 
   return (
     <MyCgvReserveContainer>
@@ -337,51 +246,7 @@ const MyCgvReserve = () => {
               티켓판매기에서 예매번호를 입력하면 티켓을 발급받을 수 있습니다.
             </BookingNoticeSpan>
           </BookingNoticeDiv>
-          <ReservedItemBox>
-            <ReservedItemBookingNoBox>
-              <span>예매번호</span>
-              <ReservedItemBookingNo>0285-0319-3729-696</ReservedItemBookingNo>
-            </ReservedItemBookingNoBox>
-            <ReservedItemBookingInfoBox>
-              <ReservedItemBookingImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000084/84273/84273_126.jpg" />
-              <ReservedItemBookingDetail>
-                <BookingDetailTitle>
-                  <span>미나리</span>
-                  <BookingBlueSpan>12,000원</BookingBlueSpan>
-                </BookingDetailTitle>
-                <BookingDetailContentBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람극장</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      CGV 서면삼정타워
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람인원</BookingDetailItemTitle>
-                    <BookingDetailItemContent>일반 1</BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람일시</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      2021.03.24(수) 18:55
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람좌석</BookingDetailItemTitle>
-                    <BookingDetailItemContent>E 12</BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>상영관</BookingDetailItemTitle>
-                    <BookingDetailItemContent>5관</BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>매수</BookingDetailItemTitle>
-                    <BookingDetailItemContent>1매</BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                </BookingDetailContentBox>
-              </ReservedItemBookingDetail>
-            </ReservedItemBookingInfoBox>
-          </ReservedItemBox>
+          <MyCgvReservedBox ticketings={ticketings} />
           <ReservationNoticeBox>
             <ReservationNoticeItem>
               <ReservationNoticeItemTitle>이용안내</ReservationNoticeItemTitle>

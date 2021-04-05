@@ -6,6 +6,9 @@ import MyCgvAsidesBox from "../components/MyCgvAsidesBox";
 import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
 import MyCGVInfoBox from "../components/MyCGVInfoBox";
 import TableContentSection from "../components/mycgv/myqna/TableContentSection";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { setInfo } from "../store";
 
 const MyCgvReserveContainer = styled.div`
   background-color: #fdfcf0;
@@ -150,9 +153,50 @@ const TableStateTitle = styled(TableTitle)`
 
 const MyCgvMyQna = () => {
   setCookie("now-space", "mycgv-myqna");
-  window.scrollTo(0, 0);
 
   const [qnas, setQnas] = useState([]);
+  const dispatcher = useDispatch();
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/user", {
+        headers: {
+          Authorization: getCookie("cgvJWT"),
+        },
+      })
+      .then((res) => {
+        let statusCode = res.data.statusCode;
+        let data = res.data.data;
+        if (statusCode === 1) {
+          const names = {
+            name: data.name,
+            username: data.username,
+            nickname: data.nickname,
+          };
+          dispatcher(setInfo(names));
+        } else {
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
+          return;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+        return;
+      });
+  }, []);
 
   useEffect(() => {
     fetch("http://localhost:8080/qna", {

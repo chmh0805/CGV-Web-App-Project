@@ -7,9 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cgv.cgvserver.domain.faq.Faq;
 import com.cgv.cgvserver.domain.faq.FaqRepository;
+import com.cgv.cgvserver.handler.exception.NotFoundNoticeException;
 import com.cgv.cgvserver.utils.faq.FaqToRespDto;
 import com.cgv.cgvserver.web.dto.faq.FaqFindAllRespDto;
+import com.cgv.cgvserver.web.dto.faq.FaqFindOneRespDto;
 import com.cgv.cgvserver.web.dto.faq.FaqSaveReqDto;
+
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,5 +39,14 @@ public class FaqService {
 	public List<FaqFindAllRespDto> 키워드찾기(String keyword) {
 		List<Faq> faqEntities = faqRepository.mFindByKeyword(keyword);
 		return FaqToRespDto.toFindAllDtos(faqEntities);
+	}
+	
+	@Transactional // 조회수 +1 되기 때문에 readOnly 아님
+	public FaqFindOneRespDto 상세보기(long id) {
+		Faq faqEntity = faqRepository.findById(id)
+				.orElseThrow(() -> {throw new NotFoundNoticeException();});
+		
+		faqEntity.setReadCount(faqEntity.getReadCount()+1);
+		return FaqToRespDto.toFindOneDto(faqEntity);
 	}
 }

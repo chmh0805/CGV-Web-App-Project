@@ -57,6 +57,7 @@ const SuppotNewsRegister = (props) => {
       .then((res) => {
         if (res.statusCode === 1) {
           alert("공지사항 등록이 성공하였습니다.");
+          window.location.replace("/support/news/default/");
         }
       })
       .catch((err) => {

@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.ticketing.movie;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,8 +8,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.fragment.TicketingBottomDialogFragment;
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.fragment.TicketingBottomDialogFragment;
 
 public class TicketingSeatAdapter extends RecyclerView.Adapter<TicketingSeatAdapter.MyViewHolder> {
 

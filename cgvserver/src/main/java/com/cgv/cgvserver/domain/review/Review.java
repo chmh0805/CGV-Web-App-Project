@@ -41,6 +41,7 @@ public class Review {
 	
 	private String content;
 	
+	@JsonBackReference
 	@JoinColumn(name = "movieId")
 	@ManyToOne
 	private Movie movie;

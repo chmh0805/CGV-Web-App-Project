@@ -53,7 +53,7 @@ public class TicketingTheaterAdapter extends RecyclerView.Adapter<TicketingTheat
             super(itemView);
             RecyclerView mRvHall = itemView.findViewById(R.id.rv_hall);
             tvTheater = itemView.findViewById(R.id.tv_theater);
-            TicketingHallListAdapter mTicketingHallListAdapter = new TicketingHallListAdapter(fm,  theater, timeTableHallRespDtoList);
+            TicketingHallListAdapter mTicketingHallListAdapter = new TicketingHallListAdapter(fm);
             LinearLayoutManager manager = new LinearLayoutManager(itemView.getContext(), RecyclerView.VERTICAL, false);
             mRvHall.setLayoutManager(manager);
             mRvHall.setAdapter(mTicketingHallListAdapter);

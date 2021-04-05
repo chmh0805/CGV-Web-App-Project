@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import brickImg from "../images/brick_bg.jpg";
 import TheaterByAreaItemBox from "../components/theater/TheaterByAreaItemBox";
 import TheaterBottomItemBox from "../components/theater/TheaterBottomItemBox";
+import TheaterTimeTableBox from "../components/theater/TheaterTimeTableBox";
 
 const MyCgvHomeContainer = styled.div`
   background-color: #fdfcf0;
@@ -89,7 +90,7 @@ const TheaterAreaItem = styled.div`
 
 const HomeMiddleToBottomContainer = styled.div`
   width: auto;
-  height: 700px;
+  height: auto;
   background-color: #fdfcf0;
 `;
 
@@ -111,33 +112,26 @@ const MovieSectionImg = styled.img`
 `;
 
 const Theater = () => {
-  const [isLoaded, setIsLoaded] = useState(true);
   const [theaters, setTheaters] = useState([]); // 극장들
   const [areaList, setAreaList] = useState([]); // 지역들
   const [theatersByArea, setTheatersByArea] = useState([]); // 지역별 극장들
   const [theaterDetail, setTheaterDetail] = useState({}); // 현재 보고 있는 극장 정보
 
-  const loadData = async () => {
-    if (isLoaded) {
-      setIsLoaded(false);
-
-      await fetch("http://localhost:8080/theater")
-        .then((res) => {
-          return res.json();
-        })
-        .then((res) => {
-          if (res.statusCode === 1) {
-            setTheaters(res.data);
-            setTheaterDetail(res.data[0]);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  };
-
-  loadData();
+  useEffect(() => {
+    fetch("http://localhost:8080/theater")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setTheaters(res.data);
+          setTheaterDetail(res.data[0]);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   theaters.forEach((theater) => {
     if (!areaList.includes(theater.area)) {
@@ -163,6 +157,8 @@ const Theater = () => {
       }
     });
   };
+
+  useEffect(() => {}, [theaterDetail]);
 
   return (
     <MyCgvHomeContainer>
@@ -212,6 +208,7 @@ const Theater = () => {
           </HomeH3>
         </TitleSection>
         <TheaterBottomItemBox theaterDetail={theaterDetail} />
+        <TheaterTimeTableBox theaterDetail={theaterDetail} />
       </HomeMiddleToBottomContainer>
     </MyCgvHomeContainer>
   );

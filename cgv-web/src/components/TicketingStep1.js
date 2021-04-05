@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import topButtons from "../images/button/top_buttons.png";
+import { getDefaultDates } from "../utils/Date";
+import TicketingStep1DateBox from "./TicketingStep1DateBox";
+import TicketingStep1MovieBox from "./TicketingStep1MovieBox";
+import TicketingStep1TheaterBox from "./TicketingStep1TheaterBox";
+import TicketingStep1TimeBox from "./TicketingStep1TimeBox";
+import TicketingStep1BlackBox from "./TicketingStep1BlackBox";
 
 const TicketingTopButtonBox = styled.div`
   width: 100%;
@@ -69,112 +75,6 @@ const TicketingBoxTitle = styled.div`
   font-weight: 500;
 `;
 
-const TicketingMovieBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 10%;
-  padding-left: 10%;
-`;
-
-const TicketingMovieSection = styled.div`
-  width: 100%;
-  overflow: auto;
-  margin-top: 3px;
-  height: 100%;
-`;
-
-const TicketingMovieItem = styled.div`
-  width: 100%;
-  height: 35px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: #333;
-  font-size: 15px;
-  cursor: pointer;
-`;
-
-const TicketingTheaterBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 10%;
-  padding-left: 10%;
-`;
-
-const TicketingTheaterSection = styled.div`
-  width: 100%;
-  overflow: auto;
-  margin-top: 3px;
-  height: 100%;
-`;
-
-const TicketingTheaterItem = styled.div`
-  width: 100%;
-  height: 35px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: #333;
-  font-size: 15px;
-  cursor: pointer;
-`;
-
-const TicketingDateSection = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 10% 5% 5% 0px;
-  overflow: auto;
-`;
-
-const YearDiv = styled.div`
-  width: 100%;
-  margin-top: 12px;
-  margin-top: 12px;
-  color: #666;
-  font-size: 11px;
-  font-family: Verdana;
-  font-weight: bold;
-  line-height: 11px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const MonthDiv = styled.div`
-  width: 100%;
-  text-align: center;
-  color: #666;
-  font-size: 30px;
-  font-family: Verdana;
-  font-weight: bold;
-  line-height: 30px;
-  margin-top: 3px;
-`;
-
-const DayDiv = styled.div`
-  width: 60px;
-  height: 35px;
-  padding-left: 25px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #333;
-  font-family: "Tahoma", "돋움", dotum, Nanum Gothic, sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-`;
-
 const TicketingTimeBox = styled.div`
   width: 100%;
   height: 100%;
@@ -185,66 +85,125 @@ const TicketingTimeBox = styled.div`
   padding-right: 5%;
 `;
 
-const TicketingTimeSection = styled.div`
-  width: 100%;
-  overflow: auto;
-  margin-top: 3px;
-  height: 100%;
-`;
+const TicketingStep1 = (props) => {
+  const {
+    movie, // 바로예매 누르면 받아서 오기 !!
+    setNowStep,
+    setMovie,
+    setTheater,
+    setSelectedDate,
+    setSelectedTimeTable,
+    setPrettyDate,
+  } = props;
+  const [selectedMovie, setSelectedMovie] = useState({}); // 고른 영화
+  const [selectedTheater, setSelectedTheater] = useState({}); // 고른 극장
+  const [movieList, setMoiveList] = useState([]); // 영화리스트
+  const [timeTableList, setTimeTableList] = useState([]); // 영화가 열리는 타임테이블 리스트
+  const [dateList, setDateList] = useState(getDefaultDates()); // 날짜 리스트
+  const [selecDate, setSelecDate] = useState(""); // 고른 날짜
+  const [lastTimeTable, setLastTimeTable] = useState([]); // 고른 영화,극장,날짜의 타임테이블 리스트
+  const [selecTimeTable, setSelecTimeTable] = useState({}); // 고른 타임테이블
 
-const TicketingTimeItem = styled.div`
-  width: 306px;
-  border-bottom: solid 2px #cfcdc3;
-  margin-top: 16px;
-  overflow: hidden;
-  color: #333;
-  font-size: 12px;
-  font-weight: normal;
-`;
+  useEffect(() => {
+    fetch("http://localhost:8080/timetable")
+      .then((res) => res.json())
+      .then((res) => {
+        setMoiveList(res.data.movie);
+      });
+  }, []);
 
-const TimeItemTitle = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: #333;
-  font-size: 12px;
-  font-weight: 600;
-`;
+  useEffect(() => {
+    setTimeTableList([]);
+    setTheater();
+    setTimeTableList([]);
+    setSelectedTheater({});
+    setDateList([]);
+    setLastTimeTable([]);
+    setSelecDate("");
+    setSelecTimeTable({});
+    if (selectedMovie !== undefined) {
+      fetch("http://localhost:8080/timetable/movie/" + selectedMovie.docId)
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.statusCode === 1) {
+            if (res.data.length !== 0) {
+              setTimeTableList(res.data);
+            }
+            setMovie(selectedMovie);
+          }
+        });
+    }
+  }, [selectedMovie]);
 
-const TimeItemContentBox = styled.div`
-  width: 309px;
-  margin-top: 10px;
-  margin-bottom: 6px;
-  overflow: hidden;
-  color: #333;
-  font-size: 12px;
-  display: flex;
-`;
+  useEffect(() => {
+    setTheater(selectedTheater.id);
+    setLastTimeTable([]);
+    setSelecDate("");
+    setSelecTimeTable({});
 
-const TimeItemContentItem = styled.div`
-  width: auto;
-  height: 25px;
-  line-height: 25px;
-  padding: 5px;
-  border: 1px solid #d6d3ce;
-  margin-left: 5px;
-  margin-right: 5px;
-  color: #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-`;
+    fetch(
+      "http://localhost:8080/timetable/movie/" +
+        selectedMovie.docId +
+        "/theater/" +
+        selectedTheater.id
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          let datas = res.data;
+          let dates = [];
+          let isNotExist = true;
 
-const BlackBoxSection = styled.div`
-  width: 100%;
-  height: 128px;
-  background-color: #1d1d1c;
-`;
+          if (datas !== undefined && datas.length !== 0) {
+            datas.forEach((data) => {
+              if (!dates.length) {
+                dates.push(data.date);
+              } else {
+                dates.forEach((date) => {
+                  if (date === data.date) {
+                    isNotExist = false;
+                  }
+                });
+                if (isNotExist) {
+                  dates.push(data.date);
+                }
+              }
+            });
+            dates = dates.map((date) => new Date(date));
+          }
+          setDateList(dates);
+        }
+      });
+  }, [selectedTheater]);
 
-const TicketingStep1 = () => {
+  useEffect(() => {
+    if (selecDate !== "" && selecDate !== undefined) {
+      fetch(
+        "http://localhost:8080/timetable/movie/" +
+          selectedMovie.docId +
+          "/theater/" +
+          selectedTheater.id +
+          "/month/" +
+          (selecDate.getMonth() + 1) +
+          "/day/" +
+          selecDate.getDate()
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          if (res.statusCode === 1) {
+            if (res.data.length !== 0) {
+              setSelectedDate(selecDate);
+              setLastTimeTable(res.data);
+            }
+          }
+        });
+    }
+  }, [selecDate]);
+
+  useEffect(() => {
+    setSelectedTimeTable(selecTimeTable);
+  }, [selecTimeTable]);
+
   return (
     <>
       <TicketingTopButtonBox>
@@ -253,56 +212,43 @@ const TicketingStep1 = () => {
       <TicketingStepsSection>
         <TicketingStepBox>
           <TicketingBoxTitle>영화</TicketingBoxTitle>
-          <TicketingMovieBox>
-            <TicketingMovieSection>
-              <TicketingMovieItem>반지의제왕-왕의귀환</TicketingMovieItem>
-              <TicketingMovieItem>반지의제왕-두개의탑</TicketingMovieItem>
-              <TicketingMovieItem>미나리</TicketingMovieItem>
-            </TicketingMovieSection>
-          </TicketingMovieBox>
+          <TicketingStep1MovieBox
+            movieList={movieList}
+            setSelectedMovie={setSelectedMovie}
+          />
         </TicketingStepBox>
         <TicketingStepBox>
           <TicketingBoxTitle>극장</TicketingBoxTitle>
-          <TicketingTheaterSection>
-            <TicketingTheaterBox>
-              <TicketingTheaterItem>CGV서면삼정타워</TicketingTheaterItem>
-            </TicketingTheaterBox>
-          </TicketingTheaterSection>
+          <TicketingStep1TheaterBox
+            timeTableList={timeTableList}
+            setSelectedTheater={setSelectedTheater}
+          />
         </TicketingStepBox>
         <TicketingDateBox>
           <TicketingBoxTitle>날짜</TicketingBoxTitle>
-          <TicketingDateSection>
-            <div>
-              <YearDiv>2021</YearDiv>
-              <MonthDiv>3</MonthDiv>
-              <DayDiv>목 18</DayDiv>
-              <DayDiv>금 19</DayDiv>
-              <DayDiv>토 20</DayDiv>
-              <DayDiv>일 21</DayDiv>
-              <DayDiv>월 22</DayDiv>
-              <DayDiv>화 23</DayDiv>
-              <DayDiv>수 24</DayDiv>
-              <DayDiv>목 25</DayDiv>
-              <DayDiv>금 26</DayDiv>
-            </div>
-          </TicketingDateSection>
+          <TicketingStep1DateBox
+            dateList={dateList}
+            setSelecDate={setSelecDate}
+          />
         </TicketingDateBox>
         <TicketingStepBox>
           <TicketingBoxTitle>시간</TicketingBoxTitle>
           <TicketingTimeBox>
-            <TicketingTimeSection>
-              <TicketingTimeItem>
-                <TimeItemTitle>2D 6관[리클라이너] 13층 (총124석)</TimeItemTitle>
-                <TimeItemContentBox>
-                  <TimeItemContentItem>11:55</TimeItemContentItem>
-                  <TimeItemContentItem>16:35</TimeItemContentItem>
-                </TimeItemContentBox>
-              </TicketingTimeItem>
-            </TicketingTimeSection>
+            <TicketingStep1TimeBox
+              lastTimeTable={lastTimeTable}
+              setSelecTimeTable={setSelecTimeTable}
+            />
           </TicketingTimeBox>
         </TicketingStepBox>
       </TicketingStepsSection>
-      <BlackBoxSection></BlackBoxSection>
+      <TicketingStep1BlackBox
+        selectedMovie={selectedMovie}
+        selectedTheater={selectedTheater}
+        selecDate={selecDate}
+        selecTimeTable={selecTimeTable}
+        setNowStep={setNowStep}
+        setPrettyDate={setPrettyDate}
+      />
     </>
   );
 };

@@ -32,7 +32,7 @@ public class Movie {
     private String posterImgSrc;
     private List<Review> review;
     private List<Actor> actors;
-    private List<Director> director;
+    private List<Director> directors;
     private List<StillCut> stillCuts;
     private List<Trailer> trailers;
 //    private int reviewId;

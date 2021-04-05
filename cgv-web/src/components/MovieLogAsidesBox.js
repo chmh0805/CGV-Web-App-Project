@@ -45,7 +45,11 @@ const AsidesItemStrong = styled.strong`
   font-weight: 600;
 `;
 
-const MovieLogAsidesBox = ({ nowSpace, expectMovieCount }) => {
+const MovieLogAsidesBox = ({
+  nowSpace,
+  expectMovieCount,
+  watchedMovieCount,
+}) => {
   if (nowSpace === "movielog-expected") {
     return (
       <MainAsidesBox>
@@ -57,7 +61,7 @@ const MovieLogAsidesBox = ({ nowSpace, expectMovieCount }) => {
         </Link>
         <Link to="/user/movielog/watched">
           <AsidesItemDiv2 style={{ marginTop: "10px" }}>
-            <AsidesItemEm>22</AsidesItemEm>
+            <AsidesItemEm>{watchedMovieCount}</AsidesItemEm>
             <AsidesItemStrong>내가 본 영화</AsidesItemStrong>
           </AsidesItemDiv2>
         </Link>
@@ -74,7 +78,7 @@ const MovieLogAsidesBox = ({ nowSpace, expectMovieCount }) => {
         </Link>
         <Link to="/user/movielog/watched">
           <AsidesItemDiv1 style={{ marginTop: "10px" }}>
-            <AsidesItemEm>22</AsidesItemEm>
+            <AsidesItemEm>{watchedMovieCount}</AsidesItemEm>
             <AsidesItemStrong>내가 본 영화</AsidesItemStrong>
           </AsidesItemDiv1>
         </Link>

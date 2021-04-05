@@ -73,8 +73,8 @@ public class UserController {
 			@Valid @RequestBody UserUpdateReqDto updateReqDto, BindingResult bindingResult) {
 		String token = jwtToken.substring(7);
 		Long userId = MyJWT.getId(token);
-		userService.회원정보수정(userId, updateReqDto);
-		return new CommonRespDto<>(1, null);
+		User userEntity = userService.회원정보수정(userId, updateReqDto);
+		return new CommonRespDto<>(1, userEntity);
 	}
 	
 	@DeleteMapping("/user")

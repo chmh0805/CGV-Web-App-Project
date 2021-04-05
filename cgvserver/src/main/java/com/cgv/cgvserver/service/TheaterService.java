@@ -22,6 +22,8 @@ import com.cgv.cgvserver.domain.seat.Seat;
 import com.cgv.cgvserver.domain.seat.SeatRepository;
 import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.theater.TheaterRepository;
+import com.cgv.cgvserver.domain.timetable.TimeTable;
+import com.cgv.cgvserver.domain.timetable.TimeTableRepository;
 import com.cgv.cgvserver.handler.exception.NotFoundTheaterException;
 import com.cgv.cgvserver.utils.theater.InitTheater;
 import com.cgv.cgvserver.web.dto.theater.TheaterAreaRespDto;
@@ -37,6 +39,7 @@ public class TheaterService {
 	private final HallRepository hallRepository;
 	private final SeatRepository seatRepository;
 	private final EntityManager entityManager;
+	private final TimeTableRepository timeTableRepository;
 	private static final Logger log = LoggerFactory.getLogger(TheaterService.class);
 
 	@Value("${file.path}")
@@ -116,9 +119,9 @@ public class TheaterService {
 		
 	}
 	
-//	@Transactional(readOnly = true)
-//	public Theater 극장하나조회(String name) {
-//		Query query = entityManager.createNativeQuery("SELECT * FROM Theater WHERE name=?");
-//		JpaResultMapper result = new JpaResultMapper();
-//	}
+
+	public List<TimeTable> 극장별상영시간표조회(String date, long theaterId) {
+		return timeTableRepository.mFindByDateAndTheaterId(date, theaterId);
+	}
+
 }

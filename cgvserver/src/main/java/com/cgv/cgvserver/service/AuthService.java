@@ -25,6 +25,7 @@ public class AuthService {
 		}
 	}
 	
+	@Transactional(readOnly = true)
 	public User 아이디중복체크(String username) {
 		return userRepository.findByUsername(username);
 	}

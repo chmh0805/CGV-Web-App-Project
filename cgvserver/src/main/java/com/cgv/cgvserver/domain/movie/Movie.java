@@ -8,13 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.cgv.cgvserver.domain.actor.Actor;
 import com.cgv.cgvserver.domain.director.Director;
 import com.cgv.cgvserver.domain.review.Review;
 import com.cgv.cgvserver.domain.stillcut.StillCut;
 import com.cgv.cgvserver.domain.trailer.Trailer;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -62,6 +62,7 @@ public class Movie {
 	
 	private String posterImgSrc;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Review> review;
 	
@@ -69,7 +70,7 @@ public class Movie {
 	private List<Actor> actors;
 	
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
-	private List<Director> director;
+	private List<Director> directors;
 	
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<StillCut> stillCuts;

@@ -62,11 +62,9 @@ public class MyNavigationHelper {
     public void enable(View view) {
         init(view);
         listener();
-
     }
 
     private void init(View view) {
-        mFrequentlyCgvDrawer = view.findViewById(R.id.frequently_cgv_drawer);
         mDrawer = ((Activity) mContext).findViewById(R.id.drawer);
         mIvMenu = ((Activity) mContext).findViewById(R.id.iv_menu);
         mIvBack = ((Activity) mContext).findViewById(R.id.iv_back);
@@ -177,12 +175,19 @@ public class MyNavigationHelper {
                         @Override
                         public void onResponse(Call<CMRespDto<User>> call, Response<CMRespDto<User>> response) {
                             CMRespDto<User> userData = response.body();
-                            mClProfile.setVisibility(View.VISIBLE);
-                            mTvNickName.setText(userData.getData().getUsername());
-                            mTvGoLogin.setVisibility(View.GONE);
-                            Gson gson = new Gson();
-                            String userEntity = gson.toJson(userData.getData());
-                            SharedPreference.setAttribute(mContext, "userEntity", userEntity);
+                            if(userData == null) {
+                                SharedPreference.removeAllAttribute(mContext);
+                                mTvLogout.setText("로그인");
+                                mClProfile.setVisibility(View.GONE);
+                                mTvGoLogin.setVisibility(View.VISIBLE);
+                            } else {
+                                mClProfile.setVisibility(View.VISIBLE);
+                                mTvNickName.setText(userData.getData().getUsername());
+                                mTvGoLogin.setVisibility(View.GONE);
+                                Gson gson = new Gson();
+                                String userEntity = gson.toJson(userData.getData());
+                                SharedPreference.setAttribute(mContext, "userEntity", userEntity);
+                            }
                         }
 
                         @Override

@@ -11,7 +11,7 @@ public interface TimeTableRepository extends JpaRepository<TimeTable, Long> {
 	@Query(value = "INSERT INTO timetable(date, startTime, movieId, theaterId, hallId) VALUES(:date, :startTime, :movieId, :theaterId, :hallId)", nativeQuery = true)
 	int mTimeTable(String date, String startTime, String movieId, long theaterId, long hallId);
 
-	@Query(value = "SELECT * FROM timetable WHERE movieId = :movieId ORDER BY date ASC, startTime ASC", nativeQuery = true)
+	@Query(value = "SELECT * FROM timetable WHERE movieId = :movieId", nativeQuery = true)
 	List<TimeTable> findByMovieId(String movieId);
 	
 	@Query(value = "SELECT * FROM timetable WHERE movieId = :movieId AND theaterId = :theaterId", nativeQuery = true)

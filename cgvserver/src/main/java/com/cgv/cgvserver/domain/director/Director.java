@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -31,6 +31,6 @@ public class Director {
 	
 	@JsonIgnore
 	@JoinColumn(name = "movieId")
-	@OneToOne
+	@ManyToOne
 	private Movie movie;
 }

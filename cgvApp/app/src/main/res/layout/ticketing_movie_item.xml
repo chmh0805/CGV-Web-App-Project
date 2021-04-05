@@ -24,13 +24,16 @@
             app:riv_tile_mode="clamp"
             app:riv_oval="false" />
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="라라랜드"
             android:textStyle="bold"
             android:paddingStart="15dp"
             android:paddingVertical="15dp"/>
+
         <ImageView
+            android:id="@+id/iv_age"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"

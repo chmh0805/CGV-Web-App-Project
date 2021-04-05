@@ -51,7 +51,7 @@ public class ServiceCenterNoticeAdapter extends RecyclerView.Adapter<ServiceCent
             mNoticeContainer = itemView.findViewById(R.id.notice_container);
             mNoticeTitle = itemView.findViewById(R.id.notice_title);
             mNoticeCreateDate = itemView.findViewById(R.id.notice_create_date);
-            mNoticeContent = itemView.findViewById(R.id.notice_container);
+            mNoticeContent = itemView.findViewById(R.id.notice_content);
         }
 
         public void setItem(Notice notice) {

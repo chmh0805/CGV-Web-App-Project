@@ -27,7 +27,7 @@ const SearchTableContentType = styled.div`
   font-weight: 500;
 `;
 
-const SearchTableContentTitle = styled(Link)`
+const SearchTableContentTitle = styled.span`
   width: 540px;
   display: block;
   font-size: 14px;
@@ -56,23 +56,30 @@ const SearchTableContentReadCount = styled.div`
   font-weight: 500;
 `;
 
-const SearchTableContentBox = ({ notice }) => {
+const FaqTableContent = ({ faqs }) => {
   return (
-    <SearchTableContent>
-      <SearchTableContentNo>{notice.id}</SearchTableContentNo>
-      <SearchTableContentType>
-        {notice.sort === 1
-          ? "[극장]"
-          : notice.sort === 2
-          ? "[시스템 점검]"
-          : "[기타]"}
-      </SearchTableContentType>
-      <SearchTableContentTitle>{notice.title}</SearchTableContentTitle>
-      <SearchTableContentReadCount>
-        {notice.readCount}
-      </SearchTableContentReadCount>
-    </SearchTableContent>
+    <>
+      {faqs.map((faq) => (
+        <SearchTableContent>
+          <SearchTableContentNo>{faq.id}</SearchTableContentNo>
+          <SearchTableContentType>{faq.sort}</SearchTableContentType>
+          <Link
+            to={{
+              pathname: "/support/faq/detail",
+              state: {
+                faqId: faq.id,
+              },
+            }}
+          >
+            <SearchTableContentTitle>{faq.title}</SearchTableContentTitle>
+          </Link>
+          <SearchTableContentReadCount>
+            {faq.readCount}
+          </SearchTableContentReadCount>
+        </SearchTableContent>
+      ))}
+    </>
   );
 };
 
-export default SearchTableContentBox;
+export default FaqTableContent;

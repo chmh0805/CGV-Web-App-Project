@@ -14,6 +14,10 @@ import com.cgv.cgvserver.domain.timetable.TimeTable;
 import com.cgv.cgvserver.domain.timetable.TimeTableRepository;
 import com.cgv.cgvserver.web.dto.movie.MovieBoxOfficeRespDto;
 import com.cgv.cgvserver.web.dto.timetable.TimeTableHallRespDto;
+
+import com.cgv.cgvserver.web.dto.timetable.AppTimeTableTheaterReqDto;
+import com.cgv.cgvserver.web.dto.timetable.AppTimeTableTheaterRespDto;
+
 import com.cgv.cgvserver.web.dto.timetable.TimeTableReqDto;
 import com.cgv.cgvserver.web.dto.timetable.TimeTableRespDto;
 
@@ -37,6 +41,28 @@ public class TimeTableService {
 		return result;
 	}
 
+
+	@Transactional(readOnly = true)
+	public List<AppTimeTableTheaterRespDto> 극장별예매(AppTimeTableTheaterReqDto dto) {
+
+		StringBuffer sb = new StringBuffer();
+		sb.append("SELECT th.location, ti.id timetableId, ti.date, ti.startTime, ti.hallId, ");
+		sb.append("h.name hallName, m.age, m.posterImgSrc, m.runningTime, m.title, ");
+		sb.append("(SELECT COUNT(*) FROM seat WHERE hallId = ti.hallId) seatCount ");
+		sb.append("FROM theater th INNER JOIN timetable ti ON th.id = ti.theaterId ");
+		sb.append("INNER JOIN hall h ON ti.hallId = h.id ");
+		sb.append("INNER JOIN movie m ON ti.movieId = m.docId WHERE th.location = ?");
+
+		JpaResultMapper result = new JpaResultMapper();
+		Query query = entityManager.createNativeQuery(sb.toString()).setParameter(1, dto.getLocation());
+
+		List<AppTimeTableTheaterRespDto> dtos = result.list(query, AppTimeTableTheaterRespDto.class);
+		System.out.println("극장별예매 : " + dtos);
+
+		return dtos;
+	}
+
+
 	public List<TimeTable> 영화번호로찾기(String movieId) {
 		return timeTableRepository.findByMovieId(movieId);
 	}
@@ -57,6 +83,7 @@ public class TimeTableService {
 			day = "0" + day;
 		}
 		String date = cal.get(Calendar.YEAR) + "-" + month + "-" + day;
+
 
 		return timeTableRepository.mFindByAllInfo(movieId, theaterId, day);
 	}
@@ -79,16 +106,8 @@ public class TimeTableService {
 		JpaResultMapper result = new JpaResultMapper();
 		List<TimeTableHallRespDto> timeTableHallRespDtos = result.list(query, TimeTableHallRespDto.class);
 		return timeTableHallRespDtos;
+	
 	}
 
-//	StringBuffer sb = new StringBuffer();
-//	sb.append("SELECT rankNum, docId, posterImgSrc, title, releaseDate, age ");
-//	sb.append("FROM boxofficemovie AS bm inner join movie AS m ");
-//	sb.append("WHERE bm.movieId = m.docId order by rankNum ASC ");
-//	
-//	Query query = entityManager.createNativeQuery(sb.toString());
-//	
-//	JpaResultMapper result = new JpaResultMapper();
-//	List<MovieBoxOfficeRespDto> movieBoxOfficeRespDtos = result.list(query, MovieBoxOfficeRespDto.class);
 
 }

@@ -1,4 +1,3 @@
-package com.example.cgvapplication.adapter.ticketing.movie;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +6,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.bumptech.glide.Glide;
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -22,6 +23,7 @@ public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingM
         this.movies = movies;
     }
 
+
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -32,13 +34,19 @@ public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingM
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         holder.setItem(movies.get(position));
         //mRvTicketingPosterList.scrollToPosition();
+
+
+
     }
 
     @Override
     public int getItemCount() {
+
         return movies.size();
+
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -50,6 +58,7 @@ public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingM
             mIvPoster = itemView.findViewById(R.id.iv_poster);
         }
 
+
         public void setItem(MovieBoxOfficeRespDto movie) {
             Glide
                     .with(itemView)
@@ -58,5 +67,4 @@ public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingM
                     .into(mIvPoster);
         }
     }
-
 }

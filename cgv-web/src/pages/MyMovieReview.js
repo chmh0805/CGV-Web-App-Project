@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
+import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
 
 const MDCon = styled.div`
   width: 100%;
@@ -73,6 +74,7 @@ const MDHeadTitle = styled.h3`
 const ReviewListBox = styled.div`
   margin-top: 30px;
   width: 800px;
+  min-height: 300px;
 `;
 
 const WatchedMovieListItem = styled.div`
@@ -160,7 +162,58 @@ const UpdateReviewBtn = styled.button`
   bottom: 4px;
 `;
 
+const MDAdBox = styled.div`
+  position: absolute;
+  left: 1090px;
+  top: 250px;
+`;
+
+const AsidesBannerImg = styled.img`
+  width: 160px;
+  aspect-ratio: auto 160 / 300;
+  height: 300px;
+  margin-top: 20px;
+`;
+
 const MyMovieReview = () => {
+  window.scrollTo(0, 0);
+
+  const [reviews, setReviews] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/review", {
+      method: "GET",
+      headers: new Headers({
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.statusCode === 1) {
+          setReviews(res.data);
+        } else {
+          fetch("http://localhost:8080/logout").then(() => {
+            deleteCookie("cgvJWT");
+            deleteCookie("userId");
+            deleteCookie("role");
+          });
+          alert("회원정보 조회 실패. 재로그인해주세요.");
+          window.location.replace("/login");
+          return;
+        }
+      })
+      .catch((err) => {
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+        return;
+      });
+  }, []);
+
   return (
     <MDCon>
       <NavSection>
@@ -185,80 +238,40 @@ const MyMovieReview = () => {
           </MDHeadBox>
 
           <ReviewListBox>
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <DeleteButton>X</DeleteButton>
-                <Link>
-                  <UpdateReviewBtn>수정하기</UpdateReviewBtn>
-                </Link>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <MovieReplyContent>
-                  <span>user1</span>
-                  <p>너무 재밌어요!!</p>
-                  <ReplyDate>
-                    <span>2021.03.18</span>
-                    <ReplySep>|</ReplySep>
-                    <div style={{ display: "inline-block" }}>
-                      <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
-                    </div>
-                    <ReplyFavCount>0</ReplyFavCount>
-                  </ReplyDate>
-                </MovieReplyContent>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
+            <MDAdBox>
+              <Link>
+                <AsidesBannerImg src="https://adimg.cgv.co.kr/images/202001/cgvgift/1204_160x300.jpg" />
+              </Link>
+            </MDAdBox>
 
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <DeleteButton>X</DeleteButton>
-                <Link>
-                  <UpdateReviewBtn>수정하기</UpdateReviewBtn>
-                </Link>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <MovieReplyContent>
-                  <span>user1</span>
-                  <p>너무 재밌어요!!</p>
-                  <ReplyDate>
-                    <span>2021.03.18</span>
-                    <ReplySep>|</ReplySep>
-                    <div style={{ display: "inline-block" }}>
-                      <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
-                    </div>
-                    <ReplyFavCount>0</ReplyFavCount>
-                  </ReplyDate>
-                </MovieReplyContent>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
-
-            <WatchedMovieListItem>
-              <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
-              <WatchedMovieInfo>
-                <DeleteButton>X</DeleteButton>
-                <Link>
-                  <UpdateReviewBtn>수정하기</UpdateReviewBtn>
-                </Link>
-                <WatchedMovieInfoTitle>
-                  <WatchedMovieInfoStrong>블랙머니</WatchedMovieInfoStrong>
-                </WatchedMovieInfoTitle>
-                <MovieReplyContent>
-                  <span>user1</span>
-                  <p>너무 재밌어요!!</p>
-                  <ReplyDate>
-                    <span>2021.03.18</span>
-                    <ReplySep>|</ReplySep>
-                    <div style={{ display: "inline-block" }}>
-                      <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
-                    </div>
-                    <ReplyFavCount>0</ReplyFavCount>
-                  </ReplyDate>
-                </MovieReplyContent>
-              </WatchedMovieInfo>
-            </WatchedMovieListItem>
+            {reviews.map((review) => (
+              <WatchedMovieListItem>
+                <WatchedMovieImg src={review.movie.posterImgSrc} />
+                <WatchedMovieInfo>
+                  <DeleteButton>X</DeleteButton>
+                  <Link>
+                    <UpdateReviewBtn>수정하기</UpdateReviewBtn>
+                  </Link>
+                  <WatchedMovieInfoTitle>
+                    <WatchedMovieInfoStrong>
+                      {review.movie.title}
+                    </WatchedMovieInfoStrong>
+                  </WatchedMovieInfoTitle>
+                  <MovieReplyContent>
+                    <span>{review.user.nickname}</span>
+                    <p>{review.content}</p>
+                    <ReplyDate>
+                      <span>{review.createDate}</span>
+                      <ReplySep>|</ReplySep>
+                      <div style={{ display: "inline-block" }}>
+                        <ReplyFavIcon src="http://img.cgv.co.kr/R2014/images/point/ico_point_default.png" />
+                      </div>
+                      <ReplyFavCount>{review.isLike}</ReplyFavCount>
+                    </ReplyDate>
+                  </MovieReplyContent>
+                </WatchedMovieInfo>
+              </WatchedMovieListItem>
+            ))}
           </ReviewListBox>
         </MDContentBox>
       </MDContentCon>
