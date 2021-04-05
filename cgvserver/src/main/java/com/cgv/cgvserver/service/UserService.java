@@ -56,7 +56,7 @@ public class UserService {
 	}
 	
 	@Transactional
-	public void 회원정보수정(Long id, UserUpdateReqDto updateReqDto) {
+	public User 회원정보수정(Long id, UserUpdateReqDto updateReqDto) {
 		User userEntity = userRepository.findById(id)
 				.orElseThrow(() -> {throw new NotFoundUserException();});
 		String rawPassword = updateReqDto.getPassword();
@@ -66,6 +66,8 @@ public class UserService {
 		userEntity.setPassword(encPassword);
 		userEntity.setEmail(updateReqDto.getEmail());
 		userEntity.setPhone(updateReqDto.getPassword());
+		
+		return userEntity;
 	}
 	
 	@Transactional

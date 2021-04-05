@@ -57,16 +57,8 @@
             android:layout_height="wrap_content"
             android:text="라라랜드"
             android:textColor="@android:color/black"
-            android:textSize="13sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/tv_home_featureMovie_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:text="미완성인 서로의 무대를 만들어가는 두 연인"
-            android:textSize="10sp" />
 
 
     </LinearLayout>

@@ -46,8 +46,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_service_center_container"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="10dp"/>
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

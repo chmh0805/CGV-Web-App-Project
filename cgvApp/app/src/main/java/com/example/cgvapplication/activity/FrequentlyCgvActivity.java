@@ -5,14 +5,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.adapter.FrequentlyCGV.FrequentlyCGVAdapter;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+
+import java.util.Objects;
 
 public class FrequentlyCgvActivity extends AppCompatActivity {
 
@@ -25,6 +30,8 @@ public class FrequentlyCgvActivity extends AppCompatActivity {
     private LinearLayout mLinearNavigation;
     private MyNavigationHelper mMyNavigationHelper;
 
+    private BottomSheetDialog mBottomSheetDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +40,10 @@ public class FrequentlyCgvActivity extends AppCompatActivity {
         init();
 
         btnAddCGV.setOnClickListener(v -> {
-            Intent intent = new Intent(FrequentlyCgvActivity.this, FrequentlyCgvViewActivity.class);
-            startActivity(intent);
+            mBottomSheetDialog = new BottomSheetDialog(Objects.requireNonNull(FrequentlyCgvActivity.this));
+            @SuppressLint("InflateParams")View view = getLayoutInflater().inflate(R.layout.frequently_cgv_bottom_sheet, null);
+            mBottomSheetDialog.setContentView(view);
+            mBottomSheetDialog.show();
         });
     }
 

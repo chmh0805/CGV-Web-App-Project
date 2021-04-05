@@ -12,13 +12,15 @@
         android:layout_gravity="center"
         android:padding="5dp">
         <TextView
+            android:id="@+id/tv_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="12:40"
-            android:textSize="15sp"
+            android:textSize="14sp"
             android:textColor="@color/black"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/tv_endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
@@ -37,12 +39,14 @@
         android:layout_gravity="center"
         android:padding="5dp">
         <TextView
+            android:id="@+id/tv_extraSeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="139"
             android:textColor="#1A7025"
             android:textStyle="bold"/>
         <TextView
+            android:id="@+id/tv_totalSeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"

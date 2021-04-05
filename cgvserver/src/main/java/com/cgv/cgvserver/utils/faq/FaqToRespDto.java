@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.cgv.cgvserver.domain.faq.Faq;
-import com.cgv.cgvserver.domain.notice.Notice;
 import com.cgv.cgvserver.web.dto.faq.FaqFindAllRespDto;
 import com.cgv.cgvserver.web.dto.faq.FaqFindOneRespDto;
-import com.cgv.cgvserver.web.dto.notice.NoticeFindOneRespDto;
-
 
 public class FaqToRespDto {
 

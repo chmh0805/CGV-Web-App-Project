@@ -421,7 +421,7 @@ const MovieDetail = (props) => {
 
   const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState();
-  const [directors, setDirectors] = useState({});
+  const [directors, setDirectors] = useState([]);
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [stillCuts, setStillCuts] = useState([]);
@@ -435,7 +435,7 @@ const MovieDetail = (props) => {
       .then((res) => {
         setMovie(res.data);
         setPoster(res.data.posterImgSrc);
-        setDirectors(res.data.director);
+        setDirectors(res.data.directors);
         setActors(res.data.actors);
         setTrailers(res.data.trailers);
         setStillCuts(res.data.stillCuts);
@@ -561,7 +561,9 @@ const MovieDetail = (props) => {
                 >
                   <MDMovieP>감독 : </MDMovieP>
 
-                  <MDMovieP>{directors.name}</MDMovieP>
+                  {directors.map((director) => (
+                    <MDMovieSpan>{director.name}</MDMovieSpan>
+                  ))}
 
                   <MDMovieSep>|</MDMovieSep>
                   <MDMovieP>배우 : </MDMovieP>

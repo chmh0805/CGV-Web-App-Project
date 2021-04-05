@@ -183,7 +183,6 @@ const TicketImg = styled.div`
 
 const MyCgvMovieTicketRegister = () => {
   setCookie("now-space", "mycgv-movieticket-register");
-  window.scrollTo(0, 0);
 
   return (
     <MyCgvReserveContainer>

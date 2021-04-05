@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cgvapplication.activity.FrequentlyCgvViewActivity;
 import com.example.cgvapplication.R;
 
 import java.util.List;
@@ -18,11 +17,9 @@ public class FreqCgvViewBtnBoxAdapter extends RecyclerView.Adapter<FreqCgvViewBt
     private static final String TAG = "FreqCgvViewBtnBoxAdapte";
 
     private final List<String> mLocation;
-    private final FrequentlyCgvViewActivity frequentlyCgvViewActivity;
 
-    public FreqCgvViewBtnBoxAdapter(List<String> mLocation, FrequentlyCgvViewActivity frequentlyCgvViewActivity) {
+    public FreqCgvViewBtnBoxAdapter(List<String> mLocation) {
         this.mLocation = mLocation;
-        this.frequentlyCgvViewActivity = frequentlyCgvViewActivity;
     }
 
     @NonNull

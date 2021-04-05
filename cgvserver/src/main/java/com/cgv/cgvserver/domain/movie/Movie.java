@@ -8,7 +8,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import com.cgv.cgvserver.domain.actor.Actor;
 import com.cgv.cgvserver.domain.director.Director;
@@ -70,8 +69,8 @@ public class Movie {
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<Actor> actors;
 	
-	@OneToOne(mappedBy = "movie", cascade = CascadeType.ALL)
-	private Director director;
+	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
+	private List<Director> directors;
 	
 	@OneToMany(mappedBy = "movie", cascade = CascadeType.ALL)
 	private List<StillCut> stillCuts;
