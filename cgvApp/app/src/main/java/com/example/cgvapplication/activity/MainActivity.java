@@ -53,12 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbarMain);
 
-//        mIvMenu.setOnClickListener(view -> {
-//            mDrawer.openDrawer(GravityCompat.END);
-//        });
-//        mIvClose.setOnClickListener(view -> {
-//            mDrawer.closeDrawer(GravityCompat.END);
-//        });
         mMyNavigationHelper.enable(mLinearNagiation);
 
 
@@ -98,21 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 CMRespDto<List<MovieBoxOfficeRespDto>> cmRespDto = response.body();
                 moviesBoxOffice = cmRespDto.getData();
 
-//                Log.d(TAG, "moviesBoxOffice: " + moviesBoxOffice);
-//
-//                ArrayList<String> jsonDatas = new ArrayList<>();
-//
-//                for (MovieBoxOfficeRespDto movieBoxOfficeRespDto : moviesBoxOffice) {
-//                    String jsonData = gson.toJson(movieBoxOfficeRespDto);
-//                    jsonDatas.add(jsonData);
-//                }
-//
-//                fragHome = new FragHome(moviesBoxOffice);
-//                Bundle bundle = new Bundle(1);
-//                bundle.putStringArrayList("jsonDatas", jsonDatas);
-//                fragHome.setArguments(bundle);
-//
-//                Log.d(TAG, "jsonDatas: " + jsonDatas);
             }
 
             @Override

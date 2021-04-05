@@ -1,5 +1,6 @@
 package com.example.cgvapplication.service;
 
+import com.example.cgvapplication.model.movie.BoxOfficeMovie;
 import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
@@ -7,6 +8,7 @@ import com.example.cgvapplication.service.dto.movie.TrailerRespDto;
 
 import java.util.List;
 
+import lombok.Getter;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -37,8 +39,14 @@ public interface MovieService {
     @POST("/movie/boxoffice")
     Call<CMRespDto<Void>> save();
 
+    @GET("/movie")
+    Call<CMRespDto<List<Movie>>> findAll();
+
+    @GET("/movie/boxoffice/{movieId}")
+    Call<CMRespDto<BoxOfficeMovie>> findBoxOfficeById(@Path("movieId") String movieId);
+
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://112.162.114.11:8080")
+            .baseUrl("http://192.168.137.33:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

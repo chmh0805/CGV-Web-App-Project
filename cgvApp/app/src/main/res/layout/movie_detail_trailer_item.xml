@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingEnd="10dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_trailer"
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/lalaland"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="#333333"
+        app:riv_corner_radius="5dp"
+        app:riv_mutate_background="true"
+        app:riv_oval="false"
+        app:riv_tile_mode="clamp" />
+    <ImageView
+        android:id="@+id/iv_circle"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/tr_white_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_trailer"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="125dp"/>
+    <ImageView
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_circle"
+        app:layout_constraintStart_toStartOf="@+id/iv_circle"
+        app:layout_constraintTop_toTopOf="@+id/iv_circle"
+        app:layout_constraintEnd_toEndOf="@+id/iv_circle"
+        android:src="@drawable/ic_play_arrow"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

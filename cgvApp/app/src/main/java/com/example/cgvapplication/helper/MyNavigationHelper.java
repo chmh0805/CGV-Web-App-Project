@@ -26,8 +26,11 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.activity.ServiceCenterActivity;
 import com.example.cgvapplication.activity.TicketingActivity;
 import com.example.cgvapplication.model.faq.Faq;
+import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.model.user.User;
+import com.example.cgvapplication.service.MovieService;
 import com.example.cgvapplication.service.SupportService;
+import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.example.cgvapplication.service.preference.SharedPreference;
 import com.example.cgvapplication.service.UserService;
 import com.example.cgvapplication.service.dto.CMRespDto;
@@ -224,9 +227,25 @@ public class MyNavigationHelper {
         });
 
         mIvTicketingMovie.setOnClickListener(v -> {
+            MovieService movieService = MovieService.retrofit.create(MovieService.class);
+            Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call = movieService.findBoxOfficeAll();
+            call.enqueue(new Callback<CMRespDto<List<MovieBoxOfficeRespDto>>>() {
+                @Override
+                public void onResponse(Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call, Response<CMRespDto<List<MovieBoxOfficeRespDto>>> response) {
+                    List<MovieBoxOfficeRespDto> boxOfficeRespDtos = response.body().getData();
+                    Intent intent = new Intent(mContext, TicketingActivity.class);
+                    intent.putExtra("docId", boxOfficeRespDtos.get(0).getDocId());
+                    mContext.startActivity(intent);
+                }
+
+                @Override
+                public void onFailure(Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call, Throwable t) {
+                    Log.d(TAG, "onFailure: 통신실패");
+                }
+            });
+            //Call<CMRespDto<Movie>>
             mDrawer.closeDrawer(GravityCompat.END);
-            Intent intent = new Intent(mContext, TicketingActivity.class);
-            mContext.startActivity(intent);
+
         });
 
         mIvTicketingTheater.setOnClickListener(v -> {

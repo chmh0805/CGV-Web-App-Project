@@ -99,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreference.setAttribute(LoginActivity.this, "Authorization", accessToken);
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra("username", loginReqDto.getUsername());
                 startActivity(intent);
             }
 

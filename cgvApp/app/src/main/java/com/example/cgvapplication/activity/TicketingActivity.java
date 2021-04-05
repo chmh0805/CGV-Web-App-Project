@@ -28,12 +28,13 @@ public class TicketingActivity extends AppCompatActivity {
     }
 
     public void init() {
+        String docId = getIntent().getStringExtra("docId");
         TicketingFragMentPagerAdapter mTicketingFragMentPagerAdapter = new TicketingFragMentPagerAdapter(getSupportFragmentManager(), 1);
         ViewPager mVpTicketingContainer = findViewById(R.id.vp_ticketing_container);
         TabLayout mTabsTicketing = findViewById(R.id.tabs_ticketing);
         mIvClose = findViewById(R.id.iv_close);
 
-        mTicketingFragMentPagerAdapter.addFragment(new FragTicketingMovie(getSupportFragmentManager()));
+        mTicketingFragMentPagerAdapter.addFragment(new FragTicketingMovie(getSupportFragmentManager(), docId));
         mTicketingFragMentPagerAdapter.addFragment(new FragTicketingTheater(getSupportFragmentManager()));
 
         mVpTicketingContainer.setAdapter(mTicketingFragMentPagerAdapter);

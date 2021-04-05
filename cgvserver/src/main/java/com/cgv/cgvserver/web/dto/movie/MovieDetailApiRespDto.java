@@ -37,7 +37,7 @@ public class MovieDetailApiRespDto {
 	private int rank;
 
 	public String getTitle() {
-		String title = this.title.replaceAll("!HS", "").trim().replaceAll("!HE", "").trim();
+		String title = this.title.replaceAll("!HS", "").trim().replaceAll("!HE", "").replaceAll(" +", " ").trim();
 		return title;
 	}
 	

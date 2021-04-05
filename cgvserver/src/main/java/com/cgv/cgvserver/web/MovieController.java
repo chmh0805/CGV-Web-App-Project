@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cgv.cgvserver.domain.movie.BoxOfficeMovie;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.service.MovieService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
@@ -121,5 +122,10 @@ public class MovieController {
 		return new CommonRespDto<>(1, dtos);
 	}
 	
+	@GetMapping("/movie/boxoffice/{movieId}")
+	public CommonRespDto<?> findBoxOfficeById(@PathVariable String movieId) {
+		BoxOfficeMovie boxOfficeMovie = movieService.박스오피스영화하나찾기(movieId);
+		return new CommonRespDto<>(1,boxOfficeMovie);
+	}
 	
 }

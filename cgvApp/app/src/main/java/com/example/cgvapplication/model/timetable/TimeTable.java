@@ -1,5 +1,6 @@
 package com.example.cgvapplication.model.timetable;
 
+import com.example.cgvapplication.model.hall.Hall;
 import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.model.theater.Theater;
 
@@ -13,6 +14,7 @@ import lombok.NoArgsConstructor;
 public class TimeTable {
     private Long id;
     private Movie movie;
+    private Hall hall;
     private Theater theater;
     private String date;
     private String startTime;

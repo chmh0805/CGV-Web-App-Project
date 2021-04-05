@@ -17,8 +17,11 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
 
+
 public class MovieListActivity extends AppCompatActivity {
 
+    private static final String TAG = "MovieListActivity";
+    private final MovieListActivity movieListActivity = this;
     private Toolbar mToolbarDefault;
     private MyNavigationHelper mMyNavigationHelper;
     private LinearLayout mLinearNavigation;
@@ -42,8 +45,8 @@ public class MovieListActivity extends AppCompatActivity {
         mMyNavigationHelper = new MyNavigationHelper(MovieListActivity.this);
 
         MovieListFragMentPagerAdapter mMovieListFragMentPagerAdapter = new MovieListFragMentPagerAdapter(getSupportFragmentManager(), 1);
-        mMovieListFragMentPagerAdapter.addFragment(new FragMovieChart());
-        mMovieListFragMentPagerAdapter.addFragment(new FragMovieToBeScreened());
+        mMovieListFragMentPagerAdapter.addFragment(new FragMovieChart(movieListActivity));
+        mMovieListFragMentPagerAdapter.addFragment(new FragMovieToBeScreened(movieListActivity));
 
         mVpMovieListContainer.setAdapter(mMovieListFragMentPagerAdapter);
 
@@ -52,4 +55,6 @@ public class MovieListActivity extends AppCompatActivity {
         Objects.requireNonNull(mTabsMovieList.getTabAt(0)).setText("무비차트");
         Objects.requireNonNull(mTabsMovieList.getTabAt(1)).setText("개봉예정");
     }
+
+
 }

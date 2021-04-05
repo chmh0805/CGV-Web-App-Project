@@ -46,7 +46,7 @@ public class HomeMovieChartAdapter extends RecyclerView.Adapter<HomeMovieChartAd
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setItem(movies.get(position));
+//        holder.setItem(movies.get(position));
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, MovieDetailActivity.class);
             mContext.startActivity(intent);
@@ -55,7 +55,7 @@ public class HomeMovieChartAdapter extends RecyclerView.Adapter<HomeMovieChartAd
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return 5;
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

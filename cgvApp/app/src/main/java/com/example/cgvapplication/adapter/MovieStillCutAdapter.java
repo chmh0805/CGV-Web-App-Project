@@ -7,8 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.model.movie.StillCut;
+import com.example.cgvapplication.model.stillcut.StillCut;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.List;
@@ -32,6 +33,7 @@ public class MovieStillCutAdapter extends RecyclerView.Adapter<MovieStillCutAdap
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.setItem(mStillCuts.get(position));
+
     }
 
     @Override
@@ -48,7 +50,11 @@ public class MovieStillCutAdapter extends RecyclerView.Adapter<MovieStillCutAdap
         }
 
         public void setItem(StillCut stillCut) {
-            mIvStillCut.setImageResource(stillCut.getStillCutImgSrc());
+            Glide
+                    .with(itemView)
+                    .load(stillCut.getImageUrl())
+                    .centerCrop()
+                    .into(mIvStillCut);
         }
     }
 }

@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.adapter.TicketingCalendarListAdapter;
-import com.example.cgvapplication.adapter.TicketingMovieAdapter;
+import com.example.cgvapplication.adapter.ticketing.movie.TicketingCalendarListAdapter;
+import com.example.cgvapplication.adapter.ticketing.movie.TicketingMovieAdapter;
 import com.example.cgvapplication.adapter.TicketingTheaterChoiceAdapter;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 

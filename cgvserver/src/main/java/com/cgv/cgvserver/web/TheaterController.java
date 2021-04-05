@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.service.TheaterService;
 import com.cgv.cgvserver.web.dto.CommonRespDto;
+import com.cgv.cgvserver.web.dto.theater.TheaterAreaRespDto;
+import com.cgv.cgvserver.web.dto.theater.TheaterNameRespDto;
 import com.cgv.cgvserver.web.dto.theater.TheaterSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -55,4 +57,24 @@ public class TheaterController {
 		
 		return new ResponseEntity<>(resource, headers, HttpStatus.OK);
 	}
+	
+	@GetMapping("/theater/area")
+	public CommonRespDto<?> findAllArea() {
+		List<TheaterAreaRespDto> theaterAreaRespDtos = theaterService.극장구역전체조회();
+		return new CommonRespDto<>(1, theaterAreaRespDtos);
+	}
+	
+	@GetMapping("/theater/name/{area}")
+	public CommonRespDto<?> findAllName(@PathVariable String area) {
+		List<TheaterNameRespDto> theaterNameRespDtos = theaterService.극장이름전체조회(area);
+		return new CommonRespDto<>(1, theaterNameRespDtos);
+	}
+	
+	@GetMapping("/theater/name")
+	public CommonRespDto<?> findAllName() {
+		List<TheaterNameRespDto> theaterNameRespDtos = theaterService.극장이름전체조회();
+		return new CommonRespDto<>(1, theaterNameRespDtos);
+	}
+	
+
 }

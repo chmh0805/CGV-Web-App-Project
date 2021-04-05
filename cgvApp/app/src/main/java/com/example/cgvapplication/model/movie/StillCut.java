@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class StillCut {
     // 테스트
     private int id;
-    private int stillCutImgSrc;
+    private String stillCutImgSrc;
 }

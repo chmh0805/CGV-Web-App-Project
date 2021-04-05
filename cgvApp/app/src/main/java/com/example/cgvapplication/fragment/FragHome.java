@@ -19,17 +19,23 @@ import com.example.cgvapplication.adapter.home.HomeMovieChartAdapter;
 import com.example.cgvapplication.adapter.home.HomeTopFeaturedAdapter;
 import com.example.cgvapplication.model.movie.featuredmovie.FeaturedMovie;
 import com.example.cgvapplication.model.movie.featuredmovie.TopFeaturedMovie;
+import com.example.cgvapplication.service.MovieService;
+import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class FragHome extends Fragment {
 
     private static final String TAG = "FragHome2";
 
-    private final List<MovieBoxOfficeRespDto> moviesBoxOffice;
+    private List<MovieBoxOfficeRespDto> moviesBoxOffice;
     
     private final FragHome mFragHome = this;
 
@@ -44,28 +50,32 @@ public class FragHome extends Fragment {
         this.moviesBoxOffice = moviesBoxOffice;
     }
 
+    public FragHome() {
+
+    }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.frag_home, container, false);
 
-        btnHomeMovieListMovieChart = view.findViewById(R.id.btn_home_movielist_moviechart);
-        btnHomeMovieListMovieChart.setSelected(true);
-        btnHomeMovieListWillScreening = view.findViewById(R.id.btn_home_movielist_willScreening);
-
-        List<String> jsonDatas = getArguments().getStringArrayList("jsonDatas");
-        for (String jsonData : jsonDatas) {
-            MovieBoxOfficeRespDto dto = gson.fromJson(jsonData, MovieBoxOfficeRespDto.class);
-            moviesBoxOffice.add(dto);
-        }
-
-        Log.d(TAG, "onCreateView: "+moviesBoxOffice);
-        
+//        btnHomeMovieListMovieChart = view.findViewById(R.id.btn_home_movielist_moviechart);
+//        btnHomeMovieListMovieChart.setSelected(true);
+//        btnHomeMovieListWillScreening = view.findViewById(R.id.btn_home_movielist_willScreening);
+//
+//        List<String> jsonDatas = getArguments().getStringArrayList("jsonDatas");
+//        for (String jsonData : jsonDatas) {
+//            MovieBoxOfficeRespDto dto = gson.fromJson(jsonData, MovieBoxOfficeRespDto.class);
+//            moviesBoxOffice.add(dto);
+//        }
+//
+//        Log.d(TAG, "onCreateView: "+moviesBoxOffice);
+//
         init(view);
-        listener();
+      //  listener();
         movieChart(view);
-
+       download();
         return view;
     }
 
@@ -126,5 +136,23 @@ public class FragHome extends Fragment {
 
     public void willScreening() {
 
+    }
+
+    private void download() {
+        MovieService movieService = MovieService.retrofit.create(MovieService.class);
+
+        Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call = movieService.findBoxOfficeAll();
+        call.enqueue(new Callback<CMRespDto<List<MovieBoxOfficeRespDto>>>() {
+            @Override
+            public void onResponse(Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call, Response<CMRespDto<List<MovieBoxOfficeRespDto>>> response) {
+                CMRespDto<List<MovieBoxOfficeRespDto>> movieBoxOfficeRespDtos = response.body();
+                Log.d(TAG, "onResponse: 통신성공"+movieBoxOfficeRespDtos);
+            }
+
+            @Override
+            public void onFailure(Call<CMRespDto<List<MovieBoxOfficeRespDto>>> call, Throwable t) {
+                Log.d(TAG, "onFailure: 통신실패");
+            }
+        });
     }
 }

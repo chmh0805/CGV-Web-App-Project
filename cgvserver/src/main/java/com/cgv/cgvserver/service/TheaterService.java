@@ -6,6 +6,10 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+
+import org.qlrm.mapper.JpaResultMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -20,6 +24,8 @@ import com.cgv.cgvserver.domain.theater.Theater;
 import com.cgv.cgvserver.domain.theater.TheaterRepository;
 import com.cgv.cgvserver.handler.exception.NotFoundTheaterException;
 import com.cgv.cgvserver.utils.theater.InitTheater;
+import com.cgv.cgvserver.web.dto.theater.TheaterAreaRespDto;
+import com.cgv.cgvserver.web.dto.theater.TheaterNameRespDto;
 import com.cgv.cgvserver.web.dto.theater.TheaterSaveReqDto;
 
 import lombok.RequiredArgsConstructor;
@@ -30,6 +36,7 @@ public class TheaterService {
 	private final TheaterRepository theaterRepository;
 	private final HallRepository hallRepository;
 	private final SeatRepository seatRepository;
+	private final EntityManager entityManager;
 	private static final Logger log = LoggerFactory.getLogger(TheaterService.class);
 
 	@Value("${file.path}")
@@ -78,4 +85,40 @@ public class TheaterService {
 		Path path = Paths.get(uploadFolder + theaterEntity.getTheaterImageUrl());
 		return path;
 	}
+	
+	@Transactional(readOnly = true)
+	public List<TheaterAreaRespDto> 극장구역전체조회() {
+		Query query = entityManager.createNativeQuery("SELECT DISTINCT area, location From Theater");
+		JpaResultMapper result = new JpaResultMapper();
+		List<TheaterAreaRespDto> theaterAreaRespDtos = result.list(query, TheaterAreaRespDto.class);
+		return theaterAreaRespDtos;
+
+	}
+	
+	@Transactional(readOnly = true)
+	public List<TheaterNameRespDto> 극장이름전체조회(String area) {
+		Query query = entityManager.createNativeQuery("SELECT area, name FROM Theater WHERE area = ?")
+				.setParameter(1, area);
+		
+		JpaResultMapper result = new JpaResultMapper();
+		List<TheaterNameRespDto> theaterNameRespDtos = result.list(query, TheaterNameRespDto.class);
+		return theaterNameRespDtos;
+		
+	}
+	
+	@Transactional(readOnly = true)
+	public List<TheaterNameRespDto> 극장이름전체조회() {
+		Query query = entityManager.createNativeQuery("SELECT area, name FROM Theater");
+		
+		JpaResultMapper result = new JpaResultMapper();
+		List<TheaterNameRespDto> theaterNameRespDtos = result.list(query, TheaterNameRespDto.class);
+		return theaterNameRespDtos;
+		
+	}
+	
+//	@Transactional(readOnly = true)
+//	public Theater 극장하나조회(String name) {
+//		Query query = entityManager.createNativeQuery("SELECT * FROM Theater WHERE name=?");
+//		JpaResultMapper result = new JpaResultMapper();
+//	}
 }

@@ -1,4 +1,4 @@
-package com.example.cgvapplication.adapter;
+package com.example.cgvapplication.adapter.ticketing.movie;
 
 import android.annotation.SuppressLint;
 import android.graphics.Color;

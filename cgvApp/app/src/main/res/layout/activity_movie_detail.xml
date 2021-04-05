@@ -54,11 +54,15 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <ToggleButton
+                    android:id="@+id/iv_favorite"
+                    android:background="@drawable/ic_favorite_border"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
                     android:layout_marginStart="30dp"
                     android:foregroundGravity="center"
+                    android:textOff=""
+                    android:textOn=""
                     android:src="@drawable/ic_favorite_border"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
