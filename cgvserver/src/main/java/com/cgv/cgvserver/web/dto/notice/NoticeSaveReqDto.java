@@ -6,9 +6,10 @@ import javax.validation.constraints.NotNull;
 
 import com.cgv.cgvserver.domain.notice.Notice;
 
+import lombok.Builder;
 import lombok.Data;
 
-
+@Builder
 @Data
 public class NoticeSaveReqDto {
 	

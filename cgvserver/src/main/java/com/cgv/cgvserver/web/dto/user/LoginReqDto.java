@@ -1,7 +1,9 @@
 package com.cgv.cgvserver.web.dto.user;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
+@AllArgsConstructor
 @Data
 public class LoginReqDto {
 	private String username;

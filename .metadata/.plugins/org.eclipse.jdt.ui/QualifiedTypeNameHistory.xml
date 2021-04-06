@@ -1,20 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<qualifiedTypeNameHistroy/>
-=======
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.faq.FaqFindOneRespDto"/>
-    <fullyQualifiedTypeName name="java.util.Calendar"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.NoArgsConstructor"/>
+    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
+    <fullyQualifiedTypeName name="javax.persistence.Id"/>
+    <fullyQualifiedTypeName name="javax.persistence.GeneratedValue"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.CreationTimestamp"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.ExceptionLog"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.JpaRepository"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.ExceptionList"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.logs.ExceptionLog"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.logs.ExceptionLogRepository"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureWebMvc"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.service.AuthService"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.user.User"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.auth.JoinReqDto"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeEach"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.UserController"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.user.LoginReqDto"/>
+    <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
+    <fullyQualifiedTypeName name="org.springframework.security.test.context.support.WithMockUser"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.faq.FaqSaveReqDto"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest.WebEnvironment"/>
+    <fullyQualifiedTypeName name="javax.print.attribute.standard.Media"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.movietalk.MovieTalk"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.movietalk.MovieTalkSaveReqDto"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
+    <fullyQualifiedTypeName name="org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc"/>
+    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.TimeTableController"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.timetable.TimeTable"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityReference"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.CommonRespDto"/>
+    <fullyQualifiedTypeName name="org.springframework.test.web.servlet.MockMvc"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.notice.NoticeSaveReqDto"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.databind.ObjectMapper"/>
+    <fullyQualifiedTypeName name="org.springframework.test.web.servlet.ResultActions"/>
+    <fullyQualifiedTypeName name="org.springframework.http.MediaType"/>
+    <fullyQualifiedTypeName name="org.springframework.test.web.servlet.result.MockMvcResultHandlers"/>
+    <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
 </qualifiedTypeNameHistroy>
->>>>>>> master
