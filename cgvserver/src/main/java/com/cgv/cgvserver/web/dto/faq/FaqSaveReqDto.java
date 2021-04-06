@@ -5,8 +5,10 @@ import javax.validation.constraints.NotNull;
 
 import com.cgv.cgvserver.domain.faq.Faq;
 
+import lombok.Builder;
 import lombok.Data;
 
+@Builder
 @Data
 public class FaqSaveReqDto {
 	

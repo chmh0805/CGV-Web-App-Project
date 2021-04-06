@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
@@ -143,9 +143,22 @@ const HomeNoticeSectionDateBox = styled.div`
 const HomeNoticeSectionDate = styled.span``;
 
 const Home = () => {
+  const [noticeOne, setNoticeOne] = useState({});
   if (getCookie("cgvJWT") !== undefined && getCookie("role") === undefined) {
     setRole(getCookie("userId"));
   }
+
+  useEffect(() => {
+    fetch("http://localhost:8080/notice/limit/1")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.statusCode === 1) {
+          setNoticeOne(res.data[0]);
+        }
+      });
+  }, []);
+
   return (
     <div>
       <CarouselSection>
@@ -208,11 +221,13 @@ const Home = () => {
         <HomeNoticeSection>
           <div>
             <CommentIcon />
-            <HomeNoticeSectionTitle>공지사항</HomeNoticeSectionTitle>
+            <Link to="/support/default">
+              <HomeNoticeSectionTitle>공지사항</HomeNoticeSectionTitle>
+            </Link>
           </div>
           <HomeNoticeSectionContentBox>
             <HomeNoticeSectionContent>
-              [기타]영화 개봉연기에 따른 예매취소 안내 건
+              {noticeOne.title}
             </HomeNoticeSectionContent>
           </HomeNoticeSectionContentBox>
           <HomeNoticeSectionDateBox>
