@@ -12,4 +12,5 @@ public class TicketingTheaterMovieDto {
     private String title;
     private String posterImgSrc;
     private String age;
+
 }

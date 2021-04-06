@@ -1,20 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<<<<<<< HEAD
-<qualifiedTypeNameHistroy/>
-=======
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.faq.FaqFindOneRespDto"/>
-    <fullyQualifiedTypeName name="java.util.Calendar"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.TimeTableController"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.timetable.TimeTable"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIdentityReference"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonBackReference"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnore"/>
     <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonManagedReference"/>
-    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.CommonRespDto"/>
 </qualifiedTypeNameHistroy>
->>>>>>> master

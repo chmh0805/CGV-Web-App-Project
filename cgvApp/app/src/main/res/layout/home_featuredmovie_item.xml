@@ -73,6 +73,7 @@
         android:paddingRight="10dp" />
 
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_home_featuredMovie"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="#00FFFFFF"

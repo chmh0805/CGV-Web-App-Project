@@ -32,13 +32,13 @@ public class TicketingTheaterMovieAdapter extends RecyclerView.Adapter<Ticketing
     private final FragTicketingTheater fragTicketingTheater;
     private final List<TimeTableTheaterRespDto> dtos;
 
+    List<TicketingTheaterMovieDto> ticketingTheaterMovieDtos = new ArrayList<>();
+
     public TicketingTheaterMovieAdapter(FragmentManager fm, FragTicketingTheater fragTicketingTheater, List<TimeTableTheaterRespDto> dtos) {
         this.fm = fm;
         this.fragTicketingTheater = fragTicketingTheater;
         this.dtos = dtos;
     }
-
-    List<TicketingTheaterMovieDto> ticketingTheaterMovieDtos = new ArrayList<>();
 
     @NonNull
     @Override
@@ -111,7 +111,15 @@ public class TicketingTheaterMovieAdapter extends RecyclerView.Adapter<Ticketing
             }
 
             RecyclerView mRvHall = itemView.findViewById(R.id.rv_hall);
-            TicketingTheaterHallListAdapter mTicketingTheaterHallListAdapter = new TicketingTheaterHallListAdapter(fm, dtos, dto.getTitle());
+
+            List<TimeTableTheaterRespDto> reqDtos = new ArrayList<>();
+            for (TimeTableTheaterRespDto respDto : dtos) {
+                if(respDto.getTitle().equals(mTvTitle.getText().toString())) {
+                    reqDtos.add(respDto);
+                }
+            }
+
+            TicketingTheaterHallListAdapter mTicketingTheaterHallListAdapter = new TicketingTheaterHallListAdapter(fm, reqDtos);
             LinearLayoutManager manager = new LinearLayoutManager(itemView.getContext(), RecyclerView.VERTICAL, false);
             mRvHall.setLayoutManager(manager);
             mRvHall.setAdapter(mTicketingTheaterHallListAdapter);

@@ -27,6 +27,11 @@ public class FaqService {
 		List<Faq> faqEntities = faqRepository.mFindAll();
 		return FaqToRespDto.toFindAllDtos(faqEntities);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<Faq> 전체찾기() {
+		return faqRepository.mFindAll();
+	}
 
 	@Transactional
 	public void Faq등록(FaqSaveReqDto faqSaveReqDto) {

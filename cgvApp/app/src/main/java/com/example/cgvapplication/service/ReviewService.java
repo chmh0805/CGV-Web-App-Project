@@ -28,7 +28,7 @@ public interface ReviewService {
     @POST("/review")
     Call<CMRespDto<Review>> save(@Header("Authorization") String token, @Body ReviewSaveReqDto reviewSaveReqDto);
 
-    @GET("/movie/{movieId}/review")
+    @GET("/review/{movieId}")
     Call<CMRespDto<List<ReviewFindRespDto>>> reviewByMovieId(@Path("movieId") String movieId);
 
     public static final Retrofit retrofit = new Retrofit.Builder()

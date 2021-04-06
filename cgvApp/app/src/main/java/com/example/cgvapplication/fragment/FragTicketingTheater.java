@@ -187,13 +187,23 @@ public class FragTicketingTheater extends Fragment {
                     mTicketingTheaterChoiceAdapter.addItem(locations.get(position));
                     mBottomSheetDialog.dismiss();
                 } else {
+                    boolean isTheater = false;
+
                     for (String theaterLocation : theaterLocations) {
                         if (theaterLocation.equals(locations.get(position))) {
-                            Toast.makeText(view1.getContext(), "이미 등록한 극장입니다.", Toast.LENGTH_SHORT).show();
+                            isTheater = true;
+                            break;
                         } else {
-                            mTicketingTheaterChoiceAdapter.addItem(locations.get(position));
-                            mBottomSheetDialog.dismiss();
+                            isTheater = false;
+
                         }
+                    }
+
+                    if(isTheater) {
+                        Toast.makeText(view1.getContext(), "이미 등록한 극장입니다.", Toast.LENGTH_SHORT).show();
+                    } else {
+                        mTicketingTheaterChoiceAdapter.addItem(locations.get(position));
+                        mBottomSheetDialog.dismiss();
                     }
                 }
             });

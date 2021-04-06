@@ -46,6 +46,7 @@ public class ReviewActivity extends AppCompatActivity {
     private MovieReviewAdapter movieReviewAdapter;
     private Button mBtnSet;
     private String docId;
+    private Review review = new Review();
     private boolean isSuccess = false;
     private RecyclerView mRvMovieReview;
     private FragMovieDetailReview fragMovieDetailReview = new FragMovieDetailReview();
@@ -86,8 +87,6 @@ public class ReviewActivity extends AppCompatActivity {
                 reviewSaveReqDto.setMovieId(docId);
                 reviewSaveReqDto.setUserId(Long.parseLong(jsonObject.get("id").toString()));
                 save(reviewSaveReqDto);
-                movieReviewAdapter.notifyDataSetChanged();
-
             });
         }
 
@@ -113,7 +112,8 @@ public class ReviewActivity extends AppCompatActivity {
             public void onResponse(Call<CMRespDto<Review>> call, Response<CMRespDto<Review>> response) {
                 if(response.isSuccessful()) {
                     Toast.makeText(reviewActivity, "성공적으로 작성되었습니다. ", Toast.LENGTH_SHORT).show();
-//                    Review review = response.body().getData();
+                    review = response.body().getData();
+                    movieReviewAdapter.addItem(review);
 //                    Intent intent = new Intent(ReviewActivity.this, MovieDetailActivity.class);
 //                    intent.putExtra("review", review);
 //                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

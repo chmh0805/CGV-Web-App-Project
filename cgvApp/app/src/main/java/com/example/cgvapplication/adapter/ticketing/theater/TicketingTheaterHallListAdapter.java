@@ -1,5 +1,6 @@
 package com.example.cgvapplication.adapter.ticketing.theater;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import com.example.cgvapplication.fragment.FragTicketingTheater;
 import com.example.cgvapplication.service.dto.timetable.TicketingTheaterHallDto;
 import com.example.cgvapplication.service.dto.timetable.TimeTableTheaterRespDto;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,12 +26,10 @@ public class TicketingTheaterHallListAdapter extends RecyclerView.Adapter<Ticket
 
     private final FragmentManager fm;
     private final List<TimeTableTheaterRespDto> dtos;
-    private final String title;
 
-    public TicketingTheaterHallListAdapter(FragmentManager fm, List<TimeTableTheaterRespDto> dtos, String title) {
+    public TicketingTheaterHallListAdapter(FragmentManager fm, List<TimeTableTheaterRespDto> dtos) {
         this.fm = fm;
         this.dtos = dtos;
-        this.title = title;
     }
 
     List<TicketingTheaterHallDto> hallDtos = new ArrayList<>();
@@ -49,24 +49,24 @@ public class TicketingTheaterHallListAdapter extends RecyclerView.Adapter<Ticket
     @Override
     public int getItemCount() {
 
-        for (TimeTableTheaterRespDto dto : dtos) {
-            if(dto.getTitle().equals(title)) {
-                if(hallDtos.isEmpty()) {
-                    hallDtos.add(new TicketingTheaterHallDto(dto.getHallId().intValue(), dto.getHallName()));
-                } else {
-                    boolean isSame = true;
-                    for (TicketingTheaterHallDto hallDto : hallDtos) {
-                        if(dto.getHallName().equals(hallDto.getHallName())) {
-                            isSame = true;
-                            break;
-                        } else {
-                            isSame = false;
-                        }
-                    }
+        Log.d(TAG, "getItemCount: " +dtos);
 
-                    if(!isSame) {
-                        hallDtos.add(new TicketingTheaterHallDto(dto.getHallId().intValue(), dto.getHallName()));
+        for (TimeTableTheaterRespDto dto : dtos) {
+            if (hallDtos.isEmpty()) {
+                hallDtos.add(new TicketingTheaterHallDto(dto.getHallId().intValue(), dto.getHallName()));
+            } else {
+                boolean isSame = true;
+                for (TicketingTheaterHallDto hallDto : hallDtos) {
+                    if (dto.getHallId().intValue() == hallDto.getHallId()) {
+                        isSame = true;
+                        break;
+                    } else {
+                        isSame = false;
                     }
+                }
+
+                if (!isSame) {
+                    hallDtos.add(new TicketingTheaterHallDto(dto.getHallId().intValue(), dto.getHallName()));
                 }
             }
         }
@@ -88,8 +88,15 @@ public class TicketingTheaterHallListAdapter extends RecyclerView.Adapter<Ticket
         public void setItem(TicketingTheaterHallDto dto) {
             mTvHall.setText(dto.getHallName());
 
+            List<TimeTableTheaterRespDto> reqDtos = new ArrayList<>();
+            for (TimeTableTheaterRespDto respDto : dtos) {
+                if(respDto.getHallName().equals(mTvHall.getText().toString())) {
+                    reqDtos.add(respDto);
+                }
+            }
+
             LinearLayoutManager manager = new LinearLayoutManager(itemView.getContext(), RecyclerView.HORIZONTAL, false);
-            TicketingTheaterSeatAdapter mTicketingTheaterSeatAdapter = new TicketingTheaterSeatAdapter(fm, dtos, dto.getHallId());
+            TicketingTheaterSeatAdapter mTicketingTheaterSeatAdapter = new TicketingTheaterSeatAdapter(fm, dtos);
             mRvSeat.setLayoutManager(manager);
             mRvSeat.setAdapter(mTicketingTheaterSeatAdapter);
         }

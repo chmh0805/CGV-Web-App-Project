@@ -52,7 +52,7 @@ public class MovieTalkAdapter extends RecyclerView.Adapter<MovieTalkAdapter.MyVi
     class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView ivMovieTalkMoviePoster, ivMovieTalkBlurbImg;
-        private TextView tvMovieTalkTitle, tvMovieTalkContent, tvMovieTalkUpdateDate, tvMovieTalkHeartRating, tvMovietalkCommentRating;
+        private TextView tvMovieTalkTitle, tvMovieTalkContent;
         private AppCompatButton btnMovieTalkActionBtn;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -61,9 +61,6 @@ public class MovieTalkAdapter extends RecyclerView.Adapter<MovieTalkAdapter.MyVi
             ivMovieTalkBlurbImg = itemView.findViewById(R.id.iv_movietalk_blurbImg);
             tvMovieTalkTitle = itemView.findViewById(R.id.tv_movietalk_title);
             tvMovieTalkContent = itemView.findViewById(R.id.tv_movietalk_content);
-            tvMovieTalkUpdateDate = itemView.findViewById(R.id.tv_movietalk_updatedate);
-            tvMovieTalkHeartRating = itemView.findViewById(R.id.tv_movietalk_heartRating);
-            tvMovietalkCommentRating = itemView.findViewById(R.id.tv_movietalk_commentRating);
             btnMovieTalkActionBtn = itemView.findViewById(R.id.btn_movietalk_actionBtn);
         }
 

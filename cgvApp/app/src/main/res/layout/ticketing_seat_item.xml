@@ -11,21 +11,23 @@
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:padding="5dp">
+
         <TextView
             android:id="@+id/tv_startTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12:40"
-            android:textSize="14sp"
+            android:text="00:00"
             android:textColor="@color/black"
-            android:textStyle="bold"/>
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_endTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="~00:00"
             android:textSize="12sp"
-            android:text="~14:47"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
@@ -38,21 +40,22 @@
         android:orientation="horizontal"
         android:layout_gravity="center"
         android:padding="5dp">
+
         <TextView
             android:id="@+id/tv_extraSeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="139"
+            android:text="00"
             android:textColor="#1A7025"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+
         <TextView
             android:id="@+id/tv_totalSeats"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="/00석"
             android:textSize="12sp"
-            android:text="/208석"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
     </LinearLayout>
 
 

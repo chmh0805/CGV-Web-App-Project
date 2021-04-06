@@ -27,6 +27,11 @@ public class FaqController {
 		return new CommonRespDto<>(1, faqService.Faq전체조회());
 	}
 	
+	@GetMapping("/support/faq")
+	public CommonRespDto<?> findAllFaq() {
+		return new CommonRespDto<>(1, faqService.전체찾기());
+	}
+	
 	@CrossOrigin
 	@PostMapping("/faq")
 	public CommonRespDto<?> save(@Valid  @RequestBody FaqSaveReqDto faqSaveReqDto, BindingResult bindingResult) {

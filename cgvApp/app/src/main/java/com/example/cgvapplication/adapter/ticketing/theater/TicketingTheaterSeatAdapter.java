@@ -2,6 +2,7 @@ package com.example.cgvapplication.adapter.ticketing.theater;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.example.cgvapplication.fragment.TicketingBottomDialogFragment;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.service.TicketingService;
 import com.example.cgvapplication.service.dto.CMRespDto;
+import com.example.cgvapplication.service.dto.timetable.TicketingTheaterHallDto;
 import com.example.cgvapplication.service.dto.timetable.TicketingTheaterSeatDto;
 import com.example.cgvapplication.service.dto.timetable.TimeTableTheaterRespDto;
 import com.example.cgvapplication.service.preference.SharedPreference;
@@ -30,14 +32,14 @@ import retrofit2.Response;
 
 public class TicketingTheaterSeatAdapter extends RecyclerView.Adapter<TicketingTheaterSeatAdapter.MyViewHolder> {
 
+    private static final String TAG = "TicketingTheaterSeatAda";
+
     private final FragmentManager fm;
     private final List<TimeTableTheaterRespDto> dtos;
-    private final int hallId;
 
-    public TicketingTheaterSeatAdapter(FragmentManager fm, List<TimeTableTheaterRespDto> dtos, int hallId) {
+    public TicketingTheaterSeatAdapter(FragmentManager fm, List<TimeTableTheaterRespDto> dtos) {
         this.fm = fm;
         this.dtos = dtos;
-        this.hallId = hallId;
     }
 
     private Gson gson = new Gson();
@@ -61,26 +63,26 @@ public class TicketingTheaterSeatAdapter extends RecyclerView.Adapter<TicketingT
     public int getItemCount() {
 
         for (TimeTableTheaterRespDto dto : dtos) {
-            if (dto.getHallId().intValue() == hallId) {
-                if (ticketingTheaterSeats.isEmpty()) {
-                    ticketingTheaterSeats.add(new TicketingTheaterSeatDto(dto.getTimetableId().intValue(), dto.getStartTime(), dto.getRunningTime().intValue(), dto.getSeatCount()));
-                } else {
-                    boolean isSame = true;
-                    for (TicketingTheaterSeatDto seatDto : ticketingTheaterSeats) {
-                        if (dto.getStartTime().equals(seatDto.getStartTime())) {
-                            isSame = true;
-                            break;
-                        } else {
-                            isSame = false;
-                        }
+            if (ticketingTheaterSeats.isEmpty()) {
+                ticketingTheaterSeats.add(new TicketingTheaterSeatDto(dto.getTimetableId().intValue(), dto.getStartTime(), dto.getRunningTime().intValue(), dto.getSeatCount()));
+            } else {
+                boolean isSame = true;
+                for (TicketingTheaterSeatDto ticketingTheaterHallDto : ticketingTheaterSeats) {
+                    if (dto.getTimetableId().intValue() == ticketingTheaterHallDto.getTimeTableId()) {
+                        isSame = true;
+                        break;
+                    } else {
+                        isSame = false;
                     }
+                }
 
-                    if (!isSame) {
-                        ticketingTheaterSeats.add(new TicketingTheaterSeatDto(dto.getTimetableId().intValue(), dto.getStartTime(), dto.getRunningTime().intValue(), dto.getSeatCount()));
-                    }
+                if (!isSame) {
+                    ticketingTheaterSeats.add(new TicketingTheaterSeatDto(dto.getTimetableId().intValue(), dto.getStartTime(), dto.getRunningTime().intValue(), dto.getSeatCount()));
                 }
             }
         }
+
+        Log.d(TAG, "getItemCount: "+ticketingTheaterSeats);
 
         return ticketingTheaterSeats.size();
     }
@@ -109,7 +111,7 @@ public class TicketingTheaterSeatAdapter extends RecyclerView.Adapter<TicketingT
         private void setItem(TicketingTheaterSeatDto dto) {
             mTvStartTime.setText(dto.getStartTime());
             mTvEndTime.setText(endTime(dto));
-            mTvTotalSeats.setText(dto.getSeatCount().toString());
+            mTvTotalSeats.setText("/" + dto.getSeatCount() + "석");
             timeTableId = dto.getTimeTableId();
 
             TicketingService ticketingService = TicketingService.retrofit.create(TicketingService.class);
@@ -152,9 +154,15 @@ public class TicketingTheaterSeatAdapter extends RecyclerView.Adapter<TicketingT
             int runningTime = dto.getRunningTime();
 
             int endTimeToMinute = ((startHour * 60) + (startMinute) + (runningTime));
-            int endTimeHour = (endTimeToMinute / 60);
+            String endTimeHour = (endTimeToMinute / 60)+"";
             int endTimeMinute = (endTimeToMinute % 60);
-            String endTime = "~" + endTimeHour + ":" + endTimeMinute;
+            String endTimeMin = null;
+            if (0 < endTimeMinute && endTimeMinute <10) {
+                endTimeMin = "0"+endTimeMinute;
+            } else {
+                endTimeMin = endTimeMinute+"";
+            }
+            String endTime = "~" + endTimeHour + ":" + endTimeMin;
 
             return endTime;
         }

@@ -8,7 +8,8 @@
     android:background="@android:color/white"
     android:orientation="vertical"
     android:paddingLeft="10dp"
-    android:paddingRight="10dp">
+    android:paddingRight="10dp"
+    android:paddingBottom="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -42,17 +43,6 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_movietalk_moviePoster"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_movietalk_updatedate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="어제"
-            android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_movietalk_title"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatButton
@@ -91,71 +81,5 @@
         android:layout_height="1dp"
         android:layout_marginTop="10dp"
         android:background="@android:color/darker_gray"/>
-    
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp">
-
-        <info.androidhive.fontawesome.FontTextView
-            android:id="@+id/iv_movietalk_heartIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fa_heart_solid"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:solid_icon="false" />
-
-        <TextView
-            android:id="@+id/tv_movietalk_heartRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="1"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_movietalk_heartIcon"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <info.androidhive.fontawesome.FontTextView
-            android:id="@+id/iv_movietalk_commentIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="@string/fa_comment_dots_solid"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_movietalk_heartRating"
-            app:layout_constraintTop_toTopOf="parent"
-            app:solid_icon="false" />
-
-        <TextView
-            android:id="@+id/tv_movietalk_commentRating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:text="1"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/iv_movietalk_commentIcon"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <info.androidhive.fontawesome.FontTextView
-            android:id="@+id/iv_movietalk_shareIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/fa_share_square_solid"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="30dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:solid_icon="false" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

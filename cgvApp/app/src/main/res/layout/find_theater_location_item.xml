@@ -21,38 +21,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:gravity="center"
-        android:text="("
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_find_movie_location"
-        app:layout_constraintStart_toEndOf="@+id/tv_find_movie_location" />
-
-    <TextView
-        android:id="@+id/tv_find_movie_count"
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:gravity="center"
-        android:text="30"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_find_movie_location"
-        app:layout_constraintStart_toEndOf="@+id/textView3" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="25dp"
-        android:gravity="center"
-        android:text=")"
-        android:textColor="@android:color/black"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_find_movie_location"
-        app:layout_constraintStart_toEndOf="@+id/tv_find_movie_count" />
-
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="wrap_content"

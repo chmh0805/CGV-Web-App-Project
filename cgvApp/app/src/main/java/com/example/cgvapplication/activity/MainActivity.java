@@ -14,7 +14,9 @@ import com.example.cgvapplication.fragment.FragGiftShop;
 import com.example.cgvapplication.fragment.FragHome;
 import com.example.cgvapplication.fragment.FragMovieTalk;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.example.cgvapplication.model.user.User;
 import com.example.cgvapplication.service.MovieService;
+import com.example.cgvapplication.service.UserService;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.example.cgvapplication.service.preference.SharedPreference;
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        SharedPreference.getAttribute(this, "userEntity");
 
         Log.d(TAG, "init: ");
         mToolbarMain = findViewById(R.id.toolbar_main);
@@ -75,12 +78,5 @@ public class MainActivity extends AppCompatActivity {
 
         mMyNavigationHelper = new MyNavigationHelper(MainActivity.this);
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        SharedPreference.removeAttribute(this, "userEntity");
-        Log.d(TAG, "onDestroy: 앱 종료됨");
     }
 }
