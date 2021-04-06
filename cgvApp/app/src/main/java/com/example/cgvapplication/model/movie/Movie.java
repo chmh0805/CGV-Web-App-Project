@@ -20,11 +20,7 @@ public class Movie {
 
     private String docId;
     private String title;
-<<<<<<< HEAD
     private String subtitle;
-=======
-    private String subTitle;
->>>>>>> b45fda415f26eda086b39d0113d5f119acb1892a
     private String genre;
     private String age;
     private String country;
@@ -35,14 +31,10 @@ public class Movie {
     private String summary;
     private String disribute;
     private String posterImgSrc;
-<<<<<<< HEAD
-=======
+
     private List<Review> review;
     private List<Actor> actors;
     private List<Director> directors;
     private List<StillCut> stillCuts;
     private List<Trailer> trailers;
-//    private int reviewId;
-//    private int favorId;
->>>>>>> b45fda415f26eda086b39d0113d5f119acb1892a
 }

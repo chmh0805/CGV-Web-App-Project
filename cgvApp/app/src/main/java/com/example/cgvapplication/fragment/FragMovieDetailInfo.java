@@ -104,7 +104,7 @@ public class FragMovieDetailInfo extends Fragment {
                 List<Trailer> trailers = movie.getTrailers();
 
                 mTvTitle.setText(movie.getTitle());
-                mTvSubTitle.setText(movie.getSubTitle());
+                mTvSubTitle.setText(movie.getSubtitle());
                 mTvAge.setText(movie.getAge());
                 mTvGenre.setText(movie.getGenre());
                 mTvRunningTime.setText(movie.getRunningTime()+"");
