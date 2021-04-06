@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.theater.Theater;
+import com.cgv.cgvserver.domain.timetable.TimeTable;
 import com.cgv.cgvserver.service.MovieService;
 import com.cgv.cgvserver.service.TheaterService;
 import com.cgv.cgvserver.service.TimeTableService;
@@ -56,6 +57,11 @@ public class TimeTableController {
 		System.out.println("/timetable/app/theater : "+dto);
 		
 		return new CommonRespDto<>(1,dtos);
+	}
+	
+	@GetMapping("/timetable/app/{timeTableId}")
+	public CommonRespDto<?> findByTimeTableId(@PathVariable long timeTableId) {
+		return new CommonRespDto<>(1, timeTableService.타임테이블정보(timeTableId));
 	}
 
 	@GetMapping("/timetable/movie/{movieId}")

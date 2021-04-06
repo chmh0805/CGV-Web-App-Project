@@ -32,6 +32,11 @@ public class TicketingService {
 	}
 	
 	@Transactional(readOnly = true)
+	public Long 예매수(long timeTableId) {
+		return ticketingRepository.reservationNum(timeTableId);
+	}
+	
+	@Transactional(readOnly = true)
 	public List<Ticketing> 유저예약정보찾기(long userId) {
 		return ticketingRepository.findByUserId(userId);
 	}
@@ -63,4 +68,6 @@ public class TicketingService {
 		
 		return returnDtos;
 	}
+	
+	
 }

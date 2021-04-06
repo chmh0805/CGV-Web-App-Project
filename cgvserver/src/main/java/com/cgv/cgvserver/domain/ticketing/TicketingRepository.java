@@ -14,4 +14,7 @@ public interface TicketingRepository extends JpaRepository<Ticketing, Long> {
 	void mSave(String ticketNum, int personType, long seatId, long timeTableId, long userId);
 	
 	List<Ticketing> findByUserId(long userId);
+	
+	@Query(value="select count(*) reservationNum from ticketing where timeTableId = :timeTableId", nativeQuery = true)
+	Long reservationNum(long timeTableId);
 }

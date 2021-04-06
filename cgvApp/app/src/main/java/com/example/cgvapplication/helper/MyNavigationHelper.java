@@ -165,6 +165,7 @@ public class MyNavigationHelper {
                 mTvLogout.setText("로그아웃");
                 userEntity = SharedPreference.getAttribute(mContext, "userEntity");
                 if(userEntity == null) {
+                    Log.d(TAG, "listener: 유저 정보 받아오기");
                     UserService userService = UserService.retrofit.create(UserService.class);
                     String token = SharedPreference.getAttribute(mContext, "Authorization");
                     Call<CMRespDto<User>> callUserEntity = userService.findById(token);

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.fragment.FragTicketingTheater;
 import com.example.cgvapplication.service.dto.timetable.TicketingTheaterHallDto;
 import com.example.cgvapplication.service.dto.timetable.TimeTableTheaterRespDto;
 

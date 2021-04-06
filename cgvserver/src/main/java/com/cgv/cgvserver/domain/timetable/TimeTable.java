@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import com.cgv.cgvserver.domain.hall.Hall;
 import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.theater.Theater;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

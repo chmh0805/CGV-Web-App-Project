@@ -12,6 +12,7 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import com.cgv.cgvserver.domain.review.Review;
 import com.cgv.cgvserver.domain.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -28,12 +29,14 @@ public class Reply {
 	@GeneratedValue
 	private Long id;
 	
+	@JsonBackReference
 	@JoinColumn(name = "userId")
 	@ManyToOne
 	private User user;
 	
 	private String content;
 	
+	@JsonBackReference
 	@JoinColumn(name = "reviewId")
 	@ManyToOne
 	private Review review;

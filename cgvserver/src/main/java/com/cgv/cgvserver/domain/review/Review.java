@@ -18,7 +18,8 @@ import com.cgv.cgvserver.domain.movie.Movie;
 import com.cgv.cgvserver.domain.reply.Reply;
 import com.cgv.cgvserver.domain.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -49,6 +50,7 @@ public class Review {
 	
 	private int isLike; // 좋아요 유무 1: 좋아요 0: x
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "review", cascade = CascadeType.REMOVE)
 	private List<Reply> replys;
 	

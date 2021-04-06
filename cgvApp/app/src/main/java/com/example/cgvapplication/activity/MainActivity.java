@@ -17,6 +17,7 @@ import com.example.cgvapplication.helper.MyNavigationHelper;
 import com.example.cgvapplication.service.MovieService;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
+import com.example.cgvapplication.service.preference.SharedPreference;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -80,5 +81,12 @@ public class MainActivity extends AppCompatActivity {
 
         mMyNavigationHelper = new MyNavigationHelper(MainActivity.this);
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        SharedPreference.removeAttribute(this, "userEntity");
+        Log.d(TAG, "onDestroy: 앱 종료됨");
     }
 }

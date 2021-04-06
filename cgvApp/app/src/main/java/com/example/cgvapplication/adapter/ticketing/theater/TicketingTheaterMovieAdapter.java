@@ -106,7 +106,7 @@ public class TicketingTheaterMovieAdapter extends RecyclerView.Adapter<Ticketing
                 mIvAge.setImageResource(R.drawable.age_12);
             } else if (dto.getAge().equals("15세관람가")) {
                 mIvAge.setImageResource(R.drawable.age_15);
-            } else if (dto.getAge().equals("연소자이용가")) {
+            } else if (dto.getAge().equals("연소자관람가")) {
                 mIvAge.setImageResource(R.drawable.age_19);
             }
 

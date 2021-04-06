@@ -29,6 +29,11 @@ public class TicketingController {
 		return new CommonRespDto<>(1, null);
 	}
 	
+	@GetMapping("/ticketing/{timeTableId}")
+	public CommonRespDto<?> findByTimeTableId(@PathVariable long timeTableId) {
+		return new CommonRespDto<>(1, ticketingService.예매수(timeTableId));
+	}
+	
 	@GetMapping("/ticketing/user/{userId}")
 	public CommonRespDto<?> findByUserId(@PathVariable long userId) {
 		return new CommonRespDto<>(1, ticketingService.유저예약정보찾기(userId));

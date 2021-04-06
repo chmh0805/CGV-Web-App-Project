@@ -61,6 +61,7 @@ public class FragTicketingTheater extends Fragment {
     private FragmentManager fm;
     private RecyclerView mRvTheaterCheck;
 
+    private String location = null;
     private String currentDate = null;
     private String selectDate = null;
     private String weekDay = null;
@@ -200,7 +201,8 @@ public class FragTicketingTheater extends Fragment {
     }
 
     public void downloadTimeTable(String location) {
-        TimeTableTheaterReqDto dto = new TimeTableTheaterReqDto(location);
+        this.location = location;
+        TimeTableTheaterReqDto dto = new TimeTableTheaterReqDto(this.location);
 
         TimeTableService timeTableService = TimeTableService.retrofit.create(TimeTableService.class);
         Call<CMRespDto<List<TimeTableTheaterRespDto>>> call = timeTableService.findAllByTheaterLocation(dto);
@@ -228,6 +230,7 @@ public class FragTicketingTheater extends Fragment {
         List<TimeTableTheaterRespDto> dtos = new ArrayList<>();
 
         for (TimeTableTheaterRespDto dto : TimeTableTheaterRespDtos) {
+            dto.setScreeningDate(currentDate);
             if (dto.getDate().equals(searchDate)) {
                 dtos.add(dto);
             }

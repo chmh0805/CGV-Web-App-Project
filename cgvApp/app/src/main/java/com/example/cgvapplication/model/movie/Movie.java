@@ -7,16 +7,16 @@ import lombok.Data;
 @Data
 public class Movie {
 
-    private int id;
+    private String docId;
     private String title;
     private String subtitle;
-    private int age;
+    private String genre;
+    private String age;
     private String country;
     private int runningTime;
-    private Timestamp releaseDate;
+    private String releaseDate;
     private int state; //(1:상영중 2:상영예정)
     private String summary;
+    private String disribute;
     private String posterImgSrc;
-    private int reviewId;
-    private int favorId;
 }
