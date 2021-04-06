@@ -145,7 +145,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_movietalk_container"
             android:layout_width="match_parent"

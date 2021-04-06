@@ -50,6 +50,18 @@ public class TimeTableController {
 		
 		return new CommonRespDto<>(1, timeTableRespDto);
 	}
+	
+	@GetMapping("/timetable/movie/{movieId}/theater/{theaterId}/date/{date}")
+	public CommonRespDto<?> findByAllInfos(@PathVariable String movieId, @PathVariable long theaterId,
+									@PathVariable String date) {
+		return new CommonRespDto<>(1, timeTableService.전체정보로찾기(movieId, theaterId, date));
+	}
+	
+	@GetMapping("/timetable/hall/{movieId}/theater/{theaterId}/date/{date}")
+	public CommonRespDto<?> findHallsByMovieIdTheaterId(@PathVariable String movieId, @PathVariable long theaterId, @PathVariable String date) {
+		return new CommonRespDto<>(1, timeTableService.상영관리스트찾기(movieId, theaterId, date));
+	}
+	
 
 	@PostMapping("/timetable/app/theater")
 	public CommonRespDto<?> findAllByLocation(@RequestBody AppTimeTableTheaterReqDto dto) {
@@ -79,4 +91,5 @@ public class TimeTableController {
 									@PathVariable String month, @PathVariable String day) {
 		return new CommonRespDto<>(1, timeTableService.전체정보로찾기(movieId, theaterId, month, day));
 	}
+
 }

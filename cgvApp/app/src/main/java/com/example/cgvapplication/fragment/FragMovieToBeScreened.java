@@ -12,11 +12,18 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.activity.MovieListActivity;
 import com.example.cgvapplication.adapter.MovieListAdapter;
 
 public class FragMovieToBeScreened extends Fragment {
     private final FragMovieToBeScreened mFragMovieToBeScreened = this;
-    private final MovieListAdapter mMovieListAdapter = new MovieListAdapter();
+    private final MovieListActivity movieListActivity;
+    private MovieListAdapter mMovieListAdapter;
+
+    public FragMovieToBeScreened(MovieListActivity movieListActivity) {
+        this.movieListActivity = movieListActivity;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -27,6 +34,7 @@ public class FragMovieToBeScreened extends Fragment {
 
     private void init(View view) {
         RecyclerView mRvMovieChartList = view.findViewById(R.id.rv_movie_list);
+        mMovieListAdapter = new MovieListAdapter(movieListActivity);
         LinearLayoutManager manager = new LinearLayoutManager(mFragMovieToBeScreened.getContext(), RecyclerView.VERTICAL, false);
         mRvMovieChartList.setLayoutManager(manager);
         mRvMovieChartList.setAdapter(mMovieListAdapter);

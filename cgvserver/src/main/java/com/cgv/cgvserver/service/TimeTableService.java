@@ -7,15 +7,19 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import org.qlrm.mapper.JpaResultMapper;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cgv.cgvserver.domain.timetable.TimeTable;
 import com.cgv.cgvserver.domain.timetable.TimeTableRepository;
+import com.cgv.cgvserver.web.dto.movie.MovieBoxOfficeRespDto;
+import com.cgv.cgvserver.web.dto.timetable.TimeTableHallRespDto;
+
 import com.cgv.cgvserver.web.dto.timetable.AppTimeTableTheaterReqDto;
 import com.cgv.cgvserver.web.dto.timetable.AppTimeTableTheaterRespDto;
+
 import com.cgv.cgvserver.web.dto.timetable.TimeTableReqDto;
+import com.cgv.cgvserver.web.dto.timetable.TimeTableRespDto;
 
 import lombok.RequiredArgsConstructor;
 
@@ -37,6 +41,7 @@ public class TimeTableService {
 		return result;
 	}
 
+
 	@Transactional(readOnly = true)
 	public List<AppTimeTableTheaterRespDto> 극장별예매(AppTimeTableTheaterReqDto dto) {
 
@@ -56,6 +61,7 @@ public class TimeTableService {
 
 		return dtos;
 	}
+
 
 	public List<TimeTable> 영화번호로찾기(String movieId) {
 		return timeTableRepository.findByMovieId(movieId);
@@ -78,6 +84,13 @@ public class TimeTableService {
 		}
 		String date = cal.get(Calendar.YEAR) + "-" + month + "-" + day;
 
+
+		return timeTableRepository.mFindByAllInfo(movieId, theaterId, day);
+	}
+
+	@Transactional(readOnly = true)
+	public List<TimeTable> 전체정보로찾기(String movieId, long theaterId, String date) {
+
 		return timeTableRepository.mFindByAllInfo(movieId, theaterId, date);
 	}
 	
@@ -85,5 +98,21 @@ public class TimeTableService {
 	public TimeTable 타임테이블정보(long timeTableId) {
 		return timeTableRepository.findById(timeTableId).get();
 	}
+
+	@Transactional(readOnly = true)
+	public List<TimeTableHallRespDto> 상영관리스트찾기(String movieId, long theaterId, String date) {
+		StringBuffer sb = new StringBuffer();
+		sb.append("select distinct h.name name, h.id id from hall h, theater th, timetable ti ");
+		sb.append("where ti.theaterId = th.id and ti.theaterId = ? and ti.hallId = h.id and ti.movieId = ? and ti.date = ?");
+		Query query = entityManager.createNativeQuery(sb.toString())
+				.setParameter(1, theaterId)
+				.setParameter(2, movieId)
+				.setParameter(3, date);
+		JpaResultMapper result = new JpaResultMapper();
+		List<TimeTableHallRespDto> timeTableHallRespDtos = result.list(query, TimeTableHallRespDto.class);
+		return timeTableHallRespDtos;
+	
+	}
+
 
 }

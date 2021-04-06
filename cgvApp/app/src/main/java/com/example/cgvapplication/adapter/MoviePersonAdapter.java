@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.model.movie.MoviePerson;
+import com.example.cgvapplication.model.director.Director;
 
 import java.util.List;
 
@@ -17,9 +17,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MoviePersonAdapter extends RecyclerView.Adapter<MoviePersonAdapter.MyViewHolder> {
 
-    private final List<MoviePerson> moviePeople;
+    private final List<Director> directors;
+    private final List<String> moviePeople;
 
-    public MoviePersonAdapter(List<MoviePerson> moviePeople) {
+    public MoviePersonAdapter(List<Director> directors, List<String> moviePeople) {
+        this.directors = directors;
         this.moviePeople = moviePeople;
     }
 
@@ -33,32 +35,32 @@ public class MoviePersonAdapter extends RecyclerView.Adapter<MoviePersonAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setItem(moviePeople.get(position));
+        holder.setDirectorItem(moviePeople.get(position));
+        if(directors.size()<=position) {
+            holder.itemView.findViewById(R.id.tv_director).setVisibility(View.GONE);
+
+        } else {
+            holder.itemView.findViewById(R.id.tv_director).setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return moviePeople.size();
+        return (moviePeople.size());
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private CircleImageView mIvMoviePerson;
-        private TextView mTvMoviePerson, mTvDirector;
+        private TextView mTvMoviePerson;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            mIvMoviePerson = itemView.findViewById(R.id.iv_movie_person);
             mTvMoviePerson = itemView.findViewById(R.id.tv_movie_person);
-            mTvDirector = itemView.findViewById(R.id.tv_director);
         }
 
-        public void setItem(MoviePerson moviePerson) {
-            mTvMoviePerson.setText(moviePerson.getName());
-            mIvMoviePerson.setImageResource(moviePerson.getImgSrc());
-            if(moviePerson.isDirector()) {
-                mTvDirector.setVisibility(View.VISIBLE);
-            }
+        public void setDirectorItem(String moviePeople) {
+            mTvMoviePerson.setText(moviePeople);
         }
     }
 }

@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class ExpectSaveReqDto {
 	@NotEmpty(message = "영화 정보를 찾을 수 없습니다.")
 	private String movieId;
+	private long userId;
 }

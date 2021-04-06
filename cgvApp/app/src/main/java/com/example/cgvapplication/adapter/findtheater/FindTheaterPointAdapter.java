@@ -9,17 +9,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.service.dto.theater.TheaterNameRespDto;
 
 import java.util.List;
 
 public class FindTheaterPointAdapter extends RecyclerView.Adapter<FindTheaterPointAdapter.MyViewHolder> {
 
     private static final String TAG = "FindTheaterPointAdapter";
+    
+    private List<TheaterNameRespDto> theaterNameRespDtos;
 
-    private final List<String> points;
 
-    public FindTheaterPointAdapter(List<String> points) {
-        this.points = points;
+    public void setTheaterNameRespDtos(List<TheaterNameRespDto> theaterNameRespDtos) {
+        this.theaterNameRespDtos = theaterNameRespDtos;
     }
 
     @NonNull
@@ -32,13 +34,13 @@ public class FindTheaterPointAdapter extends RecyclerView.Adapter<FindTheaterPoi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String point = points.get(position);
-        holder.setItem(point);
+
+        holder.setItem(theaterNameRespDtos.get(position).getName());
     }
 
     @Override
     public int getItemCount() {
-        return points.size();
+        return theaterNameRespDtos.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {

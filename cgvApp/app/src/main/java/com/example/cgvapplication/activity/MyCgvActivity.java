@@ -1,12 +1,15 @@
 package com.example.cgvapplication.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.appcompat.widget.Toolbar;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,7 +20,10 @@ import android.widget.TextView;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.helper.MyNavigationHelper;
 import com.example.cgvapplication.model.user.User;
+import com.example.cgvapplication.service.preference.SharedPreference;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class MyCgvActivity extends AppCompatActivity {
 
     private static final String TAG = "MyCgvActivity";
+    private final MyCgvActivity myCgvActivity = this;
     private Toolbar mToolbarDefault;
     private MyNavigationHelper mMyNavigationHelper;
     private LinearLayout mLinearNavigation;
@@ -36,6 +43,7 @@ public class MyCgvActivity extends AppCompatActivity {
     private List<String> mMyCgvMenu;
     private ListView mLvMyCgv;
     private ArrayAdapter<String> adapter;
+    private AppCompatButton mBtnSave;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -63,6 +71,7 @@ public class MyCgvActivity extends AppCompatActivity {
         mTvGoPaymentHistory = findViewById(R.id.tv_go_payment_history);
         mLvMyCgv = findViewById(R.id.lv_my_cgv);
         mProfileImage = findViewById(R.id.profile_image);
+        mBtnSave = findViewById(R.id.btn_save);
         mMyNavigationHelper = new MyNavigationHelper(MyCgvActivity.this);
         mMyCgvMenu = new ArrayList<>();
 
@@ -72,6 +81,23 @@ public class MyCgvActivity extends AppCompatActivity {
         mMyCgvMenu.add("고객센터");
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, mMyCgvMenu);
+        String userEntity = SharedPreference.getAttribute(myCgvActivity, "userEntity");
+
+        Log.d(TAG, "init: UserEntity: "+userEntity);
+
+        if(userEntity != null) {
+            JsonParser jsonParser = new JsonParser();
+            JsonObject jsonObject = (JsonObject) jsonParser.parse(userEntity);
+            String role =  jsonObject.get("role").toString();
+
+            Log.d(TAG, "init: role: "+ role);
+
+            if(role.equals("\"ADMIN\"")) {
+                mBtnSave.setVisibility(View.VISIBLE);
+            } else {
+                mBtnSave.setVisibility(View.GONE);
+            }
+        }
 
     }
 
@@ -120,6 +146,10 @@ public class MyCgvActivity extends AppCompatActivity {
                 intent.putExtra("ServiceCenter", page);
                 startActivity(intent);
             }
+        });
+        mBtnSave.setOnClickListener(view -> {
+            Intent intent = new Intent(MyCgvActivity.this, MovieTalkSaveActivity.class);
+            startActivity(intent);
         });
     }
 

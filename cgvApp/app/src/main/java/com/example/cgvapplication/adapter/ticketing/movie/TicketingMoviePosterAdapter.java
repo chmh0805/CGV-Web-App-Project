@@ -1,4 +1,3 @@
-package com.example.cgvapplication.adapter.ticketing.movie;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,11 +6,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.bumptech.glide.Glide;
 import com.example.cgvapplication.R;
 import com.example.cgvapplication.model.movie.Movie;
+import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.util.List;
+
 public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingMoviePosterAdapter.MyViewHolder>{
+
+    private final List<MovieBoxOfficeRespDto> movies;
+
+    public TicketingMoviePosterAdapter(List<MovieBoxOfficeRespDto> movies) {
+        this.movies = movies;
+    }
+
 
     @NonNull
     @Override
@@ -24,11 +35,18 @@ public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingM
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        holder.setItem(movies.get(position));
+        //mRvTicketingPosterList.scrollToPosition();
+
+
+
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+
+        return movies.size();
+
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -40,9 +58,13 @@ public class TicketingMoviePosterAdapter extends RecyclerView.Adapter<TicketingM
             mIvPoster = itemView.findViewById(R.id.iv_poster);
         }
 
-        public void setItem(Movie movie) {
-            //mIvPoster.setImageResource(movie.getPosterImgSrc());
+
+        public void setItem(MovieBoxOfficeRespDto movie) {
+            Glide
+                    .with(itemView)
+                    .load(movie.getPosterImageSrc())
+                    .centerCrop()
+                    .into(mIvPoster);
         }
     }
-
 }

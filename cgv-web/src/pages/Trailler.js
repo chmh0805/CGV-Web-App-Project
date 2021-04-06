@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
@@ -6,6 +6,7 @@ import brickImg from "../images/brick_bg.jpg";
 import ReactPlayer from "react-player";
 import spritePreegg from "../images/sprite_preegg.png";
 import { Modal } from "semantic-ui-react";
+import axios from "axios";
 
 const TrailerContainer = styled.div`
   background-color: #fdfcf0;

@@ -13,4 +13,5 @@ public class MovieBoxOfficeRespDto {
     private String posterImageSrc;
     private String title;
     private String releaseDate;
+    private String age;
 }

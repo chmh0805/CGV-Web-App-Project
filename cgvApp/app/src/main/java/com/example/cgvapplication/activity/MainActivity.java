@@ -48,12 +48,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbarMain);
 
-//        mIvMenu.setOnClickListener(view -> {
-//            mDrawer.openDrawer(GravityCompat.END);
-//        });
-//        mIvClose.setOnClickListener(view -> {
-//            mDrawer.closeDrawer(GravityCompat.END);
-//        });
         mMyNavigationHelper.enable(mLinearNagiation);
 
 

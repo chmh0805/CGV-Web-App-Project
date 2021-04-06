@@ -4,6 +4,7 @@ import com.example.cgvapplication.model.movie.Movie;
 import com.example.cgvapplication.model.reply.Reply;
 import com.example.cgvapplication.model.user.User;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review {
+public class Review implements Serializable {
 
     private Long id;
     private User user;

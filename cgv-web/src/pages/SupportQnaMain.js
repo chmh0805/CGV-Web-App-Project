@@ -385,7 +385,7 @@ const SupportQnaMain = (props) => {
             </QnaTableTitleBox>
             <QnaTableRowBox>
               <QnaTableContentTitle>이름</QnaTableContentTitle>
-              <QnaTableContentLongBody>정민혁</QnaTableContentLongBody>
+              <QnaTableContentLongBody>{info.username}</QnaTableContentLongBody>
             </QnaTableRowBox>
             <QnaTableRowBox>
               <QnaTableContentTitle>휴대전화</QnaTableContentTitle>

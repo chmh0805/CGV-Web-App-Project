@@ -55,11 +55,16 @@ public class MovieService {
 	private final EntityManager entityManager;
 	private static final Logger log = LoggerFactory.getLogger(MovieService.class);
 
+	@Transactional(readOnly = true)
+	public BoxOfficeMovie 박스오피스영화하나찾기(String movieId) {
+		return boxOfficeMovieRepository.mBoxOfficeMovie(movieId);
+	}
 	
 	@Transactional(readOnly = true)
 	public List<MovieDetailApiRespDto> findByBoxOfficeDate(String date) throws IOException {
 		return movieApiClient.findByBoxOfficeDate(date);
 	}
+	
 	@Transactional(readOnly = true)
 	public List<String> 트레일러리스트(String movieId) {
 		Query query = entityManager.createNativeQuery("SELECT thumbImageUrl FROM trailer WHERE movieId = ?")
@@ -89,7 +94,7 @@ public class MovieService {
 	@Transactional(readOnly = true)
 	public List<MovieBoxOfficeRespDto> 박스오피스영화리스트() {
 		StringBuffer sb = new StringBuffer();
-		sb.append("SELECT rankNum, docId, posterImgSrc, title, releaseDate ");
+		sb.append("SELECT rankNum, docId, posterImgSrc, title, releaseDate, age ");
 		sb.append("FROM boxofficemovie AS bm inner join movie AS m ");
 		sb.append("WHERE bm.movieId = m.docId order by rankNum ASC ");
 		
@@ -106,6 +111,7 @@ public class MovieService {
 	@Transactional(readOnly = true)
 	public Movie 영화상세보기(String movieId) {
 		Movie movie = movieRepository.findById(movieId).orElseThrow(() -> {throw new NotFoundMovieException();});
+		
 		return movie;
 	}
 	@Transactional

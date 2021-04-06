@@ -94,11 +94,11 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 String accessToken = response.headers().get("Authorization");
-                
+
                 if(accessToken == null) {
                     Log.d(TAG, "onResponse: 널~");
                     Toast.makeText(LoginActivity.this, "로그인에 실패하였습니다. \n아이디 또는 비밀번호를 확인하여 주십시오.", Toast.LENGTH_LONG).show();
-                    
+
                 } else {
                     SharedPreference.setAttribute(LoginActivity.this, "Authorization", accessToken);
 

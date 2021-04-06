@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,15 +16,25 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.adapter.movielog.MovieLogExpectAdapter;
 import com.example.cgvapplication.adapter.movielog.MovieLogSawAdapter;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.example.cgvapplication.model.expectmovie.ExpectMovie;
 import com.example.cgvapplication.model.user.User;
+import com.example.cgvapplication.service.ExpectMovieService;
+import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.preference.SharedPreference;
 import com.google.gson.Gson;
 import com.makeramen.roundedimageview.RoundedImageView;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MovieLogActivity extends AppCompatActivity {
 
     private static final String TAG = "MovieLogActivity";
 
+    private final MovieLogActivity movieLogActivity = this;
     private MyNavigationHelper myNavigationHelper;
     private Toolbar mToolbarMovieLog;
     private LinearLayout mLinearNavigation;
@@ -93,10 +104,26 @@ public class MovieLogActivity extends AppCompatActivity {
         btnMovieLogExpect.setTextColor(getResources().getColor(R.color.black));
         btnMovieLogSaw.setTextColor(getResources().getColor(R.color.grey_dark));
 
-        GridLayoutManager expectMovieManager = new GridLayoutManager(MovieLogActivity.this, 2);
-        MovieLogExpectAdapter expectAdapter = new MovieLogExpectAdapter();
-        rvMovieLogContainer.setLayoutManager(expectMovieManager);
-        rvMovieLogContainer.setAdapter(expectAdapter);
+
+
+        ExpectMovieService expectMovieService = ExpectMovieService.retrofit.create(ExpectMovieService.class);
+        Call<CMRespDto<List<ExpectMovie>>> callExpectMovieList = expectMovieService.findByUserId(SharedPreference.getAttribute(movieLogActivity, "Authorization"));
+        callExpectMovieList.enqueue(new Callback<CMRespDto<List<ExpectMovie>>>() {
+            @Override
+            public void onResponse(Call<CMRespDto<List<ExpectMovie>>> call, Response<CMRespDto<List<ExpectMovie>>> response) {
+                Log.d(TAG, "onResponse: 통신성공: 무비로그: "+response.body());
+                List<ExpectMovie> expectMovies = response.body().getData();
+                GridLayoutManager expectMovieManager = new GridLayoutManager(MovieLogActivity.this, 2);
+                MovieLogExpectAdapter expectAdapter = new MovieLogExpectAdapter(expectMovies, movieLogActivity);
+                rvMovieLogContainer.setLayoutManager(expectMovieManager);
+                rvMovieLogContainer.setAdapter(expectAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<CMRespDto<List<ExpectMovie>>> call, Throwable t) {
+                Log.d(TAG, "onFailure: 통신실패");
+            }
+        });
     }
 
     public void sawMovie() {

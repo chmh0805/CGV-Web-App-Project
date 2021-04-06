@@ -7,10 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Review {
-    // 테스트
-    private int id;
-    private String title;
-    private String content;
-    private boolean isLike;
+public class BoxOfficeMovie {
+    private int rankNum;
+    private Movie movie;
 }

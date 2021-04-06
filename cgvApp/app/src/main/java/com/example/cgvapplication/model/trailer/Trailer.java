@@ -13,4 +13,5 @@ public class Trailer {
     private Long id;
     private Movie movie;
     private String trailerUrl;
+    private String thumbImageUrl;
 }
