@@ -16,6 +16,7 @@ public class ReviewToRespDto {
 			ReviewFindRespDto dto = ReviewFindRespDto.builder()
 					.id(review.getId())
 					.content(review.getContent())
+					.isLike(review.getIsLike())
 					.user(review.getUser())
 					.movie(review.getMovie())
 					.createDate(format.format(review.getCreateDate()).toString())

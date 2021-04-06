@@ -1,6 +1,6 @@
 package com.example.cgvapplication.model.reply;
 
-import com.example.cgvapplication.model.movie.Review;
+import com.example.cgvapplication.model.review.Review;
 import com.example.cgvapplication.model.user.User;
 
 import java.sql.Timestamp;

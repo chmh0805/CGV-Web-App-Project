@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -140,6 +141,16 @@
             android:layout_width="match_parent"
             android:layout_height="5dp"
             android:background="#E2E2E2" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#131625"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            android:text="무비톡작성하기" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

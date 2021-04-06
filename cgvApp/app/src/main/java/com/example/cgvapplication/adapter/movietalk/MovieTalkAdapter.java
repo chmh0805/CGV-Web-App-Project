@@ -1,5 +1,7 @@
 package com.example.cgvapplication.adapter.movietalk;
 
+import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.cgvapplication.R;
-import com.example.cgvapplication.model.movie.movietalk.MovieTalk;
+import com.example.cgvapplication.model.movietalk.MovieTalk;
 
 import java.util.List;
 
@@ -23,6 +26,7 @@ public class MovieTalkAdapter extends RecyclerView.Adapter<MovieTalkAdapter.MyVi
 
     public MovieTalkAdapter(List<MovieTalk> movieTalks) {
         this.movieTalks = movieTalks;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -36,12 +40,13 @@ public class MovieTalkAdapter extends RecyclerView.Adapter<MovieTalkAdapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.setItem(movieTalks.get(position));
 
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return movieTalks.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -60,6 +65,25 @@ public class MovieTalkAdapter extends RecyclerView.Adapter<MovieTalkAdapter.MyVi
             tvMovieTalkHeartRating = itemView.findViewById(R.id.tv_movietalk_heartRating);
             tvMovietalkCommentRating = itemView.findViewById(R.id.tv_movietalk_commentRating);
             btnMovieTalkActionBtn = itemView.findViewById(R.id.btn_movietalk_actionBtn);
+        }
+
+        public void setItem(MovieTalk movieTalk) {
+            Log.d(TAG, "setItem: movieTalk: "+movieTalk.getImageSrc());
+            Glide
+                    .with(itemView)
+                    .load(movieTalk.getMovie().getPosterImgSrc())
+                    .into(ivMovieTalkMoviePoster);
+            Glide
+                    .with(itemView)
+                    .load(movieTalk.getMovie().getPosterImgSrc())
+                    .into(ivMovieTalkBlurbImg);
+//            if(movieTalk.getImageSrc() != null)
+//                ivMovieTalkBlurbImg.setImageURI(Uri.parse(movieTalk.getImageSrc()));
+            tvMovieTalkTitle.setText(movieTalk.getMovie().getTitle());
+            tvMovieTalkContent.setText(movieTalk.getContent());
+
+
+
         }
     }
 }

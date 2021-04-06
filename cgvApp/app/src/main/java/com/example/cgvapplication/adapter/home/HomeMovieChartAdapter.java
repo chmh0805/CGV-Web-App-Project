@@ -55,6 +55,8 @@ public class HomeMovieChartAdapter extends RecyclerView.Adapter<HomeMovieChartAd
         holder.setItem(movies.get(position));
         holder.mIvHomeMovieListPoster.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, MovieDetailActivity.class);
+            intent.putExtra("docId",movies.get(position).getDocId());
+            intent.putExtra("title", movies.get(position).getTitle());
             mContext.startActivity(intent);
         });
     }

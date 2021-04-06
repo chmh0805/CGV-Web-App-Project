@@ -25,11 +25,6 @@ public interface ExpectMovieService {
     @GET("/expectMovie/{id}")
     Call<CMRespDto<List<ExpectMovie>>> findAll(@Path("id") long id);
 
-//    @FormUrlEncoded
-//    @POST("/expectMovie/app")
-//    Call<CMRespDto<ExpectMovie>> save(@Field("userId") long id, @Field("movieId") String movieId);
-
-    //@FormUrlEncoded
     @POST("/expectMovie")
     Call<CMRespDto<ExpectMovie>> save(@Header("Authorization") String token, @Body ExpectSaveReqDto expectSaveReqDto);
 
@@ -38,6 +33,9 @@ public interface ExpectMovieService {
 
     @GET("/expectMovie/{movieId}")
     Call<CMRespDto<String>> findBymovieIdAndUserId(@Header("Authorization") String token, @Path("movieId") String movieId);
+
+    @GET("/expectMovie")
+    Call<CMRespDto<List<ExpectMovie>>> findByUserId(@Header("Authorization") String token);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://192.168.137.33:8080")
