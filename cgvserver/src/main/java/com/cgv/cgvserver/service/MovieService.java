@@ -64,6 +64,7 @@ public class MovieService {
 	public List<MovieDetailApiRespDto> findByBoxOfficeDate(String date) throws IOException {
 		return movieApiClient.findByBoxOfficeDate(date);
 	}
+	
 	@Transactional(readOnly = true)
 	public List<String> 트레일러리스트(String movieId) {
 		Query query = entityManager.createNativeQuery("SELECT thumbImageUrl FROM trailer WHERE movieId = ?")
@@ -110,6 +111,7 @@ public class MovieService {
 	@Transactional(readOnly = true)
 	public Movie 영화상세보기(String movieId) {
 		Movie movie = movieRepository.findById(movieId).orElseThrow(() -> {throw new NotFoundMovieException();});
+		
 		return movie;
 	}
 	@Transactional
