@@ -393,7 +393,7 @@ const Wrap = styled.div`
   width: 100%;
   display: inline-block;
   .slick-prev:before {
-    opaicty: 1; // 기존에 숨어있던 화살표 버튼이 보이게
+    opacity: 1; // 기존에 숨어있던 화살표 버튼이 보이게
     color: black; // 버튼 색은 검은색으로
     left: 0;
   }

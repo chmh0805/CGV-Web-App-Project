@@ -93,85 +93,88 @@ const BookingDetailItemContent = styled.div`
 `;
 
 const MyCgvReservedBox = ({ ticketings }) => {
-  console.log(ticketings);
-  return (
-    <>
-      {ticketings.map((ticketing) => {
-        let price = "";
-        let person = "";
-        let dayList = ["일", "월", "화", "수", "목", "금", "토"];
-        if (ticketing.personType === 0) {
-          price = "10,000";
-          person = "청소년";
-        } else if (ticketing.personType === 1) {
-          price = "13,000";
-          person = "일반";
-        } else if (ticketing.personType === 2) {
-          price = "5,000";
-          person = "우대";
-        }
-        return (
-          <ReservedItemBox>
-            <ReservedItemBookingNoBox>
-              <span>예매번호</span>
-              <ReservedItemBookingNo>
-                {ticketing.ticketNum}
-              </ReservedItemBookingNo>
-            </ReservedItemBookingNoBox>
-            <ReservedItemBookingInfoBox>
-              <ReservedItemBookingImg
-                src={ticketing.timeTable.movie.posterImgSrc}
-              />
-              <ReservedItemBookingDetail>
-                <BookingDetailTitle>
-                  <span>{ticketing.timeTable.movie.title}</span>
-                  <BookingBlueSpan>{price}원</BookingBlueSpan>
-                </BookingDetailTitle>
-                <BookingDetailContentBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람극장</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      {ticketing.timeTable.theater.name}
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람인원</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      {person} 1
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람일시</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      {ticketing.timeTable.date}(
-                      {dayList[new Date(ticketing.timeTable.date).getDay()]}){" "}
-                      {ticketing.timeTable.startTime}
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>관람좌석</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      {ticketing.seat.name}
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>상영관</BookingDetailItemTitle>
-                    <BookingDetailItemContent>
-                      {ticketing.seat.hall.name}
-                    </BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                  <BookingDetailItemBox>
-                    <BookingDetailItemTitle>매수</BookingDetailItemTitle>
-                    <BookingDetailItemContent>1매</BookingDetailItemContent>
-                  </BookingDetailItemBox>
-                </BookingDetailContentBox>
-              </ReservedItemBookingDetail>
-            </ReservedItemBookingInfoBox>
-          </ReservedItemBox>
-        );
-      })}
-    </>
-  );
+  if (!ticketings.length) {
+    return (
+      <>
+        {ticketings.map((ticketing) => {
+          let price = "";
+          let person = "";
+          let dayList = ["일", "월", "화", "수", "목", "금", "토"];
+          if (ticketing.personType === 0) {
+            price = "10,000";
+            person = "청소년";
+          } else if (ticketing.personType === 1) {
+            price = "13,000";
+            person = "일반";
+          } else if (ticketing.personType === 2) {
+            price = "5,000";
+            person = "우대";
+          }
+          return (
+            <ReservedItemBox>
+              <ReservedItemBookingNoBox>
+                <span>예매번호</span>
+                <ReservedItemBookingNo>
+                  {ticketing.ticketNum}
+                </ReservedItemBookingNo>
+              </ReservedItemBookingNoBox>
+              <ReservedItemBookingInfoBox>
+                <ReservedItemBookingImg
+                  src={ticketing.timeTable.movie.posterImgSrc}
+                />
+                <ReservedItemBookingDetail>
+                  <BookingDetailTitle>
+                    <span>{ticketing.timeTable.movie.title}</span>
+                    <BookingBlueSpan>{price}원</BookingBlueSpan>
+                  </BookingDetailTitle>
+                  <BookingDetailContentBox>
+                    <BookingDetailItemBox>
+                      <BookingDetailItemTitle>관람극장</BookingDetailItemTitle>
+                      <BookingDetailItemContent>
+                        {ticketing.timeTable.theater.name}
+                      </BookingDetailItemContent>
+                    </BookingDetailItemBox>
+                    <BookingDetailItemBox>
+                      <BookingDetailItemTitle>관람인원</BookingDetailItemTitle>
+                      <BookingDetailItemContent>
+                        {person} 1
+                      </BookingDetailItemContent>
+                    </BookingDetailItemBox>
+                    <BookingDetailItemBox>
+                      <BookingDetailItemTitle>관람일시</BookingDetailItemTitle>
+                      <BookingDetailItemContent>
+                        {ticketing.timeTable.date}(
+                        {dayList[new Date(ticketing.timeTable.date).getDay()]}){" "}
+                        {ticketing.timeTable.startTime}
+                      </BookingDetailItemContent>
+                    </BookingDetailItemBox>
+                    <BookingDetailItemBox>
+                      <BookingDetailItemTitle>관람좌석</BookingDetailItemTitle>
+                      <BookingDetailItemContent>
+                        {ticketing.seat.name}
+                      </BookingDetailItemContent>
+                    </BookingDetailItemBox>
+                    <BookingDetailItemBox>
+                      <BookingDetailItemTitle>상영관</BookingDetailItemTitle>
+                      <BookingDetailItemContent>
+                        {ticketing.seat.hall.name}
+                      </BookingDetailItemContent>
+                    </BookingDetailItemBox>
+                    <BookingDetailItemBox>
+                      <BookingDetailItemTitle>매수</BookingDetailItemTitle>
+                      <BookingDetailItemContent>1매</BookingDetailItemContent>
+                    </BookingDetailItemBox>
+                  </BookingDetailContentBox>
+                </ReservedItemBookingDetail>
+              </ReservedItemBookingInfoBox>
+            </ReservedItemBox>
+          );
+        })}
+      </>
+    );
+  } else {
+    return <></>;
+  }
 };
 
 export default MyCgvReservedBox;
