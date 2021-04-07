@@ -1,7 +1,10 @@
 package com.example.cgvapplication.activity;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.SuppressLint;
@@ -43,11 +46,14 @@ public class MovieDetailActivity extends AppCompatActivity {
     private String docId;
     private ExpectSaveReqDto expectSaveReqDto;
     private Review review;
+    public static final int REQUEST_CODE_ANOTHER = 1001;
+    private String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
         init();
+        Log.d(TAG, "onCreate: review: intentValue:"+review);
         mIvFavorite.setChecked(true);
         setSupportActionBar(mToolbarDefault);
         mMyNavigationHelper.enable(mLinearNavigation);
@@ -65,9 +71,12 @@ public class MovieDetailActivity extends AppCompatActivity {
         mTvToolbarTitle.setText(title);
         ViewPager mVpMovieDetailContainer = findViewById(R.id.vp_movie_detail_container);
         MovieDetailFragMentPagerAdapter mMovieDetailFragMentPagerAdapter = new MovieDetailFragMentPagerAdapter(getSupportFragmentManager(), 1);
-        review = (Review) getIntent().getSerializableExtra("review");
+        //review = (Review) getIntent().getSerializableExtra("review");
+        Intent intent = getIntent();
+        text = intent.getStringExtra("text");
+        Log.d(TAG, "init: text: "+text);
         mMovieDetailFragMentPagerAdapter.addFragment(new FragMovieDetailInfo(movieDetailActivity, docId));
-        mMovieDetailFragMentPagerAdapter.addFragment(new FragMovieDetailReview(movieDetailActivity, docId, title ,review));
+        mMovieDetailFragMentPagerAdapter.addFragment(new FragMovieDetailReview(movieDetailActivity, docId, title));
         mVpMovieDetailContainer.setAdapter(mMovieDetailFragMentPagerAdapter);
         mTabsMovieDetail.setupWithViewPager(mVpMovieDetailContainer);
 
@@ -178,9 +187,22 @@ public class MovieDetailActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
-        review = (Review) getIntent().getSerializableExtra("review");
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == REQUEST_CODE_ANOTHER) {
+            Log.d(TAG, "onActivityResult: resultCode: "+resultCode);
+            if(resultCode == RESULT_OK) {
+                Review review = (Review) data.getExtras().getSerializable("review");
+                Log.d(TAG, "onActivityResult: review: "+review);
+
+                FragMovieDetailReview fragMovieDetailReview = (FragMovieDetailReview) getSupportFragmentManager().findFragmentById(R.id.vp_movie_detail_container);
+                fragMovieDetailReview.test(review);
+
+            }
+
+        }
     }
+
 }

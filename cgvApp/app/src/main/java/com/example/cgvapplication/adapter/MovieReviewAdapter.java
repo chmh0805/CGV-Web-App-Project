@@ -30,7 +30,8 @@ public class MovieReviewAdapter extends RecyclerView.Adapter<MovieReviewAdapter.
 
     public void addItem(Review review) {
         reviews.add(review);
-        notifyDataSetChanged();
+        Log.d(TAG, "addItem: 여기는?");
+        this.notifyDataSetChanged();
     }
     public MovieReviewAdapter() {
 

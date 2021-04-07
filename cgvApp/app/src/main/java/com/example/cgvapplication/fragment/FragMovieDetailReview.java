@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -36,6 +37,7 @@ import retrofit2.Response;
 public class FragMovieDetailReview extends Fragment {
 
     private static final String TAG = "FragMovieDetailReview";
+    public static final int REQUEST_CODE_ANOTHER = 1001;
     private MovieDetailActivity movieDetailActivity;
     private RecyclerView mRvMovieReview;
     private MovieReviewAdapter mMovieReviewAdapter;
@@ -47,16 +49,19 @@ public class FragMovieDetailReview extends Fragment {
     private String review;
     private Review putReview;
 
-    public FragMovieDetailReview(MovieDetailActivity movieDetailActivity, String movieId, String title, Review putReview) {
+    public FragMovieDetailReview(MovieDetailActivity movieDetailActivity, String movieId, String title) {
         this.movieDetailActivity = movieDetailActivity;
         this.movieId = movieId;
         this.title = title;
-        this.putReview = putReview;
+        //this.putReview = putReview;
     }
 
-    public FragMovieDetailReview() {
-
+    public FragMovieDetailReview(Review review) {
+        Log.d(TAG, "FragMovieDetailReview: 여기호출");
+        putReview = review;
+        Log.d(TAG, "FragMovieDetailReview: review"+putReview);
     }
+    public FragMovieDetailReview(){}
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -64,10 +69,9 @@ public class FragMovieDetailReview extends Fragment {
         if(getArguments() != null) {
             review = getArguments().getString("review");
         }
+        Log.d(TAG, "onCreateView: 여기는 몇번이나?");
         init(view);
-        if(review == "review") {
-            reviewByMovieId(movieId);
-        }
+
         reviewByMovieId(movieId);
         listener();
         return view;
@@ -96,7 +100,7 @@ public class FragMovieDetailReview extends Fragment {
                 Intent intent = new Intent(movieDetailActivity, ReviewActivity.class);
                 intent.putExtra("docId", movieId);
                 intent.putExtra("title", title);
-                movieDetailActivity.startActivity(intent);
+                movieDetailActivity.startActivityForResult(intent, REQUEST_CODE_ANOTHER);
             }
 
         });
@@ -123,9 +127,9 @@ public class FragMovieDetailReview extends Fragment {
         });
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        mMovieReviewAdapter.notifyDataSetChanged();
+    public void test(Review review) {
+        Log.d(TAG, "test: 테스트입니당: "+ review);
+        reviewByMovieId(movieId);
     }
+
 }
