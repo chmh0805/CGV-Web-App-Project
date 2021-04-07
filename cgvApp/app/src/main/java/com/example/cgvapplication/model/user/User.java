@@ -1,6 +1,11 @@
 package com.example.cgvapplication.model.user;
 
+import com.example.cgvapplication.model.expectmovie.ExpectMovie;
+import com.example.cgvapplication.model.frequentlycgv.FrequentlyCgv;
+import com.example.cgvapplication.model.ticketing.Ticketing;
+
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,4 +28,8 @@ public class User {
     private Boolean agreeAd;
     private Timestamp agreeDate;
     private String profileImage; //url
+
+    private List<ExpectMovie> expectMovies;
+    private List<FrequentlyCgv>  frequentlyCgvs;
+    private List<Ticketing> ticketings;
 }

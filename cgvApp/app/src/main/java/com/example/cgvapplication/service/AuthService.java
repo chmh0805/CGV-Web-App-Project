@@ -18,7 +18,8 @@ import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
-public interface AuthService {
+public interface
+AuthService {
 
     @POST("/login")
     Call<Void> login(@Body LoginReqDto loginReqDto);
@@ -30,7 +31,7 @@ public interface AuthService {
     Call<CMRespDto<String>> findByUsername(@Body String username);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://112.162.114.11:8080")
+            .baseUrl("http://113.198.238.134:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

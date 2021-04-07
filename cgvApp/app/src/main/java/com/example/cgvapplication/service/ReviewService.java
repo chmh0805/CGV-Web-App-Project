@@ -32,7 +32,7 @@ public interface ReviewService {
     Call<CMRespDto<List<ReviewFindRespDto>>> reviewByMovieId(@Path("movieId") String movieId);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://112.162.114.11:8080")
+            .baseUrl("http://113.198.238.134:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

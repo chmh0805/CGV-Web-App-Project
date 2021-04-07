@@ -10,29 +10,40 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
+import com.example.cgvapplication.activity.FrequentlyCgvActivity;
+import com.example.cgvapplication.model.theater.Theater;
 
 import java.util.List;
 
 public class FrequentlyCGVAdapter extends RecyclerView.Adapter<FrequentlyCGVAdapter.MyViewHolder> {
 
-    private final List<String> locations;
+    private final List<Theater> theaters;
+    private final FrequentlyCgvActivity frequentlyCgvActivity;
+    private final String token;
 
-    public FrequentlyCGVAdapter(List<String> locations) {
-        this.locations = locations;
+    public FrequentlyCGVAdapter(List<Theater> theaters, FrequentlyCgvActivity frequentlyCgvActivity, String token) {
+        this.theaters = theaters;
+        this.frequentlyCgvActivity = frequentlyCgvActivity;
+        this.token = token;
     }
 
-    public void addItem(String location) {
-        this.locations.add(location);
+    public void addItem(Theater theater) {
+        this.theaters.add(theater);
         notifyDataSetChanged();
     }
 
-    public void removeItem(String location) {
-        this.locations.remove(location);
+    public void addItems(List<Theater> theaters) {
+        this.theaters.addAll(theaters);
         notifyDataSetChanged();
     }
 
-    public List<String> findAll() {
-        return this.locations;
+    public void removeItem(Theater theater) {
+        this.theaters.remove(theater);
+        notifyDataSetChanged();
+    }
+
+    public List<Theater> findAll() {
+        return this.theaters;
     }
 
     @NonNull
@@ -45,15 +56,15 @@ public class FrequentlyCGVAdapter extends RecyclerView.Adapter<FrequentlyCGVAdap
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.setItem(locations.get(position));
+        holder.setItem(theaters.get(position));
         holder.btnFrequentlyCGVRemove.setOnClickListener(v -> {
-            removeItem(locations.get(position));
+            frequentlyCgvActivity.deleteFreqCgv(theaters.get(position).getId(), token, position);
         });
     }
 
     @Override
     public int getItemCount() {
-        return locations.size();
+        return theaters.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -68,8 +79,8 @@ public class FrequentlyCGVAdapter extends RecyclerView.Adapter<FrequentlyCGVAdap
             btnFrequentlyCGVRemove = itemView.findViewById(R.id.btn_frequently_cgv_remove);
         }
 
-        private void setItem(String location) {
-            tvFrequentlyCGVTitle.setText(location);
+        private void setItem(Theater theater) {
+            tvFrequentlyCGVTitle.setText(theater.getName().substring(theater.getName().indexOf("V")+1));
         }
     }
 }

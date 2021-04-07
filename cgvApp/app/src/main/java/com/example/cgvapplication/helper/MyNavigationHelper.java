@@ -206,8 +206,6 @@ public class MyNavigationHelper {
                 mClProfile.setVisibility(View.GONE);
             }
             mDrawer.openDrawer(GravityCompat.END);
-            Log.d(TAG, "listener: "+mTvGoLogin.getVisibility()); // Gone = 8
-            Log.d(TAG, "listener: "+mClProfile.getVisibility()); // Visible = 0
         });
 
         mIvClose.setOnClickListener(v -> {
