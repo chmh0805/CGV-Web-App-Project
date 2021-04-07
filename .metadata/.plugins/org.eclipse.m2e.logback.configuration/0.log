@@ -10929,6 +10929,7 @@
 2021-04-07 01:55:34,556 [Worker-13: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\workspace\lastproject\cgvserver\src\test\resources
 >>>>>>> c7e880fa1fd2fff0a48972ef87ed09a593839a2e
 2021-04-07 02:41:04,593 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+<<<<<<< HEAD
 2021-04-07 09:47:16,492 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
 2021-04-07 09:48:27,220 [Worker-5: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
 2021-04-07 09:48:30,534 [Worker-5: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.cgv:cgvserver:0.0.1-SNAPSHOT @ C:\workspace\CGV-Web-App-Project\cgvserver\pom.xml.
@@ -11359,3 +11360,6 @@
 2021-04-07 13:00:28,926 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
 2021-04-07 13:00:28,927 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
 2021-04-07 13:00:28,927 [Worker-81: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\workspace\CGV-Web-App-Project\cgvserver\src\test\resources
+=======
+2021-04-07 09:35:57,580 [Worker-0: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)

@@ -3,8 +3,10 @@ package com.example.cgvapplication.activity;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,7 +51,7 @@ public class ReviewActivity extends AppCompatActivity {
     private Review review = new Review();
     private boolean isSuccess = false;
     private RecyclerView mRvMovieReview;
-    private FragMovieDetailReview fragMovieDetailReview = new FragMovieDetailReview();
+    //private FragMovieDetailReview fragMovieDetailReview = new FragMovieDetailReview();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,11 +115,9 @@ public class ReviewActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     Toast.makeText(reviewActivity, "성공적으로 작성되었습니다. ", Toast.LENGTH_SHORT).show();
                     review = response.body().getData();
-                    movieReviewAdapter.addItem(review);
-//                    Intent intent = new Intent(ReviewActivity.this, MovieDetailActivity.class);
-//                    intent.putExtra("review", review);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                    startActivity(intent);
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("review", review);
+                    setResult(RESULT_OK, resultIntent);
                     finish();
                 }
                 Log.d(TAG, "onResponse: response" + response);
@@ -130,5 +130,5 @@ public class ReviewActivity extends AppCompatActivity {
         });
 
     }
-    
+
 }
