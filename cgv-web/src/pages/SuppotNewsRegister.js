@@ -19,7 +19,7 @@ const RegisterContainer = styled.div`
 
 const SuppotNewsRegister = (props) => {
   const [noticeReqDto, setNoticeReqDto] = useState({
-    sort: "",
+    sort: '',
     title: "",
     content: "",
   });
@@ -34,7 +34,8 @@ const SuppotNewsRegister = (props) => {
   };
 
   const handleCatChange = (e) => {
-    setNoticeReqDto({ sort: e.target.value });
+    setNoticeReqDto({ ...noticeReqDto, sort: e.target.value });
+    console.log(noticeReqDto);
   };
 
   const saveNotice = (e) => {

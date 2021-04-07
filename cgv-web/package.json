@@ -11,7 +11,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "popper.js": "^1.16.1",
-    "react": "^17.0.1",
+    "react": "^17.0.2",
     "react-alice-carousel": "^2.4.0",
     "react-bootstrap": "^1.5.1",
     "react-calendar": "^3.3.1",

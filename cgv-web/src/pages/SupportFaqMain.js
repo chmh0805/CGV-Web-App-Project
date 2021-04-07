@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
-import btnPaging from "../images/button/btn_paging.gif";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { getCookie, setCookie } from "../utils/JWT";
 import BoardPagingBox from "../components/support/BoardPagingBox";

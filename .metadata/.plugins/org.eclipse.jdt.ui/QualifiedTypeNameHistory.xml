@@ -1,2 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RestController"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
+    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
+    <fullyQualifiedTypeName name="lombok.RequiredArgsConstructor"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.freqeuntlycgv.FrequentlyCgvRepository"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.service.FrequentlyCgvService"/>
+    <fullyQualifiedTypeName name="org.springframework.security.access.prepost.PostAuthorize"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
+    <fullyQualifiedTypeName name="lombok.Data"/>
+    <fullyQualifiedTypeName name="lombok.Builder"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestBody"/>
+    <fullyQualifiedTypeName name="java.sql.Timestamp"/>
+    <fullyQualifiedTypeName name="org.hibernate.annotations.CreationTimestamp"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.frequentlycgv.FrequentlyCgvSaveReqDto"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.user.UserRepository"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.theater.TheaterRepository"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.user.User"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundUserException"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.theater.Theater"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.handler.exception.NotFoundTheaterException"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.domain.freqeuntlycgv.FrequentlyCgv"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.DeleteMapping"/>
+    <fullyQualifiedTypeName name="com.cgv.cgvserver.web.dto.CommonRespDto"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestHeader"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
+    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Modifying"/>
+    <fullyQualifiedTypeName name="org.springframework.transaction.annotation.Transactional"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonIgnoreProperties"/>
+</qualifiedTypeNameHistroy>

@@ -17,6 +17,16 @@ public class AuthService {
 	
 	@Transactional
 	public int 회원가입(User user) {
+		String name = user.getName().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		String nickname = user.getNickname().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		String email = user.getEmail().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		String password = user.getPassword().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		String username = user.getUsername().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		user.setName(name);
+		user.setNickname(nickname);
+		user.setEmail(email);
+		user.setPassword(password);
+		user.setUsername(username);
 		User userEntity = userRepository.save(user);
 		if (userEntity != null) {
 			return 1;

@@ -45,6 +45,8 @@ public class ReviewService {
 	
 	@Transactional
 	public Review 리뷰등록(String movieId, long userId, String content, int isLike) {
+		content.replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		
 		Movie movieEntity = movieRepository.findById(movieId)
 				.orElseThrow(() -> {throw new NotFoundMovieException();});
 		

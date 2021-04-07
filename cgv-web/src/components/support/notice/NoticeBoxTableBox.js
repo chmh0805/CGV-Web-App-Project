@@ -113,6 +113,7 @@ const SearchTableContentReadCount = styled.div`
 `;
 
 const NoticeBoxTableBox = ({ notices }) => {
+  console.log(notices);
   return (
     <SearchTableBox>
       <SearchTableTitle>

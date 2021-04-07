@@ -57,15 +57,19 @@ public class UserService {
 	
 	@Transactional
 	public User 회원정보수정(Long id, UserUpdateReqDto updateReqDto) {
-		User userEntity = userRepository.findById(id)
-				.orElseThrow(() -> {throw new NotFoundUserException();});
-		String rawPassword = updateReqDto.getPassword();
+		String nickname = updateReqDto.getNickname().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
+		String email = updateReqDto.getEmail().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");;
+		String rawPassword = updateReqDto.getPassword().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");;
+		String phone = updateReqDto.getPhone().trim().replaceAll(">", "&gt;").replaceAll("<", "&lt;");;
 		String encPassword = encoder.encode(rawPassword);
 		
-		userEntity.setNickname(updateReqDto.getNickname());
+		User userEntity = userRepository.findById(id)
+				.orElseThrow(() -> {throw new NotFoundUserException();});
+		
+		userEntity.setNickname(nickname);
 		userEntity.setPassword(encPassword);
-		userEntity.setEmail(updateReqDto.getEmail());
-		userEntity.setPhone(updateReqDto.getPassword());
+		userEntity.setEmail(email);
+		userEntity.setPhone(phone);
 		
 		return userEntity;
 	}
