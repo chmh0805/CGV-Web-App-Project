@@ -2,6 +2,7 @@ package com.cgv.cgvserver.handler;
 
 import java.util.List;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import com.cgv.cgvserver.handler.exception.logs.ExceptionLogRepository;
 
 import lombok.RequiredArgsConstructor;
 
+@EnableScheduling
 @RequiredArgsConstructor
 @Component
 public class MyBatch {
