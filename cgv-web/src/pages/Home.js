@@ -10,6 +10,7 @@ import carouselImg03 from "../images/home/home_carousel_img03.jpg";
 import CommentIcon from "@material-ui/icons/Comment";
 import { getCookie } from "../utils/JWT";
 import { setRole } from "../utils/AuthUtil";
+import HomeNoticeSectionBox from '../components/home/HomeNoticeSectionBox'
 
 const CarouselSection = styled.section`
   width: auto;
@@ -120,44 +121,10 @@ const HomeNoticeSectionTitle = styled.span`
   font-weight: 600;
 `;
 
-const HomeNoticeSectionContentBox = styled.div`
-  width: 730px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 5px;
-`;
-
-const HomeNoticeSectionContent = styled(Link)`
-  color: #666;
-`;
-
-const HomeNoticeSectionDateBox = styled.div`
-  width: 150px;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 5px;
-  font-size: 14px;
-`;
-
-const HomeNoticeSectionDate = styled.span``;
-
 const Home = () => {
-  const [noticeOne, setNoticeOne] = useState({});
   if (getCookie("cgvJWT") !== undefined && getCookie("role") === undefined) {
     setRole(getCookie("userId"));
   }
-
-  useEffect(() => {
-    fetch("http://localhost:8080/notice/limit/1")
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        if (res.statusCode === 1) {
-          setNoticeOne(res.data[0]);
-        }
-      });
-  }, []);
 
   return (
     <div>
@@ -225,14 +192,7 @@ const Home = () => {
               <HomeNoticeSectionTitle>공지사항</HomeNoticeSectionTitle>
             </Link>
           </div>
-          <HomeNoticeSectionContentBox>
-            <HomeNoticeSectionContent>
-              {noticeOne.title}
-            </HomeNoticeSectionContent>
-          </HomeNoticeSectionContentBox>
-          <HomeNoticeSectionDateBox>
-            <HomeNoticeSectionDate>2020.08.16</HomeNoticeSectionDate>
-          </HomeNoticeSectionDateBox>
+          <HomeNoticeSectionBox />
         </HomeNoticeSection>
       </HomeMiddleToBottomContainer>
     </div>

@@ -21,7 +21,11 @@ public interface SupportService {
     Call<CMRespDto<List<Notice>>> findAllNotice();
 
     public static final Retrofit retrofit = new Retrofit.Builder()
+<<<<<<< HEAD
             .baseUrl("http://172.17.107.227:8080")
+=======
+            .baseUrl("http://10.0.2.2:8080")
+>>>>>>> master
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

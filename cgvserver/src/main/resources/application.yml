@@ -13,11 +13,13 @@ spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
     hibernate:      ddl-auto: update
       naming:        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
       use-new-id-generator-mappings: false
-    show-sql: true
+    show-sql: false
     properties:      hibernate.format_sql: true
   
   jackson:    serialization:      fail-on-empty-beans: false
       
   servlet:    multipart:      enabled: true  batch:    job:      enabled: false
 file:
-  path: C:\Users\SAMSUNG\OneDrive\바탕 화면\CGV-Web-App-Project\cgvserver\src\main\resources\upload
+
+  path: C:\workspace\CGV-Web-App-Project\cgvserver\bin\src\main\resources\upload\
+

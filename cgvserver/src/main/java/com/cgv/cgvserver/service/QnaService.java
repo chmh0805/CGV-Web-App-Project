@@ -41,10 +41,14 @@ public class QnaService {
 	
 	@Transactional
 	public void 문의등록(long userId, QnaSaveReqDto qnaSaveReqDto) {
+		String content = qnaSaveReqDto.getContent()
+							.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+		
 		User userEntity = userRepository.findById(userId)
 				.orElseThrow(() -> {throw new NotFoundUserException();});
 		
 		Qna qna = qnaSaveReqDto.toEntity(userEntity);
+		qna.setContent(content);
 		qnaRepository.save(qna);
 	}
 	
