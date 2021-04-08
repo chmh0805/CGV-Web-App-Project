@@ -39,7 +39,7 @@ import MyCgvMyQnaDetail from "./pages/MyCgvMyQnaDetail";
 import SupportNewsDetail from "./pages/SupportNewsDetail";
 import SupportFaqDetail from "./pages/SupportFaqDetail";
 import TimeTableRegister from "./pages/TimeTableRegister";
-
+import ReviewRegister from "./pages/ReviewRegister";
 
 function App() {
   return (
@@ -113,6 +113,12 @@ function App() {
       <Route path="/movies/detail" exact={true} component={MovieDetail} />
       {/* 내가 쓴 평점 */}
       <Route path="/user/myReview" exact={true} component={MyMovieReview} />
+      {/* 평점 등록*/}
+      <Route
+        path="/user/review/register"
+        exact={true}
+        component={ReviewRegister}
+      />
       {/* Movie 영역 끝 */}
 
       {/* 극장 영역 */}

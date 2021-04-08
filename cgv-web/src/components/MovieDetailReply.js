@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import userImg from "../images/movieDetail/profile.gif";
+import badEgg from "../images/movieDetail/bad_egg.png";
+import goodEgg from "../images/movieDetail/good_egg.png";
 
 const MovieReplyBox = styled.li`
   width: 370px;
@@ -60,6 +62,7 @@ const MovieDetailReply = ({ reviews }) => {
             <ReplyUserImg src={userImg} />
           </ReplyUserImgBox>
           <MovieReplyContent>
+            <img src={goodEgg} style={{ marginRight: "3px" }} />
             <span>{review.user.nickname}</span>
             <p>{review.content}</p>
             <ReplyDate>

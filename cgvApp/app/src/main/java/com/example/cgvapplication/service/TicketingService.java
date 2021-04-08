@@ -26,7 +26,7 @@ public interface TicketingService {
     Call<CMRespDto<Long>> findByTimeTableId(@Path("timeTableId") long timeTableId);
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://112.162.114.11:8080")
+            .baseUrl("http://172.17.107.227:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

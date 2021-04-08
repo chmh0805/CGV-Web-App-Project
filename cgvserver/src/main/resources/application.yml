@@ -20,4 +20,4 @@ spring:  datasource:    driver-class-name: com.mysql.cj.jdbc.Driver
       
   servlet:    multipart:      enabled: true  batch:    job:      enabled: false
 file:
-  path: D:\workspace\lastproject\cgvserver\src\main\resources\upload\
+  path: C:\Users\SAMSUNG\OneDrive\바탕 화면\CGV-Web-App-Project\cgvserver\src\main\resources\upload

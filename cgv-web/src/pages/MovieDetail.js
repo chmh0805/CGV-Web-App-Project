@@ -673,7 +673,14 @@ const MovieDetail = (props) => {
                 {reviews.length}명의 실관람객이 평가해주셨습니다.
               </MDReplyInfoSubText>
               <MDReplyInfoBtnBox>
-                <Link>
+                <Link
+                  to={{
+                    pathname: "/user/review/register",
+                    state: {
+                      movieDocId: movie.docId,
+                    },
+                  }}
+                >
                   <MDReplyBtn>평점작성</MDReplyBtn>
                 </Link>
                 <Link to="/user/myReview">

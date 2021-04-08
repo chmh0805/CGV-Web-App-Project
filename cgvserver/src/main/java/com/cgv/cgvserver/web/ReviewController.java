@@ -1,5 +1,6 @@
 package com.cgv.cgvserver.web;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,6 +35,7 @@ public class ReviewController {
 		return new CommonRespDto<>(1, reviewService.유저아이디로찾기(userId));
 	}
 	
+	@CrossOrigin
 	@PostMapping("/review")
 	public CommonRespDto<?> save(@RequestHeader("Authorization") String jwtToken, @RequestBody ReviewSaveReqDto reviewSaveReqDto) {
 		String token = jwtToken.substring(7);
