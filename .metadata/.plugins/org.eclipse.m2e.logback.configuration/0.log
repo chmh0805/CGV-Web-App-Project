@@ -9783,3 +9783,18 @@
 2021-04-04 19:30:10,957 [Worker-11: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Programing\workspace\CGV-Web-App-Project\cgvserver\src\test\resources
 >>>>>>> a36a47f82a3537b0d3125d6902bbf586a62b2839
 >>>>>>> master
+2021-04-08 15:36:45,847 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2021-04-08 15:37:46,313 [Worker-5: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update started
+2021-04-08 15:37:47,700 [Worker-5: Update Maven projects configuration] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: com.cgv:cgvserver:0.0.1-SNAPSHOT @ D:\HeeJin\mylab\project\CGV-Web-App-Project\cgvserver\pom.xml.
+2021-04-08 15:37:48,890 [Worker-5: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /cgvserver/src/main/java
+2021-04-08 15:37:48,890 [Worker-5: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /cgvserver/src/main/resources
+2021-04-08 15:37:48,900 [Worker-5: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding resource folder /cgvserver/src/main/resources
+2021-04-08 15:37:48,910 [Worker-5: Update Maven projects configuration] INFO  o.e.m.j.i.AbstractJavaProjectConfigurator - Adding source folder /cgvserver/src/test/java
+2021-04-08 15:37:55,295 [Worker-5: Update Maven projects configuration] INFO  o.e.m.c.i.p.ProjectConfigurationManager - Update completed: 8 sec
+2021-04-08 15:37:57,342 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-04-08 15:37:57,342 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-04-08 15:37:57,345 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 1 resource
+2021-04-08 15:37:57,357 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 5 resources
+2021-04-08 15:37:57,387 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered resources.
+2021-04-08 15:37:57,387 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Using 'UTF-8' encoding to copy filtered properties files.
+2021-04-08 15:37:57,387 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory D:\HeeJin\mylab\project\CGV-Web-App-Project\cgvserver\src\test\resources
