@@ -6,7 +6,11 @@
   <children xsi:type="basic:TrimmedWindow" xmi:id="_PcvokYr7EeuAj8QcV35UOg" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_Pcvokor7EeuAj8QcV35UOg" label="%trimmedwindow.label.eclipseSDK" x="723" y="53" width="1298" height="1053">
 =======
   <children xsi:type="basic:TrimmedWindow" xmi:id="_PcvokYr7EeuAj8QcV35UOg" elementId="IDEWindow" contributorURI="platform:/plugin/org.eclipse.platform" selectedElement="_Pcvokor7EeuAj8QcV35UOg" label="%trimmedwindow.label.eclipseSDK" x="67" y="42" width="1298" height="920">
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
     <persistedState key="coolBarVisible" value="true"/>
     <persistedState key="perspectiveBarVisible" value="true"/>
     <persistedState key="isRestored" value="true"/>
@@ -363,7 +367,11 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_vH2EgJNjEeufEIKjGLT7gQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_PcyHEIr7EeuAj8QcV35UOg"/>
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_RKhC55c5EeuVnYLvy3TkiQ" elementId="print" visible="false" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/print_edit.png" tooltip="Print" command="_PcyHEIr7EeuAj8QcV35UOg"/>
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_PcwSror7EeuAj8QcV35UOg" elementId="group.edit" toBeRendered="false">
         <tags>toolbarSeparator</tags>
@@ -398,7 +406,11 @@
         <children xsi:type="menu:HandledToolItem" xmi:id="_vH4gwJNjEeufEIKjGLT7gQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_PcyGwYr7EeuAj8QcV35UOg"/>
 =======
         <children xsi:type="menu:HandledToolItem" xmi:id="_RKqM2Jc5EeuVnYLvy3TkiQ" elementId="org.eclipse.ui.window.pinEditor" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/pin_editor.png" tooltip="Pin Editor" enabled="false" type="Check" command="_PcyGwYr7EeuAj8QcV35UOg"/>
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
       </children>
       <children xsi:type="menu:ToolBar" xmi:id="_Pcw2tYr7EeuAj8QcV35UOg" elementId="org.eclipse.jdt.ui.CompilationUnitEditor" visible="false">
         <tags>Draggable</tags>

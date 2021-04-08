@@ -4562,7 +4562,11 @@ java.lang.NullPointerException: Cannot invoke "org.eclipse.core.variables.Variab
 !SESSION 2021-04-07 09:46:48.535 -----------------------------------------------
 =======
 !SESSION 2021-04-07 09:35:28.446 -----------------------------------------------
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 eclipse.buildId=4.9.0.202012132054
 java.version=15.0.1
 java.vendor=Oracle Corporation
@@ -4578,7 +4582,11 @@ Command-line arguments:  -os win32 -ws win32 -arch x86_64 -product org.springfra
 !ENTRY org.eclipse.jface 2 0 2021-04-07 09:35:48.351
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2021-04-07 09:35:48.351
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 !MESSAGE A conflict occurred for CTRL+SHIFT+T:
 Binding(CTRL+SHIFT+T,
 	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
@@ -4588,7 +4596,11 @@ Binding(CTRL+SHIFT+T,
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@218e186b,
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@15549dd7,
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -4600,7 +4612,11 @@ Binding(CTRL+SHIFT+T,
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@12925d2,
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@1e75af65,
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.contexts.window,,,system)
@@ -5692,7 +5708,11 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 !ENTRY org.eclipse.jface 2 0 2021-04-07 09:45:32.645
 !MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
 !SUBENTRY 1 org.eclipse.jface 2 0 2021-04-07 09:45:32.645
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 !MESSAGE A conflict occurred for CTRL+SHIFT+C:
 Binding(CTRL+SHIFT+C,
 	ParameterizedCommand(Command(org.eclipse.tm4e.languageconfiguration.togglelinecommentcommand,Toggle Line Comment,
@@ -5702,7 +5722,11 @@ Binding(CTRL+SHIFT+C,
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@556f1cc9,
 =======
 		org.eclipse.ui.internal.WorkbenchHandlerServiceHandler@3160fef3,
+<<<<<<< HEAD
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.textEditorScope,,,system)
@@ -6004,6 +6028,12 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 		,,true),null),
 	org.eclipse.ui.defaultAcceleratorConfiguration,
 	org.eclipse.ui.textEditorScope,,,system)
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+=======
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
 >>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
 !SESSION 2021-04-08 09:47:36.588 -----------------------------------------------
 eclipse.buildId=4.9.0.202012132054
@@ -6166,3 +6196,7 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.ui 2 2 2021-04-08 10:08:09.598
 !MESSAGE Invalid property category path: org.springframework.ide.eclipse.beans.ui.properties.ProjectPropertyPage (bundle: org.springframework.ide.eclipse.xml.namespaces, propertyPage: org.springframework.ide.eclipse.beans.ui.namespaces.projectPropertyPage)
+<<<<<<< HEAD
+=======
+>>>>>>> 11c9eca (v0.7.8 Batch로 Exception log 생성 구현 완료)
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
