@@ -7,7 +7,7 @@ import playBtn from "../images/movieDetail/play_icon.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
-import { deleteCookie, getCookie, isLogined, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, isLogined } from "../utils/JWT";
 import Slider from "react-slick";
 import BoardPagingBox from "../components/support/BoardPagingBox";
 
@@ -306,13 +306,13 @@ const AsidesBannerImg = styled.img`
 
 const MDAdBox = styled.div`
   position: absolute;
-  left: 1080px;
+  left: calc(50% - 690px);
   top: 550px;
 `;
 
 const MDAdBox2 = styled.div`
   position: absolute;
-  left: 1080px;
+  left: calc(50% - 690px);
   top: 860px;
 `;
 
@@ -426,8 +426,6 @@ const MovieDetail = (props) => {
   const [trailers, setTrailers] = useState([]);
   const [stillCuts, setStillCuts] = useState([]);
   const [reviews, setReviews] = useState([]);
-
-  const [isExpect, setIsExpect] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:8080/movie/" + movieDocId)
