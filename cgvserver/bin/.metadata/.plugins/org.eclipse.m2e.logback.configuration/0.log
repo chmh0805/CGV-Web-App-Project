@@ -6,5 +6,12 @@
 <<<<<<< HEAD
 =======
 2021-04-07 09:36:22,925 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+<<<<<<< HEAD
+>>>>>>> ecc95c714e9358e64136ecd25c942c5230834561
+=======
 >>>>>>> 9589d87 (v0.8.2 리뷰 오류 수정)
+<<<<<<< HEAD
 >>>>>>> master
+=======
+>>>>>>> 91acfe9b3ab37d3543a0bb33134db20e7641cf60
+>>>>>>> 71602da61ede75717fa66abf274afb98c91ec358
