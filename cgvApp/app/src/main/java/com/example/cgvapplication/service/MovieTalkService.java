@@ -21,7 +21,7 @@ public interface MovieTalkService {
     Call<CMRespDto<List<MovieTalk>>> findAll();
 
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.137.33:8080")
+            .baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

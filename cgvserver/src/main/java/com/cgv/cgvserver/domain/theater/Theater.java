@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import com.cgv.cgvserver.domain.hall.Hall;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,6 +37,7 @@ public class Theater { //CGV서면점
 	
 	private String theaterImageUrl; // 극장 사진 url
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "theater", cascade = CascadeType.REMOVE)
 	private List<Hall> halls; // B홀 8층 A홀 7층
 }

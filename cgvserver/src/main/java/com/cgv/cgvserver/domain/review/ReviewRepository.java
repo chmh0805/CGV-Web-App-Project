@@ -12,4 +12,6 @@ public interface ReviewRepository extends JpaRepository<Review, Long> {
 	
 	@Query(nativeQuery = true, value = "SELECT * FROM review WHERE userId = :userId ORDER BY id DESC")
 	List<Review> mFindByUserIdDesc(long userId);
+	
+
 }

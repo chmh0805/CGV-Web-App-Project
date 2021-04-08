@@ -11,7 +11,29 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cgvapplication.R;
 
+import java.util.List;
+
 public class FrequentlyCGVAdapter extends RecyclerView.Adapter<FrequentlyCGVAdapter.MyViewHolder> {
+
+    private final List<String> locations;
+
+    public FrequentlyCGVAdapter(List<String> locations) {
+        this.locations = locations;
+    }
+
+    public void addItem(String location) {
+        this.locations.add(location);
+        notifyDataSetChanged();
+    }
+
+    public void removeItem(String location) {
+        this.locations.remove(location);
+        notifyDataSetChanged();
+    }
+
+    public List<String> findAll() {
+        return this.locations;
+    }
 
     @NonNull
     @Override
@@ -23,12 +45,15 @@ public class FrequentlyCGVAdapter extends RecyclerView.Adapter<FrequentlyCGVAdap
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-
+        holder.setItem(locations.get(position));
+        holder.btnFrequentlyCGVRemove.setOnClickListener(v -> {
+            removeItem(locations.get(position));
+        });
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return locations.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -41,6 +66,10 @@ public class FrequentlyCGVAdapter extends RecyclerView.Adapter<FrequentlyCGVAdap
 
             tvFrequentlyCGVTitle = itemView.findViewById(R.id.tv_frequently_cgv_title);
             btnFrequentlyCGVRemove = itemView.findViewById(R.id.btn_frequently_cgv_remove);
+        }
+
+        private void setItem(String location) {
+            tvFrequentlyCGVTitle.setText(location);
         }
     }
 }

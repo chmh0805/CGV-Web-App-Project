@@ -57,5 +57,22 @@ public class ExpectMovieController {
 		String docId = expectMovieService.기대되는영화하나가져오기(movieId, userId);
 		return new CommonRespDto<>(1,docId);
 	}
+
+	@PostMapping("/expectMovie/{movieId}/expect")
+	public CommonRespDto<?> expect(@RequestHeader("Authorization") String jwtToken, @PathVariable String movieId){
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		
+		expectMovieService.기대돼요(userId, movieId);
+		return new CommonRespDto<>(1, null);
+	}
 	
+	@DeleteMapping("/expectMovie/{movieId}/expect")
+	public CommonRespDto<?> Unexpect(@RequestHeader("Authorization") String jwtToken, @PathVariable String movieId){
+		String token = jwtToken.substring(7);
+		Long userId = MyJWT.getId(token);
+		
+		expectMovieService.기대돼요취소(userId, movieId);
+		return new CommonRespDto<>(1, null);
+	}
 }

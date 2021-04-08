@@ -27,4 +27,6 @@ public class TimeTableTheaterRespDto {
     private Integer runningTime;
     private String title;
     private BigInteger seatCount;
+
+    private String screeningDate;
 }

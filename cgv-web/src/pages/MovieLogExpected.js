@@ -203,10 +203,12 @@ const MovieLogExpected = () => {
           <WatchedMovieListBox id="movieListBox">
             {expectMovies.map((expectMovie) => (
               <WatchedMovieListItem>
-                <WatchedMovieImg src="https://img.cgv.co.kr/Movie/Thumbnail/Poster/000082/82481/82481_185.jpg" />
+                <WatchedMovieImg src={expectMovie.movie.posterImgSrc} />
                 <WatchedMovieInfo>
                   <WatchedMovieInfoTitle>
-                    <WatchedMovieInfoStrong>제목</WatchedMovieInfoStrong>
+                    <WatchedMovieInfoStrong>
+                      {expectMovie.movie.title}
+                    </WatchedMovieInfoStrong>
                   </WatchedMovieInfoTitle>
                 </WatchedMovieInfo>
               </WatchedMovieListItem>

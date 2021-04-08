@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
-import { deleteCookie, getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie } from "../utils/JWT";
 
 const MDCon = styled.div`
   width: 100%;

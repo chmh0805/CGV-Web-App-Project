@@ -6,10 +6,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,7 @@ public class FragMovieTalk extends Fragment {
     private final FragMovieTalk fragMovieTalk = this;
     private List<MovieTalk> movieTalkList;
     private RecyclerView rvMovieTalkContainer;
+    private ConstraintLayout mClMovieTalkUerInfo;
 
     @Nullable
     @Override
@@ -49,7 +52,7 @@ public class FragMovieTalk extends Fragment {
 
     private void init(View view) {
         rvMovieTalkContainer = view.findViewById(R.id.rv_movietalk_container);
-
+        mClMovieTalkUerInfo = view.findViewById(R.id.cl_movietalk_userInfo);
     }
 
     private void findAll(View view) {

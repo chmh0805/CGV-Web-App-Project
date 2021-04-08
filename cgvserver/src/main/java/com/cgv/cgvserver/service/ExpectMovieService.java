@@ -29,8 +29,8 @@ public class ExpectMovieService {
 	private final EntityManager entityManager;
 	
 	@Transactional(readOnly = true)
-	public List<ExpectMovie> 기대되는영화찾기(long id) {
-		return expectMovieRepository.findByUserId(id);
+	public List<ExpectMovie> 기대되는영화찾기(long userId) {
+		return expectMovieRepository.findByUserId(userId);
 	}
 	
 	@Transactional
@@ -69,5 +69,15 @@ public class ExpectMovieService {
 		
 		return docId;
 		
+	}
+	
+	@Transactional
+	public void 기대돼요(long userId, String movieId) {
+		expectMovieRepository.mExpect(userId, movieId);
+	}
+	
+	@Transactional
+	public void 기대돼요취소(long userId, String movieId) {
+		expectMovieRepository.mUnExpect(userId, movieId);
 	}
 }

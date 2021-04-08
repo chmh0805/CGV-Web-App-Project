@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Carousel } from "react-bootstrap";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import carouselImg03 from "../images/home/home_carousel_img03.jpg";
 import CommentIcon from "@material-ui/icons/Comment";
 import { getCookie } from "../utils/JWT";
 import { setRole } from "../utils/AuthUtil";
+import HomeNoticeSectionBox from '../components/home/HomeNoticeSectionBox'
 
 const CarouselSection = styled.section`
   width: auto;
@@ -120,32 +121,11 @@ const HomeNoticeSectionTitle = styled.span`
   font-weight: 600;
 `;
 
-const HomeNoticeSectionContentBox = styled.div`
-  width: 730px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding-bottom: 5px;
-`;
-
-const HomeNoticeSectionContent = styled(Link)`
-  color: #666;
-`;
-
-const HomeNoticeSectionDateBox = styled.div`
-  width: 150px;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 5px;
-  font-size: 14px;
-`;
-
-const HomeNoticeSectionDate = styled.span``;
-
 const Home = () => {
   if (getCookie("cgvJWT") !== undefined && getCookie("role") === undefined) {
     setRole(getCookie("userId"));
   }
+
   return (
     <div>
       <CarouselSection>
@@ -208,16 +188,11 @@ const Home = () => {
         <HomeNoticeSection>
           <div>
             <CommentIcon />
-            <HomeNoticeSectionTitle>공지사항</HomeNoticeSectionTitle>
+            <Link to="/support/default">
+              <HomeNoticeSectionTitle>공지사항</HomeNoticeSectionTitle>
+            </Link>
           </div>
-          <HomeNoticeSectionContentBox>
-            <HomeNoticeSectionContent>
-              [기타]영화 개봉연기에 따른 예매취소 안내 건
-            </HomeNoticeSectionContent>
-          </HomeNoticeSectionContentBox>
-          <HomeNoticeSectionDateBox>
-            <HomeNoticeSectionDate>2020.08.16</HomeNoticeSectionDate>
-          </HomeNoticeSectionDateBox>
+          <HomeNoticeSectionBox />
         </HomeNoticeSection>
       </HomeMiddleToBottomContainer>
     </div>

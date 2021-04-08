@@ -22,7 +22,7 @@ public class ReviewController {
 	
 	private final ReviewService reviewService;
 
-	@GetMapping("/movie/{movieId}/review")
+	@GetMapping("/review/{movieId}")
 	public CommonRespDto<?> reviewByMovieId(@PathVariable String movieId) {
 		return new CommonRespDto<>(1, reviewService.무비아이디로찾기(movieId));
 	}
@@ -40,5 +40,10 @@ public class ReviewController {
 		Long userId = MyJWT.getId(token);
 		Review review = reviewService.리뷰등록(reviewSaveReqDto.getMovieId(), userId, reviewSaveReqDto.getContent(), reviewSaveReqDto.getIsLike());;
 		return new CommonRespDto<>(1, review);
+	}
+	
+	@GetMapping("/review/{movieId}/count")
+	public CommonRespDto<?> reviewCounting(@PathVariable String movieId) {
+		return new CommonRespDto<>(1, reviewService.무비아이디로카운팅(movieId));
 	}
 }

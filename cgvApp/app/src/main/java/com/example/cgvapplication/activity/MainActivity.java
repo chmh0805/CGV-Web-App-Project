@@ -14,9 +14,12 @@ import com.example.cgvapplication.fragment.FragGiftShop;
 import com.example.cgvapplication.fragment.FragHome;
 import com.example.cgvapplication.fragment.FragMovieTalk;
 import com.example.cgvapplication.helper.MyNavigationHelper;
+import com.example.cgvapplication.model.user.User;
 import com.example.cgvapplication.service.MovieService;
+import com.example.cgvapplication.service.UserService;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
+import com.example.cgvapplication.service.preference.SharedPreference;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void init() {
+        SharedPreference.getAttribute(this, "userEntity");
 
         Log.d(TAG, "init: ");
         mToolbarMain = findViewById(R.id.toolbar_main);

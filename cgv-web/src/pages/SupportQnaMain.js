@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import HomeIcon from "@material-ui/icons/Home";
 import imgMiso from "../images/desc_miso.png";
-import { Form } from "react-bootstrap";
 import SupportAsidesBox from "../components/SupportAsidesBox";
 import { deleteCookie, getCookie, isLogined, setCookie } from "../utils/JWT";
 import axios from "axios";
@@ -385,7 +384,7 @@ const SupportQnaMain = (props) => {
             </QnaTableTitleBox>
             <QnaTableRowBox>
               <QnaTableContentTitle>이름</QnaTableContentTitle>
-              <QnaTableContentLongBody>정민혁</QnaTableContentLongBody>
+              <QnaTableContentLongBody>{info.username}</QnaTableContentLongBody>
             </QnaTableRowBox>
             <QnaTableRowBox>
               <QnaTableContentTitle>휴대전화</QnaTableContentTitle>

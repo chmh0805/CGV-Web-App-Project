@@ -93,6 +93,11 @@ public class TimeTableService {
 
 		return timeTableRepository.mFindByAllInfo(movieId, theaterId, date);
 	}
+	
+	@Transactional(readOnly = true)
+	public TimeTable 타임테이블정보(long timeTableId) {
+		return timeTableRepository.findById(timeTableId).get();
+	}
 
 	@Transactional(readOnly = true)
 	public List<TimeTableHallRespDto> 상영관리스트찾기(String movieId, long theaterId, String date) {

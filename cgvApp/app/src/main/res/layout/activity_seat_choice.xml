@@ -39,12 +39,14 @@
             android:paddingTop="15dp"
             android:paddingBottom="5dp">
             <TextView
+                android:id="@+id/tv_theater"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:text="김해"
                 android:layout_marginRight="5dp"/>
             <TextView
+                android:id="@+id/tv_hall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="8관"/>
@@ -55,6 +57,7 @@
             android:paddingHorizontal="15dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
@@ -84,6 +87,7 @@
                         android:text="일반"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/tv_normalPerson"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
@@ -101,6 +105,7 @@
                         android:text="청소년"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/tv_student"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
@@ -117,6 +122,7 @@
                         android:text="우대"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/tv_preferential"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="1"
@@ -124,6 +130,7 @@
                 </LinearLayout>
             </LinearLayout>
             <TextView
+                android:id="@+id/tv_payment"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

@@ -94,7 +94,7 @@ public class MovieApiClient {
 				JsonArray jsonArray = (JsonArray) jsonObject.get("Data");
 				
 				jsonObject = (JsonObject) jsonArray.get(0);
-				System.out.println(jsonObject);
+//				System.out.println(jsonObject);
 				
 				if(!jsonObject.get("Count").toString().equals("0")) {
 					

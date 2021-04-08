@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class TicketingTheaterSeatDto {
+    private int timeTableId;
     private String startTime;
     private Integer runningTime;
     private BigInteger seatCount;

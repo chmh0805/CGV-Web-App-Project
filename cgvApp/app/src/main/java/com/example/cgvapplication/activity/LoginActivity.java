@@ -15,9 +15,12 @@ import com.example.cgvapplication.R;
 import com.example.cgvapplication.helper.MyNavigationHelper;
 import com.example.cgvapplication.model.user.User;
 import com.example.cgvapplication.service.AuthService;
+import com.example.cgvapplication.service.UserService;
+import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.preference.SharedPreference;
 import com.example.cgvapplication.service.dto.auth.LoginReqDto;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -113,8 +116,5 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d(TAG, "onFailure: 통신 실패");
             }
         });
-
-
-
     }
 }

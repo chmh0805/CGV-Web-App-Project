@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import com.cgv.cgvserver.domain.seat.Seat;
 import com.cgv.cgvserver.domain.theater.Theater;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
@@ -31,13 +32,14 @@ public class Hall {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JsonIgnoreProperties({"halls"})
+	@JsonBackReference
 	@JoinColumn(name = "theaterId")
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Theater theater;
 	
 	private String name;
 	
+	@JsonIgnoreProperties
 	@OneToMany(mappedBy = "hall", cascade = CascadeType.REMOVE)
 	private List<Seat> seats;
 }

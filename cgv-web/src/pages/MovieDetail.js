@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import kingEgg from "../images/movieChart/king_egg.png";
 import ticketBtn from "../images/movieDetail/ticket_btn.png";
@@ -7,7 +7,7 @@ import playBtn from "../images/movieDetail/play_icon.png";
 import { Link } from "react-router-dom";
 import MovieDetailReply from "../components/MovieDetailReply";
 import HomeIcon from "@material-ui/icons/Home";
-import { getCookie, setCookie } from "../utils/JWT";
+import { deleteCookie, getCookie, isLogined, setCookie } from "../utils/JWT";
 import Slider from "react-slick";
 import BoardPagingBox from "../components/support/BoardPagingBox";
 
@@ -36,7 +36,6 @@ const NavSectionItemBox = styled.div`
 
 const NavSectionHome = styled(Link)`
   color: black;
-
   &:hover {
     color: black;
   }
@@ -205,7 +204,6 @@ const MDExpectBtn = styled.button`
   font-size: 13px;
   font-weight: 500;
   background-color: #fdfcf0;
-
   &:focus {
     background-color: #ffedec;
     color: #e71a0f;
@@ -353,23 +351,6 @@ const PagingBoxSection = styled.div`
   padding-top: 25px;
 `;
 
-const ReplyPreviousBtn = styled.button`
-  border-radius: 2px;
-  margin-right: 3px;
-  background-color: #faf9ed;
-  color: #787877;
-  border: 1px solid #cacac1;
-  padding-left: 2px;
-`;
-const ReplyNextBtn = styled.button`
-  border-radius: 2px;
-  margin-left: 3px;
-  background-color: #faf9ed;
-  color: #787877;
-  border: 1px solid #cacac1;
-  padding-right: 2px;
-`;
-
 const ItemOl = styled.ol`
   list-style: none;
   padding-left: 0;
@@ -412,7 +393,7 @@ const Wrap = styled.div`
   width: 100%;
   display: inline-block;
   .slick-prev:before {
-    opaicty: 1; // 기존에 숨어있던 화살표 버튼이 보이게
+    opacity: 1; // 기존에 숨어있던 화살표 버튼이 보이게
     color: black; // 버튼 색은 검은색으로
     left: 0;
   }
@@ -440,46 +421,32 @@ const MovieDetail = (props) => {
 
   const [movie, setMovie] = useState({});
   const [poster, setPoster] = useState();
-  const [directors, setDirectors] = useState({});
+  const [directors, setDirectors] = useState([]);
   const [actors, setActors] = useState([]);
   const [trailers, setTrailers] = useState([]);
   const [stillCuts, setStillCuts] = useState([]);
   const [reviews, setReviews] = useState([]);
 
-  const loadMovies = async () => {
-    if (isLoaded) {
-      setIsLoaded(false);
+  const [isExpect, setIsExpect] = useState(true);
 
-      await fetch("http://localhost:8080/movie/" + movieDocId, {
-        method: "GET",
-        headers: new Headers({
-          Authorization: getCookie("cgvJWT"),
-        }),
-      })
-        .then((res) => res.json())
-        .then((res) => {
-          if (res.statusCode === 1) {
-            setMovie(res.data);
-            setPoster(res.data.posterImgSrc);
-            setDirectors(res.data.director);
-            setActors(res.data.actors);
-            setTrailers(res.data.trailers);
-            setStillCuts(res.data.stillCuts);
-          }
-        })
-        .catch((err) => {
-          // logout();
-          // alert("회원정보 조회 실패. 재로그인해주세요.");
-          // window.location.replace("/login");
-        });
-    }
-  };
+  useEffect(() => {
+    fetch("http://localhost:8080/movie/" + movieDocId)
+      .then((res) => res.json())
+      .then((res) => {
+        setMovie(res.data);
+        setPoster(res.data.posterImgSrc);
+        setDirectors(res.data.directors);
+        setActors(res.data.actors);
+        setTrailers(res.data.trailers);
+        setStillCuts(res.data.stillCuts);
+      });
+  }, []);
 
   const loadReviews = async () => {
     if (isLoaded) {
       setIsLoaded(false);
 
-      await fetch("http://localhost:8080/movie/" + movieDocId + "/review", {
+      await fetch("http://localhost:8080/review/" + movieDocId, {
         method: "GET",
         headers: new Headers({
           Authorization: getCookie("cgvJWT"),
@@ -508,8 +475,44 @@ const MovieDetail = (props) => {
     return currentPosts;
   }
 
-  loadMovies();
   loadReviews();
+
+  const goToLogin = () => {
+    props.history.push("/login");
+  };
+
+  const ExpectMovie = () => {
+    if (!isLogined()) {
+      goToLogin();
+    }
+
+    fetch("http://localhost:8080/expectMovie/" + movieDocId + "/expect", {
+      method: "POST",
+      headers: new Headers({
+        "Content-Type": "application/json",
+        Authorization: getCookie("cgvJWT"),
+      }),
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        if (res.statusCode === 1) {
+          alert("기대되는 영화에 등록 완료");
+        } else if (res.statusCode === -1) {
+          alert("이미 기대돼요 등록된 영화입니다.");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        fetch("http://localhost:8080/logout").then(() => {
+          deleteCookie("cgvJWT");
+          deleteCookie("userId");
+          deleteCookie("role");
+        });
+        alert("회원정보 조회 실패. 재로그인해주세요.");
+        window.location.replace("/login");
+      });
+  };
 
   return (
     <MDCon>
@@ -558,7 +561,9 @@ const MovieDetail = (props) => {
                 >
                   <MDMovieP>감독 : </MDMovieP>
 
-                  <MDMovieP>{directors.name}</MDMovieP>
+                  {directors.map((director) => (
+                    <MDMovieSpan>{director.name}</MDMovieSpan>
+                  ))}
 
                   <MDMovieSep>|</MDMovieSep>
                   <MDMovieP>배우 : </MDMovieP>
@@ -582,7 +587,7 @@ const MovieDetail = (props) => {
               </MDMovieInfo>
 
               <MDBtnBox>
-                <MDExpectBtn>기대돼요</MDExpectBtn>
+                <MDExpectBtn onClick={ExpectMovie}>기대돼요</MDExpectBtn>
                 <MDMovieBtn to="/ticket">
                   <MDMovieBtnImg src={ticketBtn} />
                 </MDMovieBtn>

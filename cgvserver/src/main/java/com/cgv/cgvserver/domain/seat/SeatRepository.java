@@ -9,4 +9,5 @@ public interface SeatRepository extends JpaRepository<Seat, Long> {
 	
 	@Query(value = "SELECT * FROM seat WHERE hallId = :hallId", nativeQuery = true)
 	List<Seat> findByHallId(long hallId);
+	
 }

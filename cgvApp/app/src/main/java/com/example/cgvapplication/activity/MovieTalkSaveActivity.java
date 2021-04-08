@@ -103,6 +103,7 @@ public class MovieTalkSaveActivity extends AppCompatActivity {
         mBtnSet.setOnClickListener(view -> {
             if(!mEtContent.getText().toString().equals("") || !mEtContent.getText().toString().equals(null)) {
                 movieTalkSaveReqDto.setContent(mEtContent.getText().toString());
+                finish();
             } else {
                 Toast.makeText(this, "내용을 작성해 주세요", Toast.LENGTH_SHORT).show();
             }
@@ -115,7 +116,6 @@ public class MovieTalkSaveActivity extends AppCompatActivity {
             movieTalkSaveReqDto.setMovieId(moiveId);
             if(movieTalkSaveReqDto.getContent()!=null && movieTalkSaveReqDto.getMovieId() != null)
                 save(movieTalkSaveReqDto);
-
         });
     }
 

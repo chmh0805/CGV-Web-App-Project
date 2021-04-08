@@ -20,11 +20,12 @@ public class MovieTalkService {
 	private final MovieRepository movieRepository;
 	
 	public MovieTalk 저장하기(MovieTalkSaveReqDto movieTalkSaveReqDto) {
+		String content = movieTalkSaveReqDto.getContent().replaceAll(">", "&gt;").replaceAll("<", "&lt;");
 		
 		Movie movieEntity = movieRepository.findById(movieTalkSaveReqDto.getMovieId()).orElseThrow(() -> {throw new NotFoundMovieException();});
 		MovieTalk movieTalk = MovieTalk.builder()
 				.movie(movieEntity)
-				.content(movieTalkSaveReqDto.getContent())
+				.content(content)
 				.ImageSrc(movieTalkSaveReqDto.getImageSrc())
 				.build();
 		return movieTalkRepository.save(movieTalk);

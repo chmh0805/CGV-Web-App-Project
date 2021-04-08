@@ -1,7 +1,5 @@
 package com.example.cgvapplication.service;
 
-
-import com.example.cgvapplication.model.hall.Hall;
 import com.example.cgvapplication.model.timetable.TimeTable;
 import com.example.cgvapplication.service.dto.CMRespDto;
 import com.example.cgvapplication.service.dto.timetable.TimeTableHallRespDto;
@@ -33,8 +31,11 @@ public interface TimeTableService {
     @POST("/timetable/app/theater")
     Call<CMRespDto<List<TimeTableTheaterRespDto>>> findAllByTheaterLocation(@Body TimeTableTheaterReqDto dto);
 
+    @GET("/timetable/app/{timeTableId}")
+    Call<CMRespDto<TimeTable>> findByTimeTableId(@Path("timeTableId") long timeTableId);
+
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.137.33:8080")
+            .baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

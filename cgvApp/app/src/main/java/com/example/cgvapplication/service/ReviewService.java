@@ -9,6 +9,7 @@ import com.example.cgvapplication.service.dto.expectmovie.ExpectSaveReqDto;
 import com.example.cgvapplication.service.dto.movie.AppMovieHomeRespDto;
 import com.example.cgvapplication.service.dto.movie.MovieBoxOfficeRespDto;
 import com.example.cgvapplication.service.dto.movie.TrailerRespDto;
+import com.example.cgvapplication.service.dto.review.ReviewCountRespDto;
 import com.example.cgvapplication.service.dto.review.ReviewFindRespDto;
 import com.example.cgvapplication.service.dto.review.ReviewSaveReqDto;
 
@@ -28,11 +29,13 @@ public interface ReviewService {
     @POST("/review")
     Call<CMRespDto<Review>> save(@Header("Authorization") String token, @Body ReviewSaveReqDto reviewSaveReqDto);
 
-    @GET("/movie/{movieId}/review")
+    @GET("/review/{movieId}")
     Call<CMRespDto<List<ReviewFindRespDto>>> reviewByMovieId(@Path("movieId") String movieId);
 
+    @GET("/review/{movieId}/count")
+    Call<CMRespDto<ReviewCountRespDto>> reviewCounting(@Path("movieId") String movieId);
     public static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("http://192.168.137.33:8080")
+            .baseUrl("http://10.0.2.2:8080")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 }

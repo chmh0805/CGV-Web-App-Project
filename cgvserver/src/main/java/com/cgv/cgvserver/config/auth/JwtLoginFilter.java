@@ -43,7 +43,7 @@ public class JwtLoginFilter extends UsernamePasswordAuthenticationFilter {
 			log.info("JwtLoginFilter : 로그인 유저 dto : " + loginReqDto);
 		} catch (Exception e) {
 			log.warn("JwtLoginFilter : 로그인 요청 dto 생성 중 실패");
-			log.warn(e.getStackTrace().toString());
+			log.warn(e.getMessage());
 		}
 		
 		// 1. UsernamePassword 토큰 만들기

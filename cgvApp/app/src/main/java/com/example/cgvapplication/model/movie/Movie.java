@@ -20,7 +20,7 @@ public class Movie {
 
     private String docId;
     private String title;
-    private String subTitle;
+    private String subtitle;
     private String genre;
     private String age;
     private String country;
@@ -29,12 +29,12 @@ public class Movie {
     private String releaseDate;
     private int state; //(1:상영중 2:상영예정)
     private String summary;
+    private String disribute;
     private String posterImgSrc;
+
     private List<Review> review;
     private List<Actor> actors;
     private List<Director> directors;
     private List<StillCut> stillCuts;
     private List<Trailer> trailers;
-//    private int reviewId;
-//    private int favorId;
 }
